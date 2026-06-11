@@ -1,0 +1,72 @@
+project:
+  type: website
+
+website:
+  site-url: https://stat243.berkeley.edu/fall-2026
+  sidebar:
+    style: docked
+    title: "Stat 243"
+    logo: assets/stat_bear.png
+    logo-alt: "UC Berkeley Statistics logo"
+    tools:
+      - icon: github
+        href: https://github.com/berkeley-stat243/fall-2026
+        aria-label: GitHub
+    contents:
+      - href: index.qmd
+        text: Home
+      - href: syllabus.qmd
+        text: Syllabus
+      - href: schedule.qmd
+        text: Schedule
+      - href: office_hours.qmd
+        text: Office Hours
+      - section: "Units"
+        contents:
+          - href: units/unit1-intro.qmd
+            text: "Unit A1 (UNIX intro)"
+          - href: units/unit2-bash.qmd
+            text: "Unit A2 (Bash shell)"
+          - href: units/unit3-goodPractices.qmd
+            text: "Unit A3 (Good practices)"
+          - href: units/unit4-programming.qmd
+            text: "Unit A4 (Programming)"
+          - href: units/unit5-bigData.qmd
+            text: "Unit A5 (Databases)"
+          - href: units/unit6-parallel.qmd
+            text: "Unit A6 (Parallelization)"
+          - href: units/unit7-dataTech.qmd
+            text: "Unit A7 (Data technologies)"
+          - href: units/unit8-numbers.qmd
+            text: "Unit B8 (Precision)"
+          - href: units/unit9-sim.qmd
+            text: "Unit B9 (Simulation)"
+          - href: units/unit10-linalg.qmd
+            text: "Unit B10 (Linear Algebra)"
+          - href: units/unit11-optim.qmd
+            text: "Unit B11 (Optimization)"
+          - href: units/unit12-graphics.qmd
+            text: "Unit B12 (Optimization for Deep Learning)"
+      - section: "How tos"
+        contents:
+          - howtos/accessPython.md
+          - howtos/accessUnixCommandLine.md
+          - howtos/installGit.md
+          - howtos/installQuarto.qmd
+          - howtos/vscode.md
+          - howtos/submitPS.md
+          - howtos/windowsAndLinux.md
+      - href: license.qmd
+        text: License
+          
+format:
+  html:
+    theme: cosmo
+    css: assets/styles.css
+    toc: true
+    include-in-header:
+      file: siteimprove.html
+
+execute:
+  freeze: auto
+

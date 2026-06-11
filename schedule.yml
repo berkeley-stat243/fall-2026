@@ -1,0 +1,60 @@
+- week: 1
+  days:
+    - date: "Thu Aug 27"
+      items:
+        - type: "Event"
+          id: "1"
+          name: "TBD: (Optional) Library Introduction to LaTeX with Overleaf session"
+          href: "https://berkeley.libcal.com/event/15006953"
+    - date: "Fri Aug 28"
+      items:
+        - type: "Lab"
+          id: "0"
+          name: (Optional) help session for software installation/setup and UNIX-style command line basics
+          href: labs/lab0-setup.html
+        - type: "Activity"
+          id: "1"
+          name: "Class Survey"
+          href: "https://docs.google.com/forms/d/e/XYZ_1FAIpQLSdy8pjlutdGFB4366qGmkp_39T1CX82sWudevXWKgdjY-YGIg/viewform?usp=dialog"
+        - type: "Activity"
+          id: "2"
+          name: "(Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end"
+          href: "https://computing.stat.berkeley.edu/tutorial-unix-basics"
+        - type: "Activity"
+          id: "3"
+          name: "Office hour time survey"
+          href: "http://whenisgood.net/XYZy2fndfk"
+        - type: "Activity"
+          id: "4"
+          name: "Login to github.berkeley.edu with your CalNet credentials"
+          href: "https://github.berkeley.edu"
+- week: 2
+  days:
+    - date: "Mon Aug 31"
+      items:
+        - type: "Assignment"
+          id: "1"
+          name: "Bash shell tutorial and exercises (see details below)"
+          href: "https://computing.stat.berkeley.edu/tutorial-using-bash"
+    - date: "Fri Sep 4"
+      items:
+        - type: "Lab"
+          id: "1"
+          name: "Using Git and Quarto and problem set submission"
+          href: labs/lab1-submission.html
+        - type: "Assignment"
+          id: "1"
+          name: "TBD: Regex tutorial and exercises (see details below)"
+          href: "units/regex"
+- week: 3
+  days:
+    - date: "Fri Sep 11"
+      items:
+        - type: "Problem_Set"
+          id: "1"
+          name: "Problem Set 1"
+          href: "ps/ps1.html"
+        - type: "Event"
+          id: "2"
+          name: "TBD (Optional) Library Introduction to LaTeX with Overleaf session"
+          href: "https://berkeley.libcal.com/event/15006897"
