@@ -1,6 +1,6 @@
 ---
 title: "Statistics 243: Introduction to Statistical Computing"
-subtitle: "UC Berkeley, Spring 2026"
+subtitle: "UC Berkeley, Fall 2026"
 listing:
   - id: buttons
     template: assets/buttons.ejs
@@ -10,25 +10,35 @@ listing:
 ::: {#buttons}
 :::
 
+This is the course website for both Statistics 243A and 243B.
+
+Course policies and logistics generally pertain to both courses, with limited exceptions. 
+
 ## Course materials
 
-See the links above for the key resources for the course.
+See the links above for the key resources for the courses.
 
 Most course content (in particular unit notes, labs, and problem sets) are available through this website via the links in the left sidebar.
 
-## Questions about taking the class
+## Questions about taking the classes
 
-If you would like to audit the class, enroll as a UC Berkeley undergraduate, or enroll as a concurrent enrollment student (i.e., for visiting students), or for some other reason are not enrolled, please fill out [this survey](https://docs.google.com/forms/d/e/XYZ_1FAIpQLSdy8pjlutdGFB4366qGmkp_39T1CX82sWudevXWKgdjY-YGIg/viewform) as soon as possible. All those enrolled or wishing to take the class should have filled it out by Friday August 28 at noon.
+### Information for students not in the Statistics Department
 
-Undergraduates can only take the course with my permission and once all graduate students have an opportunity to register. I do not know if there will be space, but I recommend you attend the course as if you were enrolled until this is clear.
+If you would like to audit the class, enroll as a UC Berkeley undergraduate, or enroll as a concurrent enrollment student (i.e., for visiting students), or for some other reason are not enrolled, please fill out [this survey](https://docs.google.com/forms/d/e/XYZ_1FAIpQLSdy8pjlutdGFB4366qGmkp_39T1CX82sWudevXWKgdjY-YGIg/viewform) as soon as possible. All those enrolled or wishing to take 243A should have filled it out by Friday August 28 at noon.
 
-Concurrent enrollment students (e.g., exchange students from other universities/countries) can take the course with my permission and once all UC Berkeley students have had an opportunity to register. I do not know if there will be space, but I recommend you attend the course as if you were enrolled until this is clear.
+Undergraduates can only take the class with my permission and once all graduate students have an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.
 
-Please see the syllabus for the math and statistics background I expect, as well as the need to be familiar with Python or to get up to speed in Python during the first few weeks of the semester. Note that these prerequisites are not the same for Stat 243a and Stat 243b.
+Concurrent enrollment students (e.g., exchange students from other universities/countries) can take the class with my permission and once all UC Berkeley students have had an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.
+
+Please see the syllabus for the math and statistics background I expect, as well as the need to be familiar with Python or to get up to speed in Python during the first few weeks of the semester. Note that these prerequisites are not the same for Stat 243A and Stat 243B.
+
+### Taking only 243A or only 243B
 
 Students who are not Statistics MA students are welcome to take only one of the two half-semester courses. However if you plan to take Stat 243b only, you should make sure you have sufficient Python programming experience. It doesn't have to be fully equivalent to what is taught in Stat 243a, but you should be comfortable programming in Python.
 
 Students who are Statistics MA students who wish to only take one of the two half-semester courses need to request a waiver from the MA program, detailing your mastery of the material in the course you wish to waive.
 
-The first three weeks involve a lot of moving pieces, in part related to trying to get everyone up to speed with the bash shell and Python. Please use [the schedule](schedule.qmd) to keep on top of what you need to do.
+## Other information
+
+The first three weeks of 243A involve a lot of moving pieces, in part related to trying to get everyone up to speed with the bash shell and Python. Please use [the schedule](schedule.qmd) to keep on top of what you need to do.
 
