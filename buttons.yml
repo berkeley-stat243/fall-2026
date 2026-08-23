@@ -1,17 +1,17 @@
 - button: Ed
-  link: https://edstem.org/us/courses/X81308/discussion
+  link: https://edstem.org/us/courses/102684/discussion
   color: purple
-- button: Gradescope
-  link: https://www.gradescope.com/courses/X1076535
+- button: Pensive/Gradescope
+  link: https://www.gradescope.com/courses/XYZ
   color: orangered
 - button: Tutorials
   link: https://statistics.berkeley.edu/computing/training/tutorials
   color: blue
 - button: Lecture recordings
-  link: https://bcourses.berkeley.edu/courses/X1546970/external_tools/90481
+  link: https://bcourses.berkeley.edu/courses/1558189/external_tools/90481
   color: green
 - button: bCourses 
-  link: https://bcourses.berkeley.edu/courses/X1546970
+  link: https://bcourses.berkeley.edu/courses/1558189
   color: crimson
 - button: PollEV
   link: https://pollev.com/chrispaciorek428

@@ -45,7 +45,7 @@ website:
             text: "Unit B10 (Linear Algebra)"
           - href: units/unit11-optim.qmd
             text: "Unit B11 (Optimization)"
-          - href: units/unit12-graphics.qmd
+          - href: units/unit12-dl-optim.qmd
             text: "Unit B12 (Optimization for Deep Learning)"
       - section: "How tos"
         contents:
