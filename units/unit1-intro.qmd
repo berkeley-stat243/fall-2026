@@ -145,7 +145,17 @@ relative to your home directory on that machine.
 There are also client programs for file transfer; see [this
 webpage](http://statistics.berkeley.edu/computing/copying-files).
 
-# 5. Editors
+# 5. Knowing your context
+
+Here are the key things to be aware of when you are in the shell or executing code:
+
+ - What machine am I on?
+ - What user am I?
+ - What is the current working directory?
+ - What git branch am I in (if the working directory is in a Git repo)?
+ - What Conda environment am I in (if relevant)?
+
+# 6. Editors
 
 For scientific computing, we need a text editor, not a word processor,
 because we're going to be operating on code files, plain-text data files, 
