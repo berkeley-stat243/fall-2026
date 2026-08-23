@@ -27,8 +27,8 @@ operating on remote servers, as well as a bit of R.
 ### What the courses are not
 
  - While both courses are taught using Python and you will learn a lot about using
-Python at an advanced level (primarily in Stat 243A), this is not a course about learning Python. Rather the focus of the course is computing for statistics and data science more generally, using Python to illustrate the concepts. 
- - This is not a course that will cover specific statistical/machine learning/data analysis methods. 
+Python at an advanced level (primarily in Stat 243A), these are not courses about learning Python. Rather the focus of the course is computing for statistics and data science more generally, using Python to illustrate the concepts. 
+ - These are not courses that will cover specific statistical/machine learning/data analysis methods. 
 
 ### Prerequisites
 
@@ -62,7 +62,7 @@ For Stat 243B, you should be comfortable with calculus and linear algebra.
 In addition, you should be comfortable programming in Python, but your experience does not need to be equivalent to Stat 243A.
 
 
-## Objectives of the course {#objectives-of-the-course .unnumbered}
+## Objectives of the courses {#objectives-of-the-course .unnumbered}
 
 The goals of the courses are that, by the end of the course, students be
 able to:
@@ -119,18 +119,18 @@ The 'days' here are (roughly) class sessions, as general guidance.
 
 -   Instructor:
 
-    -   Chris Paciorek (paciorek@stat.berkeley.edu)
+    -   Chris Paciorek (paciorek@berkeley.edu)
 
 -   GSI
 
-    -   TBD
+    -   Reece Huff (rdhuff@berkeley.edu)
 
 -   Office hours can be found [here](office_hours).
 
 
 ## Course websites: GitHub, Ed Discussion, Gradescope, and bCourses {#course-websites-github-ed-gradescope-and-bcourses .unnumbered}
 
-Key websites for the course are:
+Key websites for the courses are (see button links on [main page](../index):
 
 -   This course website, which is hosted on GitHub pages, and the GitHub repository containing the source materials:
     <https://github.com/berkeley-stat243/fall-2026>
@@ -138,15 +138,12 @@ Key websites for the course are:
 -   SCF tutorials for additional content:
     <https://statistics.berkeley.edu/computing/training/tutorials>
 
--   Ed Discussion site for discussions/Q&A:
-    <https://edstem.org/us/courses/X81308/discussion>
+-   Ed Discussion site for discussions/Q&A
 
 -   bCourses site for course capture recordings (see Media Gallery) and possibly some other
     materials:
-    <https://bcourses.berkeley.edu/courses/X1546970>
 
--   Gradescope for assignments (also linked from bCourses): 
-    <https://www.gradescope.com/courses/X1076535>
+-   Pensive/Gradescope for assignments (also linked from bCourses)
 
 All course materials will be posted here on the website (and on GitHub) except for video content, which will be in bCourses.
 
@@ -155,7 +152,7 @@ All course materials will be posted here on the website (and on GitHub) except f
 We will use the course Ed Discussion site for communication (announcements,
 questions, and discussion). You should ask questions about class
 material and problem sets through the site. Please use this site for your
-questions so that either João or I can respond and so that everyone
+questions so that either Reece or I can respond and so that everyone
 can benefit from the discussion. I strongly encourage
 you to respond to or comment on each other's questions as well (this
 will help your class participation grade), although of course you should
@@ -173,7 +170,7 @@ on Ed Discussion so you are informed by email of postings.
 :::
 
 
-If you're enrolled in the class you should be a member of the Ed Discussion group and be able to access it. If you're auditing or not yet enrolled and would like access, make sure to fill out the [course survey](https://forms.gle/MxPviTJ2Lw1iJvn66) and I will add you. 
+If you're enrolled in the class you should be a member of the Ed Discussion group and be able to access it. If you're auditing or not yet enrolled and would like access, make sure to fill out the [course survey](https://forms.gle/7newMx42Jg1TmKUK9) and I will add you. 
 
 
 ## Course material  {#course-material .unnumbered}
@@ -228,7 +225,7 @@ first (e.g., if you have a one-time conflict.
 
 ## Computing Resources {#computing-resources .unnumbered}
 
-Most work for the course can be done on your laptop. Later in the course
+Most work for the courses can be done on your laptop. Later in Stat 243A
 we'll also use the Statistics Department Linux cluster. You can also use the
 SCF JupyterHub or the campus DataHub to access a bash shell or run an IPython notebook.
 
@@ -275,7 +272,7 @@ limited background on a topic, I encourage you to ask questions during
 class so I know what you find confusing. For those of you with extensive
 background on a topic (there will invariably be some topics where one of
 you will know more about it than I do or have more real-world
-experience), I encourage you to pitch in with your perspective. In
+experience), I encourage you to contribute with your perspective. In
 general, there are many ways to do things on a computer, particularly in
 a UNIX environment and in Python, so it will help everyone (including me) if
 we hear multiple perspectives/ideas.
@@ -297,7 +294,7 @@ in all cases. In the event there is no mutually-workable solution, you
 may be dropped from the class.
 
 The main conflict that would be a problem would be the two mini-exams, whose
-dates I will determine in late August / early September.
+dates are Monday October 12 (243A) and Monday November 23 (243B).
 
 **Mini-exams and problem set quizzes are in-person.** There is no remote option, and the only make-up
 accommodations I will make are for illness or serious personal issues.
@@ -306,7 +303,7 @@ accommodations I will make are for illness or serious personal issues.
 ### Course grades {#course-grades .unnumbered}
 
 The grade for each course is primarily based on assignments due every
-1-2 weeks, in-section quizzes on the assignments, one mini-exam (tentatively Oct. 12 and Nov. 23)
+1-2 weeks, in-section quizzes on the assignments, one mini-exam (Oct. 12 and Nov. 23)
 I may also provide extra credit questions on some problem
 sets. There is no final exam.
 
@@ -335,19 +332,17 @@ while still trying to make sure that we understand core computing and programmin
 and that we can build upon, critique, and debug what AI agents produce. A key challenge for you (and for me as an instructor)
 is thinking about how to use AI to develop the skills and expertise you will need without fooling yourself into thinking you understand more than you do. We are all still trying to figure this out! 
 
-I am not going to police your use of AI. You are welcome to use ChatBots and AI-assisted coding tools. You are also welcome to collaborate with others in the class. However, if you simply turn in answers that are mainly copies of what an AI tool (or your classmate) told you, you are probably not learning the material, and this is likely to be reflected in your performance on the problem set quizzes (and on the mini-exams, albeit less directly).  
+I am not going to police your use of AI. You may use ChatBots and AI-assisted coding tools, but you should be very careful about relying substantially on AI (see comments below). You are also welcome to collaborate with others in the class. However, if you simply turn in answers that are mainly copies of what an AI tool (or your classmate) told you, you are probably not learning the material, and this is likely to be reflected in your performance on the problem set quizzes (and on the mini-exams, albeit less directly).  
 
 Think of the problem sets in combination with the quizzes (see below) as a train-test split. You have freedom in working with the training set,
 but some strategies could result in poor performance on the test set. In data analysis, this involves overfitting. In our class context, this involves relying too heavily on AI or your classmates and not doing the work to really understand the material.
 
-How much to make use of AI is for you to consider carefully. My current suggestion (which is also how I suggest working with classmates) is that you initially try seriously to figure out a given problem on your own (without substantial input from AI or others). By substantial, I mean getting input on an entire solution or blocks of a solution. If you want to ask an AI for input on small portions of a problem (such as code syntax) that you then check and understand the result of, that seems to me to be a good use of the tools. After that, if you're stuck or want to explore alternative approaches or check what you've done, then using AI more fully, consulting with your fellow students, and talking with the GSI and with me are all recommended. I.e., these tools help us brainstorm and do our work more efficiently; they don't replace us thinking (at least not yet...).
+How much to make use of AI is for you to consider carefully. My current suggestion (which is also how I suggest working with classmates) is that you initially try seriously to figure out a given problem on your own (without substantial input from AI or others). By 'substantial', I mean getting input on an entire solution or blocks of a solution. If you want to ask an AI for input on small portions of a problem (such as code syntax) that you then check and understand the result of, that seems to me to be a good use of the tools. After that, if you're stuck or want to explore alternative approaches or check what you've done, then using AI more fully, consulting with your fellow students, and talking with the GSI and with me are all recommended. I.e., these tools help us brainstorm and do our work more efficiently; they don't replace us thinking (at least not yet...).
 You should be sure you understand (and could explain to someone else) in detail what the code does and how/why it works. On that note, the problem set quizzes are intended to assess that. 
 
 #### Problem set quizzes
 
-For each problem set, there will be a short quiz on paper in section very soon after the problem set is due (possibly the same day). The quiz will check your understanding of the material and will involve questions **directly** related to a subset of the problems. If you understood the material covered in the problems, you should do well on the quizzes without "studying" for the quiz.
-
-At the moment I anticipate that the quizzes will be "closed book" -- you won't be able to refer to any materials during the quizzes. However, I may make some modifications to this as we go along. (This is the first time I am trying the approach of problem set quizzes.)
+For each problem set, there will be a short quiz on paper in section very soon after the problem set is due (possibly the same day). The quiz will check your understanding of the material and will involve questions **directly** related to a subset of the problems. If you understood the material covered in the problems, you should do well on the quizzes **without** "studying" for the quiz. The quizzes will be "closed book".
 
 The quizzes will be intended to be fairly short and without time pressure. That said, for practical reasons, the time limit will be determined by the length of section, but my hope is that that is long enough that it is equivalent to not having a time limit. 
 
@@ -356,6 +351,8 @@ The quizzes will be intended to be fairly short and without time pressure. That 
 If you do poorly on a quiz and would like to retake it, there will be an oral retake procedure. This will involve talking with me (probably during office hours) shortly after the quiz is graded. I will then have a conversation with you about the quiz questions (or similar questions) in order to assess your understanding. 
 
 If you need to miss a quiz because of illness, you can make use of the retake procedure as well.
+
+You should only take advantage of the retake option once or twice, and you should should not do so simply for missing a point or two (even if you feel that the missing point(s) did not accurately reflect your understanding).
 
 
 #### Submitting assignments
@@ -378,7 +375,7 @@ Please see the SCF [dynamics document tutorial](https://computing.stat.berkeley.
 
 2.  Problem set submission consists of **both** of the following:
 
-    1.  A PDF submitted electronically through Gradescope, **by the
+    1.  A PDF submitted electronically through Pensive/Gradescope, **by the
         start of class (10 am)** on the due date, and
 
     2.  An electronic copy of the PDF, code files, and Quarto
@@ -386,7 +383,7 @@ Please see the SCF [dynamics document tutorial](https://computing.stat.berkeley.
         instructions to be provided by the GSI.
 
     On-time submission will be determined based on the time stamp of
-    when the PDF is submitted to Gradescope.
+    when the PDF is submitted to Pensive/Gradescope.
 
 3.  Answers should consist of textual response or mathematical
     expressions as appropriate, with key chunks of code embedded within
@@ -433,9 +430,11 @@ quality of your responses - for that please compare your work to the
 solutions I will distribute. Technical understanding (and your ability
 to explain that clearly) will be assessed via the quizzes.
 
-For late problem sets, I will take off some points, increasingly so
-the later it is, up until the late deadline listed in Gradescope,
-after which it won't be accepted or graded.
+Late problem set submissions will be accepted up until the late deadline listed in Pensive/Gradescope,
+after which they won't be accepted or graded. If you regularly submit late problem sets, that will be
+accounted for in the class participation portion of your grade. Also, even if you need to submit late,
+you should make sure you've done enough by the time of the associated quiz to have
+understood the material and to be able to do well on the quizzes.
 
 The grading scheme for the quizzes will be point-based.
 
