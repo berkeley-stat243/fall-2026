@@ -334,7 +334,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">2. Version control</a></li>
   <li><a href="#parts-of-a-computer" id="toc-parts-of-a-computer" class="nav-link" data-scroll-target="#parts-of-a-computer">3. Parts of a computer</a></li>
   <li><a href="#connecting-to-other-machines" id="toc-connecting-to-other-machines" class="nav-link" data-scroll-target="#connecting-to-other-machines">4. Connecting to other machines</a></li>
-  <li><a href="#editors" id="toc-editors" class="nav-link" data-scroll-target="#editors">5. Editors</a>
+  <li><a href="#knowing-your-context" id="toc-knowing-your-context" class="nav-link" data-scroll-target="#knowing-your-context">5. Knowing your context</a></li>
+  <li><a href="#editors" id="toc-editors" class="nav-link" data-scroll-target="#editors">6. Editors</a>
   <ul class="collapse">
   <li><a href="#summary-of-some-useful-editors" id="toc-summary-of-some-useful-editors" class="nav-link" data-scroll-target="#summary-of-some-useful-editors">Summary of some useful editors</a></li>
   <li><a href="#optional-basic-emacs" id="toc-optional-basic-emacs" class="nav-link" data-scroll-target="#optional-basic-emacs">(Optional) Basic emacs</a>
@@ -433,8 +434,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>You can use relative paths to refer to locations on the local machine. On the remote machine all paths need to be absolute or to be relative to your home directory on that machine.</p>
 <p>There are also client programs for file transfer; see <a href="http://statistics.berkeley.edu/computing/copying-files">this webpage</a>.</p>
 </section>
+<section id="knowing-your-context" class="level1">
+<h1>5. Knowing your context</h1>
+<p>Here are the key things to be aware of when you are in the shell or executing code:</p>
+<ul>
+<li>What machine am I on?</li>
+<li>What user am I?</li>
+<li>What is the current working directory?</li>
+<li>What git branch am I in (if the working directory is in a Git repo)?</li>
+<li>What Conda environment am I in (if relevant)?</li>
+</ul>
+</section>
 <section id="editors" class="level1">
-<h1>5. Editors</h1>
+<h1>6. Editors</h1>
 <p>For scientific computing, we need a text editor, not a word processor, because we’re going to be operating on code files, plain-text data files, and markup language documents (e.g., Markdown/Quarto) for which word processing formatting gets in the way. <strong>Don’t use Microsoft Word or Google Docs to edit code files or Markdown/Quarto/R Markdown/LaTeX.</strong></p>
 <section id="summary-of-some-useful-editors" class="level2">
 <h2 class="anchored" data-anchor-id="summary-of-some-useful-editors">Summary of some useful editors</h2>
