@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chris Paciorek">
-<meta name="dcterms.date" content="2025-08-25">
+<meta name="dcterms.date" content="2026-08-24">
 
 <title>Introduction to UNIX, computers, and key tools</title>
 <style>
@@ -368,7 +368,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 25, 2025</p>
+      <p class="date">August 24, 2026</p>
     </div>
   </div>
   
@@ -384,8 +384,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>1. UNIX command line basics</h1>
 <p>By UNIX, I mean any UNIX-like operating system, including Linux and MacOS. Most modern scientific computing is done on UNIX-based machines, often by <a href="https://statistics.berkeley.edu/computing/ssh">remotely logging in to a UNIX-based server</a>.</p>
 <p>There are a <a href="../howtos/accessUnixCommandLine">variety of ways to get access to a UNIX-style command line environment</a>.</p>
-<p>Please see the material in <a href="https://computing.stat.berkeley.edu/tutorial-unix-basics">our tutorial on the basics of UNIX</a> to get up to speed on working in a UNIX-style command line environment and/or the material in last week’s <a href="https://computing.stat.berkeley.edu/compute-skills-2025/units/intro-computing.html">Computing Skills Workshop</a>. We’ll do a bit of demo in the first class. If what you see seems quite familiar, you can probably skip that tutorial. If what you see is not familiar, please work through the tutorial by Wednesday September 3 and (optionally) attend section on Friday August 29 to work on the problems at the end of the tutorial and be able to ask questions of the GSI and other students.</p>
-<p>For an alternative introduction (which also includes some of the topics we’ll discuss in Unit 3 on shell scripting), see <a href="https://swcarpentry.github.io/shell-novice">this Software Carpentry tutorial</a>.</p>
+<p>Please see the material in <a href="https://computing.stat.berkeley.edu/tutorial-unix-basics">our tutorial on the basics of UNIX</a> to get up to speed on working in a UNIX-style command line environment and/or the material in last week’s <a href="https://computing.stat.berkeley.edu/compute-skills-2026/units/intro-computing.html">Computing Skills Workshop</a>. We’ll do a bit of demo in the first class. If what you see seems quite familiar, you can probably skip that tutorial. If what you see is not familiar, please work through the tutorial by the end of Friday August 28 and (optionally) attend section on Friday August 28 to work on the problems at the end of the tutorial and be able to ask questions of the GSI and other students.</p>
+<p>For an alternative introduction (which also includes some of the topics we’ll discuss in Unit 2 on shell scripting), see <a href="https://swcarpentry.github.io/shell-novice">this Software Carpentry tutorial</a>.</p>
 </section>
 <section id="version-control" class="level1">
 <h1>2. Version control</h1>
@@ -393,13 +393,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>A very popular and powerful tool for version control is Git. We’ll be using Git extensively for version control.</p>
 <p>Git stores the files for a project in a <em>repository</em>. Here are some basic Git commands you can use to access the class materials from the command line. There are also <a href="https://git-scm.com/downloads">graphical interfaces to Git</a> that you can explore. I’ve heard good things (albeit a few years ago) about <a href="https://desktop.github.com">GitHub Desktop</a>, available for Mac and Windows.</p>
 <ol type="1">
-<li><p>To clone (i.e., copy) a repository (in this case from GitHub) (<code>berkeley-stat243</code> is the organization and <code>fall-2025</code> is the repository):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/berkeley-stat243/fall-2025</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>To clone (i.e., copy) a repository (in this case from GitHub) (<code>berkeley-stat243</code> is the organization and <code>fall-2026</code> is the repository):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/berkeley-stat243/fall-2026</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 <li><p>To update a repository to reflect changes made in a remote copy of the repository:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /to/any/directory/within/the/local/repository  <span class="co">## e.g., cd fall-2025</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /to/any/directory/within/the/local/repository  <span class="co">## e.g., cd fall-2026</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
 </ol>
-<p>More information is available in the <a href="https://computing.stat.berkeley.edu/compute-skills-2025">Computing Skills Workshop</a> as well as this <a href="https://htmlpreview.github.io/?https://github.com/berkeley-scf/tutorial-git-basics/blob/master/git-intro.html">tutorial on the basics of using Git</a>, as well as lots of information/tutorials online. We’ll see a lot more about Git in Section/Lab sessions, where you’ll learn to set up a repository, make changes to repositories and work with local and remote versons of the repository. In particular, you’ll have a chance to work through the tutorial and practice with Git in the first section/lab (September 5). During the course, you’ll make use of Git for submitting problem sets and for doing the final project. You should practice using it more generally while preparing your problem set solutions, and you’ll need to use it extensively for the final group project.</p>
+<p>More information is available in the <a href="https://computing.stat.berkeley.edu/compute-skills-2026">Computing Skills Workshop</a> as well as this <a href="https://htmlpreview.github.io/?https://github.com/berkeley-scf/tutorial-git-basics/blob/master/git-intro.html">tutorial on the basics of using Git</a>, as well as lots of information/tutorials online. We’ll see a lot more about Git in Section/Lab sessions, where you’ll learn to set up a repository, make changes to repositories and work with local and remote versons of the repository. In particular, you’ll have a chance to work through the tutorial and practice with Git in the first section/lab (September 4). During the course, you’ll make use of Git for submitting problem sets. You should practice using it more generally while preparing your problem set solutions.</p>
 </section>
 <section id="parts-of-a-computer" class="level1">
 <h1>3. Parts of a computer</h1>
