@@ -1,4 +1,4 @@
-https://forms.gle/cKdqvYZW69QjpZSH6---
+---
 title: "Statistics 243: Introduction to Statistical Computing"
 subtitle: "UC Berkeley, Fall 2026"
 listing:
