@@ -1682,44 +1682,53 @@
     ]
   },
   {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Scheduling information",
+    "objectID": "ai.html",
+    "href": "ai.html",
+    "title": "AI",
     "section": "",
-    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 1 TBD: Regex tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
-    "crumbs": [
-      "Schedule"
-    ]
+    "text": "(Brainstorm with a partner or group of three) What are some reasons that being comfortable in Python is helpful for getting computational work done? (Alternatively, if you outsource a computational task to an AI agent, what might be harder if you don’t know Python?)\n\noversee AI agent\ngood prompts\niterative guidance/refinement\nredirect bad direction\ncheck errors\nguarantee accuracy\ndebug failures\nset up testing\noptimize code\n\nGoogle form:\nIn what ways do you think AI assistance may help in learning computing and/or how could relying on it reduce your learning?\nefficiency - faster implementation of basics, less wasted time, work/learn higher level concepts, save time debugging tutoring/hands-on, help get unstuck no struggle/no understanding/doesn’t stick in memory incorrect information\n\nwriting = thinking\nworking through/writing/struggling = learning/remembering/recall\n\nproblem sets have been key"
   },
   {
-    "objectID": "schedule.html#schedule",
-    "href": "schedule.html#schedule",
-    "title": "Scheduling information",
+    "objectID": "class1-notes.html",
+    "href": "class1-notes.html",
+    "title": "class 1",
     "section": "",
-    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 1 TBD: Regex tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
-    "crumbs": [
-      "Schedule"
-    ]
+    "text": "computing background thru PhD and then job providing research computing support in stats/econ/campus\nplease call me Chris\ncan I take the course: - fill out survey so I can add you to Ed (all announcements) - no third section, so only 74 - priority - 69 enrolled - 5 spots - Berk grad yes, Berk UG prob, hopefully conc enroll - you should attend and do the work so don’t fall behind\n243A/B experiment - have had to move some content around so some adjustments relative to previous years jump right into the bash shell on Friday, more quickly than in previous years"
   },
   {
-    "objectID": "schedule.html#exams",
-    "href": "schedule.html#exams",
-    "title": "Scheduling information",
-    "section": "Exams",
-    "text": "Exams\nThese are in-person only.\n\n243A exam: Monday October 12 in class\n\nReview session October 9 in section.\n\n243B exam: Monday November 23 in class.\n\nReview session November 20 in section.",
-    "crumbs": [
-      "Schedule"
-    ]
+    "objectID": "class1-notes.html#intro",
+    "href": "class1-notes.html#intro",
+    "title": "class 1",
+    "section": "",
+    "text": "computing background thru PhD and then job providing research computing support in stats/econ/campus\nplease call me Chris\ncan I take the course: - fill out survey so I can add you to Ed (all announcements) - no third section, so only 74 - priority - 69 enrolled - 5 spots - Berk grad yes, Berk UG prob, hopefully conc enroll - you should attend and do the work so don’t fall behind\n243A/B experiment - have had to move some content around so some adjustments relative to previous years jump right into the bash shell on Friday, more quickly than in previous years"
   },
   {
-    "objectID": "schedule.html#notes-on-assignments-and-activities",
-    "href": "schedule.html#notes-on-assignments-and-activities",
-    "title": "Scheduling information",
-    "section": "Notes on assignments and activities",
-    "text": "Notes on assignments and activities\n\nOptional library LaTeX session: I highly recommend (in particular if you are a Statistics graduate student) that you know how to create equations in LaTeX. Even if you develop your documents using Quarto, Jupyter notebooks, R Markdown, etc. rather than LaTeX-based documents, LaTeX math syntax is the common tool for writing math syntax that will render beautifully.\nOptional Lab A0 software/command line help session: (August 28 in lab room) Help session for installing software, accessing a UNIX-style command line, and basic command line usage (e.g., the UNIX basics tutorial). You can show up at any time (unlike all remaining labs). You should have software installed, be able to access the command line, and have started to become familiar with basic command line usage before class on Monday August 31.\nLab A1: (September 4) First section/lab on using Git, setting up your GitHub repository for problem sets, and using Quarto to generate dynamic documents. Please come only to the section you are registered for given space limits in the room, unless you have talked with Chris and have his permission.\nBash shell tutorial and exercises: (by Monday August 31) Read through this tutorial on using the bash shell. You can skip the pages on “Regular Expressions” and “Managing Processes”, so just work on the first four pages (“Overview” through “Shell Programming”). Work through the first 10 problems in the exercises and submit your answers via Gradescope. This is not a formal problem set, so you don’t need to worry about formatting nor about explaining/commenting your answers, nor do you need to put your answers in your GitHub class repository. In fact it’s even fine with me if you hand-write the answers and scan them to an electronic document. I just want to make sure you’ve worked through the tutorial. I’ll be doing demonstrations on using the bash shell in class starting on August 28, so that will be helpful as you work through the tutorial.",
-    "crumbs": [
-      "Schedule"
-    ]
+    "objectID": "class1-notes.html#logistics",
+    "href": "class1-notes.html#logistics",
+    "title": "class 1",
+    "section": "logistics",
+    "text": "logistics\nmaterial on website\nget software set up this week - help in optional lab on Fri\nexam - don’t schedule travel\nproblem sets have been critical to learning; I think working through problems is still essential, but instructors are making changes in light of the power of AI\nPS grading is for completion but with in-lab quizzes directly related to the material. My goal is that if you really did the work on the PS, the quiz should be straightforward.\nGrading mostly for whether you completed the work not for correctness, but we will mark off for sloppy, poorly-formatted, disorganized, badly-structured code."
+  },
+  {
+    "objectID": "class1-notes.html#ai",
+    "href": "class1-notes.html#ai",
+    "title": "class 1",
+    "section": "AI",
+    "text": "AI\nAI: spend a bit of time talking about AI assistance, both in terms of how it affects what we should be learning in order to do computationa effectively in our careers and how we should / should not use AI to learn\nI don’t have all (or even many) of the answers; you all are the ones who have been learning in the past 5 years in the context of AI.\nmachine - assembly - C - Python - AI coding agent (draw on board)\n\nbrainstorm why still need Python\ntinyurl.com/st243-ai: Google form on AI (we’ll have regular Google forms during class sessions for class participation - this is not one of them)\ntinyurl.com/st243-ai2: google form on AI queries"
+  },
+  {
+    "objectID": "class1-notes.html#shell",
+    "href": "class1-notes.html#shell",
+    "title": "class 1",
+    "section": "shell",
+    "text": "shell\nstart with the shell as working on the command line is at the core of modern scientific computing, the internet, tech workflows common baseline allows us to do work reproducibly, efficiently and allow for automation I’ll say more context on Fri/next week in Unit 2\nsee unit 1 notes\na little shell exploration\nterminal locally terminal + ssh to gandalf vs code terminal\n\nopen terminal\nssh to gandalf\nclone repo\ngit pull\ngit log\nggit branch\n\ncontext: - conda env list - source activate unit5 - pwd - whoami\n\nls\nls -l\nls -a\nls –all\nls -al\n\nrelative/absolute paths\n\npwd\ncd ../units\ncd /accounts/vis/paciorek/Desktop/fall-2026/units\n\nman? - / = search - n = next - q = quit - space = page down"
+  },
+  {
+    "objectID": "class1-notes.html#schedule",
+    "href": "class1-notes.html#schedule",
+    "title": "class 1",
+    "section": "schedule",
+    "text": "schedule\nsee schedule\n\nFriday lab - software help and help if not comfortable with basic work in shell (cd, ls, cp)\nnext 2-3 days work on basic shell work if not comfortable with what I just demo’ed\nif have trouble accessing shell don’t fall behind - just use stat.datahub.berkeley.edu (or datahub.b.e)\n\nMonday - bash shell assignment - informal"
   },
   {
     "objectID": "howtos/installGit.html",
@@ -1945,9 +1954,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Statistics 243: Introduction to Statistical Computing",
+    "title": "",
     "section": "",
-    "text": "Ed\n\n  Pensive/Gradescope\n\n  Tutorials\n\n  Lecture recordings\n\n  bCourses\n\n  PollEV\n\nNo matching items\nThis is the course website for both Statistics 243A and 243B.\nCourse policies and logistics generally pertain to both courses, with limited exceptions.",
+    "text": "https://forms.gle/cKdqvYZW69QjpZSH6— title: “Statistics 243: Introduction to Statistical Computing” subtitle: “UC Berkeley, Fall 2026” listing: - id: buttons template: assets/buttons.ejs contents: buttons.yml —\nThis is the course website for both Statistics 243A and 243B.\nCourse policies and logistics generally pertain to both courses, with limited exceptions.",
     "crumbs": [
       "Home"
     ]
@@ -1955,7 +1964,7 @@
   {
     "objectID": "index.html#course-materials",
     "href": "index.html#course-materials",
-    "title": "Statistics 243: Introduction to Statistical Computing",
+    "title": "",
     "section": "Course materials",
     "text": "Course materials\nSee the links above for the key resources for the courses.\nMost course content (in particular unit notes, labs, and problem sets) are available through this website via the links in the left sidebar.",
     "crumbs": [
@@ -1965,7 +1974,7 @@
   {
     "objectID": "index.html#questions-about-taking-the-classes",
     "href": "index.html#questions-about-taking-the-classes",
-    "title": "Statistics 243: Introduction to Statistical Computing",
+    "title": "",
     "section": "Questions about taking the classes",
     "text": "Questions about taking the classes\n\nInformation for students not in the Statistics Department\nIf you would like to audit the class, enroll as a UC Berkeley undergraduate, or enroll as a concurrent enrollment student (i.e., for visiting students), or for some other reason are not enrolled, please fill out this survey as soon as possible. All those enrolled or wishing to take 243A should have filled it out by Friday August 28 at noon.\nUndergraduates can only take the class with my permission and once all graduate students have an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.\nConcurrent enrollment students (e.g., exchange students from other universities/countries) can take the class with my permission and once all UC Berkeley students have had an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.\nPlease see the syllabus for the math and statistics background I expect, as well as the need to be familiar with Python or to get up to speed in Python during the first few weeks of the semester. Note that these prerequisites are not the same for Stat 243A and Stat 243B.\n\n\nTaking only 243A or only 243B\nStudents who are not Statistics MA students are welcome to take only one of the two half-semester courses. However if you plan to take Stat 243b only, you should make sure you have sufficient Python programming experience. It doesn’t have to be fully equivalent to what is taught in Stat 243a, but you should be comfortable programming in Python.\nStudents who are Statistics MA students who wish to only take one of the two half-semester courses need to request a waiver from the MA program, detailing your mastery of the material in the course you wish to waive.",
     "crumbs": [
@@ -1975,7 +1984,7 @@
   {
     "objectID": "index.html#other-information",
     "href": "index.html#other-information",
-    "title": "Statistics 243: Introduction to Statistical Computing",
+    "title": "",
     "section": "Other information",
     "text": "Other information\nThe first three weeks of 243A involve a lot of moving pieces, in part related to trying to get everyone up to speed with the bash shell and Python. Please use the schedule to keep on top of what you need to do.",
     "crumbs": [
@@ -2100,6 +2109,46 @@
     ]
   },
   {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Scheduling information",
+    "section": "",
+    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises (due at 10 am; see details below)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 1 TBD: Regex tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "schedule.html#schedule",
+    "href": "schedule.html#schedule",
+    "title": "Scheduling information",
+    "section": "",
+    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises (due at 10 am; see details below)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 1 TBD: Regex tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "schedule.html#exams",
+    "href": "schedule.html#exams",
+    "title": "Scheduling information",
+    "section": "Exams",
+    "text": "Exams\nThese are in-person only.\n\n243A exam: Monday October 12 in class\n\nReview session October 9 in section.\n\n243B exam: Monday November 23 in class.\n\nReview session November 20 in section.",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
+    "objectID": "schedule.html#notes-on-assignments-and-activities",
+    "href": "schedule.html#notes-on-assignments-and-activities",
+    "title": "Scheduling information",
+    "section": "Notes on assignments and activities",
+    "text": "Notes on assignments and activities\n\nOptional library LaTeX session: I highly recommend (in particular if you are a Statistics graduate student) that you know how to create equations in LaTeX. Even if you develop your documents using Quarto, Jupyter notebooks, R Markdown, etc. rather than LaTeX-based documents, LaTeX math syntax is the common tool for writing math syntax that will render beautifully.\nOptional Lab A0 software/command line help session: (August 28 in lab room) Help session for installing software, accessing a UNIX-style command line, and basic command line usage (e.g., the UNIX basics tutorial). You can show up at any time (unlike all remaining labs). You should have software installed, be able to access the command line, and have started to become familiar with basic command line usage before class on Monday August 31.\nLab A1: (September 4) First section/lab on using Git, setting up your GitHub repository for problem sets, and using Quarto to generate dynamic documents. Please come only to the section you are registered for given space limits in the room, unless you have talked with Chris and have his permission.\nBash shell tutorial and exercises: (by 10 am Monday August 31) Read through this tutorial on using the bash shell. You can skip the pages on “Regular Expressions” and “Managing Processes”, so just work on the first four pages (“Overview” through “Shell Programming”). Work through the first 10 problems in the exercises and submit your answers via Gradescope/Pensive. This is not a formal problem set, so you don’t need to worry about formatting nor about explaining/commenting your answers, nor do you need to put your answers in your GitHub class repository. In fact it’s even fine with me if you hand-write the answers and scan them to an electronic document. I just want to make sure you’ve worked through the tutorial. I’ll be doing demonstrations on using the bash shell in class starting on August 28; this work of yours complements that.",
+    "crumbs": [
+      "Schedule"
+    ]
+  },
+  {
     "objectID": "units/unit12-dl-optim.html",
     "href": "units/unit12-dl-optim.html",
     "title": "Optimization for Deep Learning",
@@ -2181,7 +2230,7 @@
     "href": "units/unit1-intro.html#summary-of-some-useful-editors",
     "title": "Introduction to UNIX, computers, and key tools",
     "section": "Summary of some useful editors",
-    "text": "Summary of some useful editors\n\nvarious editors available on all operating systems:\n\ntraditional editors born in UNIX: emacs, vim\nsome newer editors: Sublime Text (Sublime is proprietary/not free)\n\nWindows-specific: WinEdt, Notepad++\nMac-specific: Aquamacs Emacs, TextMate, TextEdit\nVS Code is an integrated development environment (IDE) that has a powerful code editor that is customized to work with various languages, Jupyter Notebooks, and Quarto documents.\n\nIt also has built-in AI assistance via GitHub Copilot (available for free by signing up for GitHub Education).\nI will probably use/demo VS Code (+ GitHub Copilot) in class some.\nWe will use VS Code in section some (e.g., for the debugging lab).\n\nRStudio provides a built-in editor for R code and Quarto/R Markdown files. One can actually edit and run Python code chunks quite nicely in RStudio. (Note: RStudio as a whole is an IDE (integrated development environment. The editor is just the editing window where you edit code (and Markdown) files.)\n\nAs you get started it’s ok to use a very simple text editor such as Notepad in Windows, but you should take the time in the next few weeks to try out more powerful editors such as one of those listed above. It will be well worth your time over the course of your graduate work and then your career.\nBe careful in Windows - file suffixes are often hidden.",
+    "text": "Summary of some useful editors\n\nvarious editors available on all operating systems:\n\ntraditional editors born in UNIX: emacs, vim\nsome newer editors: Sublime Text (Sublime is proprietary/not free)\n\nWindows-specific: WinEdt, Notepad++\nMac-specific: Aquamacs Emacs, TextMate, TextEdit\nVS Code is an integrated development environment (IDE) that has a powerful code editor that is customized to work with various languages, Jupyter Notebooks, and Quarto documents.\n\nIt also has built-in AI assistance via GitHub Copilot (available for free by signing up for GitHub Education).\nI will use/demo VS Code (+ GitHub Copilot) in class some.\nWe will use VS Code in section some (e.g., for the debugging lab).\n\nRStudio provides a built-in editor for R code and Quarto/R Markdown files. One can actually edit and run Python code chunks quite nicely in RStudio. (Note: RStudio as a whole is an IDE (integrated development environment. The editor is just the editing window where you edit code (and Markdown) files.)\n\nAs you get started it’s ok to use a very simple text editor such as Notepad in Windows, but you should take the time in the next few weeks to try out more powerful editors such as one of those listed above. It will be well worth your time over the course of your graduate work and then your career.\nBe careful in Windows - file suffixes are often hidden.",
     "crumbs": [
       "Units",
       "Unit A1 (UNIX intro)"
@@ -2789,7 +2838,7 @@
     "href": "syllabus.html#computing-resources",
     "title": "Syllabus",
     "section": "Computing Resources",
-    "text": "Computing Resources\nMost work for the courses can be done on your laptop. Later in Stat 243A we’ll also use the Statistics Department Linux cluster. You can also use the SCF JupyterHub or the campus DataHub to access a bash shell or run an IPython notebook.\n\n\n\n\n\n\nWarningDataHub limitations\n\n\n\nThe campus DataHub is limited in terms of number of CPU cores and memory so won’t be suitable for more computationally-intensive work later in the semester, including problem sets and labs. But you’re welcome to use it otherwise.\n\n\nThe software needed for the course is as follows:\n\nAccess to the UNIX command line (bash shell)\nGit\nPython (the Miniforge installation of Conda is recommended but by no means required)\nQuarto\nVS Code – this is not required, but we’ll be using it extensively\n\nSee the “how tos” in the left sidebar for tips on software installation and access to a UNIX shell, which you’ll need to be able to do by the second week of class.",
+    "text": "Computing Resources\nMost work for the courses can be done on your laptop. Later in Stat 243A we’ll also use the Statistics Department Linux cluster. You can also use the SCF JupyterHub or the campus DataHub to access a bash shell or run an IPython notebook.\n\n\n\n\n\n\nWarningDataHub limitations\n\n\n\nThe campus DataHub is limited in terms of number of CPU cores and memory so won’t be suitable for more computationally-intensive work later in the semester, including problem sets and labs. But you’re welcome to use it otherwise.\n\n\nThe software needed for the course is as follows:\n\nAccess to the UNIX command line (bash shell)\nGit\nPython (the Miniforge installation of Conda is recommended but by no means required)\nQuarto\nVS Code – this is not required, but we’ll be using it extensively\n\nSee the “how tos” in the left sidebar for tips on software installation and access to a UNIX shell, which you’ll need to be able to do by the end of the first week of class for 243A.",
     "crumbs": [
       "Syllabus"
     ]

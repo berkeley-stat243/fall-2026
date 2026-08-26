@@ -29,8 +29,12 @@
     <lastmod>2026-06-30T21:09:40.355Z</lastmod>
   </url>
   <url>
-    <loc>https://stat243.berkeley.edu/fall-2026/schedule.html</loc>
-    <lastmod>2026-08-23T20:03:32.375Z</lastmod>
+    <loc>https://stat243.berkeley.edu/fall-2026/ai.html</loc>
+    <lastmod>2026-08-25T21:45:29.544Z</lastmod>
+  </url>
+  <url>
+    <loc>https://stat243.berkeley.edu/fall-2026/class1-notes.html</loc>
+    <lastmod>2026-08-26T15:30:54.375Z</lastmod>
   </url>
   <url>
     <loc>https://stat243.berkeley.edu/fall-2026/howtos/installGit.html</loc>
@@ -58,7 +62,7 @@
   </url>
   <url>
     <loc>https://stat243.berkeley.edu/fall-2026/index.html</loc>
-    <lastmod>2026-08-25T14:21:44.839Z</lastmod>
+    <lastmod>2026-08-26T18:13:55.878Z</lastmod>
   </url>
   <url>
     <loc>https://stat243.berkeley.edu/fall-2026/howtos/RandRStudioInstall.html</loc>
@@ -81,12 +85,16 @@
     <lastmod>2026-08-19T14:29:42.352Z</lastmod>
   </url>
   <url>
+    <loc>https://stat243.berkeley.edu/fall-2026/schedule.html</loc>
+    <lastmod>2026-08-26T14:57:37.497Z</lastmod>
+  </url>
+  <url>
     <loc>https://stat243.berkeley.edu/fall-2026/units/unit12-dl-optim.html</loc>
     <lastmod>2026-06-11T21:45:22.763Z</lastmod>
   </url>
   <url>
     <loc>https://stat243.berkeley.edu/fall-2026/units/unit1-intro.html</loc>
-    <lastmod>2026-08-23T20:28:44.848Z</lastmod>
+    <lastmod>2026-08-26T15:01:49.841Z</lastmod>
   </url>
   <url>
     <loc>https://stat243.berkeley.edu/fall-2026/units/unit9-sim.html</loc>
@@ -106,6 +114,6 @@
   </url>
   <url>
     <loc>https://stat243.berkeley.edu/fall-2026/syllabus.html</loc>
-    <lastmod>2026-08-23T20:01:11.851Z</lastmod>
+    <lastmod>2026-08-26T14:33:14.765Z</lastmod>
   </url>
 </urlset>
