@@ -175,7 +175,7 @@ or Markdown/Quarto/R Markdown/LaTeX.**
 -   *VS Code* is an integrated development environment (IDE) that has a powerful code editor that is customized to work with
     various languages, Jupyter Notebooks, and Quarto documents.
     - It also has built-in AI assistance via GitHub Copilot (available for free by signing up for GitHub Education).
-    - I will probably use/demo VS Code (+ GitHub Copilot) in class some.
+    - I will use/demo VS Code (+ GitHub Copilot) in class some.
     - We will use VS Code in section some (e.g., for the debugging lab).
 -   RStudio provides a built-in editor for R code and Quarto/R Markdown files.
     One can actually edit and run Python code chunks quite nicely in 

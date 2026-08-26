@@ -246,7 +246,7 @@ The software needed for the course is as follows:
 
 -   VS Code -- this is not required, but we'll be using it extensively
 
-See the "how tos" in the left sidebar for tips on software installation and access to a UNIX shell, which you'll need to be able to do by the second week of class.
+See the "how tos" in the left sidebar for tips on software installation and access to a UNIX shell, which you'll need to be able to do by the end of the first week of class for 243A.
 
 ## Class time {#class-time .unnumbered}
 

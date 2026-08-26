@@ -9,7 +9,7 @@
         - type: "Activity"
           id: "1"
           name: "Class Survey"
-          href: "https://forms.gle/7newMx42Jg1TmKUK9"
+          href: "https://forms.gle/cKdqvYZW69QjpZSH6"
         - type: "Activity"
           id: "2"
           name: "(Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end"
@@ -28,8 +28,7 @@
       items:
         - type: "Assignment"
           id: "1"
-          name: "Bash shell tutorial and exercises (see details below)"
-          href: "https://computing.stat.berkeley.edu/tutorial-using-bash"
+          name: "Bash shell tutorial and exercises (due at 10 am; see details below)"
     - date: "Fri Sep 4"
       items:
         - type: "Lab"

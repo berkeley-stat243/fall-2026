@@ -1,4 +1,4 @@
----
+https://forms.gle/cKdqvYZW69QjpZSH6---
 title: "Statistics 243: Introduction to Statistical Computing"
 subtitle: "UC Berkeley, Fall 2026"
 listing:
@@ -24,7 +24,7 @@ Most course content (in particular unit notes, labs, and problem sets) are avail
 
 ### Information for students not in the Statistics Department
 
-If you would like to audit the class, enroll as a UC Berkeley undergraduate, or enroll as a concurrent enrollment student (i.e., for visiting students), or for some other reason are not enrolled, please fill out [this survey](https://forms.gle/7newMx42Jg1TmKUK9) as soon as possible. All those enrolled or wishing to take 243A should have filled it out by Friday August 28 at noon.
+If you would like to audit the class, enroll as a UC Berkeley undergraduate, or enroll as a concurrent enrollment student (i.e., for visiting students), or for some other reason are not enrolled, please fill out [this survey](https://forms.gle/cKdqvYZW69QjpZSH6) as soon as possible. All those enrolled or wishing to take 243A should have filled it out by Friday August 28 at noon.
 
 Undergraduates can only take the class with my permission and once all graduate students have an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.
 
