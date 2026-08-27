@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Installing and Using Quarto</title>
+<title>Lab 0: Setup</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -77,7 +42,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f9406879e630d085cd1424241c1f5148.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-67f4b2f198c787316d44448b3d063643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,237 +74,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
-<body class="nav-sidebar docked quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../howtos/accessPython.html">How tos</a></li><li class="breadcrumb-item"><a href="../howtos/installQuarto.html">Installing and Using Quarto</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../assets/stat_bear.png" alt="UC Berkeley Statistics logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="../assets/stat_bear.png" alt="UC Berkeley Statistics logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
-      </a>
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Stat 243</a> 
-        <div class="sidebar-tools-main">
-    <a href="https://github.com/berkeley-stat243/fall-2026" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
-</div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Home</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Schedule</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../office_hours.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Office Hours</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Units</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit1-intro.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit A1 (UNIX intro)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit2-bash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit A2 (Bash shell)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit3-goodPractices.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit A3 (Good practices)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit4-programming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit A4 (Programming)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit5-bigData.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit A5 (Databases)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit6-parallel.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit A6 (Parallelization)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit7-dataTech.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit A7 (Data technologies)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit8-numbers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit B8 (Precision)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit9-sim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit B9 (Simulation)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit10-linalg.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit B10 (Linear Algebra)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit11-optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit B11 (Optimization)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../units/unit12-dl-optim.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Unit B12 (Optimization for Deep Learning)</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">How tos</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../howtos/accessPython.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Accessing Python</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../howtos/accessUnixCommandLine.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Accessing the Unix Command Line</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../howtos/installGit.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Installing Git</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../howtos/installQuarto.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Installing and Using Quarto</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../howtos/vscode.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Using VS Code</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../howtos/submitPS.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Problem Set Submissions</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../howtos/windowsAndLinux.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Windows 10 and the Ubuntu Subsystem</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../license.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">License</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#quarto-engines" id="toc-quarto-engines" class="nav-link active" data-scroll-target="#quarto-engines">Quarto “engines”</a></li>
-  <li><a href="#using-bash-shell-code-chunks" id="toc-using-bash-shell-code-chunks" class="nav-link" data-scroll-target="#using-bash-shell-code-chunks">Using bash shell code chunks</a></li>
-  <li><a href="#controlling-which-python-is-used" id="toc-controlling-which-python-is-used" class="nav-link" data-scroll-target="#controlling-which-python-is-used">Controlling which Python is used</a></li>
+  <li><a href="#setting-up-your-environment-aug-28" id="toc-setting-up-your-environment-aug-28" class="nav-link active" data-scroll-target="#setting-up-your-environment-aug-28">Setting up your environment (Aug 28)</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lab0-setup.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../howtos/accessPython.html">How tos</a></li><li class="breadcrumb-item"><a href="../howtos/installQuarto.html">Installing and Using Quarto</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installing and Using Quarto</h1>
+<h1 class="title">Lab 0: Setup</h1>
 </div>
 
 
@@ -356,48 +116,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Unless you plan to generate your problem set solutions on the SCF, you’ll need to <a href="https://quarto.org/docs/get-started/">install Quarto</a>.</p>
-<p>Once installed, you should be able to run commands such as <code>quarto render FILE</code> and <code>quarto preview FILE</code> from the command line.</p>
-<p>To render to PDF, you’ll need a LaTeX engine installed. A good minimal solution if don’t already have LaTeX installed (e.g., via MicTeX in Windows or MacTeX on MacOS) is to install <code>tinytex</code>: <code>quarto install tinytex</code>.</p>
-<p>Quarto also runs from the Windows Command shell or PowerShell. We’ll add details/troubleshooting tips here (or in the <a href="../labs/lab1-submission.html">lab 1</a> materials) as needed.</p>
-<p><code>quarto convert</code> converts back and forth between the Jupyter notebook (.ipynb) and Quarto Markdown (.qmd) formats.</p>
-<section id="quarto-engines" class="level2">
-<h2 class="anchored" data-anchor-id="quarto-engines">Quarto “engines”</h2>
-<p>By default, Quarto uses Jupyter to execute code chunks. This works well generally, but you can’t have different chunks that use different languages in the same document (e.g., some chunks in Python and some in bash or R). In that case, you can use the R-based <code>knitr</code> package to do the processing. To do so, add <code>engine: knitr</code> to the YAML metadata at the top of the file (if you happen to have an <code>execute</code> stanza, you’ll need to have <code>engine: knitr</code> nested within that stanza). For the <code>knitr</code> engine, you’ll need to have R installed on your computer, with the <code>rmarkdown</code> R package installed. And if you have Python chunks, you’ll also need the <code>reticulate</code> R package.</p>
-<p>For Python chunks when using the default <code>jupyter</code> engine, if you want all output from multiple commands in a chunk to be printed (without explicitly using <code>print()</code>), you can add the following syntax to the YAML metadata at the top of the file. (Note that, unfortunately, the output will be printed out below the code chunk rather than interspersed with the code, as that is how Jupyter notebooks chunks work.)</p>
-<pre><code>ipynb-shell-interactivity: all</code></pre>
+<section id="setting-up-your-environment-aug-28" class="level2">
+<h2 class="anchored" data-anchor-id="setting-up-your-environment-aug-28">Setting up your environment (Aug 28)</h2>
+<p>You will need to set up (or make sure you have access to) the following:</p>
+<ol type="1">
+<li><a href="../howtos/accessUnixCommandLine.html">Unix shell</a>;</li>
+<li><a href="../howtos/installGit.html">Git</a>;</li>
+<li><a href="../howtos/installQuarto.html">Quarto</a>;</li>
+<li><a href="../howtos/accessPython.html">Python</a>;</li>
+<li>A text editor or IDE of your choice.</li>
+</ol>
+<p>After making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on <a href="https://berkeley-scf.github.io/tutorial-unix-basics/">unix</a> and (possibly) <a href="https://www.unixtutorial.org/basic-unix-commands">unix commands</a>. You can do this on your own or in the Lab section on Friday, Aug 29.</p>
+<p>Attending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.</p>
+<p>You are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.</p>
+<p>Reach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.</p>
 </section>
-<section id="using-bash-shell-code-chunks" class="level2">
-<h2 class="anchored" data-anchor-id="using-bash-shell-code-chunks">Using bash shell code chunks</h2>
-<p>If you want to use bash chunks in your document, you have a few options.</p>
-<ul>
-<li>Use <code>%%bash</code> at the start of any chunk with bash code. This will work with the Jupyter engine, but it has the downside that all output from the cell will appear after all the code rather than the output being interspersed with the line of code that produces it.</li>
-<li>Use the <code>knitr</code> engine for Quarto and tag chunks as “``<code>{bash}". You will need to add</code>engine: knitr<code>to the YAML preface of your qmd document. See</code>unit2-bash.qmd for an example. Also you need to have R installed as well as the <code>rmarkdown</code> package for R.</li>
-<li>(Not recommended as it involves more steps and we haven’t tested it) Install the <code>bash_kernel</code> Python package using pip or conda and install the bash kernel for Jupyter.</li>
-</ul>
-<p>Variables are not retained from bash chunk to bash chunk (i.e., state is not preserved between chunks), unlike with Python code chunks.</p>
-</section>
-<section id="controlling-which-python-is-used" class="level2">
-<h2 class="anchored" data-anchor-id="controlling-which-python-is-used">Controlling which Python is used</h2>
-<p>One common source of confusion is understanding which Python executable (and associated installed Python packages) Quarto will use to execute Python code chunks and how to tell Quarto to use a specific Python. A common problem is having Quarto use a different Python version that is not what you want and (particularly) may not have the Python packages installed that you need.</p>
-<p>I don’t fully understand all the details, but here are some suggestions.</p>
-<ul>
-<li><p>You can set the environment variable <code>QUARTO_PYTHON</code> to be the path to a particular Python executable. You’ll need probably need to export this variable to ensure it is available at the point that Quarto checks it.</p></li>
-<li><p>You can create a Jupyter kernel associated with a Conda environment and then add <code>jupyter: name_of_kernel</code> to the metadata of your document.</p></li>
-<li><p>In VS Code, you can invoke <code>Python: Select interpreter</code> in the command palette.</p></li>
-<li><p>If you are using the <code>knitr</code> engine, you can include a chunk like this at the start of your Quarto document to force use of a particular Python executable or the Python in a particular Conda environment:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode default code-with-copy"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>```{r, setup-r}</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>#| echo: false</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>reticulate::use_python('/usr/local/linux/miniforge-3.13/bin/python')</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>```</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>```{r, setup-r-alternative}</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>#| echo: false</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>reticulate::use_condaenv('my_conda_env", required = TRUE)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>```</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Otherwise <code>knitr</code> will try to create and use a Conda environment for use with the <code>reticulate</code> package.</p></li>
-</ul>
-<p>This may be particularly troublesome in Windows.</p>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>This lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.</p>
 
 
 </section>
