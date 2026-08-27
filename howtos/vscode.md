@@ -3,20 +3,20 @@ title: Using VS Code
 ---
 
 ::: {.callout-info}
-I'm not sure yet how much we'll use VS Code. 
+You'll see VS Code a fair amount in this class. For the most part, you don't have to use it if you don't want to, but it's worth getting some familiarity with.
 :::
 
 VS Code is powerful integrated development environment (IDE), with GitHub Copilot AI assistance built in, so it's useful to have some familiarity with it. We may use it in the lab on testing and possibly other labs.
 
 VS Code provides a huge number of extensions for working with various languages and tools, including Python, R, Jupyter Notebooks, Quarto, etc., and including integrated debugging.
 
-I will probably do some of my demonstrations in class with VS Code, as it allows one to easily run code in the terminal or a Python session from the built-in editor.
+I will do many of my demonstrations in class with VS Code, as it allows one to easily run code in the terminal or a Python session from the built-in editor.
 
 ## Installing VS Code
 
 See [here](https://code.visualstudio.com/download) to install VS Code.
 
-A browser-based version of VS Code is available through both the [DataHub](https://datahub.berkeley.edu) and the [SCF JupyterHub](https://jupyter.stat.berkeley.edu). It should behave very similarly but the extensions availalbe for VS Code on your own machine versus in the browser/JupyterHub can have differences.
+A browser-based version of VS Code is available through both the [DataHub](https://datahub.berkeley.edu) and the [SCF JupyterHub](https://jupyter.stat.berkeley.edu). It should behave very similarly but the extensions available for VS Code on your own machine versus in the browser/JupyterHub can have differences.
 
 ## Using VS Code
 
