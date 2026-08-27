@@ -169,6 +169,9 @@ It's not hard to use that to create a Python script you could run from the comma
 
 ```{bash}
 cat to_csv
+```
+```{bash}
+#| eval: false
 cat station_count_states.txt | ./to_csv > station_count_states.csv
 ```
 
@@ -201,7 +204,7 @@ in any file.
 Extension: What are some ways we could count the number of fields in *each* row?
 
 
-**We'll work on Challenge #1 here.**
+**We'll work on [Challenge #1](#first-challenge) here.**
 
 **Our third mission**: was the `requests` package in the five most
 recently modified Quarto Markdown files in the units directory?
@@ -209,15 +212,15 @@ recently modified Quarto Markdown files in the units directory?
 ```{bash}
 #| eval: false
 cd ../units
-grep -l 'import requests' unit4-goodPractices.qmd
+grep -l 'import requests' unit3-goodPractices.qmd
 ls -tr *.qmd
-## If unit4-goodPractices.qmd is not amongst the 5 most recently used,
+## If unit3-goodPractices.qmd is not amongst the 5 most recently used,
 ## let's artificially change the timestamp so it is recently used.
-touch unit4-goodPractices.qmd
+touch unit3-goodPractices.qmd
 
 ls -tr *.qmd | tail -n 5
 ls -tr *.qmd | tail -n 5 | grep requests
-ls -tr *.qmd | tail -n 5 | grep "unit4-goodPractices"
+ls -tr *.qmd | tail -n 5 | grep "unit3-goodPractices"
 ls -tr *.qmd | tail -n 5 | xargs grep 'import requests'
 ls -tr *.qmd | tail -n 5 | xargs grep -l 'import requests'
 ```
@@ -250,7 +253,7 @@ Here are some of the ways we can pass information from a command to somewhere el
     - also used to create a temporary variable to pass the output from one command as an option or argument (e.g., the FILE argument) of another command
 - File redirection operators such as `>` and `>>` allow us to pass output from a command into a file.
 
-**We'll work on Challenge #2 here.**
+**We'll work on [Challenge #2](#second-challenge) here.**
 
 **Our fourth mission**: write a function that will move the most recent
 *n* files in your Downloads directory to another directory.
@@ -291,9 +294,9 @@ function mvlast() {
 
 Side note: if we were just moving files from the current working directory and with files without spaces in their names, it should be possible to use `tail -n ${1}` without the loop.
 
-**We'll work on Challenge #3 here.**
+**We'll work on [Challenge #3](#third-challenge) here.**
 
-**We'll work on Challenge #4 here.**
+**We'll work on [Challenge #4](#fourth-challenge) here.**
 
 
 **Our fifth mission**: automate the process of determining what Python
