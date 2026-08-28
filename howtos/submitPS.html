@@ -380,12 +380,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="submission-format" class="level2">
 <h2 class="anchored" data-anchor-id="submission-format">Submission format</h2>
-<p>Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using <code>inspect.getsource()</code>.</p>
-<p>Why?</p>
+<p>Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using <code>inspect.getsource()</code>.</p>
+<p>Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. Here’s why:</p>
 <ul>
-<li>For one or two of the initial problem sets you’ll need to include both bash and Python code. This isn’t possible in a single notebook.</li>
 <li>The underlying format of .ipynb files is JSON. While this is a plain text format, the key-value pair structure (not generally being aligned with the file lines) is much less well-suited for use with Git version control (which relies on <code>diff</code>) than Markdown-based formats.</li>
 <li>One can run chunks in a Jupyter notebook in arbitrary order. What is printed to PDF depends on the order in which the chunks are run and the results can differ from what one would expect based on reading the notebook sequentially and running the chunks sequentially. For example, consider the following experiment and you’ll see what I mean: (1) Have one code chunk with <code>a = 3</code> and run it; (2) Add a second chunk with <code>print(a)</code> and run it; and (3) Change the first chunk to <code>a=4</code> and DO NOT rerun the second chunk. Save the notebook to PDF. You’ll see that your “report” makes no sense. Here’s <a href="./notebook-unreproducible.pdf">the result</a> of me doing that experiment.</li>
+<li>The PDF output from a Jupyter notebook does not look as professional.</li>
 </ul>
 <p>If you want to do your initial explorations of the problems in a Jupyter notebook, you can do so and convert the .ipynb file to a .qmd file using <code>quarto convert</code>.</p>
 </section>
@@ -397,14 +397,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><a href="https://quarto.org/docs/get-started/hello/vscode.html">Use VS Code</a> with the following extensions: Python, Quarto, and Jupyter Notebooks. This allows you to execute and preview chunks (and whole document) inside VS Code. This is currently our favorite path due to how well it integrated with the Python debugger.</li>
 <li><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Use RStudio</a> (yes, RStudio), which can manage Python code and will display chunk output in the same way it does with R chunks. This path seems to work quite well and is recommended if you are already familiar with RStudio.</li>
 </ol>
-<p>Later in the semester, you may be allowed to work directly in Jupyter notebooks and use quarto to render from them directly. This has a few quirks and limitations, but may be allowed for some problem sets.</p>
 <p>Please commit your work regularly to your repository as you develop your solutions.</p>
 </section>
 <section id="github-repository" class="level2">
 <h2 class="anchored" data-anchor-id="github-repository">GitHub repository</h2>
 <section id="setting-up-your-repository" class="level3">
 <h3 class="anchored" data-anchor-id="setting-up-your-repository">Setting up your repository</h3>
-<p>We are creating repositories for everyone at <a href="https://github.berkeley.edu/">github.berkeley.edu</a>. Additionally, homeworks still need to be submitted as PDFs on Gradescope.</p>
+<p>We are creating repositories for everyone at <a href="https://github.berkeley.edu/">github.berkeley.edu</a>. Additionally, homeworks still need to be submitted as PDFs on Pensive.</p>
 <p>Steps:</p>
 <ol type="1">
 <li><p>Log into <a href="https://github.berkeley.edu/">github.berkeley.edu</a> using your Berkeley credentials. Because of how the system works, you will need to log in before your account is created. Nothing else needs to be done, just log in and log out.</p></li>
