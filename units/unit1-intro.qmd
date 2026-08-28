@@ -19,7 +19,7 @@ format:
 # 1. UNIX command line basics
 
 By UNIX, I mean any UNIX-like operating system, including Linux and MacOS. Most modern scientific computing is done on UNIX-based
-machines, often by [remotely logging in to a UNIX-based server](https://statistics.berkeley.edu/computing/ssh).
+machines, often by [remotely logging in to a UNIX-based server](https://computing.stat.berkeley.edu/access/ssh).
 
 There are a [variety of ways to get access to a UNIX-style command line
 environment](../howtos/accessUnixCommandLine).
@@ -112,8 +112,8 @@ main idea.
 To connect to a remote machine, you generally need to use SSH. SSH is available as
 `ssh` when you are on the UNIX command line. There are also SSH clients
 for Windows. The SCF has [more information on SSH client programs and on using
-SSH](http://statistics.berkeley.edu/computing/ssh), including [connecting without
-entering your password](https://statistics.berkeley.edu/computing/ssh-keys). Here's an
+SSH](https://computing.stat.berkeley.edu/access/ssh), including [connecting without
+entering your password](https://computing.stat.berkeley.edu/kb/ssh-keys). Here's an
 example of connecting to one of the SCF machines (this assumes you have
 an SCF account, which you may, and that your user name is paciorek,
 which it is not).
@@ -143,7 +143,7 @@ machine. On the remote machine all paths need to be absolute or to be
 relative to your home directory on that machine.
 
 There are also client programs for file transfer; see [this
-webpage](http://statistics.berkeley.edu/computing/copying-files).
+webpage](https://computing.stat.berkeley.edu/access/copying-files).
 
 # 5. Knowing your context
 

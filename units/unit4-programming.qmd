@@ -1066,7 +1066,7 @@ satisfy a dependency.
 It's not uncommon to run into a case where conda has trouble installing a package
 because of version inconsistencies amongst the dependencies. `mamba` is a drop-in
 replacement for `conda` and often does a better job of this "dependency resolution".
-[We use `mamba` by default on the SCF](https://statistics.berkeley.edu/computing/software/install).
+[We use `mamba` by default on the SCF](https://computing.stat.berkeley.edu/software/install).
 In recent versions of Conda, you can also use the Mamba's dependency resolver when running `conda` commands by running
 `conda config --set solver libmamba`, which puts `solver: libmamba` in your `.condarc` file.
 It's also generally recommended to use the `conda-forge` *channel* (i.e., location) when installing packages with Conda

@@ -46,7 +46,7 @@ With an SCF account (available [here](https://scf.berkeley.edu/account)), you ca
 
 Those of you in the Statistics Department should be in the process of getting an SCF account. Everyone else will need an SCF account when we get to the unit on parallel computing, but you can request an account now if you prefer.
 
-1. You can login to our various Linux servers and access a bash shell that way. Please see [http://statistics.berkeley.edu/computing/access](http://statistics.berkeley.edu/computing/access).
+1. You can login to our various Linux servers and access a bash shell that way. Please see [https://computing.stat.berkeley.edu/access](https://computing.stat.berkeley.edu/access).
 
 2. You can also access a bash shell via the SCF JupyterHub interface; please see the [Accessing Python](accessPython.md) instructions but select `Terminal` from the launcher (equivalently, click on 'File', 'New', and 'Terminal'). This is very similar to the DataHub functionality discussed above.
 
