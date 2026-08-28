@@ -1,8 +1,8 @@
 - button: Ed
   link: https://edstem.org/us/courses/102684/discussion
   color: purple
-- button: Pensive/Gradescope
-  link: https://www.gradescope.com/courses/XYZ
+- button: Pensive
+  link: https://www.pensive.com/student/classes/stat243_fa26
   color: orangered
 - button: Tutorials
   link: https://statistics.berkeley.edu/computing/training/tutorials
