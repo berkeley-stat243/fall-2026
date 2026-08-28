@@ -170,6 +170,7 @@ It's not hard to use that to create a Python script you could run from the comma
 ```{bash}
 cat to_csv
 ```
+
 ```{bash}
 #| eval: false
 cat station_count_states.txt | ./to_csv > station_count_states.csv
