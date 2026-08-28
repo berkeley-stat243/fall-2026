@@ -178,7 +178,7 @@ In this case the script requires input from stdin and not from a file (with a li
 cat station_count_states.txt | ./to_csv > station_count_states.csv
 ```
 
-We need "./" before `to_csv` because the shell doesn't know to look in the working directory for a program/command called `to_csv` (i.e., the working directory is not on the "PATH").
+We need `./` before `to_csv` because the shell doesn't know to look in the working directory for a program/command called `to_csv` (i.e., the working directory is not on the "PATH").
 
 If you feel that manually figuring out the position of the state field
 is inconsistent with our emphasis on programmatic workflows, see
