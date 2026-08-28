@@ -28,7 +28,8 @@
       items:
         - type: "Assignment"
           id: "1"
-          name: "Bash shell tutorial and exercises (due at 10 am; see details below)"
+          name: "Bash shell tutorial and exercises"
+          href: "units/assignment1"
     - date: "Fri Sep 4"
       items:
         - type: "Lab"
@@ -36,7 +37,7 @@
           name: "Using Git and Quarto and problem set submission"
           href: labs/lab1-submission.html
         - type: "Assignment"
-          id: "1"
+          id: "2"
           name: "TBD: Regex tutorial and exercises (see details below)"
           href: "units/regex"
 - week: 3
