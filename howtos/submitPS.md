@@ -4,13 +4,13 @@ title: Problem Set Submissions
 
 ## Submission format
 
-Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using `inspect.getsource()`.
+Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using `inspect.getsource()`.
 
-Why?
+Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. Here's why:
 
- - For one or two of the initial problem sets you'll need to include both bash and Python code. This isn't possible in a single notebook.
  - The underlying format of .ipynb files is JSON. While this is a plain text format, the key-value pair structure (not generally being aligned with the file lines) is much less well-suited for use with Git version control (which relies on `diff`) than Markdown-based formats. 
  - One can run chunks in a Jupyter notebook in arbitrary order. What is printed to PDF depends on the order in which the chunks are run and the results can differ from what one would expect based on reading the notebook sequentially and running the chunks sequentially. For example, consider the following experiment and you'll see what I mean: (1) Have one code chunk with `a = 3` and run it; (2) Add a second chunk with `print(a)` and run it; and (3) Change the first chunk to `a=4` and DO NOT rerun the second chunk. Save the notebook to PDF. You'll see that your "report" makes no sense. Here's [the result](./notebook-unreproducible.pdf) of me doing that experiment.
+ - The PDF output from a Jupyter notebook does not look as professional.
  
  If you want to do your initial explorations of the problems in a Jupyter notebook, you can do so and convert the .ipynb file to a .qmd file using `quarto convert`.
 
@@ -22,7 +22,6 @@ Here we outline a few suggested workflows for developing your problem set soluti
  2. [Use VS Code](https://quarto.org/docs/get-started/hello/vscode.html) with the following extensions: Python, Quarto, and Jupyter Notebooks. This allows you to execute and preview chunks (and whole document) inside VS Code. This is currently our favorite path due to how well it integrated with the Python debugger.
  3. [Use RStudio](https://quarto.org/docs/get-started/hello/rstudio.html) (yes, RStudio), which can manage Python code and will display chunk output in the same way it does with R chunks. This path seems to work quite well and is recommended if you are already familiar with RStudio.
  
- Later in the semester, you may be allowed to work directly in Jupyter notebooks and use quarto to render from them directly. This has a few quirks and limitations, but may be allowed for some problem sets.
 
 Please commit your work regularly to your repository as you develop your solutions. 
 
@@ -32,7 +31,7 @@ Please commit your work regularly to your repository as you develop your solutio
 
 We are creating repositories for everyone at
 [github.berkeley.edu](https://github.berkeley.edu/). Additionally, homeworks
-still need to be submitted as PDFs on Gradescope.
+still need to be submitted as PDFs on Pensive.
 
 Steps:
 
