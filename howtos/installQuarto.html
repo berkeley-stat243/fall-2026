@@ -389,7 +389,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If you want to use bash chunks in your document, you have a few options.</p>
 <ul>
 <li>Use <code>%%bash</code> at the start of any chunk with bash code. This will work with the Jupyter engine, but it has the downside that all output from the cell will appear after all the code rather than the output being interspersed with the line of code that produces it.</li>
-<li>Use the <code>knitr</code> engine for Quarto and tag chunks as “``<code>{bash}". You will need to add</code>engine: knitr<code>to the YAML preface of your qmd document. See</code>unit2-bash.qmd for an example. Also you need to have R installed as well as the <code>rmarkdown</code> package for R.</li>
+<li>Use the <code>knitr</code> engine for Quarto and tag chunks as <code>```{bash}</code>. You will need to add <code>engine: knitr</code> to the YAML preface of your qmd document. See <code>unit2-bash.qmd for an example. Also you need  to have R installed as well as the</code>rmarkdown` package for R.</li>
 <li>(Not recommended as it involves more steps and we haven’t tested it) Install the <code>bash_kernel</code> Python package using pip or conda and install the bash kernel for Jupyter.</li>
 </ul>
 <p>Variables are not retained from bash chunk to bash chunk (i.e., state is not preserved between chunks), unlike with Python code chunks.</p>
