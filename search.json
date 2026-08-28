@@ -1682,136 +1682,359 @@
     ]
   },
   {
-    "objectID": "ai.html",
-    "href": "ai.html",
-    "title": "AI",
+    "objectID": "units/unit12-dl-optim.html",
+    "href": "units/unit12-dl-optim.html",
+    "title": "Optimization for Deep Learning",
     "section": "",
-    "text": "(Brainstorm with a partner or group of three) What are some reasons that being comfortable in Python is helpful for getting computational work done? (Alternatively, if you outsource a computational task to an AI agent, what might be harder if you don’t know Python?)\n\noversee AI agent\ngood prompts\niterative guidance/refinement\nredirect bad direction\ncheck errors\nguarantee accuracy\ndebug failures\nset up testing\noptimize code\n\nGoogle form:\nIn what ways do you think AI assistance may help in learning computing and/or how could relying on it reduce your learning?\nefficiency - faster implementation of basics, less wasted time, work/learn higher level concepts, save time debugging tutoring/hands-on, help get unstuck no struggle/no understanding/doesn’t stick in memory incorrect information\n\nwriting = thinking\nworking through/writing/struggling = learning/remembering/recall\n\nproblem sets have been key"
-  },
-  {
-    "objectID": "class1-notes.html",
-    "href": "class1-notes.html",
-    "title": "class 1",
-    "section": "",
-    "text": "computing background thru PhD and then job providing research computing support in stats/econ/campus\nplease call me Chris\ncan I take the course: - fill out survey so I can add you to Ed (all announcements) - no third section, so only 74 - priority - 69 enrolled - 5 spots - Berk grad yes, Berk UG prob, hopefully conc enroll - you should attend and do the work so don’t fall behind\n243A/B experiment - have had to move some content around so some adjustments relative to previous years jump right into the bash shell on Friday, more quickly than in previous years"
-  },
-  {
-    "objectID": "class1-notes.html#intro",
-    "href": "class1-notes.html#intro",
-    "title": "class 1",
-    "section": "",
-    "text": "computing background thru PhD and then job providing research computing support in stats/econ/campus\nplease call me Chris\ncan I take the course: - fill out survey so I can add you to Ed (all announcements) - no third section, so only 74 - priority - 69 enrolled - 5 spots - Berk grad yes, Berk UG prob, hopefully conc enroll - you should attend and do the work so don’t fall behind\n243A/B experiment - have had to move some content around so some adjustments relative to previous years jump right into the bash shell on Friday, more quickly than in previous years"
-  },
-  {
-    "objectID": "class1-notes.html#logistics",
-    "href": "class1-notes.html#logistics",
-    "title": "class 1",
-    "section": "logistics",
-    "text": "logistics\nmaterial on website\nget software set up this week - help in optional lab on Fri\nexam - don’t schedule travel\nproblem sets have been critical to learning; I think working through problems is still essential, but instructors are making changes in light of the power of AI\nPS grading is for completion but with in-lab quizzes directly related to the material. My goal is that if you really did the work on the PS, the quiz should be straightforward.\nGrading mostly for whether you completed the work not for correctness, but we will mark off for sloppy, poorly-formatted, disorganized, badly-structured code."
-  },
-  {
-    "objectID": "class1-notes.html#ai",
-    "href": "class1-notes.html#ai",
-    "title": "class 1",
-    "section": "AI",
-    "text": "AI\nAI: spend a bit of time talking about AI assistance, both in terms of how it affects what we should be learning in order to do computationa effectively in our careers and how we should / should not use AI to learn\nI don’t have all (or even many) of the answers; you all are the ones who have been learning in the past 5 years in the context of AI.\nmachine - assembly - C - Python - AI coding agent (draw on board)\n\nbrainstorm why still need Python\ntinyurl.com/st243-ai: Google form on AI (we’ll have regular Google forms during class sessions for class participation - this is not one of them)\ntinyurl.com/st243-ai2: google form on AI queries"
-  },
-  {
-    "objectID": "class1-notes.html#shell",
-    "href": "class1-notes.html#shell",
-    "title": "class 1",
-    "section": "shell",
-    "text": "shell\nstart with the shell as working on the command line is at the core of modern scientific computing, the internet, tech workflows common baseline allows us to do work reproducibly, efficiently and allow for automation I’ll say more context on Fri/next week in Unit 2\nsee unit 1 notes\na little shell exploration\nterminal locally terminal + ssh to gandalf vs code terminal\n\nopen terminal\nssh to gandalf\nclone repo\ngit pull\ngit log\nggit branch\n\ncontext: - conda env list - source activate unit5 - pwd - whoami\n\nls\nls -l\nls -a\nls –all\nls -al\n\nrelative/absolute paths\n\npwd\ncd ../units\ncd /accounts/vis/paciorek/Desktop/fall-2026/units\n\nman? - / = search - n = next - q = quit - space = page down"
-  },
-  {
-    "objectID": "class1-notes.html#schedule",
-    "href": "class1-notes.html#schedule",
-    "title": "class 1",
-    "section": "schedule",
-    "text": "schedule\nsee schedule\n\nFriday lab - software help and help if not comfortable with basic work in shell (cd, ls, cp)\nnext 2-3 days work on basic shell work if not comfortable with what I just demo’ed\nif have trouble accessing shell don’t fall behind - just use stat.datahub.berkeley.edu (or datahub.b.e)\n\nMonday - bash shell assignment - informal"
-  },
-  {
-    "objectID": "howtos/installGit.html",
-    "href": "howtos/installGit.html",
-    "title": "Installing Git",
-    "section": "",
-    "text": "Here are some instructions for installing Git on your computer. Git is the version control software we’ll use in the course.\nYou can install Git by downloading and installing the correct binary from here.\nFor macOS, we recommend using the Homebrew option.\nGit comes installed on the SCF, so if you login to an SCF machine and want to use Git there, you don’t need to install Git.",
+    "text": "The goal of this unit is two-fold: first to explore the concepts from the optimization unit in an important specific context and second to specifically understand more about the practical aspects of optimizing deep learning models (and how that relates back to statistical concepts as well).\nNote that this unit will not cover the different architectures for deep learning models as I am woefully unqualified to do so and it is outside the scope of this course. But hopefully this will be useful for Stat 214, other courses you might take, or your work in the future.",
     "crumbs": [
-      "How tos",
-      "Installing Git"
+      "Units",
+      "Unit B12 (Optimization for Deep Learning)"
     ]
   },
   {
-    "objectID": "howtos/windowsInstall.html",
-    "href": "howtos/windowsInstall.html",
-    "title": "R/Rstudio on Windows",
+    "objectID": "units/unit12-dl-optim.html#momentum",
+    "href": "units/unit12-dl-optim.html#momentum",
+    "title": "Optimization for Deep Learning",
+    "section": "Momentum",
+    "text": "Momentum\nAn common enhancement when using gradient descent is to use “momentum”. The basic idea of momentum is to modify the current gradient using past values of the gradient, using a exponentially-weighted (decaying) average of past gradient values. It can help by pushing the optimization in a consistent direction and reducing oscillations. Here’s the smoothed gradient, often called the “velocity”.\n\\[ v_{t+1} = \\beta v_{t} + (1-\\beta) f^{\\prime}(x_{t}) \\]\n\\(\\beta\\) is a tuning parameter and the averaging is roughly similar to averaging over a window of \\(1/(1-\\beta)\\) gradient values.\nOne can plug into gradient descent in place of the current gradient or use a variation that gives this update step, taking:\n\\[\nv_{t+1} = \\beta v_{t} + f^{\\prime}(x_{t})\nx_{t+1}=x_{t} - v_{t+1}\n\\]\nA common value is \\(\\beta = 0.9\\).\nWhat’s the intuition? Suppose the gradient values in a given direction have the same sign. Then the smoothed gradient in that direction will be large, so the algorithm will take large steps in that direction (including if one has just hit an area such as a saddle point where the surface is more flat), giving the algorithm inertia (momentum). Alternatively, suppose the gradient values in a given direction oscillate (change sign). Then the smoothed gradient will be small in magnitude and the algorithm will take smaller steps in that direction, damping oscillations.\n[revisit quad example with fixed alpha; also show zoom in for final iterations]\n\npar(mai = c(.5,.4,.1,.4))\nf &lt;- function(x){\n    x[1]^2/1000 + 4*x[1]*x[2]/1000 + 5*x[2]^2/1000\n}\nf_deriv1 &lt;- function(x){\n    c(2 * x[1]/1000 + 4 * x[2]/1000,\n    4 * x[1]/1000 + 10 * x[2]/1000)\n}\n\ngrad_descent &lt;- function(init, deriv_fun, alpha, nIt) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  for(t in 2:nIt){\n    xvals[t, ] &lt;- xvals[t-1, ] - alpha * deriv_fun(xvals[t-1, ])\n  }\n   return(xvals)\n}\n\nplot_path &lt;- function(x1s, x2s, f, xvals) {\n   fx &lt;- apply(expand.grid(x1s, x2s), 1, f)\n   ## plot f(x) surface on log scale\n   fields::image.plot(x1s, x2s, matrix(log(fx), 100, 100), \n    xlim = range(x1s), ylim = range(x2s)) \n   lines(xvals) ## overlay optimization path\n}\n\nstart &lt;- c(7, -4)\nxvals &lt;- grad_descent(start, f_deriv1, alpha = 100, nIt = 200)  ## This works pretty well.\nx1s &lt;- seq(-5, 8, len = 100); x2s = seq(-5, 2, len = 100)\nplot_path(x1s, x2s, f, xvals)\n\n## Zoom in near solution.\nx1s_alt &lt;- seq(-2, 2, len = 100); x2s_alt = seq(-1, 1, len = 100)\nplot_path(x1s_alt, x2s_alt, f, xvals)\n\n\nxvals &lt;- grad_descent(start, f_deriv1, alpha = 150, nIt = 200)  ## This oscillates somewhat.\nx1s &lt;- seq(-2, 2, len = 100); x2s = seq(-1, 1, len = 100)\nplot_path(x1s, x2s, f, xvals)\n\nxvals &lt;- grad_descent(start, f_deriv1, alpha = 200, nIt = 200)  ## This oscillates crazily.\nx1s &lt;- seq(-2, 2, len = 100); x2s = seq(-1, 1, len = 100)\nplot_path(x1s, x2s, f, xvals)\n\nLet’s see what happens with momentum. It’s much more robust to the step size!\n\ngrad_descent_with_momentum &lt;- function(init, deriv_fun, alpha, nIt, beta = 0.9) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  v &lt;- 0\n  for(t in 2:nIt){\n    v &lt;- beta *v  + (1-beta)* deriv_fun(xvals[t-1,])\n    xvals[t, ] &lt;- xvals[t-1, ] - alpha * v\n  }\n   return(xvals)\n}\n\nxvals &lt;- grad_descent_with_momentum(start, f_deriv1, alpha = 200, nIt = 200)  \nplot_path(x1s, x2s, f, xvals)\n## Zoom in near solution.\nplot_path(x1s_alt, x2s_alt, f, xvals)\n\n## Perhaps leave this out.\n## The alternate formulation; we need to modify alpha to get better behavior.\nalpha &lt;- 10\nv &lt;- 0\nbeta &lt;- 0.9\nfor(t in 2:nIt){\n  v &lt;- beta *v - alpha *f_deriv1(xvals[t-1,])\n  xvals[t, ] &lt;- xvals[t-1, ] + v\n}\nx1s &lt;- seq(-5, 8, len = 100); x2s = seq(-5, 2, len = 100)\nfx &lt;- apply(expand.grid(x1s, x2s), 1, f)\n## plot f(x) surface on log scale\nfields::image.plot(x1s, x2s, matrix(log(fx), 100, 100), \n    xlim = c(-5, 8), ylim = c(-5,2)) \nlines(xvals) ## overlay optimization path\n\nIn the 1980s Nesterov came up with the idea of calculating the gradient at a position slightly ahead in the direction of the accumulated momentum, which is called Nesterov Accelerated Gradient (NAG). By looking ahead, one can reduce overshooting (in particular oscillations when one is near the optimum).\nWe first determine the look-ahead value:\n\\[ x_{\\mbox{{\\small look}}} = x_t - \\beta v_t \\]\nThen we update the velocity based on the gradient at that value:\n\\[ v_{t+1} = \\beta v_t + \\alpha_t f^{\\prime}(x_{\\mbox{{\\small look}}})\\]\nwith the update\n\\[x_{t+1}=x_{t} - v_{t+1}\\]\n[show this on example, and with zoom in]\n\ngrad_descent_with_nag &lt;- function(init, deriv_fun, alpha, nIt, beta = 0.9) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  v &lt;- 0\n  for(t in 2:nIt){\n    xlook &lt;- xvals[t-1,] -beta *v\n    v &lt;- beta *v + alpha * deriv_fun(xlook)\n    xvals[t, ] &lt;- xvals[t-1, ] - v\n  }\n   return(xvals)\n}\n\n\nalpha &lt;- 50\nxvals &lt;- grad_descent_with_nag(start, f_deriv1, alpha = alpha, nIt = 200)  \nplot_path(x1s, x2s, f, xvals)\n\nalpha &lt;- 5\nxvals &lt;- grad_descent_with_nag(start, f_deriv1, alpha = alpha, nIt = 200)  \nplot_path(x1s, x2s, f, xvals)\n\n## per cmu\ngrad_descent_with_nag &lt;- function(init, deriv_fun, alpha, nIt, beta = 0.9) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  v &lt;- 0\n  for(t in 2:nIt){\n    xlook &lt;- xvals[t-1,] -alpha *v\n    v &lt;- beta *v + alpha * deriv_fun(xlook)\n    xvals[t, ] &lt;- xvals[t-1, ] - alpha*v\n  }\n   return(xvals)\n}",
+    "crumbs": [
+      "Units",
+      "Unit B12 (Optimization for Deep Learning)"
+    ]
+  },
+  {
+    "objectID": "units/unit12-dl-optim.html#rmsprop-and-adam",
+    "href": "units/unit12-dl-optim.html#rmsprop-and-adam",
+    "title": "Optimization for Deep Learning",
+    "section": "RMSprop and Adam",
+    "text": "RMSprop and Adam\nRMSprop tries to adapt the learning rate for different parameters at different rates, damping the gradient in directions with highly variable (potentially oscillating) gradient values. It maintains a weighted average of the (element-wise) squares of the past gradient values and scales the current gradient by the square root of that average. The result is to slow the learning in the directions with high variability.\nAdam (Adaptive Moment Estimation) combines momentum and RMSprop and is widely-used.\nIt maintains a weighted average of the past gradient values and a weighted average of the squared gradients and, as with RMSprop, scales by the square root of the average of the squared gradients.\n\\[ v_{t+1} = \\beta_1 v_t + (1-\\beta_1) f^{\\prime}(x_{t}) \\] \\[\nS_{t+1} = \\beta_2 S_t + (1-\\beta_2) f^{\\prime}(x_{t})^2\n\\] \\[\nx_{t+1}=x_{t} - \\alpha_{t} \\frac{v_{t+1}}{\\sqrt{S_{t+1}}+\\epsilon}\n\\]\n\\(\\epsilon\\) plays the usual role of dealing with denominators near zero and is often set to \\(10^{-8}\\). Note the presence of another tuning parameter, \\(\\beta_2 \\approx 0.999\\).\nOne also often sees that one “bias corrects” \\(v_{t+1}\\) and \\(S_{t+1}\\). Since they are initialized at zero, they are biased towards zero early in the iterations, which can be improved by using \\(v_{t+1} / (1-\\beta_1^{t+1})\\) and \\(S_{t+1} / (1-\\beta_2^{t+1})\\)\n\ngrad_descent_with_adam &lt;- function(init, deriv_fun, alpha, nIt, beta1 = 0.9, beta2 = 0.999, eps = 1e-8, bias_correct = FALSE) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  v &lt;- 0\n  s &lt;- 0\n  for(t in 2:nIt){\n    grad &lt;- deriv_fun(xvals[t-1,])\n    v &lt;- beta1 *v + (1-beta1) * grad\n    s &lt;- beta2 *s + (1-beta2) * grad^2\n    v_use &lt;- v; s_use &lt;- s\n    if(bias_correct) {\n      v_use &lt;- v_use / (1-beta1^t)\n      s_use &lt;- s_use / (1-beta2^t)\n      }\n    xvals[t, ] &lt;- xvals[t-1, ] - alpha * v_use / (sqrt(s_use) + eps)\n  }\n  return(xvals)\n}\n\nalpha &lt;- 1\nxvals &lt;- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = TRUE)  \nplot_path(x1s, x2s, f, xvals)\n\nalpha &lt;- .1\nxvals &lt;- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = TRUE)  \nplot_path(x1s, x2s, f, xvals)\n\nalpha &lt;- .01\nxvals &lt;- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = FALSE) # Slower with bias correction  \nplot_path(x1s, x2s, f, xvals)",
+    "crumbs": [
+      "Units",
+      "Unit B12 (Optimization for Deep Learning)"
+    ]
+  },
+  {
+    "objectID": "units/unit12-dl-optim.html#minibatches",
+    "href": "units/unit12-dl-optim.html#minibatches",
+    "title": "Optimization for Deep Learning",
+    "section": "Minibatches",
+    "text": "Minibatches\nStochastic gradient descent (and related methods described above) substitute a noisy (but unbiased) estimate of the gradient in place of the full gradient, as discussed earlier in the optimization unit. That noisy estimate is generally an estimate based on the gradient contributions from a (random) subset of the observations, using a small subset such as 32-512 data points. There are different ways to choose the minibatches – one potentially important choice is whether to cycle through all the observations in minibatches in an epoch or randomly create a minibatch. The latter would be true SGD and is easier to analyze mathematically because the minibatches are independent but in practice researchers have found good results if one randomly shuffles the observations at the start of each epoch (e.g., PyTorch’s DataLoader with shuffle=True) and within an epoch cycle through all the observations in minibatches.\nOne thing to think about in choosing a minibatch size is that the minibatch datasize fits in CPU/GPU memory and/or in the CPU cache.\nRecall from the main optimization unit that each step only moves us somewhat in the right direction and we don’t want to spend a lot of time choosing the exact right amount to go in that single step. Similarly we don’t want to spend a lot of time choosing exactly the right direction. We are iteratively exploring a space and making many descent steps quickly is better than making one “best” step.\nApparently the term ‘batch’ refers to the entire dataset, hence ‘mini-batch’ is a small subset of the dataset. That terminology might be confusing (since I might think of a batch as being the same as a chunk or shard or subset) but seems to be standard.\nOne advantage of minibatches is purely computational efficiency. We can choose a reasonable direction to go and make progress in that direction without having to compute the gradient for all of the observations. This was the first motivation. The connection with low generalization error and implicit regularization was realized later. In this paper the authors argue that use of small batches results in finding optima in flat parts of the space that give smoother solutions that generalize better. However, this paper provides evidence against the idea that finding solutions in flat areas is what explains the good generalization performance).\nOne would also want to consider the learning rate as that plays an important role both in computational efficiency and in how the optimization moves through the space and settles on a solution. In this paper, the authors discuss first that with a very small learning rate, the optimization with minibatches follows the gradient flow to a local minimum but with larger learning rates the optimization path is what one would get if optimizing a regularized objective function.\nFor many years, the standard approach was to use multiple minibatches in an epoch and train for many epochs. More recently there has been some focus on using a very small number of epochs, particularly in settings with huge data sizes [find Jingfeng citations]\nWhat happens if we use minibatching in the regression example? By comparing with the previous results, we can see a few things:\n\nThere’s not a lot of evidence in this particular example that using minibatches results in a much lower generalization error or test error near the oracle error.\nIn general (particularly larger models and many epochs), we do still see a generalization gap that grows with the number of epochs.\nEarly-ish stopping combined with minibatches often seems to work well.\n\n[at one point (n=200?) I was seeing minibatching help with generalization error; not sure why not anymore]\nI say “early-ish” because 2000 epochs is quite large for such a small problem, so investigating what happens with 25000 epochs is interesting conceptually but presumably not something one would do in practice.",
+    "crumbs": [
+      "Units",
+      "Unit B12 (Optimization for Deep Learning)"
+    ]
+  },
+  {
+    "objectID": "units/unit12-dl-optim.html#the-learning-rate-and-the-process-of-updating-weights",
+    "href": "units/unit12-dl-optim.html#the-learning-rate-and-the-process-of-updating-weights",
+    "title": "Optimization for Deep Learning",
+    "section": "The learning rate and the process of updating weights",
+    "text": "The learning rate and the process of updating weights\nThe learning rate is also an important part of the puzzle. It affects computational efficiency (overly small values will take a long time to reach an ‘optimum’), but also the performance of the trained model and interplays with the batch size since the amount of information in any given step relates to the number of observations in the batch.\nSuppose we are interested in whether we can improve the value of a specific weight in a neural network using sigmoid activation. Consider that at a given layer in the network, \\(a^(l) = \\sigma(\\sum_k w^{(l)}_k a^{(l-1)} + b^{(l)})\\). With a bit of investigation of the backpropagation algorithm for calculating the gradient of the loss with respect to the weights (e.g., considering the simplified update for a neuron at layer \\(l\\) as \\(a^{(l)} = \\sigma(w^{(l)} a^{(l-1)} + b^{(l)})\\), with gradient \\(\\sigma^{'}(w^{(l)} a^{(l-1)} + b^{(l)}) a^{(l-1)}\\)), one can see that the update to a weight will be small if:\n\nThe input neuron, \\(a^{(l-1)}\\) has a small value (low activation)\nThe output neuron has saturated (the value of \\(w^{(l)} a^{(l-1)} + b^{(l)}\\) is very large of small, such that the derivative of the sigmoid function is near zero.\n\nThis plays out differently when using ReLU activation functions since their derivative is zero for negative inputs and unbounded for positive. The unboundedness can result in less stability in the updates. And the zero derivative can mean that a neuron gets stuck in the “off” position if its inputs are always negative. In backpropagation, the weights/coefficients that feed into such a neuron don’t get updated through that neuron (though they would through other “live” neurons).\nOne can also see a slow learning rate if you have a deep network and small magnitude weights, in which case the gradient behaves like the product of the weights (modulated by the activation function) and can be quite small. This is known as the vanishing gradient problem; with the counterpart exploding gradient problem when the weights are large, which can result in instability in fitting since individual gradient descent steps can be very large.\nCareful initialization can help with vanishing/exploding gradients. In particular the magnitude (quantified by the variance) of the initial values in a layer should scale inversely with the number of weights in the layer, to give weights with values whose magnitude is around 1. For RELU, the standard is to scale as 2 divided by the number of weights.",
+    "crumbs": [
+      "Units",
+      "Unit B12 (Optimization for Deep Learning)"
+    ]
+  },
+  {
+    "objectID": "units/unit12-dl-optim.html#other-aspects-of-optimizationtraining",
+    "href": "units/unit12-dl-optim.html#other-aspects-of-optimizationtraining",
+    "title": "Optimization for Deep Learning",
+    "section": "Other aspects of optimization/training",
+    "text": "Other aspects of optimization/training\n\nLearning rate decay\nIf one chooses a constant value of the learning rate, \\(\\alpha\\), when using mini-batches, one will never converge to a (local) optimum but will oscillate around the optimum because the gradient estimate at each step will not be exactly zero. So an additional option for improving optimization is to set the learning rate to decay with the number of epochs (or the number of steps).\nIn recognition of this, and also that as one gets closer to the minimum one generally would want to be more careful about the steps one takes, one often uses a “schedule” by which the learning rate decreases as a function of the epoch number.\nA common schedule is:\n\\[\n\\alpha = \\frac{1}{1+\\rho  m} \\alpha_0\n\\]\nwhere \\(\\alpha_0\\) is the initial learning rate, \\(\\rho\\) is a decay parameter, and \\(m\\) is the number of epochs. One may need to tune \\(\\rho\\). Or one might use exponential decay: \\(\\alpha = \\rho^m \\alpha_0\\). And there are other approaches that are used in practice.\n\n\nInput normalization\nIt’s generally a good idea to ‘normalize’ your inputs (i.e., shift and scale them to remove the mean and standardize the variance). This generally produces an objective function that is more spherical and less elliptical/elongated. We saw in the Optimization unit that part of the difficulty with pure gradient descent is that it doesn’t account for how the gradient changes as one moves through the space and that Newton’s method, by using the Hessian, accounts for this and helps avoid big oscillations. Of course in deep learning we can use 2nd derivative information for efficiency reasons, so transforming your inputs is quite useful. Another way to think about this is that if we have an elliptical surface, we would want the learning rate to vary by dimension, whereas with a spherical one, we can use a single learning rate, which of course is what one wants, to avoid a high-dimensional hyperparameter search space.\n\n\nLocal optima\nIn low dimensions, it’s easy to think about having local optima that an optimization algorithm will get stuck in. But in high dimensions, having a local optimum requires that the Hessian in all directions be zero. This is much less likely than that some of second derivatives will be positive and some negative, in which case one is at a saddle point. So long as your optimization algorithm doesn’t get stuck at exactly the saddle point (which it shouldn’t because of the stochastic gradients (and as well from using techniques like momentum), then this shouldn’t cause a big problem.\nWhat tends to be more of a problem is having slow learning in plateaus where the gradients are shallow and steps are small. Momentum and related techniques can help with this.\n\n\nHyperparameter tuning\nWe’ve seen that there are a variety of tuning parameters, including model architecture and tuning parameters. In his deep learning course, Andrew Ng suggests first considering the learning rate, \\(\\alpha\\), and then after that the momentum hyperparameter, the mini-batch size, and the number of hidden units.\nAn obvious strategy is to do a grid search over the hyperparameters. An alternative is to choose the points at random. This results in more unique values of each hyperparameter, which can be particularly useful if it turns out one or more of the hyperparameters don’t really matter at all, which when using a grid would mean that a bunch of your grid points are redundant.\nOne might also try to zoom in on the best values by using a second round of optimization after determining roughly the right magnitude of values initially.\nWhat about the scale of values to consider? Often we want to range over multiple orders of magnitude, so we want to search on the log scale. For the parameter in an expontially-weighted average, you’d want to search over \\(1-\\beta\\) on the log scale.\n\n\nBatch normalization\nAnother common strategy when fitting neural networks is to normalize the values of the hidden units (usually before passing through the activation function) to have a particular layer-specific mean and variance (that might be learned during training). The intuition is similar to that for normalizing the inputs, to have all the predictors on the same scale and hopefully have more spherical objective function contours.\nOne way to think about the effect of batch normalization is that it keeps the magnitudes and spread of the hidden unit values stable over the iterations, reducing what one might think of as a sort of ‘covariate shift’ within the model (since the hidden unit values are constantly changing as the optimization updates the parameters (the weights)).",
+    "crumbs": [
+      "Units",
+      "Unit B12 (Optimization for Deep Learning)"
+    ]
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "Scheduling information",
     "section": "",
-    "text": "While R was built/designed for UNIX systems, it has been well adapted for Windows. Here, we’ll start with the basics of installing R on Windows. Then, we’ll cover the recommended editor (Rstudio), and how to build pdf documents using MikTeX.\n\n\n\n\n\n\nNote\n\n\n\nThis tutorial installs Windows-only versions of everything. Modern Windows systems have an Ubuntu subsystem available that we highly recommend. See the Installing the Linux Subsystem on Windows tutorial for setting up that configuration.\n\n\n\nInstalling R\nThe first step in installing the R language. This is available on CRAN (Comprehensive R Archive Network).\n\nGo to the CRAN webpage, www.r-project.org\nIn the first paragraph, click the link download R\nYou’re now on a page titled CRAN Mirrors, choose the mirror located closest to your geographic location\n\nMirrors are different servers that all host copies of the same website. You get best performance from the location closest to you.\n\nYou’re now on a paged titled The Comprehensive R Archive Network. The first box is labeled Downloand and Install R, click Download R for Windows\nClick base or install R for the first time, these take you to the same place\n\nFor more advanced things, you may need the Rtools download later. It isn’t necessary now, but remember that for the future.\n\nAt the top is a large-font link, Download R X.X.X for Windows, click this. It will begin downloading the Windows installer for R.\nFollow the instructions for setup. If you are unsure of anything, leave the default settings\n\n\n\nInstalling RStudio\nRStudio is one of the best text editors for coding in R. It is our recommended option for beginning. After you are comfortable with the language, or if you use other languages as well, you may want to explore Atom or Sublime. More advanced options include Emacs with [ESS package][https://ess.r-project.org/] and vim with the Nvim-R plugin.\nTo install RStudio:\n\nGo to the RStudio Desktop download page, rstudio.com/products/rstudio/download/#download\nChoose the download for your OS, most likely the Windows 10/8/7 one\nFollow the instructions for setup. If you are unsure of anything, leave the default settings\nOpen RStudio (R will run automatically in the background)\n\nYou may have to allow RStudio to run if prompted (depends on security settings and anti-virus software)\n\n\nOnce RStudio is installed, you can install or update packages in one of two ways:\n\nVia the console, using install.packages() or update.packages()\n\nVia the gui:\n\nIn the top bar, click on tools\nSelect Install Packages… to install packages\nSelect Check for Package Updates… to update packages\n\n\n\n\nCompiling PDF Documents\nFor the purposes of this class, you will be submitting homeworks as PDF documents that blend written text, code, and code-generated output. These documents are RMarkdown documents, and are dynamic documents that provide a convenient method for documenting your work (more on this in one of the lab sections). To do this, you need a LaTeX renderer. We recommend MiKTeX for Windows.\n\nGo to Getting MiKTeX to download MiKTeX for Windows, miktex.org/download\nThe first page should be Install on Windows, click Download at the bottom of the page\n\nClick the download to begin\n\n\n\n\n\n\n\nImportant\n\n\n\nFOLLOW THESE INSTALL INSTRUCTIONS.\nThe default options are fine in most places, but there is one that will cause problems.\n\n\n\nAccept the Copying Conditions, click next\nInstall only for you, click next\nUse the default directory, click next\nThis should be the Settings page. Under Install missing packages on-the-fly, change the setting to Yes, click next\n\n\n\nBecause we are using MiKTeX as an external renderer, it can’t ask you to install missing packages, and will then fail, so we have to set that installation as automatic.\n\n\nClick start (Optional, but highly recommended) Open RStudio, select a new .Rmd document, d then choose knit. This may take some time, because MiKTeX is installing new braries, but it ensures that your pipeline is setup correctly"
+    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 2 TBD: Regex tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
+    "crumbs": [
+      "Schedule"
+    ]
   },
   {
-    "objectID": "howtos/vscode.html",
-    "href": "howtos/vscode.html",
-    "title": "Using VS Code",
+    "objectID": "schedule.html#schedule",
+    "href": "schedule.html#schedule",
+    "title": "Scheduling information",
     "section": "",
-    "text": "You’ll see VS Code a fair amount in this class. For the most part, you don’t have to use it if you don’t want to, but it’s worth getting some familiarity with.\nVS Code is powerful integrated development environment (IDE), with GitHub Copilot AI assistance built in, so it’s useful to have some familiarity with it. We may use it in the lab on testing and possibly other labs.\nVS Code provides a huge number of extensions for working with various languages and tools, including Python, R, Jupyter Notebooks, Quarto, etc., and including integrated debugging.\nI will do many of my demonstrations in class with VS Code, as it allows one to easily run code in the terminal or a Python session from the built-in editor.",
+    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 2 TBD: Regex tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
     "crumbs": [
-      "How tos",
-      "Using VS Code"
+      "Schedule"
     ]
   },
   {
-    "objectID": "howtos/vscode.html#installing-vs-code",
-    "href": "howtos/vscode.html#installing-vs-code",
-    "title": "Using VS Code",
-    "section": "Installing VS Code",
-    "text": "Installing VS Code\nSee here to install VS Code.\nA browser-based version of VS Code is available through both the DataHub and the SCF JupyterHub. It should behave very similarly but the extensions available for VS Code on your own machine versus in the browser/JupyterHub can have differences.",
+    "objectID": "schedule.html#exams",
+    "href": "schedule.html#exams",
+    "title": "Scheduling information",
+    "section": "Exams",
+    "text": "Exams\nThese are in-person only.\n\n243A exam: Monday October 12 in class\n\nReview session October 9 in section.\n\n243B exam: Monday November 23 in class.\n\nReview session November 20 in section.",
     "crumbs": [
-      "How tos",
-      "Using VS Code"
+      "Schedule"
     ]
   },
   {
-    "objectID": "howtos/vscode.html#using-vs-code",
-    "href": "howtos/vscode.html#using-vs-code",
-    "title": "Using VS Code",
-    "section": "Using VS Code",
-    "text": "Using VS Code\nHere are just a few initial tips on making use of VS Code.\n\nTo easily run Python code in a Python session from the VS Code editor, you can start a Python session in the VS Code terminal and then use Shift + Enter to run the current line of code from the editor. You can also right-click and select Run Python -&gt; Run Selection/Line in Python Terminal.\nTo easily run bash code in a terminal from the editor, you can add Cmd + Enter (on a Mac) or Alt + Enter (on Windows) to your Keyboard Shortcuts. (You can choose some other keystrokes of your choice, though I recommend not using Shift + Enter as that affects the behavior for running Python code). In the Keyboard Shortcuts area, Select “Terminal: Run Selected Text in Active Terminal” (workbench.action.terminal.runSelectedText) and specify Cmd + Enter.",
+    "objectID": "schedule.html#notes-on-assignments-and-activities",
+    "href": "schedule.html#notes-on-assignments-and-activities",
+    "title": "Scheduling information",
+    "section": "Notes on assignments and activities",
+    "text": "Notes on assignments and activities\n\nOptional library LaTeX session: I highly recommend (in particular if you are a Statistics graduate student) that you know how to create equations in LaTeX. Even if you develop your documents using Quarto, Jupyter notebooks, R Markdown, etc. rather than LaTeX-based documents, LaTeX math syntax is the common tool for writing math syntax that will render beautifully.\nOptional Lab A0 software/command line help session: (August 28 in lab room) Help session for installing software, accessing a UNIX-style command line, and basic command line usage (e.g., the UNIX basics tutorial). You can show up at any time (unlike all remaining labs). You should have software installed, be able to access the command line, and have started to become familiar with basic command line usage before class on Monday August 31.\nLab A1: (September 4) First section/lab on using Git, setting up your GitHub repository for problem sets, and using Quarto to generate dynamic documents. Please come only to the section you are registered for given space limits in the room, unless you have talked with Chris and have his permission.",
     "crumbs": [
-      "How tos",
-      "Using VS Code"
+      "Schedule"
     ]
   },
   {
-    "objectID": "howtos/vscode.html#using-vs-code-with-linux-and-on-remote-machines",
-    "href": "howtos/vscode.html#using-vs-code-with-linux-and-on-remote-machines",
-    "title": "Using VS Code",
-    "section": "Using VS Code with Linux and on remote machines",
-    "text": "Using VS Code with Linux and on remote machines\nYou can use the Remote SSH extension to connect to another machine (e.g., an SCF machine) and access your files and run code on that other machine.\n\nClick on the Extensions icon in the left sidebar and search for “Remote - SSH” and install it.\nThen to connect to another machine, click on the &gt;&lt; (Open a Remote Window) icon in the buttom left, select Connect to Host and follow the prompts.",
+    "objectID": "howtos/submitPS.html",
+    "href": "howtos/submitPS.html",
+    "title": "Problem Set Submissions",
+    "section": "",
+    "text": "Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using inspect.getsource().\nWhy?\n\nFor one or two of the initial problem sets you’ll need to include both bash and Python code. This isn’t possible in a single notebook.\nThe underlying format of .ipynb files is JSON. While this is a plain text format, the key-value pair structure (not generally being aligned with the file lines) is much less well-suited for use with Git version control (which relies on diff) than Markdown-based formats.\nOne can run chunks in a Jupyter notebook in arbitrary order. What is printed to PDF depends on the order in which the chunks are run and the results can differ from what one would expect based on reading the notebook sequentially and running the chunks sequentially. For example, consider the following experiment and you’ll see what I mean: (1) Have one code chunk with a = 3 and run it; (2) Add a second chunk with print(a) and run it; and (3) Change the first chunk to a=4 and DO NOT rerun the second chunk. Save the notebook to PDF. You’ll see that your “report” makes no sense. Here’s the result of me doing that experiment.\n\nIf you want to do your initial explorations of the problems in a Jupyter notebook, you can do so and convert the .ipynb file to a .qmd file using quarto convert.",
     "crumbs": [
       "How tos",
-      "Using VS Code"
+      "Problem Set Submissions"
     ]
   },
   {
-    "objectID": "howtos/vscode.html#github-copilot",
-    "href": "howtos/vscode.html#github-copilot",
-    "title": "Using VS Code",
-    "section": "GitHub Copilot",
-    "text": "GitHub Copilot\nYou can use GitHub Copilot for AI assistance (including code completion, edit mode (for small guided help), agent mode (for more autonomous code generation and manipulation), and built-in Chat. That said, you shouldn’t use Agent mode for our work in class as it’s likely to reduce your learning.\nGitHub Education provides free access to GitHub Copilot Pro.\nYou should see the GitHub Copilot icon in top, just to the right of the search bar. Click it to open the Copilot interface as a window on the right.\nOr in a code file, click on Cmd + I (on a Mac, probably Ctrl + I on Windows) to open an interface within your code file. When using AI edit mode, it’s often important to highlight the code you want it to work on.\nIt’s important to provide context for AI code assistance. In general if you open a folder in VS Code, that will set up the folder as a project, and the contents will be treated as context. You can also add files as context with Add Context in the AI window. And you can drag files/folders from the VS Code File Explorer window.",
+    "objectID": "howtos/submitPS.html#submission-format",
+    "href": "howtos/submitPS.html#submission-format",
+    "title": "Problem Set Submissions",
+    "section": "",
+    "text": "Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using inspect.getsource().\nWhy?\n\nFor one or two of the initial problem sets you’ll need to include both bash and Python code. This isn’t possible in a single notebook.\nThe underlying format of .ipynb files is JSON. While this is a plain text format, the key-value pair structure (not generally being aligned with the file lines) is much less well-suited for use with Git version control (which relies on diff) than Markdown-based formats.\nOne can run chunks in a Jupyter notebook in arbitrary order. What is printed to PDF depends on the order in which the chunks are run and the results can differ from what one would expect based on reading the notebook sequentially and running the chunks sequentially. For example, consider the following experiment and you’ll see what I mean: (1) Have one code chunk with a = 3 and run it; (2) Add a second chunk with print(a) and run it; and (3) Change the first chunk to a=4 and DO NOT rerun the second chunk. Save the notebook to PDF. You’ll see that your “report” makes no sense. Here’s the result of me doing that experiment.\n\nIf you want to do your initial explorations of the problems in a Jupyter notebook, you can do so and convert the .ipynb file to a .qmd file using quarto convert.",
     "crumbs": [
       "How tos",
-      "Using VS Code"
+      "Problem Set Submissions"
     ]
   },
   {
-    "objectID": "howtos/vscode.html#questions",
-    "href": "howtos/vscode.html#questions",
-    "title": "Using VS Code",
-    "section": "Questions?",
-    "text": "Questions?\nQuestions (and even better, tips) on using VS Code are very welcome in the Ed Discussion.",
+    "objectID": "howtos/submitPS.html#problem-set-solution-workflows",
+    "href": "howtos/submitPS.html#problem-set-solution-workflows",
+    "title": "Problem Set Submissions",
+    "section": "Problem set solution workflows",
+    "text": "Problem set solution workflows\nHere we outline a few suggested workflows for developing your problem set solutions:\n\nOpen the qmd file in any editor you like (e.g., Emacs, Sublime, ….). From the command line (we think this will work from a Windows command line such as cmd.exe or PowerShell as well), run quarto preview FILE to show your rendered document live as you edit and save changes. You can put the preview window side by side with your editor, and the preview document should automatically render as you save your qmd file.\nUse VS Code with the following extensions: Python, Quarto, and Jupyter Notebooks. This allows you to execute and preview chunks (and whole document) inside VS Code. This is currently our favorite path due to how well it integrated with the Python debugger.\nUse RStudio (yes, RStudio), which can manage Python code and will display chunk output in the same way it does with R chunks. This path seems to work quite well and is recommended if you are already familiar with RStudio.\n\nLater in the semester, you may be allowed to work directly in Jupyter notebooks and use quarto to render from them directly. This has a few quirks and limitations, but may be allowed for some problem sets.\nPlease commit your work regularly to your repository as you develop your solutions.",
     "crumbs": [
       "How tos",
-      "Using VS Code"
+      "Problem Set Submissions"
+    ]
+  },
+  {
+    "objectID": "howtos/submitPS.html#github-repository",
+    "href": "howtos/submitPS.html#github-repository",
+    "title": "Problem Set Submissions",
+    "section": "GitHub repository",
+    "text": "GitHub repository\n\nSetting up your repository\nWe are creating repositories for everyone at github.berkeley.edu. Additionally, homeworks still need to be submitted as PDFs on Gradescope.\nSteps:\n\nLog into github.berkeley.edu using your Berkeley credentials. Because of how the system works, you will need to log in before your account is created. Nothing else needs to be done, just log in and log out.\nAfter accounts are created (may take a couple days after first login), when you log in again, you should see one private repository listed on the left side (e.g., stat243-fall-2024/ahv36). This is your class repository. Do not change the repository settings! They are set up for this class.\nClone the repo to your home directory (I would clone it into a directory just for repositories (e.g., I use ~/repos). In the top-level of your working directory, you should create a file named (exactly) .gitignore.\n\nThe .gitignore file causes Git to ignore transient or computer-specific files that Quarto generates. (more info at https://github.com/github/gitignore) In it, put (again, don’t put dashed lines):\n# cache directories\n/__pycache__\n\n# pickle files\n*.pkl\n*.pickle\n*.csv\nBy adding the pickle and csv extensions you’ll avoid mistakenly committing potentially large data files to your repository.\n\n\nRepository Organization\nThe problem sets in your repository should be organized into folders with specific filenames.\nWhen we pull from your repository, our code will be assuming the following structure:\nyour_repo/\n├── ps1/\n│   ├── ps1.pdf\n│   ├── ps1.qmd \n│   ├── &lt;possibly auxiliary code or other files&gt;\n├── ps2/\n│   ├── ...\n├── ...\n├── ps8/\n└── .gitignore\nThe file names are case-sensitive, so please keep everything lowercase.\n\n\nSave or cache credentials in Git\nIf authenticating to github.berkeley.edu every time sounds inconvenient, note that your credentials can be saved (cached) to avoid entering them constantly. More details can be found on this SCF page. Besides the methods mentioned on the page, one can also store credentials in a file via git config --global credential.helper store.",
+    "crumbs": [
+      "How tos",
+      "Problem Set Submissions"
+    ]
+  },
+  {
+    "objectID": "howtos/installQuarto.html",
+    "href": "howtos/installQuarto.html",
+    "title": "Installing and Using Quarto",
+    "section": "",
+    "text": "Unless you plan to generate your problem set solutions on the SCF, you’ll need to install Quarto.\nOnce installed, you should be able to run commands such as quarto render FILE and quarto preview FILE from the command line.\nTo render to PDF, you’ll need a LaTeX engine installed. A good minimal solution if don’t already have LaTeX installed (e.g., via MicTeX in Windows or MacTeX on MacOS) is to install tinytex: quarto install tinytex.\nQuarto also runs from the Windows Command shell or PowerShell. We’ll add details/troubleshooting tips here (or in the lab 1 materials) as needed.\nquarto convert converts back and forth between the Jupyter notebook (.ipynb) and Quarto Markdown (.qmd) formats.",
+    "crumbs": [
+      "How tos",
+      "Installing and Using Quarto"
+    ]
+  },
+  {
+    "objectID": "howtos/installQuarto.html#quarto-engines",
+    "href": "howtos/installQuarto.html#quarto-engines",
+    "title": "Installing and Using Quarto",
+    "section": "Quarto “engines”",
+    "text": "Quarto “engines”\nBy default, Quarto uses Jupyter to execute code chunks. This works well generally, but you can’t have different chunks that use different languages in the same document (e.g., some chunks in Python and some in bash or R). In that case, you can use the R-based knitr package to do the processing. To do so, add engine: knitr to the YAML metadata at the top of the file (if you happen to have an execute stanza, you’ll need to have engine: knitr nested within that stanza). For the knitr engine, you’ll need to have R installed on your computer, with the rmarkdown R package installed. And if you have Python chunks, you’ll also need the reticulate R package.\nFor Python chunks when using the default jupyter engine, if you want all output from multiple commands in a chunk to be printed (without explicitly using print()), you can add the following syntax to the YAML metadata at the top of the file. (Note that, unfortunately, the output will be printed out below the code chunk rather than interspersed with the code, as that is how Jupyter notebooks chunks work.)\nipynb-shell-interactivity: all",
+    "crumbs": [
+      "How tos",
+      "Installing and Using Quarto"
+    ]
+  },
+  {
+    "objectID": "howtos/installQuarto.html#using-bash-shell-code-chunks",
+    "href": "howtos/installQuarto.html#using-bash-shell-code-chunks",
+    "title": "Installing and Using Quarto",
+    "section": "Using bash shell code chunks",
+    "text": "Using bash shell code chunks\nIf you want to use bash chunks in your document, you have a few options.\n\nUse %%bash at the start of any chunk with bash code. This will work with the Jupyter engine, but it has the downside that all output from the cell will appear after all the code rather than the output being interspersed with the line of code that produces it.\nUse the knitr engine for Quarto and tag chunks as “``{bash}\". You will need to addengine: knitrto the YAML preface of your qmd document. Seeunit2-bash.qmd for an example. Also you need to have R installed as well as the rmarkdown package for R.\n(Not recommended as it involves more steps and we haven’t tested it) Install the bash_kernel Python package using pip or conda and install the bash kernel for Jupyter.\n\nVariables are not retained from bash chunk to bash chunk (i.e., state is not preserved between chunks), unlike with Python code chunks.",
+    "crumbs": [
+      "How tos",
+      "Installing and Using Quarto"
+    ]
+  },
+  {
+    "objectID": "howtos/installQuarto.html#controlling-which-python-is-used",
+    "href": "howtos/installQuarto.html#controlling-which-python-is-used",
+    "title": "Installing and Using Quarto",
+    "section": "Controlling which Python is used",
+    "text": "Controlling which Python is used\nOne common source of confusion is understanding which Python executable (and associated installed Python packages) Quarto will use to execute Python code chunks and how to tell Quarto to use a specific Python. A common problem is having Quarto use a different Python version that is not what you want and (particularly) may not have the Python packages installed that you need.\nI don’t fully understand all the details, but here are some suggestions.\n\nYou can set the environment variable QUARTO_PYTHON to be the path to a particular Python executable. You’ll need probably need to export this variable to ensure it is available at the point that Quarto checks it.\nYou can create a Jupyter kernel associated with a Conda environment and then add jupyter: name_of_kernel to the metadata of your document.\nIn VS Code, you can invoke Python: Select interpreter in the command palette.\nIf you are using the knitr engine, you can include a chunk like this at the start of your Quarto document to force use of a particular Python executable or the Python in a particular Conda environment:\n```{r, setup-r}\n#| echo: false\nreticulate::use_python('/usr/local/linux/miniforge-3.13/bin/python')\n```\n\n```{r, setup-r-alternative}\n#| echo: false\nreticulate::use_condaenv('my_conda_env\", required = TRUE)\n```\nOtherwise knitr will try to create and use a Conda environment for use with the reticulate package.\n\nThis may be particularly troublesome in Windows.",
+    "crumbs": [
+      "How tos",
+      "Installing and Using Quarto"
+    ]
+  },
+  {
+    "objectID": "howtos/accessPython.html",
+    "href": "howtos/accessPython.html",
+    "title": "Accessing Python",
+    "section": "",
+    "text": "We recommend using the Miniforge distribution as your Python 3.12 installation.\nOnce you’ve installed Python, please install the following packages:\nAssuming you installed Miniforge, you should be able to do this from the command line:\nWhile you’re welcome to work with Python in a Jupyter notebook for exploration (e.g., using the campus DataHub, you’ll need to submit Quarto (.qmd) documents with Python chunks for your problem sets. So you’ll need Python set up on your laptop or to use it by logging in to an SCF machine.",
+    "crumbs": [
+      "How tos",
+      "Accessing Python"
+    ]
+  },
+  {
+    "objectID": "howtos/accessPython.html#python-from-the-command-line",
+    "href": "howtos/accessPython.html#python-from-the-command-line",
+    "title": "Accessing Python",
+    "section": "Python from the command line",
+    "text": "Python from the command line\nOnce you get your SCF account, you can access Python or IPython from the UNIX command line as soon as you login to an SCF server. Just SSH to an SCF Linux machine (e.g., gandalf.berkeley.edu or radagast.berkeley.edu) and run ‘python’ or ‘ipython’ from the command line.\nMore details on using SSH are here. Note that if you have the Ubuntu subsystem for Windows, you can use SSH directly from the Ubuntu terminal.",
+    "crumbs": [
+      "How tos",
+      "Accessing Python"
+    ]
+  },
+  {
+    "objectID": "howtos/accessPython.html#python-via-jupyter-notebook",
+    "href": "howtos/accessPython.html#python-via-jupyter-notebook",
+    "title": "Accessing Python",
+    "section": "Python via Jupyter notebook",
+    "text": "Python via Jupyter notebook\nYou can use a Jupyter notebook to run Python code from the SCF JupyterHub or the Berkeley DataHub.\nIf you’re on the SCF JupyterHub, select Start My Server. Then, unless you are running long or parallelized code, just click Start (in other words, accept the default ‘standalone’ partition). On the next page select ‘Python 3’ from the launcher.\nTo finish your session, click on File, Hub Control Panel and Stop My Server. Do not click Logout.",
+    "crumbs": [
+      "How tos",
+      "Accessing Python"
+    ]
+  },
+  {
+    "objectID": "howtos/accessUnixCommandLine.html",
+    "href": "howtos/accessUnixCommandLine.html",
+    "title": "Accessing the Unix Command Line",
+    "section": "",
+    "text": "You have several options for UNIX command-line access. You’ll need to choose one of these and get it working.\n\nMac OS (on your personal machine):\nOpen a Terminal by going to Applications -&gt; Utilities -&gt; Terminal\n\n\nWindows (on your personal machine):\n\nYou may be able to use the Ubuntu bash shell available in Windows.\nYour PC must be running a 64-bit version of Windows 10 Anniversary Update or later (build 1607+).\nPlease see this link for more information:\n\nhttps://msdn.microsoft.com/en-us/commandline/wsl/install_guide\n\nFor more detailed instructions, see the Installing the Linux Subsystem on Windows tutorial.\n(Not recommended) There’s an older program called cygwin that provides a UNIX command-line interface.\n\nNote that when you install Git on Windows, you will get Git Bash. While you can use this to control Git, the functionality is limited so this will not be enough for general UNIX command-line access for the course.\n\n\nLinux (on your personal machine):\nIf you have access to a Linux machine, you very likely know how to access a terminal.\n\n\nAccess via DataHub (provided by UC Berkeley’s Data Science Education Program)\n\nGo to https://datahub.berkeley.edu\nClick on Log in to continue, sign in via CalNet, and authorize DataHub to have access to your account.\nIn the upper left, click on File, New and Terminal.\nTo end your session, click on File, Hub Control Panel and Stop My Server. Note that Logout will not end your running session, it will just log you out of it.\n\nWhile using DataHub for the bash unit (Unit 2) should be fine, if you try to use it for any problems sets or other work in class, you are likely to run out of memory. The SCF JupyterHub (see below) should be used instead if you want browser-based access to a Linux environment, including the bash shell.\n\n\nAccess via the Statistical Computing Facility (SCF)\nWith an SCF account (available here), you can access a bash shell in the ways listed below.\nThose of you in the Statistics Department should be in the process of getting an SCF account. Everyone else will need an SCF account when we get to the unit on parallel computing, but you can request an account now if you prefer.\n\nYou can login to our various Linux servers and access a bash shell that way. Please see http://statistics.berkeley.edu/computing/access.\nYou can also access a bash shell via the SCF JupyterHub interface; please see the Accessing Python instructions but select Terminal from the launcher (equivalently, click on ‘File’, ‘New’, and ‘Terminal’). This is very similar to the DataHub functionality discussed above.",
+    "crumbs": [
+      "How tos",
+      "Accessing the Unix Command Line"
+    ]
+  },
+  {
+    "objectID": "howtos/RandRStudioInstall.html",
+    "href": "howtos/RandRStudioInstall.html",
+    "title": "Installing R & RStudio",
+    "section": "",
+    "text": "On your laptop\nIf your version of R is older than 4.0.0, please install the latest version.\nTo install R, see:\n\nMacOS: install the R-4.2.1.pkg from https://cran.rstudio.com/bin/macosx\nWindows: https://cran.rstudio.com/bin/windows/base/\nLinux: https://cran.rstudio.com/bin/linux/\n\nThen install RStudio. To do so, see https://www.rstudio.com/ide/download/desktop, scrolling down to the “Installers for Supported Platforms” section and selecting the Installer for your operating system.\nVerify that you can install add-on R packages by installing the ‘fields’ package. In RStudio, go to ‘Tools-&gt;Install Packages’. In the resulting dialog box, enter ‘fields’ (without quotes) in the ‘Packages’ field. Depending on the location specified in the ‘Install to Library’ field, you may need to enter your administrator password. To be able to install packages to the directory of an individual user, you may need to do the following:\n\nIn R, enter the command Sys.getenv()['R_LIBS_USER'].\nCreate the directory specified in the result that R returns, e.g., on a Mac, this might be ~/Library/R/4.0/library.\n\nFor more detailed installation instructions for Windows, see Using R, RStudio, and LaTeX on Windows file.\n\n\nVia DataHub\nSee the instructions in Accessing the Unix Command Line for how to login to Datahub. Then in the mid-upper right, click on New and RStudio. Alternatively, to go directly to RStudio, go to https://r.datahub.berkeley.edu."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Statistics 243: Introduction to Statistical Computing",
+    "section": "",
+    "text": "Ed\n\n  Pensive/Gradescope\n\n  Tutorials\n\n  Lecture recordings\n\n  bCourses\n\n  PollEV\n\nNo matching items\nThis is the course website for both Statistics 243A and 243B.\nCourse policies and logistics generally pertain to both courses, with limited exceptions.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#course-materials",
+    "href": "index.html#course-materials",
+    "title": "Statistics 243: Introduction to Statistical Computing",
+    "section": "Course materials",
+    "text": "Course materials\nSee the links above for the key resources for the courses.\nMost course content (in particular unit notes, labs, and problem sets) are available through this website via the links in the left sidebar.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#questions-about-taking-the-classes",
+    "href": "index.html#questions-about-taking-the-classes",
+    "title": "Statistics 243: Introduction to Statistical Computing",
+    "section": "Questions about taking the classes",
+    "text": "Questions about taking the classes\n\nInformation for students not in the Statistics Department\nIf you would like to audit the class, enroll as a UC Berkeley undergraduate, or enroll as a concurrent enrollment student (i.e., for visiting students), or for some other reason are not enrolled, please fill out this survey as soon as possible. All those enrolled or wishing to take 243A should have filled it out by Friday August 28 at noon.\nUndergraduates can only take the class with my permission and once all graduate students have an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.\nConcurrent enrollment students (e.g., exchange students from other universities/countries) can take the class with my permission and once all UC Berkeley students have had an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.\nPlease see the syllabus for the math and statistics background I expect, as well as the need to be familiar with Python or to get up to speed in Python during the first few weeks of the semester. Note that these prerequisites are not the same for Stat 243A and Stat 243B.\n\n\nTaking only 243A or only 243B\nStudents who are not Statistics MA students are welcome to take only one of the two half-semester courses. However if you plan to take Stat 243b only, you should make sure you have sufficient Python programming experience. It doesn’t have to be fully equivalent to what is taught in Stat 243a, but you should be comfortable programming in Python.\nStudents who are Statistics MA students who wish to only take one of the two half-semester courses need to request a waiver from the MA program, detailing your mastery of the material in the course you wish to waive.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#other-information",
+    "href": "index.html#other-information",
+    "title": "Statistics 243: Introduction to Statistical Computing",
+    "section": "Other information",
+    "text": "Other information\nThe first three weeks of 243A involve a lot of moving pieces, in part related to trying to get everyone up to speed with the bash shell and Python. Please use the schedule to keep on top of what you need to do.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "rubric.html",
+    "href": "rubric.html",
+    "title": "",
+    "section": "",
+    "text": "This document provides guidance for submitting high-quality problem set (and project) solutions. This guidance is based on general good practices for scientific communication, reproducible research, and software development."
+  },
+  {
+    "objectID": "rubric.html#general-presentation",
+    "href": "rubric.html#general-presentation",
+    "title": "",
+    "section": "General presentation",
+    "text": "General presentation\n\nSimply presenting code or derivations is not sufficient.\nBriefly describe the overall goal or strategy before providing code/derivations.\nAs needed describe what the pieces of your code/derivation are doing to make it easier for a reader to follow the steps.\nKeep your output focused on illustrating what you did, without distracting from the flow of your solution by showing voluminous output. The output should illustrate and demonstrate, not overwhelm or obscure. If you need to show longer output, you can add it at the end as supplemental material.\nOutput should be produced by your code (i.e., from the code chunks running when the document is rendered), not by copying and pasting results into the document."
+  },
+  {
+    "objectID": "rubric.html#coding-practice",
+    "href": "rubric.html#coding-practice",
+    "title": "",
+    "section": "Coding practice",
+    "text": "Coding practice\n\nMinimize (or eliminate) use of global variables.\nBreak down work into core tasks and develop small, modular, self-contained functions (or class methods) to carry out those tasks.\nDon’t repeat code. As needed refactor code to create new functions (or class methods).\nFunctions and classes should be “weakly coupled”, interacting via their interfaces and not by having to know the internals of how they work.\nUse data structures appropriate for the computations that need to be done.\nDon’t hard code ‘magic’ numbers. Assign such numbers to variables with clear names, e.g., speed_of_light = 3e8.\nProvide reasonable default arguments to functions (or class methods) when possible.\nProvide tests (including unit tests) when requested (this is good general practice but we won’t require it in all cases).\nAvoid overly complicated syntax – try to use the clearest syntax you can to solve the problem.\nIn terms of speed, don’t worry about it too much so long as the code finishes real-world tasks in a reasonable amount of time. When optimizing, focus on the parts of the code that are the bottlenecks.\nUse functions already available in the language rather than recreating yourself."
+  },
+  {
+    "objectID": "rubric.html#code-style",
+    "href": "rubric.html#code-style",
+    "title": "",
+    "section": "Code style",
+    "text": "Code style\n\nFollow a consistent style. While you don’t have to follow Python’s PEP8 style guide exactly, please look at it and follow it generally.\nUse informative variable and function names and have a consistent naming style.\nUse whitespace (spaces, newlines) and parentheses to make the structure of the code easy to understand and the individual syntax pieces clear.\nUse consistent indentation to make the structure of the code easy to understand.\nProvide comments that give the goal of a given piece of code and why it does things, but don’t use comments to restate what the code does when it should be obvious from reading the code.\n\nProvide summaries for blocks of code.\nFor particularly complicated syntax, say what a given piece of code does."
+  },
+  {
+    "objectID": "labs/lab0-setup.html",
+    "href": "labs/lab0-setup.html",
+    "title": "Lab 0: Setup",
+    "section": "",
+    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
+    "href": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
+    "title": "Lab 0: Setup",
+    "section": "",
+    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "labs/lab0-setup.html#acknowledgements",
+    "href": "labs/lab0-setup.html#acknowledgements",
+    "title": "Lab 0: Setup",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "office_hours.html",
+    "href": "office_hours.html",
+    "title": "Office hours",
+    "section": "",
+    "text": "Chris (Gateway 3rd Floor Common Area or [Zoom (email in advance)])\n\nTBD\nTBD\nBy appointment\nFeel free to drop by if my door is open, though I won’t always be able to help at the time.\n\nReece:\n\nTBD\nTBD\nFridays during unused section time (Gateway B1026 and B1023)",
+    "crumbs": [
+      "Office Hours"
     ]
   },
   {
@@ -1914,348 +2137,144 @@
     ]
   },
   {
-    "objectID": "office_hours.html",
-    "href": "office_hours.html",
-    "title": "Office hours",
+    "objectID": "howtos/vscode.html",
+    "href": "howtos/vscode.html",
+    "title": "Using VS Code",
     "section": "",
-    "text": "Chris (Gateway 3rd Floor Common Area or [Zoom (email in advance)])\n\nTBD\nTBD\nBy appointment\nFeel free to drop by if my door is open, though I won’t always be able to help at the time.\n\nReece:\n\nTBD\nTBD\nFridays during unused section time (Gateway B1026 and B1023)",
-    "crumbs": [
-      "Office Hours"
-    ]
-  },
-  {
-    "objectID": "labs/lab0-setup.html",
-    "href": "labs/lab0-setup.html",
-    "title": "Lab 0: Setup",
-    "section": "",
-    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions."
-  },
-  {
-    "objectID": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
-    "href": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
-    "title": "Lab 0: Setup",
-    "section": "",
-    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions."
-  },
-  {
-    "objectID": "labs/lab0-setup.html#acknowledgements",
-    "href": "labs/lab0-setup.html#acknowledgements",
-    "title": "Lab 0: Setup",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester."
-  },
-  {
-    "objectID": "rubric.html",
-    "href": "rubric.html",
-    "title": "",
-    "section": "",
-    "text": "This document provides guidance for submitting high-quality problem set (and project) solutions. This guidance is based on general good practices for scientific communication, reproducible research, and software development."
-  },
-  {
-    "objectID": "rubric.html#general-presentation",
-    "href": "rubric.html#general-presentation",
-    "title": "",
-    "section": "General presentation",
-    "text": "General presentation\n\nSimply presenting code or derivations is not sufficient.\nBriefly describe the overall goal or strategy before providing code/derivations.\nAs needed describe what the pieces of your code/derivation are doing to make it easier for a reader to follow the steps.\nKeep your output focused on illustrating what you did, without distracting from the flow of your solution by showing voluminous output. The output should illustrate and demonstrate, not overwhelm or obscure. If you need to show longer output, you can add it at the end as supplemental material.\nOutput should be produced by your code (i.e., from the code chunks running when the document is rendered), not by copying and pasting results into the document."
-  },
-  {
-    "objectID": "rubric.html#coding-practice",
-    "href": "rubric.html#coding-practice",
-    "title": "",
-    "section": "Coding practice",
-    "text": "Coding practice\n\nMinimize (or eliminate) use of global variables.\nBreak down work into core tasks and develop small, modular, self-contained functions (or class methods) to carry out those tasks.\nDon’t repeat code. As needed refactor code to create new functions (or class methods).\nFunctions and classes should be “weakly coupled”, interacting via their interfaces and not by having to know the internals of how they work.\nUse data structures appropriate for the computations that need to be done.\nDon’t hard code ‘magic’ numbers. Assign such numbers to variables with clear names, e.g., speed_of_light = 3e8.\nProvide reasonable default arguments to functions (or class methods) when possible.\nProvide tests (including unit tests) when requested (this is good general practice but we won’t require it in all cases).\nAvoid overly complicated syntax – try to use the clearest syntax you can to solve the problem.\nIn terms of speed, don’t worry about it too much so long as the code finishes real-world tasks in a reasonable amount of time. When optimizing, focus on the parts of the code that are the bottlenecks.\nUse functions already available in the language rather than recreating yourself."
-  },
-  {
-    "objectID": "rubric.html#code-style",
-    "href": "rubric.html#code-style",
-    "title": "",
-    "section": "Code style",
-    "text": "Code style\n\nFollow a consistent style. While you don’t have to follow Python’s PEP8 style guide exactly, please look at it and follow it generally.\nUse informative variable and function names and have a consistent naming style.\nUse whitespace (spaces, newlines) and parentheses to make the structure of the code easy to understand and the individual syntax pieces clear.\nUse consistent indentation to make the structure of the code easy to understand.\nProvide comments that give the goal of a given piece of code and why it does things, but don’t use comments to restate what the code does when it should be obvious from reading the code.\n\nProvide summaries for blocks of code.\nFor particularly complicated syntax, say what a given piece of code does."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Statistics 243: Introduction to Statistical Computing",
-    "section": "",
-    "text": "Ed\n\n  Pensive/Gradescope\n\n  Tutorials\n\n  Lecture recordings\n\n  bCourses\n\n  PollEV\n\nNo matching items\nThis is the course website for both Statistics 243A and 243B.\nCourse policies and logistics generally pertain to both courses, with limited exceptions.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#course-materials",
-    "href": "index.html#course-materials",
-    "title": "Statistics 243: Introduction to Statistical Computing",
-    "section": "Course materials",
-    "text": "Course materials\nSee the links above for the key resources for the courses.\nMost course content (in particular unit notes, labs, and problem sets) are available through this website via the links in the left sidebar.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#questions-about-taking-the-classes",
-    "href": "index.html#questions-about-taking-the-classes",
-    "title": "Statistics 243: Introduction to Statistical Computing",
-    "section": "Questions about taking the classes",
-    "text": "Questions about taking the classes\n\nInformation for students not in the Statistics Department\nIf you would like to audit the class, enroll as a UC Berkeley undergraduate, or enroll as a concurrent enrollment student (i.e., for visiting students), or for some other reason are not enrolled, please fill out this survey as soon as possible. All those enrolled or wishing to take 243A should have filled it out by Friday August 28 at noon.\nUndergraduates can only take the class with my permission and once all graduate students have an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.\nConcurrent enrollment students (e.g., exchange students from other universities/countries) can take the class with my permission and once all UC Berkeley students have had an opportunity to register. I do not know if there will be space, but I recommend you attend the class as if you were enrolled until this is clear.\nPlease see the syllabus for the math and statistics background I expect, as well as the need to be familiar with Python or to get up to speed in Python during the first few weeks of the semester. Note that these prerequisites are not the same for Stat 243A and Stat 243B.\n\n\nTaking only 243A or only 243B\nStudents who are not Statistics MA students are welcome to take only one of the two half-semester courses. However if you plan to take Stat 243b only, you should make sure you have sufficient Python programming experience. It doesn’t have to be fully equivalent to what is taught in Stat 243a, but you should be comfortable programming in Python.\nStudents who are Statistics MA students who wish to only take one of the two half-semester courses need to request a waiver from the MA program, detailing your mastery of the material in the course you wish to waive.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#other-information",
-    "href": "index.html#other-information",
-    "title": "Statistics 243: Introduction to Statistical Computing",
-    "section": "Other information",
-    "text": "Other information\nThe first three weeks of 243A involve a lot of moving pieces, in part related to trying to get everyone up to speed with the bash shell and Python. Please use the schedule to keep on top of what you need to do.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "howtos/RandRStudioInstall.html",
-    "href": "howtos/RandRStudioInstall.html",
-    "title": "Installing R & RStudio",
-    "section": "",
-    "text": "On your laptop\nIf your version of R is older than 4.0.0, please install the latest version.\nTo install R, see:\n\nMacOS: install the R-4.2.1.pkg from https://cran.rstudio.com/bin/macosx\nWindows: https://cran.rstudio.com/bin/windows/base/\nLinux: https://cran.rstudio.com/bin/linux/\n\nThen install RStudio. To do so, see https://www.rstudio.com/ide/download/desktop, scrolling down to the “Installers for Supported Platforms” section and selecting the Installer for your operating system.\nVerify that you can install add-on R packages by installing the ‘fields’ package. In RStudio, go to ‘Tools-&gt;Install Packages’. In the resulting dialog box, enter ‘fields’ (without quotes) in the ‘Packages’ field. Depending on the location specified in the ‘Install to Library’ field, you may need to enter your administrator password. To be able to install packages to the directory of an individual user, you may need to do the following:\n\nIn R, enter the command Sys.getenv()['R_LIBS_USER'].\nCreate the directory specified in the result that R returns, e.g., on a Mac, this might be ~/Library/R/4.0/library.\n\nFor more detailed installation instructions for Windows, see Using R, RStudio, and LaTeX on Windows file.\n\n\nVia DataHub\nSee the instructions in Accessing the Unix Command Line for how to login to Datahub. Then in the mid-upper right, click on New and RStudio. Alternatively, to go directly to RStudio, go to https://r.datahub.berkeley.edu."
-  },
-  {
-    "objectID": "howtos/accessUnixCommandLine.html",
-    "href": "howtos/accessUnixCommandLine.html",
-    "title": "Accessing the Unix Command Line",
-    "section": "",
-    "text": "You have several options for UNIX command-line access. You’ll need to choose one of these and get it working.\n\nMac OS (on your personal machine):\nOpen a Terminal by going to Applications -&gt; Utilities -&gt; Terminal\n\n\nWindows (on your personal machine):\n\nYou may be able to use the Ubuntu bash shell available in Windows.\nYour PC must be running a 64-bit version of Windows 10 Anniversary Update or later (build 1607+).\nPlease see this link for more information:\n\nhttps://msdn.microsoft.com/en-us/commandline/wsl/install_guide\n\nFor more detailed instructions, see the Installing the Linux Subsystem on Windows tutorial.\n(Not recommended) There’s an older program called cygwin that provides a UNIX command-line interface.\n\nNote that when you install Git on Windows, you will get Git Bash. While you can use this to control Git, the functionality is limited so this will not be enough for general UNIX command-line access for the course.\n\n\nLinux (on your personal machine):\nIf you have access to a Linux machine, you very likely know how to access a terminal.\n\n\nAccess via DataHub (provided by UC Berkeley’s Data Science Education Program)\n\nGo to https://datahub.berkeley.edu\nClick on Log in to continue, sign in via CalNet, and authorize DataHub to have access to your account.\nIn the upper left, click on File, New and Terminal.\nTo end your session, click on File, Hub Control Panel and Stop My Server. Note that Logout will not end your running session, it will just log you out of it.\n\nWhile using DataHub for the bash unit (Unit 2) should be fine, if you try to use it for any problems sets or other work in class, you are likely to run out of memory. The SCF JupyterHub (see below) should be used instead if you want browser-based access to a Linux environment, including the bash shell.\n\n\nAccess via the Statistical Computing Facility (SCF)\nWith an SCF account (available here), you can access a bash shell in the ways listed below.\nThose of you in the Statistics Department should be in the process of getting an SCF account. Everyone else will need an SCF account when we get to the unit on parallel computing, but you can request an account now if you prefer.\n\nYou can login to our various Linux servers and access a bash shell that way. Please see http://statistics.berkeley.edu/computing/access.\nYou can also access a bash shell via the SCF JupyterHub interface; please see the Accessing Python instructions but select Terminal from the launcher (equivalently, click on ‘File’, ‘New’, and ‘Terminal’). This is very similar to the DataHub functionality discussed above.",
+    "text": "You’ll see VS Code a fair amount in this class. For the most part, you don’t have to use it if you don’t want to, but it’s worth getting some familiarity with.\nVS Code is powerful integrated development environment (IDE), with GitHub Copilot AI assistance built in, so it’s useful to have some familiarity with it. We may use it in the lab on testing and possibly other labs.\nVS Code provides a huge number of extensions for working with various languages and tools, including Python, R, Jupyter Notebooks, Quarto, etc., and including integrated debugging.\nI will do many of my demonstrations in class with VS Code, as it allows one to easily run code in the terminal or a Python session from the built-in editor.",
     "crumbs": [
       "How tos",
-      "Accessing the Unix Command Line"
+      "Using VS Code"
     ]
   },
   {
-    "objectID": "howtos/accessPython.html",
-    "href": "howtos/accessPython.html",
-    "title": "Accessing Python",
+    "objectID": "howtos/vscode.html#installing-vs-code",
+    "href": "howtos/vscode.html#installing-vs-code",
+    "title": "Using VS Code",
+    "section": "Installing VS Code",
+    "text": "Installing VS Code\nSee here to install VS Code.\nA browser-based version of VS Code is available through both the DataHub and the SCF JupyterHub. It should behave very similarly but the extensions available for VS Code on your own machine versus in the browser/JupyterHub can have differences.",
+    "crumbs": [
+      "How tos",
+      "Using VS Code"
+    ]
+  },
+  {
+    "objectID": "howtos/vscode.html#using-vs-code",
+    "href": "howtos/vscode.html#using-vs-code",
+    "title": "Using VS Code",
+    "section": "Using VS Code",
+    "text": "Using VS Code\nHere are just a few initial tips on making use of VS Code.\n\nTo easily run Python code in a Python session from the VS Code editor, you can start a Python session in the VS Code terminal and then use Shift + Enter to run the current line of code from the editor. You can also right-click and select Run Python -&gt; Run Selection/Line in Python Terminal.\nTo easily run bash code in a terminal from the editor, you can add Cmd + Enter (on a Mac) or Alt + Enter (on Windows) to your Keyboard Shortcuts. (You can choose some other keystrokes of your choice, though I recommend not using Shift + Enter as that affects the behavior for running Python code). In the Keyboard Shortcuts area, Select “Terminal: Run Selected Text in Active Terminal” (workbench.action.terminal.runSelectedText) and specify Cmd + Enter.",
+    "crumbs": [
+      "How tos",
+      "Using VS Code"
+    ]
+  },
+  {
+    "objectID": "howtos/vscode.html#using-vs-code-with-linux-and-on-remote-machines",
+    "href": "howtos/vscode.html#using-vs-code-with-linux-and-on-remote-machines",
+    "title": "Using VS Code",
+    "section": "Using VS Code with Linux and on remote machines",
+    "text": "Using VS Code with Linux and on remote machines\nYou can use the Remote SSH extension to connect to another machine (e.g., an SCF machine) and access your files and run code on that other machine.\n\nClick on the Extensions icon in the left sidebar and search for “Remote - SSH” and install it.\nThen to connect to another machine, click on the &gt;&lt; (Open a Remote Window) icon in the buttom left, select Connect to Host and follow the prompts.",
+    "crumbs": [
+      "How tos",
+      "Using VS Code"
+    ]
+  },
+  {
+    "objectID": "howtos/vscode.html#github-copilot",
+    "href": "howtos/vscode.html#github-copilot",
+    "title": "Using VS Code",
+    "section": "GitHub Copilot",
+    "text": "GitHub Copilot\nYou can use GitHub Copilot for AI assistance (including code completion, edit mode (for small guided help), agent mode (for more autonomous code generation and manipulation), and built-in Chat. That said, you shouldn’t use Agent mode for our work in class as it’s likely to reduce your learning.\nGitHub Education provides free access to GitHub Copilot Pro.\nYou should see the GitHub Copilot icon in top, just to the right of the search bar. Click it to open the Copilot interface as a window on the right.\nOr in a code file, click on Cmd + I (on a Mac, probably Ctrl + I on Windows) to open an interface within your code file. When using AI edit mode, it’s often important to highlight the code you want it to work on.\nIt’s important to provide context for AI code assistance. In general if you open a folder in VS Code, that will set up the folder as a project, and the contents will be treated as context. You can also add files as context with Add Context in the AI window. And you can drag files/folders from the VS Code File Explorer window.",
+    "crumbs": [
+      "How tos",
+      "Using VS Code"
+    ]
+  },
+  {
+    "objectID": "howtos/vscode.html#questions",
+    "href": "howtos/vscode.html#questions",
+    "title": "Using VS Code",
+    "section": "Questions?",
+    "text": "Questions?\nQuestions (and even better, tips) on using VS Code are very welcome in the Ed Discussion.",
+    "crumbs": [
+      "How tos",
+      "Using VS Code"
+    ]
+  },
+  {
+    "objectID": "howtos/windowsInstall.html",
+    "href": "howtos/windowsInstall.html",
+    "title": "R/Rstudio on Windows",
     "section": "",
-    "text": "We recommend using the Miniforge distribution as your Python 3.12 installation.\nOnce you’ve installed Python, please install the following packages:\nAssuming you installed Miniforge, you should be able to do this from the command line:\nWhile you’re welcome to work with Python in a Jupyter notebook for exploration (e.g., using the campus DataHub, you’ll need to submit Quarto (.qmd) documents with Python chunks for your problem sets. So you’ll need Python set up on your laptop or to use it by logging in to an SCF machine.",
-    "crumbs": [
-      "How tos",
-      "Accessing Python"
-    ]
+    "text": "While R was built/designed for UNIX systems, it has been well adapted for Windows. Here, we’ll start with the basics of installing R on Windows. Then, we’ll cover the recommended editor (Rstudio), and how to build pdf documents using MikTeX.\n\n\n\n\n\n\nNote\n\n\n\nThis tutorial installs Windows-only versions of everything. Modern Windows systems have an Ubuntu subsystem available that we highly recommend. See the Installing the Linux Subsystem on Windows tutorial for setting up that configuration.\n\n\n\nInstalling R\nThe first step in installing the R language. This is available on CRAN (Comprehensive R Archive Network).\n\nGo to the CRAN webpage, www.r-project.org\nIn the first paragraph, click the link download R\nYou’re now on a page titled CRAN Mirrors, choose the mirror located closest to your geographic location\n\nMirrors are different servers that all host copies of the same website. You get best performance from the location closest to you.\n\nYou’re now on a paged titled The Comprehensive R Archive Network. The first box is labeled Downloand and Install R, click Download R for Windows\nClick base or install R for the first time, these take you to the same place\n\nFor more advanced things, you may need the Rtools download later. It isn’t necessary now, but remember that for the future.\n\nAt the top is a large-font link, Download R X.X.X for Windows, click this. It will begin downloading the Windows installer for R.\nFollow the instructions for setup. If you are unsure of anything, leave the default settings\n\n\n\nInstalling RStudio\nRStudio is one of the best text editors for coding in R. It is our recommended option for beginning. After you are comfortable with the language, or if you use other languages as well, you may want to explore Atom or Sublime. More advanced options include Emacs with [ESS package][https://ess.r-project.org/] and vim with the Nvim-R plugin.\nTo install RStudio:\n\nGo to the RStudio Desktop download page, rstudio.com/products/rstudio/download/#download\nChoose the download for your OS, most likely the Windows 10/8/7 one\nFollow the instructions for setup. If you are unsure of anything, leave the default settings\nOpen RStudio (R will run automatically in the background)\n\nYou may have to allow RStudio to run if prompted (depends on security settings and anti-virus software)\n\n\nOnce RStudio is installed, you can install or update packages in one of two ways:\n\nVia the console, using install.packages() or update.packages()\n\nVia the gui:\n\nIn the top bar, click on tools\nSelect Install Packages… to install packages\nSelect Check for Package Updates… to update packages\n\n\n\n\nCompiling PDF Documents\nFor the purposes of this class, you will be submitting homeworks as PDF documents that blend written text, code, and code-generated output. These documents are RMarkdown documents, and are dynamic documents that provide a convenient method for documenting your work (more on this in one of the lab sections). To do this, you need a LaTeX renderer. We recommend MiKTeX for Windows.\n\nGo to Getting MiKTeX to download MiKTeX for Windows, miktex.org/download\nThe first page should be Install on Windows, click Download at the bottom of the page\n\nClick the download to begin\n\n\n\n\n\n\n\nImportant\n\n\n\nFOLLOW THESE INSTALL INSTRUCTIONS.\nThe default options are fine in most places, but there is one that will cause problems.\n\n\n\nAccept the Copying Conditions, click next\nInstall only for you, click next\nUse the default directory, click next\nThis should be the Settings page. Under Install missing packages on-the-fly, change the setting to Yes, click next\n\n\n\nBecause we are using MiKTeX as an external renderer, it can’t ask you to install missing packages, and will then fail, so we have to set that installation as automatic.\n\n\nClick start (Optional, but highly recommended) Open RStudio, select a new .Rmd document, d then choose knit. This may take some time, because MiKTeX is installing new braries, but it ensures that your pipeline is setup correctly"
   },
   {
-    "objectID": "howtos/accessPython.html#python-from-the-command-line",
-    "href": "howtos/accessPython.html#python-from-the-command-line",
-    "title": "Accessing Python",
-    "section": "Python from the command line",
-    "text": "Python from the command line\nOnce you get your SCF account, you can access Python or IPython from the UNIX command line as soon as you login to an SCF server. Just SSH to an SCF Linux machine (e.g., gandalf.berkeley.edu or radagast.berkeley.edu) and run ‘python’ or ‘ipython’ from the command line.\nMore details on using SSH are here. Note that if you have the Ubuntu subsystem for Windows, you can use SSH directly from the Ubuntu terminal.",
-    "crumbs": [
-      "How tos",
-      "Accessing Python"
-    ]
-  },
-  {
-    "objectID": "howtos/accessPython.html#python-via-jupyter-notebook",
-    "href": "howtos/accessPython.html#python-via-jupyter-notebook",
-    "title": "Accessing Python",
-    "section": "Python via Jupyter notebook",
-    "text": "Python via Jupyter notebook\nYou can use a Jupyter notebook to run Python code from the SCF JupyterHub or the Berkeley DataHub.\nIf you’re on the SCF JupyterHub, select Start My Server. Then, unless you are running long or parallelized code, just click Start (in other words, accept the default ‘standalone’ partition). On the next page select ‘Python 3’ from the launcher.\nTo finish your session, click on File, Hub Control Panel and Stop My Server. Do not click Logout.",
-    "crumbs": [
-      "How tos",
-      "Accessing Python"
-    ]
-  },
-  {
-    "objectID": "howtos/installQuarto.html",
-    "href": "howtos/installQuarto.html",
-    "title": "Installing and Using Quarto",
+    "objectID": "howtos/installGit.html",
+    "href": "howtos/installGit.html",
+    "title": "Installing Git",
     "section": "",
-    "text": "Unless you plan to generate your problem set solutions on the SCF, you’ll need to install Quarto.\nOnce installed, you should be able to run commands such as quarto render FILE and quarto preview FILE from the command line.\nTo render to PDF, you’ll need a LaTeX engine installed. A good minimal solution if don’t already have LaTeX installed (e.g., via MicTeX in Windows or MacTeX on MacOS) is to install tinytex: quarto install tinytex.\nQuarto also runs from the Windows Command shell or PowerShell. We’ll add details/troubleshooting tips here (or in the lab 1 materials) as needed.\nquarto convert converts back and forth between the Jupyter notebook (.ipynb) and Quarto Markdown (.qmd) formats.",
+    "text": "Here are some instructions for installing Git on your computer. Git is the version control software we’ll use in the course.\nYou can install Git by downloading and installing the correct binary from here.\nFor macOS, we recommend using the Homebrew option.\nGit comes installed on the SCF, so if you login to an SCF machine and want to use Git there, you don’t need to install Git.",
     "crumbs": [
       "How tos",
-      "Installing and Using Quarto"
+      "Installing Git"
     ]
   },
   {
-    "objectID": "howtos/installQuarto.html#quarto-engines",
-    "href": "howtos/installQuarto.html#quarto-engines",
-    "title": "Installing and Using Quarto",
-    "section": "Quarto “engines”",
-    "text": "Quarto “engines”\nBy default, Quarto uses Jupyter to execute code chunks. This works well generally, but you can’t have different chunks that use different languages in the same document (e.g., some chunks in Python and some in bash or R). In that case, you can use the R-based knitr package to do the processing. To do so, add engine: knitr to the YAML metadata at the top of the file (if you happen to have an execute stanza, you’ll need to have engine: knitr nested within that stanza). For the knitr engine, you’ll need to have R installed on your computer, with the rmarkdown R package installed. And if you have Python chunks, you’ll also need the reticulate R package.\nFor Python chunks when using the default jupyter engine, if you want all output from multiple commands in a chunk to be printed (without explicitly using print()), you can add the following syntax to the YAML metadata at the top of the file. (Note that, unfortunately, the output will be printed out below the code chunk rather than interspersed with the code, as that is how Jupyter notebooks chunks work.)\nipynb-shell-interactivity: all",
-    "crumbs": [
-      "How tos",
-      "Installing and Using Quarto"
-    ]
-  },
-  {
-    "objectID": "howtos/installQuarto.html#using-bash-shell-code-chunks",
-    "href": "howtos/installQuarto.html#using-bash-shell-code-chunks",
-    "title": "Installing and Using Quarto",
-    "section": "Using bash shell code chunks",
-    "text": "Using bash shell code chunks\nIf you want to use bash chunks in your document, you have a few options.\n\nUse %%bash at the start of any chunk with bash code. This will work with the Jupyter engine, but it has the downside that all output from the cell will appear after all the code rather than the output being interspersed with the line of code that produces it.\nUse the knitr engine for Quarto and tag chunks as “``{bash}\". You will need to addengine: knitrto the YAML preface of your qmd document. Seeunit2-bash.qmd for an example. Also you need to have R installed as well as the rmarkdown package for R.\n(Not recommended as it involves more steps and we haven’t tested it) Install the bash_kernel Python package using pip or conda and install the bash kernel for Jupyter.\n\nVariables are not retained from bash chunk to bash chunk (i.e., state is not preserved between chunks), unlike with Python code chunks.",
-    "crumbs": [
-      "How tos",
-      "Installing and Using Quarto"
-    ]
-  },
-  {
-    "objectID": "howtos/installQuarto.html#controlling-which-python-is-used",
-    "href": "howtos/installQuarto.html#controlling-which-python-is-used",
-    "title": "Installing and Using Quarto",
-    "section": "Controlling which Python is used",
-    "text": "Controlling which Python is used\nOne common source of confusion is understanding which Python executable (and associated installed Python packages) Quarto will use to execute Python code chunks and how to tell Quarto to use a specific Python. A common problem is having Quarto use a different Python version that is not what you want and (particularly) may not have the Python packages installed that you need.\nI don’t fully understand all the details, but here are some suggestions.\n\nYou can set the environment variable QUARTO_PYTHON to be the path to a particular Python executable. You’ll need probably need to export this variable to ensure it is available at the point that Quarto checks it.\nYou can create a Jupyter kernel associated with a Conda environment and then add jupyter: name_of_kernel to the metadata of your document.\nIn VS Code, you can invoke Python: Select interpreter in the command palette.\nIf you are using the knitr engine, you can include a chunk like this at the start of your Quarto document to force use of a particular Python executable or the Python in a particular Conda environment:\n```{r, setup-r}\n#| echo: false\nreticulate::use_python('/usr/local/linux/miniforge-3.13/bin/python')\n```\n\n```{r, setup-r-alternative}\n#| echo: false\nreticulate::use_condaenv('my_conda_env\", required = TRUE)\n```\nOtherwise knitr will try to create and use a Conda environment for use with the reticulate package.\n\nThis may be particularly troublesome in Windows.",
-    "crumbs": [
-      "How tos",
-      "Installing and Using Quarto"
-    ]
-  },
-  {
-    "objectID": "howtos/submitPS.html",
-    "href": "howtos/submitPS.html",
-    "title": "Problem Set Submissions",
+    "objectID": "class1-notes.html",
+    "href": "class1-notes.html",
+    "title": "class 1",
     "section": "",
-    "text": "Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using inspect.getsource().\nWhy?\n\nFor one or two of the initial problem sets you’ll need to include both bash and Python code. This isn’t possible in a single notebook.\nThe underlying format of .ipynb files is JSON. While this is a plain text format, the key-value pair structure (not generally being aligned with the file lines) is much less well-suited for use with Git version control (which relies on diff) than Markdown-based formats.\nOne can run chunks in a Jupyter notebook in arbitrary order. What is printed to PDF depends on the order in which the chunks are run and the results can differ from what one would expect based on reading the notebook sequentially and running the chunks sequentially. For example, consider the following experiment and you’ll see what I mean: (1) Have one code chunk with a = 3 and run it; (2) Add a second chunk with print(a) and run it; and (3) Change the first chunk to a=4 and DO NOT rerun the second chunk. Save the notebook to PDF. You’ll see that your “report” makes no sense. Here’s the result of me doing that experiment.\n\nIf you want to do your initial explorations of the problems in a Jupyter notebook, you can do so and convert the .ipynb file to a .qmd file using quarto convert.",
-    "crumbs": [
-      "How tos",
-      "Problem Set Submissions"
-    ]
+    "text": "computing background thru PhD and then job providing research computing support in stats/econ/campus\nplease call me Chris\ncan I take the course: - fill out survey so I can add you to Ed (all announcements) - no third section, so only 74 - priority - 69 enrolled - 5 spots - Berk grad yes, Berk UG prob, hopefully conc enroll - you should attend and do the work so don’t fall behind\n243A/B experiment - have had to move some content around so some adjustments relative to previous years jump right into the bash shell on Friday, more quickly than in previous years"
   },
   {
-    "objectID": "howtos/submitPS.html#submission-format",
-    "href": "howtos/submitPS.html#submission-format",
-    "title": "Problem Set Submissions",
+    "objectID": "class1-notes.html#intro",
+    "href": "class1-notes.html#intro",
+    "title": "class 1",
     "section": "",
-    "text": "Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using inspect.getsource().\nWhy?\n\nFor one or two of the initial problem sets you’ll need to include both bash and Python code. This isn’t possible in a single notebook.\nThe underlying format of .ipynb files is JSON. While this is a plain text format, the key-value pair structure (not generally being aligned with the file lines) is much less well-suited for use with Git version control (which relies on diff) than Markdown-based formats.\nOne can run chunks in a Jupyter notebook in arbitrary order. What is printed to PDF depends on the order in which the chunks are run and the results can differ from what one would expect based on reading the notebook sequentially and running the chunks sequentially. For example, consider the following experiment and you’ll see what I mean: (1) Have one code chunk with a = 3 and run it; (2) Add a second chunk with print(a) and run it; and (3) Change the first chunk to a=4 and DO NOT rerun the second chunk. Save the notebook to PDF. You’ll see that your “report” makes no sense. Here’s the result of me doing that experiment.\n\nIf you want to do your initial explorations of the problems in a Jupyter notebook, you can do so and convert the .ipynb file to a .qmd file using quarto convert.",
-    "crumbs": [
-      "How tos",
-      "Problem Set Submissions"
-    ]
+    "text": "computing background thru PhD and then job providing research computing support in stats/econ/campus\nplease call me Chris\ncan I take the course: - fill out survey so I can add you to Ed (all announcements) - no third section, so only 74 - priority - 69 enrolled - 5 spots - Berk grad yes, Berk UG prob, hopefully conc enroll - you should attend and do the work so don’t fall behind\n243A/B experiment - have had to move some content around so some adjustments relative to previous years jump right into the bash shell on Friday, more quickly than in previous years"
   },
   {
-    "objectID": "howtos/submitPS.html#problem-set-solution-workflows",
-    "href": "howtos/submitPS.html#problem-set-solution-workflows",
-    "title": "Problem Set Submissions",
-    "section": "Problem set solution workflows",
-    "text": "Problem set solution workflows\nHere we outline a few suggested workflows for developing your problem set solutions:\n\nOpen the qmd file in any editor you like (e.g., Emacs, Sublime, ….). From the command line (we think this will work from a Windows command line such as cmd.exe or PowerShell as well), run quarto preview FILE to show your rendered document live as you edit and save changes. You can put the preview window side by side with your editor, and the preview document should automatically render as you save your qmd file.\nUse VS Code with the following extensions: Python, Quarto, and Jupyter Notebooks. This allows you to execute and preview chunks (and whole document) inside VS Code. This is currently our favorite path due to how well it integrated with the Python debugger.\nUse RStudio (yes, RStudio), which can manage Python code and will display chunk output in the same way it does with R chunks. This path seems to work quite well and is recommended if you are already familiar with RStudio.\n\nLater in the semester, you may be allowed to work directly in Jupyter notebooks and use quarto to render from them directly. This has a few quirks and limitations, but may be allowed for some problem sets.\nPlease commit your work regularly to your repository as you develop your solutions.",
-    "crumbs": [
-      "How tos",
-      "Problem Set Submissions"
-    ]
+    "objectID": "class1-notes.html#logistics",
+    "href": "class1-notes.html#logistics",
+    "title": "class 1",
+    "section": "logistics",
+    "text": "logistics\nmaterial on website\nget software set up this week - help in optional lab on Fri\nexam - don’t schedule travel\nproblem sets have been critical to learning; I think working through problems is still essential, but instructors are making changes in light of the power of AI\nPS grading is for completion but with in-lab quizzes directly related to the material. My goal is that if you really did the work on the PS, the quiz should be straightforward.\nGrading mostly for whether you completed the work not for correctness, but we will mark off for sloppy, poorly-formatted, disorganized, badly-structured code."
   },
   {
-    "objectID": "howtos/submitPS.html#github-repository",
-    "href": "howtos/submitPS.html#github-repository",
-    "title": "Problem Set Submissions",
-    "section": "GitHub repository",
-    "text": "GitHub repository\n\nSetting up your repository\nWe are creating repositories for everyone at github.berkeley.edu. Additionally, homeworks still need to be submitted as PDFs on Gradescope.\nSteps:\n\nLog into github.berkeley.edu using your Berkeley credentials. Because of how the system works, you will need to log in before your account is created. Nothing else needs to be done, just log in and log out.\nAfter accounts are created (may take a couple days after first login), when you log in again, you should see one private repository listed on the left side (e.g., stat243-fall-2024/ahv36). This is your class repository. Do not change the repository settings! They are set up for this class.\nClone the repo to your home directory (I would clone it into a directory just for repositories (e.g., I use ~/repos). In the top-level of your working directory, you should create a file named (exactly) .gitignore.\n\nThe .gitignore file causes Git to ignore transient or computer-specific files that Quarto generates. (more info at https://github.com/github/gitignore) In it, put (again, don’t put dashed lines):\n# cache directories\n/__pycache__\n\n# pickle files\n*.pkl\n*.pickle\n*.csv\nBy adding the pickle and csv extensions you’ll avoid mistakenly committing potentially large data files to your repository.\n\n\nRepository Organization\nThe problem sets in your repository should be organized into folders with specific filenames.\nWhen we pull from your repository, our code will be assuming the following structure:\nyour_repo/\n├── ps1/\n│   ├── ps1.pdf\n│   ├── ps1.qmd \n│   ├── &lt;possibly auxiliary code or other files&gt;\n├── ps2/\n│   ├── ...\n├── ...\n├── ps8/\n└── .gitignore\nThe file names are case-sensitive, so please keep everything lowercase.\n\n\nSave or cache credentials in Git\nIf authenticating to github.berkeley.edu every time sounds inconvenient, note that your credentials can be saved (cached) to avoid entering them constantly. More details can be found on this SCF page. Besides the methods mentioned on the page, one can also store credentials in a file via git config --global credential.helper store.",
-    "crumbs": [
-      "How tos",
-      "Problem Set Submissions"
-    ]
+    "objectID": "class1-notes.html#ai",
+    "href": "class1-notes.html#ai",
+    "title": "class 1",
+    "section": "AI",
+    "text": "AI\nAI: spend a bit of time talking about AI assistance, both in terms of how it affects what we should be learning in order to do computationa effectively in our careers and how we should / should not use AI to learn\nI don’t have all (or even many) of the answers; you all are the ones who have been learning in the past 5 years in the context of AI.\nmachine - assembly - C - Python - AI coding agent (draw on board)\n\nbrainstorm why still need Python\ntinyurl.com/st243-ai: Google form on AI (we’ll have regular Google forms during class sessions for class participation - this is not one of them)\ntinyurl.com/st243-ai2: google form on AI queries"
   },
   {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "Scheduling information",
+    "objectID": "class1-notes.html#shell",
+    "href": "class1-notes.html#shell",
+    "title": "class 1",
+    "section": "shell",
+    "text": "shell\nstart with the shell as working on the command line is at the core of modern scientific computing, the internet, tech workflows common baseline allows us to do work reproducibly, efficiently and allow for automation I’ll say more context on Fri/next week in Unit 2\nsee unit 1 notes\na little shell exploration\nterminal locally terminal + ssh to gandalf vs code terminal\n\nopen terminal\nssh to gandalf\nclone repo\ngit pull\ngit log\nggit branch\n\ncontext: - conda env list - source activate unit5 - pwd - whoami\n\nls\nls -l\nls -a\nls –all\nls -al\n\nrelative/absolute paths\n\npwd\ncd ../units\ncd /accounts/vis/paciorek/Desktop/fall-2026/units\n\nman? - / = search - n = next - q = quit - space = page down"
+  },
+  {
+    "objectID": "class1-notes.html#schedule",
+    "href": "class1-notes.html#schedule",
+    "title": "class 1",
+    "section": "schedule",
+    "text": "schedule\nsee schedule\n\nFriday lab - software help and help if not comfortable with basic work in shell (cd, ls, cp)\nnext 2-3 days work on basic shell work if not comfortable with what I just demo’ed\nif have trouble accessing shell don’t fall behind - just use stat.datahub.berkeley.edu (or datahub.b.e)\n\nMonday - bash shell assignment - informal"
+  },
+  {
+    "objectID": "ai.html",
+    "href": "ai.html",
+    "title": "AI",
     "section": "",
-    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises (due at 10 am; see details below)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 1 TBD: Regex tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
-    "crumbs": [
-      "Schedule"
-    ]
+    "text": "(Brainstorm with a partner or group of three) What are some reasons that being comfortable in Python is helpful for getting computational work done? (Alternatively, if you outsource a computational task to an AI agent, what might be harder if you don’t know Python?)\n\noversee AI agent\ngood prompts\niterative guidance/refinement\nredirect bad direction\ncheck errors\nguarantee accuracy\ndebug failures\nset up testing\noptimize code\n\nGoogle form:\nIn what ways do you think AI assistance may help in learning computing and/or how could relying on it reduce your learning?\nefficiency - faster implementation of basics, less wasted time, work/learn higher level concepts, save time debugging tutoring/hands-on, help get unstuck no struggle/no understanding/doesn’t stick in memory incorrect information\n\nwriting = thinking\nworking through/writing/struggling = learning/remembering/recall\n\nproblem sets have been key"
   },
   {
-    "objectID": "schedule.html#schedule",
-    "href": "schedule.html#schedule",
-    "title": "Scheduling information",
+    "objectID": "units/assignment1.html",
+    "href": "units/assignment1.html",
+    "title": "Assignment 1: Bash shell tutorial and exercises",
     "section": "",
-    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises (due at 10 am; see details below)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 1 TBD: Regex tutorial and exercises (see details below)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
-    "crumbs": [
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "schedule.html#exams",
-    "href": "schedule.html#exams",
-    "title": "Scheduling information",
-    "section": "Exams",
-    "text": "Exams\nThese are in-person only.\n\n243A exam: Monday October 12 in class\n\nReview session October 9 in section.\n\n243B exam: Monday November 23 in class.\n\nReview session November 20 in section.",
-    "crumbs": [
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "schedule.html#notes-on-assignments-and-activities",
-    "href": "schedule.html#notes-on-assignments-and-activities",
-    "title": "Scheduling information",
-    "section": "Notes on assignments and activities",
-    "text": "Notes on assignments and activities\n\nOptional library LaTeX session: I highly recommend (in particular if you are a Statistics graduate student) that you know how to create equations in LaTeX. Even if you develop your documents using Quarto, Jupyter notebooks, R Markdown, etc. rather than LaTeX-based documents, LaTeX math syntax is the common tool for writing math syntax that will render beautifully.\nOptional Lab A0 software/command line help session: (August 28 in lab room) Help session for installing software, accessing a UNIX-style command line, and basic command line usage (e.g., the UNIX basics tutorial). You can show up at any time (unlike all remaining labs). You should have software installed, be able to access the command line, and have started to become familiar with basic command line usage before class on Monday August 31.\nLab A1: (September 4) First section/lab on using Git, setting up your GitHub repository for problem sets, and using Quarto to generate dynamic documents. Please come only to the section you are registered for given space limits in the room, unless you have talked with Chris and have his permission.\nBash shell tutorial and exercises: (by 10 am Monday August 31) Read through this tutorial on using the bash shell. You can skip the pages on “Regular Expressions” and “Managing Processes”, so just work on the first four pages (“Overview” through “Shell Programming”). Work through the first 10 problems in the exercises and submit your answers via Gradescope/Pensive. This is not a formal problem set, so you don’t need to worry about formatting nor about explaining/commenting your answers, nor do you need to put your answers in your GitHub class repository. In fact it’s even fine with me if you hand-write the answers and scan them to an electronic document. I just want to make sure you’ve worked through the tutorial. I’ll be doing demonstrations on using the bash shell in class starting on August 28; this work of yours complements that.",
-    "crumbs": [
-      "Schedule"
-    ]
-  },
-  {
-    "objectID": "units/unit12-dl-optim.html",
-    "href": "units/unit12-dl-optim.html",
-    "title": "Optimization for Deep Learning",
-    "section": "",
-    "text": "The goal of this unit is two-fold: first to explore the concepts from the optimization unit in an important specific context and second to specifically understand more about the practical aspects of optimizing deep learning models (and how that relates back to statistical concepts as well).\nNote that this unit will not cover the different architectures for deep learning models as I am woefully unqualified to do so and it is outside the scope of this course. But hopefully this will be useful for Stat 214, other courses you might take, or your work in the future.",
-    "crumbs": [
-      "Units",
-      "Unit B12 (Optimization for Deep Learning)"
-    ]
-  },
-  {
-    "objectID": "units/unit12-dl-optim.html#momentum",
-    "href": "units/unit12-dl-optim.html#momentum",
-    "title": "Optimization for Deep Learning",
-    "section": "Momentum",
-    "text": "Momentum\nAn common enhancement when using gradient descent is to use “momentum”. The basic idea of momentum is to modify the current gradient using past values of the gradient, using a exponentially-weighted (decaying) average of past gradient values. It can help by pushing the optimization in a consistent direction and reducing oscillations. Here’s the smoothed gradient, often called the “velocity”.\n\\[ v_{t+1} = \\beta v_{t} + (1-\\beta) f^{\\prime}(x_{t}) \\]\n\\(\\beta\\) is a tuning parameter and the averaging is roughly similar to averaging over a window of \\(1/(1-\\beta)\\) gradient values.\nOne can plug into gradient descent in place of the current gradient or use a variation that gives this update step, taking:\n\\[\nv_{t+1} = \\beta v_{t} + f^{\\prime}(x_{t})\nx_{t+1}=x_{t} - v_{t+1}\n\\]\nA common value is \\(\\beta = 0.9\\).\nWhat’s the intuition? Suppose the gradient values in a given direction have the same sign. Then the smoothed gradient in that direction will be large, so the algorithm will take large steps in that direction (including if one has just hit an area such as a saddle point where the surface is more flat), giving the algorithm inertia (momentum). Alternatively, suppose the gradient values in a given direction oscillate (change sign). Then the smoothed gradient will be small in magnitude and the algorithm will take smaller steps in that direction, damping oscillations.\n[revisit quad example with fixed alpha; also show zoom in for final iterations]\n\npar(mai = c(.5,.4,.1,.4))\nf &lt;- function(x){\n    x[1]^2/1000 + 4*x[1]*x[2]/1000 + 5*x[2]^2/1000\n}\nf_deriv1 &lt;- function(x){\n    c(2 * x[1]/1000 + 4 * x[2]/1000,\n    4 * x[1]/1000 + 10 * x[2]/1000)\n}\n\ngrad_descent &lt;- function(init, deriv_fun, alpha, nIt) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  for(t in 2:nIt){\n    xvals[t, ] &lt;- xvals[t-1, ] - alpha * deriv_fun(xvals[t-1, ])\n  }\n   return(xvals)\n}\n\nplot_path &lt;- function(x1s, x2s, f, xvals) {\n   fx &lt;- apply(expand.grid(x1s, x2s), 1, f)\n   ## plot f(x) surface on log scale\n   fields::image.plot(x1s, x2s, matrix(log(fx), 100, 100), \n    xlim = range(x1s), ylim = range(x2s)) \n   lines(xvals) ## overlay optimization path\n}\n\nstart &lt;- c(7, -4)\nxvals &lt;- grad_descent(start, f_deriv1, alpha = 100, nIt = 200)  ## This works pretty well.\nx1s &lt;- seq(-5, 8, len = 100); x2s = seq(-5, 2, len = 100)\nplot_path(x1s, x2s, f, xvals)\n\n## Zoom in near solution.\nx1s_alt &lt;- seq(-2, 2, len = 100); x2s_alt = seq(-1, 1, len = 100)\nplot_path(x1s_alt, x2s_alt, f, xvals)\n\n\nxvals &lt;- grad_descent(start, f_deriv1, alpha = 150, nIt = 200)  ## This oscillates somewhat.\nx1s &lt;- seq(-2, 2, len = 100); x2s = seq(-1, 1, len = 100)\nplot_path(x1s, x2s, f, xvals)\n\nxvals &lt;- grad_descent(start, f_deriv1, alpha = 200, nIt = 200)  ## This oscillates crazily.\nx1s &lt;- seq(-2, 2, len = 100); x2s = seq(-1, 1, len = 100)\nplot_path(x1s, x2s, f, xvals)\n\nLet’s see what happens with momentum. It’s much more robust to the step size!\n\ngrad_descent_with_momentum &lt;- function(init, deriv_fun, alpha, nIt, beta = 0.9) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  v &lt;- 0\n  for(t in 2:nIt){\n    v &lt;- beta *v  + (1-beta)* deriv_fun(xvals[t-1,])\n    xvals[t, ] &lt;- xvals[t-1, ] - alpha * v\n  }\n   return(xvals)\n}\n\nxvals &lt;- grad_descent_with_momentum(start, f_deriv1, alpha = 200, nIt = 200)  \nplot_path(x1s, x2s, f, xvals)\n## Zoom in near solution.\nplot_path(x1s_alt, x2s_alt, f, xvals)\n\n## Perhaps leave this out.\n## The alternate formulation; we need to modify alpha to get better behavior.\nalpha &lt;- 10\nv &lt;- 0\nbeta &lt;- 0.9\nfor(t in 2:nIt){\n  v &lt;- beta *v - alpha *f_deriv1(xvals[t-1,])\n  xvals[t, ] &lt;- xvals[t-1, ] + v\n}\nx1s &lt;- seq(-5, 8, len = 100); x2s = seq(-5, 2, len = 100)\nfx &lt;- apply(expand.grid(x1s, x2s), 1, f)\n## plot f(x) surface on log scale\nfields::image.plot(x1s, x2s, matrix(log(fx), 100, 100), \n    xlim = c(-5, 8), ylim = c(-5,2)) \nlines(xvals) ## overlay optimization path\n\nIn the 1980s Nesterov came up with the idea of calculating the gradient at a position slightly ahead in the direction of the accumulated momentum, which is called Nesterov Accelerated Gradient (NAG). By looking ahead, one can reduce overshooting (in particular oscillations when one is near the optimum).\nWe first determine the look-ahead value:\n\\[ x_{\\mbox{{\\small look}}} = x_t - \\beta v_t \\]\nThen we update the velocity based on the gradient at that value:\n\\[ v_{t+1} = \\beta v_t + \\alpha_t f^{\\prime}(x_{\\mbox{{\\small look}}})\\]\nwith the update\n\\[x_{t+1}=x_{t} - v_{t+1}\\]\n[show this on example, and with zoom in]\n\ngrad_descent_with_nag &lt;- function(init, deriv_fun, alpha, nIt, beta = 0.9) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  v &lt;- 0\n  for(t in 2:nIt){\n    xlook &lt;- xvals[t-1,] -beta *v\n    v &lt;- beta *v + alpha * deriv_fun(xlook)\n    xvals[t, ] &lt;- xvals[t-1, ] - v\n  }\n   return(xvals)\n}\n\n\nalpha &lt;- 50\nxvals &lt;- grad_descent_with_nag(start, f_deriv1, alpha = alpha, nIt = 200)  \nplot_path(x1s, x2s, f, xvals)\n\nalpha &lt;- 5\nxvals &lt;- grad_descent_with_nag(start, f_deriv1, alpha = alpha, nIt = 200)  \nplot_path(x1s, x2s, f, xvals)\n\n## per cmu\ngrad_descent_with_nag &lt;- function(init, deriv_fun, alpha, nIt, beta = 0.9) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  v &lt;- 0\n  for(t in 2:nIt){\n    xlook &lt;- xvals[t-1,] -alpha *v\n    v &lt;- beta *v + alpha * deriv_fun(xlook)\n    xvals[t, ] &lt;- xvals[t-1, ] - alpha*v\n  }\n   return(xvals)\n}",
-    "crumbs": [
-      "Units",
-      "Unit B12 (Optimization for Deep Learning)"
-    ]
-  },
-  {
-    "objectID": "units/unit12-dl-optim.html#rmsprop-and-adam",
-    "href": "units/unit12-dl-optim.html#rmsprop-and-adam",
-    "title": "Optimization for Deep Learning",
-    "section": "RMSprop and Adam",
-    "text": "RMSprop and Adam\nRMSprop tries to adapt the learning rate for different parameters at different rates, damping the gradient in directions with highly variable (potentially oscillating) gradient values. It maintains a weighted average of the (element-wise) squares of the past gradient values and scales the current gradient by the square root of that average. The result is to slow the learning in the directions with high variability.\nAdam (Adaptive Moment Estimation) combines momentum and RMSprop and is widely-used.\nIt maintains a weighted average of the past gradient values and a weighted average of the squared gradients and, as with RMSprop, scales by the square root of the average of the squared gradients.\n\\[ v_{t+1} = \\beta_1 v_t + (1-\\beta_1) f^{\\prime}(x_{t}) \\] \\[\nS_{t+1} = \\beta_2 S_t + (1-\\beta_2) f^{\\prime}(x_{t})^2\n\\] \\[\nx_{t+1}=x_{t} - \\alpha_{t} \\frac{v_{t+1}}{\\sqrt{S_{t+1}}+\\epsilon}\n\\]\n\\(\\epsilon\\) plays the usual role of dealing with denominators near zero and is often set to \\(10^{-8}\\). Note the presence of another tuning parameter, \\(\\beta_2 \\approx 0.999\\).\nOne also often sees that one “bias corrects” \\(v_{t+1}\\) and \\(S_{t+1}\\). Since they are initialized at zero, they are biased towards zero early in the iterations, which can be improved by using \\(v_{t+1} / (1-\\beta_1^{t+1})\\) and \\(S_{t+1} / (1-\\beta_2^{t+1})\\)\n\ngrad_descent_with_adam &lt;- function(init, deriv_fun, alpha, nIt, beta1 = 0.9, beta2 = 0.999, eps = 1e-8, bias_correct = FALSE) {\n  xvals &lt;- matrix(NA, nr = nIt, nc = 2)\n  xvals[1, ] &lt;- init\n  v &lt;- 0\n  s &lt;- 0\n  for(t in 2:nIt){\n    grad &lt;- deriv_fun(xvals[t-1,])\n    v &lt;- beta1 *v + (1-beta1) * grad\n    s &lt;- beta2 *s + (1-beta2) * grad^2\n    v_use &lt;- v; s_use &lt;- s\n    if(bias_correct) {\n      v_use &lt;- v_use / (1-beta1^t)\n      s_use &lt;- s_use / (1-beta2^t)\n      }\n    xvals[t, ] &lt;- xvals[t-1, ] - alpha * v_use / (sqrt(s_use) + eps)\n  }\n  return(xvals)\n}\n\nalpha &lt;- 1\nxvals &lt;- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = TRUE)  \nplot_path(x1s, x2s, f, xvals)\n\nalpha &lt;- .1\nxvals &lt;- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = TRUE)  \nplot_path(x1s, x2s, f, xvals)\n\nalpha &lt;- .01\nxvals &lt;- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = FALSE) # Slower with bias correction  \nplot_path(x1s, x2s, f, xvals)",
-    "crumbs": [
-      "Units",
-      "Unit B12 (Optimization for Deep Learning)"
-    ]
-  },
-  {
-    "objectID": "units/unit12-dl-optim.html#minibatches",
-    "href": "units/unit12-dl-optim.html#minibatches",
-    "title": "Optimization for Deep Learning",
-    "section": "Minibatches",
-    "text": "Minibatches\nStochastic gradient descent (and related methods described above) substitute a noisy (but unbiased) estimate of the gradient in place of the full gradient, as discussed earlier in the optimization unit. That noisy estimate is generally an estimate based on the gradient contributions from a (random) subset of the observations, using a small subset such as 32-512 data points. There are different ways to choose the minibatches – one potentially important choice is whether to cycle through all the observations in minibatches in an epoch or randomly create a minibatch. The latter would be true SGD and is easier to analyze mathematically because the minibatches are independent but in practice researchers have found good results if one randomly shuffles the observations at the start of each epoch (e.g., PyTorch’s DataLoader with shuffle=True) and within an epoch cycle through all the observations in minibatches.\nOne thing to think about in choosing a minibatch size is that the minibatch datasize fits in CPU/GPU memory and/or in the CPU cache.\nRecall from the main optimization unit that each step only moves us somewhat in the right direction and we don’t want to spend a lot of time choosing the exact right amount to go in that single step. Similarly we don’t want to spend a lot of time choosing exactly the right direction. We are iteratively exploring a space and making many descent steps quickly is better than making one “best” step.\nApparently the term ‘batch’ refers to the entire dataset, hence ‘mini-batch’ is a small subset of the dataset. That terminology might be confusing (since I might think of a batch as being the same as a chunk or shard or subset) but seems to be standard.\nOne advantage of minibatches is purely computational efficiency. We can choose a reasonable direction to go and make progress in that direction without having to compute the gradient for all of the observations. This was the first motivation. The connection with low generalization error and implicit regularization was realized later. In this paper the authors argue that use of small batches results in finding optima in flat parts of the space that give smoother solutions that generalize better. However, this paper provides evidence against the idea that finding solutions in flat areas is what explains the good generalization performance).\nOne would also want to consider the learning rate as that plays an important role both in computational efficiency and in how the optimization moves through the space and settles on a solution. In this paper, the authors discuss first that with a very small learning rate, the optimization with minibatches follows the gradient flow to a local minimum but with larger learning rates the optimization path is what one would get if optimizing a regularized objective function.\nFor many years, the standard approach was to use multiple minibatches in an epoch and train for many epochs. More recently there has been some focus on using a very small number of epochs, particularly in settings with huge data sizes [find Jingfeng citations]\nWhat happens if we use minibatching in the regression example? By comparing with the previous results, we can see a few things:\n\nThere’s not a lot of evidence in this particular example that using minibatches results in a much lower generalization error or test error near the oracle error.\nIn general (particularly larger models and many epochs), we do still see a generalization gap that grows with the number of epochs.\nEarly-ish stopping combined with minibatches often seems to work well.\n\n[at one point (n=200?) I was seeing minibatching help with generalization error; not sure why not anymore]\nI say “early-ish” because 2000 epochs is quite large for such a small problem, so investigating what happens with 25000 epochs is interesting conceptually but presumably not something one would do in practice.",
-    "crumbs": [
-      "Units",
-      "Unit B12 (Optimization for Deep Learning)"
-    ]
-  },
-  {
-    "objectID": "units/unit12-dl-optim.html#the-learning-rate-and-the-process-of-updating-weights",
-    "href": "units/unit12-dl-optim.html#the-learning-rate-and-the-process-of-updating-weights",
-    "title": "Optimization for Deep Learning",
-    "section": "The learning rate and the process of updating weights",
-    "text": "The learning rate and the process of updating weights\nThe learning rate is also an important part of the puzzle. It affects computational efficiency (overly small values will take a long time to reach an ‘optimum’), but also the performance of the trained model and interplays with the batch size since the amount of information in any given step relates to the number of observations in the batch.\nSuppose we are interested in whether we can improve the value of a specific weight in a neural network using sigmoid activation. Consider that at a given layer in the network, \\(a^(l) = \\sigma(\\sum_k w^{(l)}_k a^{(l-1)} + b^{(l)})\\). With a bit of investigation of the backpropagation algorithm for calculating the gradient of the loss with respect to the weights (e.g., considering the simplified update for a neuron at layer \\(l\\) as \\(a^{(l)} = \\sigma(w^{(l)} a^{(l-1)} + b^{(l)})\\), with gradient \\(\\sigma^{'}(w^{(l)} a^{(l-1)} + b^{(l)}) a^{(l-1)}\\)), one can see that the update to a weight will be small if:\n\nThe input neuron, \\(a^{(l-1)}\\) has a small value (low activation)\nThe output neuron has saturated (the value of \\(w^{(l)} a^{(l-1)} + b^{(l)}\\) is very large of small, such that the derivative of the sigmoid function is near zero.\n\nThis plays out differently when using ReLU activation functions since their derivative is zero for negative inputs and unbounded for positive. The unboundedness can result in less stability in the updates. And the zero derivative can mean that a neuron gets stuck in the “off” position if its inputs are always negative. In backpropagation, the weights/coefficients that feed into such a neuron don’t get updated through that neuron (though they would through other “live” neurons).\nOne can also see a slow learning rate if you have a deep network and small magnitude weights, in which case the gradient behaves like the product of the weights (modulated by the activation function) and can be quite small. This is known as the vanishing gradient problem; with the counterpart exploding gradient problem when the weights are large, which can result in instability in fitting since individual gradient descent steps can be very large.\nCareful initialization can help with vanishing/exploding gradients. In particular the magnitude (quantified by the variance) of the initial values in a layer should scale inversely with the number of weights in the layer, to give weights with values whose magnitude is around 1. For RELU, the standard is to scale as 2 divided by the number of weights.",
-    "crumbs": [
-      "Units",
-      "Unit B12 (Optimization for Deep Learning)"
-    ]
-  },
-  {
-    "objectID": "units/unit12-dl-optim.html#other-aspects-of-optimizationtraining",
-    "href": "units/unit12-dl-optim.html#other-aspects-of-optimizationtraining",
-    "title": "Optimization for Deep Learning",
-    "section": "Other aspects of optimization/training",
-    "text": "Other aspects of optimization/training\n\nLearning rate decay\nIf one chooses a constant value of the learning rate, \\(\\alpha\\), when using mini-batches, one will never converge to a (local) optimum but will oscillate around the optimum because the gradient estimate at each step will not be exactly zero. So an additional option for improving optimization is to set the learning rate to decay with the number of epochs (or the number of steps).\nIn recognition of this, and also that as one gets closer to the minimum one generally would want to be more careful about the steps one takes, one often uses a “schedule” by which the learning rate decreases as a function of the epoch number.\nA common schedule is:\n\\[\n\\alpha = \\frac{1}{1+\\rho  m} \\alpha_0\n\\]\nwhere \\(\\alpha_0\\) is the initial learning rate, \\(\\rho\\) is a decay parameter, and \\(m\\) is the number of epochs. One may need to tune \\(\\rho\\). Or one might use exponential decay: \\(\\alpha = \\rho^m \\alpha_0\\). And there are other approaches that are used in practice.\n\n\nInput normalization\nIt’s generally a good idea to ‘normalize’ your inputs (i.e., shift and scale them to remove the mean and standardize the variance). This generally produces an objective function that is more spherical and less elliptical/elongated. We saw in the Optimization unit that part of the difficulty with pure gradient descent is that it doesn’t account for how the gradient changes as one moves through the space and that Newton’s method, by using the Hessian, accounts for this and helps avoid big oscillations. Of course in deep learning we can use 2nd derivative information for efficiency reasons, so transforming your inputs is quite useful. Another way to think about this is that if we have an elliptical surface, we would want the learning rate to vary by dimension, whereas with a spherical one, we can use a single learning rate, which of course is what one wants, to avoid a high-dimensional hyperparameter search space.\n\n\nLocal optima\nIn low dimensions, it’s easy to think about having local optima that an optimization algorithm will get stuck in. But in high dimensions, having a local optimum requires that the Hessian in all directions be zero. This is much less likely than that some of second derivatives will be positive and some negative, in which case one is at a saddle point. So long as your optimization algorithm doesn’t get stuck at exactly the saddle point (which it shouldn’t because of the stochastic gradients (and as well from using techniques like momentum), then this shouldn’t cause a big problem.\nWhat tends to be more of a problem is having slow learning in plateaus where the gradients are shallow and steps are small. Momentum and related techniques can help with this.\n\n\nHyperparameter tuning\nWe’ve seen that there are a variety of tuning parameters, including model architecture and tuning parameters. In his deep learning course, Andrew Ng suggests first considering the learning rate, \\(\\alpha\\), and then after that the momentum hyperparameter, the mini-batch size, and the number of hidden units.\nAn obvious strategy is to do a grid search over the hyperparameters. An alternative is to choose the points at random. This results in more unique values of each hyperparameter, which can be particularly useful if it turns out one or more of the hyperparameters don’t really matter at all, which when using a grid would mean that a bunch of your grid points are redundant.\nOne might also try to zoom in on the best values by using a second round of optimization after determining roughly the right magnitude of values initially.\nWhat about the scale of values to consider? Often we want to range over multiple orders of magnitude, so we want to search on the log scale. For the parameter in an expontially-weighted average, you’d want to search over \\(1-\\beta\\) on the log scale.\n\n\nBatch normalization\nAnother common strategy when fitting neural networks is to normalize the values of the hidden units (usually before passing through the activation function) to have a particular layer-specific mean and variance (that might be learned during training). The intuition is similar to that for normalizing the inputs, to have all the predictors on the same scale and hopefully have more spherical objective function contours.\nOne way to think about the effect of batch normalization is that it keeps the magnitudes and spread of the hidden unit values stable over the iterations, reducing what one might think of as a sort of ‘covariate shift’ within the model (since the hidden unit values are constantly changing as the optimization updates the parameters (the weights)).",
-    "crumbs": [
-      "Units",
-      "Unit B12 (Optimization for Deep Learning)"
-    ]
+    "text": "Bash shell tutorial and exercises\nRead through this tutorial on using the bash shell. You can skip the pages on “Regular Expressions” and “Managing Processes”, so just work on the first four pages (“Overview” through “Shell Programming”). Work through the first 10 problems in the exercises and submit your answers via Pensive. This is not a formal problem set, so you don’t need to worry about formatting nor about explaining/commenting your answers, nor do you need to put your answers in your GitHub class repository. In fact it’s even fine with me if you hand-write the answers and scan them to an electronic document. I just want to make sure you’ve worked through the tutorial. I’ll be doing demonstrations on using the bash shell in class starting on August 28; this work of yours complements that."
   },
   {
     "objectID": "units/unit1-intro.html",
