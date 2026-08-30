@@ -244,7 +244,7 @@ to explicitly pass the file names as the argument to `grep`:
 
 ```{bash}
 #| eval: false
-grep -l 'import requests' $(ls -tr *.R | tail -n 5)
+grep -l 'import requests' $(ls -tr *.qmd | tail -n 5)
 ```
 
 
