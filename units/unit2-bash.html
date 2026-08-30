@@ -529,7 +529,7 @@ for line in sys.stdin:
 <p><code>man grep</code> also indicates it can take input from a FILE or from <code>stdin</code>. However, we want grep to operate on the content of the files indicated in stdin. So we use <code>xargs</code> to convert <code>stdin</code> to be recognized as arguments, which then are the FILE inputs to <code>grep</code>.</p>
 <p>An alternative to <code>xargs</code> is to embed the <code>ls</code> invocation, using <code>$()</code>, to explicitly pass the file names as the argument to <code>grep</code>:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-l</span> <span class="st">'import requests'</span> <span class="va">$(</span><span class="fu">ls</span> <span class="at">-tr</span> <span class="pp">*</span>.R <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 5<span class="va">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-l</span> <span class="st">'import requests'</span> <span class="va">$(</span><span class="fu">ls</span> <span class="at">-tr</span> <span class="pp">*</span>.qmd <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 5<span class="va">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Here are some of the ways we can pass information from a command to somewhere else:</p>
 <ul>
@@ -722,7 +722,7 @@ for line in sys.stdin:
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>data_from_csv <span class="op">=</span> pd.read_csv(os.path.join(<span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.csv'</span>))</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time.time() <span class="op">-</span> t0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1.1104259490966797</code></pre>
+<pre><code>1.174360752105713</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -735,7 +735,7 @@ for line in sys.stdin:
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.parquet'</span>))</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time.time() <span class="op">-</span> t0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.2429816722869873</code></pre>
+<pre><code>0.1674964427947998</code></pre>
 </div>
 </div>
 <p>The CSV file is 51 MB while the Parquet file is 8 MB.</p>
@@ -744,7 +744,7 @@ for line in sys.stdin:
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> ../data/airline.parquet</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>-rw-r--r-- 1 paciorek scfstaff 51480244 Aug 11  2025 ../data/airline.csv
--rw-r--r-- 1 paciorek scfstaff 8132907 Aug 28 11:33 ../data/airline.parquet</code></pre>
+-rw-r--r-- 1 paciorek scfstaff 8132907 Aug 30 15:42 ../data/airline.parquet</code></pre>
 </div>
 </div>
 </section>
