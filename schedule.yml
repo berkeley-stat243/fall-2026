@@ -38,8 +38,8 @@
           href: labs/lab1-submission.html
         - type: "Assignment"
           id: "2"
-          name: "TBD: Regex tutorial and exercises (see details below)"
-          href: "units/regex"
+          name: "Regex tutorial and exercises"
+          href: "units/assignment2"
 - week: 3
   days:
     - date: "Wed Sep 9"
