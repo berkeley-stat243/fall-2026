@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Problem Set Submissions</title>
+<title>Problem Set 1</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -77,7 +42,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f9406879e630d085cd1424241c1f5148.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-67f4b2f198c787316d44448b3d063643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -109,6 +74,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -120,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../howtos/accessPython.html">How tos</a></li><li class="breadcrumb-item"><a href="../howtos/submitPS.html">Problem Set Submissions</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ps/ps1.html">Problem Sets</a></li><li class="breadcrumb-item"><a href="../ps/ps1.html">Problem Set 1</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -287,7 +253,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ps/ps1.html" class="sidebar-item-text sidebar-link">
+  <a href="../ps/ps1.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Problem Set 1</span></a>
   </div>
 </li>
@@ -334,7 +300,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../howtos/submitPS.html" class="sidebar-item-text sidebar-link active">
+  <a href="../howtos/submitPS.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Problem Set Submissions</span></a>
   </div>
 </li>
@@ -358,27 +324,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#submission-format" id="toc-submission-format" class="nav-link active" data-scroll-target="#submission-format">Submission format</a></li>
-  <li><a href="#problem-set-solution-workflows" id="toc-problem-set-solution-workflows" class="nav-link" data-scroll-target="#problem-set-solution-workflows">Problem set solution workflows</a></li>
-  <li><a href="#github-repository" id="toc-github-repository" class="nav-link" data-scroll-target="#github-repository">GitHub repository</a>
-  <ul class="collapse">
-  <li><a href="#setting-up-your-repository" id="toc-setting-up-your-repository" class="nav-link" data-scroll-target="#setting-up-your-repository">Setting up your repository</a></li>
-  <li><a href="#repository-organization" id="toc-repository-organization" class="nav-link" data-scroll-target="#repository-organization">Repository Organization</a></li>
-  <li><a href="#save-or-cache-credentials-in-git" id="toc-save-or-cache-credentials-in-git" class="nav-link" data-scroll-target="#save-or-cache-credentials-in-git">Save or cache credentials in Git</a></li>
-  </ul></li>
-  </ul>
-</nav>
-    </div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ps1.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../howtos/accessPython.html">How tos</a></li><li class="breadcrumb-item"><a href="../howtos/submitPS.html">Problem Set Submissions</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ps/ps1.html">Problem Sets</a></li><li class="breadcrumb-item"><a href="../ps/ps1.html">Problem Set 1</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Problem Set Submissions</h1>
+<h1 class="title">Problem Set 1</h1>
+<p class="subtitle lead">Due Friday Sep.&nbsp;11, 10 am</p>
 </div>
 
 
@@ -395,70 +348,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="submission-format" class="level2">
-<h2 class="anchored" data-anchor-id="submission-format">Submission format</h2>
-<p>Problem set solutions should be written in Quarto Markdown (.qmd) source files, interspersing explanatory text with Python (and in some cases bash) code chunks. In some cases we will ask that you put function definitions for more complicated functions into one or more Python code (.py) file(s) and show us the code in the appendix of your main solution file by using <code>inspect.getsource()</code>.</p>
-<p>Please do not use Jupyter notebook (.ipynb) files as your underlying source file for your solutions. Here’s why:</p>
+<section id="comments" class="level2">
+<h2 class="anchored" data-anchor-id="comments">Comments</h2>
 <ul>
-<li>The underlying format of .ipynb files is JSON. While this is a plain text format, the key-value pair structure (not generally being aligned with the file lines) is much less well-suited for use with Git version control (which relies on <code>diff</code>) than Markdown-based formats.</li>
-<li>One can run chunks in a Jupyter notebook in arbitrary order. What is printed to PDF depends on the order in which the chunks are run and the results can differ from what one would expect based on reading the notebook sequentially and running the chunks sequentially. For example, consider the following experiment and you’ll see what I mean: (1) Have one code chunk with <code>a = 3</code> and run it; (2) Add a second chunk with <code>print(a)</code> and run it; and (3) Change the first chunk to <code>a=4</code> and DO NOT rerun the second chunk. Save the notebook to PDF. You’ll see that your “report” makes no sense. Here’s <a href="./notebook-unreproducible.pdf">the result</a> of me doing that experiment.</li>
-<li>The PDF output from a Jupyter notebook does not look as professional.</li>
+<li>This covers material in Units 1 and 2 as well as practice with Quarto.</li>
+<li>It’s due at 10 am (Pacific) on September 11, both submitted as a PDF to Pensive as well as committed to your GitHub repository.</li>
 </ul>
-<p>If you want to do your initial explorations of the problems in a Jupyter notebook, you can do so and convert the .ipynb file to a .qmd file using <code>quarto convert</code>.</p>
 </section>
-<section id="problem-set-solution-workflows" class="level2">
-<h2 class="anchored" data-anchor-id="problem-set-solution-workflows">Problem set solution workflows</h2>
-<p>Here we outline a few suggested workflows for developing your problem set solutions:</p>
+<section id="formatting-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="formatting-requirements">Formatting requirements</h2>
 <ol type="1">
-<li>Open the qmd file in any editor you like (e.g., Emacs, Sublime, ….). From the command line (we think this will work from a Windows command line such as cmd.exe or PowerShell as well), run <code>quarto preview FILE</code> to show your rendered document live as you edit and save changes. You can put the preview window side by side with your editor, and the preview document should <a href="https://quarto.org/docs/get-started/hello/text-editor.html">automatically render</a> as you save your qmd file.</li>
-<li><a href="https://quarto.org/docs/get-started/hello/vscode.html">Use VS Code</a> with the following extensions: Python, Quarto, and Jupyter Notebooks. This allows you to execute and preview chunks (and whole document) inside VS Code. This is currently our favorite path due to how well it integrated with the Python debugger.</li>
-<li><a href="https://quarto.org/docs/get-started/hello/rstudio.html">Use RStudio</a> (yes, RStudio), which can manage Python code and will display chunk output in the same way it does with R chunks. This path seems to work quite well and is recommended if you are already familiar with RStudio.</li>
+<li><p>Your electronic solution should be in the form of an Quarto file named <code>ps1.qmd</code>, with bash code chunks. Please see Lab 1, the Quarto and PS submission howtos on the course website, and the <a href="https://computing.stat.berkeley.edu/tutorial-dynamic-docs">dynamic documents tutorial</a> for more information on how to do this. If you want to initial work in a Jupyter notebook, that is fine, but you’ll need to run <code>quarto convert file.ipynb</code> to generate a qmd file before rendering to PDF and submitting.</p></li>
+<li><p>Using chunks of bash code in Qmd may be troublesome:</p></li>
 </ol>
-<p>Please commit your work regularly to your repository as you develop your solutions.</p>
+<ul>
+<li>Variables are not retained from bash chunk to bash chunk (i.e., state is not preserved between chunks), unlike with Python code chunks.</li>
+<li>We can help troubleshoot and feel free to post on Ed.</li>
+<li><strong>Test things out well before the due date with a dummy qmd file with a bash chunk to make sure things work.</strong> We’re quite happy to help in advance. We’re not happy to help the night before the PS is due.</li>
+</ul>
+<ol start="3" type="1">
+<li><p>Your PDF submission to Pensive should be the PDF produced from your qmd. Your GitHub submission should include the qmd file and the final PDF, all named according to the <a href="https://stat243.berkeley.edu/fall-2026/howtos/submitPS.html">submission guidelines</a>.</p></li>
+<li><p>Your solution should not just be shell code - you should have text describing how you approached the problem and what the various steps were. Your code should have comments indicating what each function or block of code does, and for any lines of code or code constructs that may be hard to understand, a comment indicating what that code does.</p></li>
+<li><p>You do not need to (and should not) show exhaustive output, but in general you should show short examples of what your code does to demonstrate its functionality. Please see the <a href="https://stat243.berkeley.edu/fall-2026/rubric.html">grading rubric</a>, and note that the output should be produced as a result of the code chunks being run during the rendering process, not by copy-pasting of output from running the code separately (and definitely not as screenshots).</p></li>
+<li><p>Using <code>sed</code> in a basic way as shown in the bash tutorial might be useful. You should not need to use more advanced functionality nor should you need to use <code>awk</code>, but you may if you want to.</p></li>
+</ol>
 </section>
-<section id="github-repository" class="level2">
-<h2 class="anchored" data-anchor-id="github-repository">GitHub repository</h2>
-<section id="setting-up-your-repository" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-your-repository">Setting up your repository</h3>
-<p>We are creating repositories for everyone at <a href="https://github.berkeley.edu/">github.berkeley.edu</a>. Additionally, homeworks still need to be submitted as PDFs on Pensive.</p>
-<p>Steps:</p>
+<section id="problems" class="level2">
+<h2 class="anchored" data-anchor-id="problems">Problems</h2>
 <ol type="1">
-<li><p>Log into <a href="https://github.berkeley.edu/">github.berkeley.edu</a> using your Berkeley credentials. Because of how the system works, you will need to log in before your account is created. Nothing else needs to be done, just log in and log out.</p></li>
-<li><p>After accounts are created (may take a couple days after first login), when you log in again, you should see one private repository listed on the left side (e.g., <code>stat243-fall-2024/ahv36</code>). This is your class repository. Do not change the repository settings! They are set up for this class.</p></li>
-<li><p>Clone the repo to your home directory (I would clone it into a directory just for repositories (e.g., I use <code>~/repos</code>). In the top-level of your working directory, you should create a file named (exactly) <code>.gitignore</code>.</p></li>
+<li><p>Please read <a href="https://36-750.github.io/tools/computer-architecture">these lecture notes</a> about how computers work, used in a class on statistical computing at CMU. Briefly (a few sentences) describe the difference between disk and memory based on that reference and/or other resources you find. If you’re doing an data analysis, you should have an understanding of what situations might lead to running out of disk space and what situations might lead to running out of memory.</p></li>
+<li><p>A friend of mine is planning to get married in Death Valley National Park in March (this problem is based on real events…). She wants to hold it as late in March as possible but without having a high chance of a very hot day. This problem will automate the task of generating information about what day of March to hold the wedding using data from the <a href="https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_year">Global Historical Climatology Network</a>. All of your operations should be done using the bash shell except part (c). Also, ALL of your work should be done using shell commands that you save in your solution file. So you can’t say “I downloaded the data from such-and-such website” or “I unzipped the file”; you need to provide the bash code that someone else could run to repeat what you did. This is partly for practice in writing shell code and partly to enforce the idea that your work should be reproducible and documented.</p>
+<ol type="a">
+<li><p>Download yearly climate data from the location above for a set of years of interest into a temporary directory. Do not download all the years and feel free to focus on a small number of years to reduce the amount of data you need to download (unzipped, some of the yearly files are as big as ~1 GB). Note that data for Death Valley is only present in the last few decades. As you are processing the files, report the number of observations in each year by printing the information to the screen (i.e., <code>stdout</code>), including if there are no observations for that year. Try to avoid printing anything else out (e.g., the progress of the downloading).</p></li>
+<li><p>Subset to the station corresponding to Death Valley, to the TMAX (maximum daily temperature) variable, and to March, and put all the data into a single file. In subsetting to Death Valley, get the information programmatically from the <code>ghcnd-stations.txt</code> file one level up on the website. Do NOT type (hard code) in the station ID code when you retrieve the Death Valley data from the yearly files.</p></li>
+<li><p>Write a small Python script (or R would be fine too) that takes as input your single file from (b) and makes a single plot showing side-by-side boxplots containing the maximum daily temperatures on each calendar day in March. Note that by creating a script and calling that from the shell you should avoid the challenges of mixing bash and Python chunks discussed in the Quarto references above.</p></li>
+<li><p>Now generalize your code from parts (a) and (b). Write a shell function that takes as arguments (1) a string for identifying the location (this string should not be the station ID), (2) the weather variable of interest, and (3) the time period (i.e., the years of interest and the month of interest), and returns the results (and in this case don’t print out the information about the number of rows). Your function should detect if the user provides the wrong number of arguments or a string that doesn’t allow one to identify a single weather station and return a useful error message. It should also give useful help information if the user invokes the function as: <code>get_weather -h</code>. Finally the function should remove the raw downloaded data files (alternatively, you should download such files into your operating system’s temporary file location).</p></li>
+</ol></li>
 </ol>
-<p>The <code>.gitignore</code> file causes Git to ignore transient or computer-specific files that Quarto generates. (more info at https://github.com/github/gitignore) In it, put (again, don’t put dashed lines):</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># cache directories</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/__pycache__</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># pickle files</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">*.pkl</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">*.pickle</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="ex">*.csv</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>By adding the pickle and csv extensions you’ll avoid mistakenly committing potentially large data files to your repository.</p>
-</section>
-<section id="repository-organization" class="level3">
-<h3 class="anchored" data-anchor-id="repository-organization">Repository Organization</h3>
-<p>The problem sets in your repository should be organized into folders with specific filenames.<br>
-When we pull from your repository, our code will be assuming the following structure:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">your_repo/</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> ps1/</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ps1.pdf</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ps1.qmd </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── <span class="op">&lt;</span>possibly auxiliary code or other files<span class="op">&gt;</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> ps2/</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="ex">│</span>   ├── ...</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> ...</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ex">├──</span> ps8/</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ex">└──</span> .gitignore</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The file names are case-sensitive, so please keep everything lowercase.</p>
-</section>
-<section id="save-or-cache-credentials-in-git" class="level3">
-<h3 class="anchored" data-anchor-id="save-or-cache-credentials-in-git">Save or cache credentials in Git</h3>
-<p>If authenticating to <a href="https://github.berkeley.edu/">github.berkeley.edu</a> every time sounds inconvenient, note that your credentials can be saved (cached) to avoid entering them constantly. More details can be found on this <a href="https://statistics.berkeley.edu/computing/faqs/git-auth#git-save-auth">SCF page</a>. Besides the methods mentioned on the page, one can also store credentials in a file via <code>git config --global credential.helper store</code>.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
