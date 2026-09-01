@@ -1,6 +1,6 @@
 ---
 title: "Lab 1: Submitting problem set solutions"
-date: "2025-09-05"
+date: "2026-09-04"
 format:
   pdf:
     documentclass: article
@@ -67,7 +67,7 @@ Refer to [this guide](../howtos/submitPS.md) and please ask questions if somethi
 5. Add another section to your quarto document (use your imagination), then preview and commit the changes
 6. Use the quarto command line to render the updated document into a pdf document
 7. Add the pdf document to the repository as well
-8. Make sure that you can log into [Pensive](https://www.gradescope.com/) and upload a pdf document
+8. Make sure that you can log into [Pensive](https://www.pensive.com/) and upload a pdf document
 9. [optional] Undo your last set of changes and regenerate the pdf file
 
 If we finish early, we will also take today's lab as an opportunity to get familiar with the basic use of all the 5 basic tools listed above.
