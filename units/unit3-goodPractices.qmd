@@ -1,7 +1,7 @@
 ---
 title: "Good practices: coding practices, debugging, and reproducible research"
 author: "Chris Paciorek"
-date: "2025-09-01"
+date: "2026-09-01"
 format:
   pdf:
     documentclass: article
@@ -139,13 +139,7 @@ suggestions of my own.
     function *does* something), so use a verb to name it.
 - Learn from others' code
 
-This semester, someone will be reading your code - the GSI and and me when we
-look at your assignments. So to help us in understanding your code and
-develop good habits, put these ideas into practice in your assignments.
-
-While not Python examples, the files [goodCode.R](goodCode.R) and [badCode.R](badCode.R) in the `units` directory of the
-class repository provide examples of R code written such that it does and
-does not conform to the general ideas listed above (leaving aside the different syntax of Python and R).
+You should put these ideas into practice in your assignments.
 
 
 ### Coding style suggestions
@@ -245,6 +239,8 @@ So we see that `ruff` fixed spacing and properly indented the comment line.
 
 Assertions, exceptions and testing are critically important for writing robust
 code that is less likely to contain bugs.
+
+This has always been the case. It continues to be the case with increasing reliance on AI coding agents, which can and do make mistakes.
 
 ### Exceptions
 
@@ -368,7 +364,7 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='missingurl_forsure
 
 ### Assertions
 
-Assertions are a quick way to raise a specific type of Exception (AssertionError). Assertions are useful for performing quick checks in your code that the state of the program is as you expect. They're primarily intended for use during the development
+Assertions are a quick way to raise a specific type of Exception: an `AssertionError`. Assertions are useful for performing quick checks in your code that the state of the program is as you expect. They're primarily intended for use during the development
 process to provide "sanity checks" that specific conditions are true, and there are ways to disable them when you are running your code for production purposes (to improve performance). A common use is for verifying preconditions and postconditions (especially preconditions). One would generally only expect such conditions not to be true if there is a bug in the code. Here's an example of
 using the `assert` statement in Python, with a clear assertion message
 telling the developer what the problem is.
@@ -398,7 +394,7 @@ Next we'll see that assertions are a core part of setting up tests.
 
 ### Testing
 
-Testing is informally what you do after you write some code and want to check that it actually works. But when you are developing important code (e.g. functions that are going to be used by others) you typically want to encode your tests in code. There are many reasons to do that, including making sure that if anyone changes the code later on and breaks something, the test suite should immediately indicate that. 
+When we set up formal testing for code, the testing itself is written in code so that it can be run repeatedly. Setting up formal tests increases our faith in the correctness of the code. And by having the testing be reproducible, it helps to make sure that  if anyone changes the code later on and breaks something, the test suite should immediately indicate that. 
 
 Some people even advocate for writing a preliminary test suite before writing the code itself(!) as it can be a good way to organize work and track progress, as well as act as a secondary form of documentation for clarity.  This can include
 tests that your code provides correct and useful errors when something
@@ -477,13 +473,13 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     # Install package and dependencies
     - name: Set up Python 
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v7
       with:
-        python-version: 3.12
+        python-version: 3.14
 
     - name: Install mytoy and pytest
       run: |
@@ -496,7 +492,7 @@ jobs:
         pytest
 ```
 
-You'll use GitHub Actions to automate testing during your projects. Unfortunately, GitHub Actions is not available via `github.berkeley.edu` so we
+Unfortunately, GitHub Actions is not available via `github.berkeley.edu` so we
 can't use it with your class repositories for your problem set work. 
 
 ## Version control
@@ -505,8 +501,6 @@ can't use it with your class repositories for your problem set work.
 - Use an issues tracker (e.g., the GitHub issues tracker is quite
     nice), or at least a simple to-do file, noting changes you'd like to
     make in the future.
-- In addition to good commit messages, it's a good idea to keep good
-    running notes documenting your projects.
 
 We'll be discussing Git a lot separately.
 
@@ -522,13 +516,12 @@ Some common features of many tools include:
 
 - AI-assisted code completion (extended tab completion)
 - AI-assisted code suggestions (accept/reject, similar to grammar suggestions in text editing)
-- Built-in Chat window providing Chat/Edit/Agent modes.
-  - Edit/Agent capabilities where a user can ask the tool to change or add to their code based on a text prompt, or potentially generate a whole program/application.
+- Built-in Chat window providing interaction with an agent that can write and edit code.
 - Ability to give files/directories as context. 
 
-Many of the tools are available through VS Code (as extensions, such as GitHub Copilot and Gemini Code Assist) or built on top of VS Code (e.g., Cursor).
+Many of the tools are available through VS Code (as extensions, such as GitHub Copilot and Gemini Code Assist) or built on top of VS Code (e.g., Cursor). Other tools provide command line interfaces (e.g., Claude Code, Codex and Antigravity)
 
-Beware of generating large chunks of code that you don't understand. At least for now, this is prone to bugs/hallucinations and hard to maintain. Think of the tools as helping you brainstorm.
+Beware of generating chunks of code (particularly large chunks) that you don't understand, particularly as you are learning. Think of the tools as helping you brainstorm.
 
 A potential hierarchy of uses:
 
@@ -560,7 +553,7 @@ If you can't figure out where the error occurs based on the error messages, a ba
 
 If you've written your code modularly with lots of functions, you can test individual functions. Often the error will be in what gets passed into and out of each function.
 
-At the beginning of time (the 1970s?), the standard debugging strategy was to insert print statements in one's code to see the value of a variable and thereby decipher what could be going wrong. We have better tools nowadays. But sometimes we still need to fall back to inserting print statements.
+At the beginning of time (the 1970s?), the standard debugging strategy was to insert print statements in one's code to see the value of a variable and thereby decipher what could be going wrong. We have better tools nowadays. But sometimes we still need to fall back to inserting print statements. For example this is often the case in debugging GitHub Actions workflows that fail.
 
 Python is a scripting language, so you can usually run your code line by line to figure out what is happening. This can be a decent approach, particularly for simple code. However, when you are trying to find errors that occur within a series of many nested function calls or when the errors involve variable scoping (how Python looks for variables that are not local to a function), or in other complicated situations, using formal debugging tools can be much more effective.  Finally, if the error occurs inside of functions provided by Python, rather than ones you write, it can be hard to run the code in those functions line by line. 
 
@@ -593,7 +586,7 @@ When I run this, I see this:
 
 ```
 >>> run.fit(data, n_cats)
-> /accounts/vis/paciorek/teaching/243/fall-2025/units/run_with_break.py(10)fit()
+> /accounts/vis/paciorek/teaching/243/fall-2026/units/run_with_break.py(10)fit()
 -> sub = data[data['cats'] == i]
 (Pdb) 
 ```
@@ -605,7 +598,7 @@ I can type `n` to run that line and go to the next one:
 
 ```
 (Pdb) n
-> /accounts/vis/paciorek/teaching/243/fall-2025/units/run_with_break.py(11)fit()
+> /accounts/vis/paciorek/teaching/243/fall-2026/units/run_with_break.py(11)fit()
 -> model = statsmodels.api.OLS(sub['y'], statsmodels.api.add_constant(sub['x']))
 ```
 
@@ -615,7 +608,7 @@ I can type `c` to continue until the next breakpoint:
 
 ```
 (Pdb) c
-> /accounts/vis/paciorek/teaching/243/fall-2025/units/run_with_break.py(10)fit()
+> /accounts/vis/paciorek/teaching/243/fall-2026/units/run_with_break.py(10)fit()
 -> sub = data[data['cats'] == i]
 ```
 
@@ -683,7 +676,7 @@ We can enter `u` multiple times (it's only shown once below) to go up in the sta
 
 ```
 (Pdb) u
-> /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break.py(10)fit()
+> /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break.py(10)fit()
 -> model = statsmodels.api.OLS(sub['y'], statsmodels.api.add_constant(sub['x']))
 ```
 
@@ -747,7 +740,7 @@ python -m pdb run_no_break2.py
 ```
 
 ```
-> /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break2.py(1)<module>()
+> /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break2.py(1)<module>()
 -> import numpy as np
 (Pdb) 
 ```
@@ -756,13 +749,13 @@ Let's set a breakpoint at the same place we did with `breakpoint()` but using a 
 
 ```
 (Pdb) b 9
-Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break.py:9
+Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break.py:9
 ```
 
 ```{python}
 #| eval: false
 (Pdb) c
-> /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break2.py(9)fit()
+> /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break2.py(9)fit()
 -> model = statsmodels.api.OLS(sub['y'], statsmodels.api.add_constant(sub['x']))
 ```
 
@@ -772,9 +765,9 @@ Or we could have set a breakpoint at the start of the function:
 
 ```
 (Pdb) disable 1
-Disabled breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break2.py:9
+Disabled breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break2.py:9
 (Pdb) b fit
-Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break.py:6
+Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break.py:6
 ```
 
 ## Some common causes of bugs 
@@ -787,7 +780,7 @@ Some of these are Python-specific, while others are common to a variety of langu
    ```{python, num-prec}
    1/3 == 4*(4/12-3/12)
    ```
-   We'll discuss in detail in Unit 8. 
+   We'll discuss in detail in Unit 8 in 243B. 
  - You expect a single value but execution of the code gives an array
  - Silent type conversion when you don't want it, or lack of coercion where you're expecting it
  - Using the wrong function or variable name
@@ -950,7 +943,7 @@ subset and saves what you need properly at the end.
 # 4. Reproducible research
 
 The idea of "reproducible research" has gained a lot of attention in
-the last decade because of the increasing complexity of research projects,
+the last 10-20 years because of the increasing complexity of research projects,
 lack of details in the published literature, failures in being able to
 replicate or reproduce others' work, fraudulent research, and for other
 reasons.
@@ -1024,5 +1017,5 @@ about replicable? What are the challenges in doing so?
     - Python: You can manage the versions of Python packages (and dependent packages) used in your project using Conda environments (or virtualenvs).
     - R: You can manage the versions of R packages (and dependent packages)
     used in your project using package management packages such as
-    `renv` and `packrat`. Unfortunately, the useful `checkpoint` package relies on snapshots of CRAN that are not available after January 2023.
+    `renv` and `packrat`. 
 5. If your project uses multiple pieces of software (e.g., not just Python or R), you can set up a reproducible environment using *containers*, of which Docker containers are the best known. These provide something that is like a lightweight virtual machine in which you can install exactly the software (and versions) you want and then share with others. Docker container images are a key building block of various tools such as GitHub Actions and the [Binder project](https://mybinder.org). Alternatively (and often much easier) Conda is a general package manager that can install lots of non-Python packages and can also be used in many circumstances.

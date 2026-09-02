@@ -711,7 +711,7 @@ with open(file_path, 'a') as file:
 `round` is another option, but it's often better to directly control the printing format.
 
 
-# 5. Interacting with the operating system and external code and configuring Python 
+# 4. Interacting with the operating system and external code and configuring Python 
 
 ## Interacting with the operating system
 
@@ -832,7 +832,7 @@ In Python, one can [directly call out to C or C++ code](https://docs.python.org/
 
 In R, one can call directly out to C or C++ code using *.Call* or one can use the [Rcpp package](https://adv-r.hadley.nz/rcpp.html). *Rcpp* is specifically designed to be able to write C++ code that feels somewhat like writing R code and where it is very easy to pass data between R and C++. 
 
-# 6. Modules and packages
+# 5. Modules and packages
 
 Scripting languages that become popular generally have an extensive collection
 of add-on packages available online (the causal relationship of the popularity and
@@ -1164,7 +1164,7 @@ it was compiled in such a way that is not compatible with your system.
 Python *wheels* are a binary package format for Python packages. Wheels for some packages will vary by platform
 (i.e., operating system) so that the package will install correctly on the system where it is being installed.
 
-# 7. Types and data structures
+# 6. Types and data structures
 
 As we're reading data into Python or other languages, it's important to think about the data structures we'll use to store the information. The data structure we choose can affect:
 
@@ -1422,7 +1422,7 @@ All objects that fall in a given category share key characteristics. For example
 Object protocols are implemented based on the [Python object model](#the-python-object-model-and-dunder-methods) using **dunder** methods.
 For a class (such as one you write) to implement an object protocol, it must define a particular set of class methods, discussed at the link above.
 
-# 8. Programming paradigms: object-oriented and functional programming
+# 9. Programming paradigms: object-oriented and functional programming
 
 Object-oriented and functional programming are two important approaches to programming.
 
@@ -1459,7 +1459,7 @@ y.append(7.9)  # y modified in place using class method
 
 Different people have different preferences, but which is better sometimes depends on what you are trying to do. If your computation is a data analysis pipeline that involves a series of transformations of some data, a functional approach might make more sense, since the focus is on a series of actions rather than the state of objects. If your computation involves various operations on fixed objects whose state needs to change, OOP might make more sense. For example, if you were writing code to keep track of student information, it would probably make sense to have each student as an object of a `Student` class with methods such as `register` and `assign_grade`. 
 
-# 9. Object-oriented programming (OOP)
+# 10. Object-oriented programming (OOP)
 
 OOP involves organizing your code around objects that contain information, and methods that operate in specific ways on those objects.
 Objects belong to classes. A class is made up of fields (the data) that store information and methods (functions) that operate on the fields.
@@ -1964,7 +1964,7 @@ with MyTimer():
 A more useful example would be setting up a context manager to handle database queries by connecting to the database via `__enter__` and disconnecting via `__exit__`.
 
 
-# 10. Functional programming
+# 11. Functional programming
 
 This section covers an approach to programming called *functional programming* as well as various
 concepts related to writing and using functions. 
@@ -2945,7 +2945,7 @@ Our decorator doesn't do anything useful, but hopefully you can imagine that the
 
 One real-world example of using decorators is in setting up functions to run in parallel in `dask`, which we'll discuss in Unit 7. Another is the use of Numba to do [just-in-time (JIT) compilation](#just-in-time-jit-compilation) of Python code.
 
-# 11. Memory and copies
+# 12. Memory and copies
 
 
 ## Overview
@@ -3364,7 +3364,7 @@ fastcount(x, y) # Assume x, y are existing large numpy arrays.
 In the code above, note all the places where new memory must be allocated.
 :::
 
-# 12. Efficiency
+# 13. Efficiency
 
 ## Interpreters and compilation
 
