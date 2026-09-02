@@ -268,8 +268,9 @@ to create the function.
 ```{bash}
 #| eval: false
 ls -rt ~/Downloads | tail -n 5
-# Create dummy test files without any spaces.
+# Create dummy test files with names with and without spaces.
 touch ~/Downloads/test{1..4}
+touch ~/Downloads/test\ file  # or "/accounts/vis/paciorek/Downloads/test file"
 ls -rt ~/Downloads | tail -n 5
 
 ## Sometimes the ~ behaves weirdly in scripting, so let's use full path.
