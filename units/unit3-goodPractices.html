@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chris Paciorek">
-<meta name="dcterms.date" content="2025-09-01">
+<meta name="dcterms.date" content="2026-09-01">
 
 <title>Good practices: coding practices, debugging, and reproducible research</title>
 <style>
@@ -437,7 +437,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 1, 2025</p>
+      <p class="date">September 1, 2026</p>
     </div>
   </div>
   
@@ -528,8 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Use active names for functions (e.g., <code>calc_loglik</code>, <code>calc_log_lik</code> rather than <code>loglik</code> or <code>loglik_calc</code>). The idea is that a function in a programming language is like a verb in regular language (a function <em>does</em> something), so use a verb to name it.</p></li>
 <li><p>Learn from others’ code</p></li>
 </ul>
-<p>This semester, someone will be reading your code - the GSI and and me when we look at your assignments. So to help us in understanding your code and develop good habits, put these ideas into practice in your assignments.</p>
-<p>While not Python examples, the files <a href="goodCode.R">goodCode.R</a> and <a href="badCode.R">badCode.R</a> in the <code>units</code> directory of the class repository provide examples of R code written such that it does and does not conform to the general ideas listed above (leaving aside the different syntax of Python and R).</p>
+<p>You should put these ideas into practice in your assignments.</p>
 </section>
 <section id="coding-style-suggestions" class="level3">
 <h3 class="anchored" data-anchor-id="coding-style-suggestions">Coding style suggestions</h3>
@@ -625,6 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="assertions-exceptions-and-testing" class="level2">
 <h2 class="anchored" data-anchor-id="assertions-exceptions-and-testing">Assertions, exceptions and testing</h2>
 <p>Assertions, exceptions and testing are critically important for writing robust code that is less likely to contain bugs.</p>
+<p>This has always been the case. It continues to be the case with increasing reliance on AI coding agents, which can and do make mistakes.</p>
 <section id="exceptions" class="level3">
 <h3 class="anchored" data-anchor-id="exceptions">Exceptions</h3>
 <p>You’ve probably already seen exceptions in action whenever you’ve done something in Python that causes an error to occur and an error message to be printed. Syntax errors are different from exceptions in that exceptions occur when the syntax is correct, but the execution of the code results in some sort of error (i.e., a <em>run-time error</em>).</p>
@@ -702,7 +702,7 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='missingurl_forsure
 </section>
 <section id="assertions" class="level3">
 <h3 class="anchored" data-anchor-id="assertions">Assertions</h3>
-<p>Assertions are a quick way to raise a specific type of Exception (AssertionError). Assertions are useful for performing quick checks in your code that the state of the program is as you expect. They’re primarily intended for use during the development process to provide “sanity checks” that specific conditions are true, and there are ways to disable them when you are running your code for production purposes (to improve performance). A common use is for verifying preconditions and postconditions (especially preconditions). One would generally only expect such conditions not to be true if there is a bug in the code. Here’s an example of using the <code>assert</code> statement in Python, with a clear assertion message telling the developer what the problem is.</p>
+<p>Assertions are a quick way to raise a specific type of Exception: an <code>AssertionError</code>. Assertions are useful for performing quick checks in your code that the state of the program is as you expect. They’re primarily intended for use during the development process to provide “sanity checks” that specific conditions are true, and there are ways to disable them when you are running your code for production purposes (to improve performance). A common use is for verifying preconditions and postconditions (especially preconditions). One would generally only expect such conditions not to be true if there is a bug in the code. Here’s an example of using the <code>assert</code> statement in Python, with a clear assertion message telling the developer what the problem is.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>number <span class="op">=</span> <span class="op">-</span><span class="dv">42</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> number <span class="op">&gt;</span> <span class="dv">0</span>, <span class="ss">f"number greater than 0 expected, got: </span><span class="sc">{</span>number<span class="sc">}</span><span class="ss">"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -725,7 +725,7 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='missingurl_forsure
 </section>
 <section id="testing" class="level3">
 <h3 class="anchored" data-anchor-id="testing">Testing</h3>
-<p>Testing is informally what you do after you write some code and want to check that it actually works. But when you are developing important code (e.g.&nbsp;functions that are going to be used by others) you typically want to encode your tests in code. There are many reasons to do that, including making sure that if anyone changes the code later on and breaks something, the test suite should immediately indicate that.</p>
+<p>When we set up formal testing for code, the testing itself is written in code so that it can be run repeatedly. Setting up formal tests increases our faith in the correctness of the code. And by having the testing be reproducible, it helps to make sure that if anyone changes the code later on and breaks something, the test suite should immediately indicate that.</p>
 <p>Some people even advocate for writing a preliminary test suite before writing the code itself(!) as it can be a good way to organize work and track progress, as well as act as a secondary form of documentation for clarity. This can include tests that your code provides correct and useful errors when something goes wrong (so that means that a test might be to see if problematic input correctly produces an error). <em>Unit tests</em> are intended to test the behavior of small pieces (units) of code, generally individual functions. Unit tests naturally work well with the ideas above of writing small, modular functions. I recommend the <code>pytest</code> package, which is designed to make it easier to write sets of good tests.</p>
 <p>Here is an example of the contents of a test file, called <code>test_dummy.py</code>.</p>
 <div class="cell">
@@ -757,16 +757,27 @@ requests.exceptions.ConnectionError: HTTPConnectionPool(host='missingurl_forsure
 The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
 
   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
-ERROR: file or directory not found: test_dummy.py
-
 ============================= test session starts ==============================
 platform linux -- Python 3.13.2, pytest-8.3.5, pluggy-1.6.0
 rootdir: /accounts/vis/paciorek/teaching/243fall26/fall-2026/units
 plugins: asyncio-1.1.0, cov-6.2.1, anyio-4.8.0
 asyncio: mode=Mode.STRICT, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
-collected 0 items
+collected 0 items / 1 error
 
-============================ no tests ran in 0.02s =============================</code></pre>
+==================================== ERRORS ====================================
+________________________ ERROR collecting test_dummy.py ________________________
+ImportError while importing test module '/accounts/vis/paciorek/teaching/243fall26/fall-2026/units/test_dummy.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/system/linux/miniforge-3.13/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+test_dummy.py:4: in &lt;module&gt;
+    import dummy
+E   ModuleNotFoundError: No module named 'dummy'
+=========================== short test summary info ============================
+ERROR test_dummy.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+=============================== 1 error in 0.47s ===============================</code></pre>
 </div>
 </div>
 <p>You can run <code>pytest</code> on individual files or on directories or simply in the current working directory. In the latter cases, it will look for test files (those with the letters “test” in the file name) in the directory and all subdirectories.</p>
@@ -795,13 +806,13 @@ jobs:
   CI:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
 
     # Install package and dependencies
     - name: Set up Python 
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v7
       with:
-        python-version: 3.12
+        python-version: 3.14
 
     - name: Install mytoy and pytest
       run: |
@@ -812,7 +823,7 @@ jobs:
       run: |
         cd mytoy
         pytest</code></pre>
-<p>You’ll use GitHub Actions to automate testing during your projects. Unfortunately, GitHub Actions is not available via <code>github.berkeley.edu</code> so we can’t use it with your class repositories for your problem set work.</p>
+<p>Unfortunately, GitHub Actions is not available via <code>github.berkeley.edu</code> so we can’t use it with your class repositories for your problem set work.</p>
 </section>
 </section>
 <section id="version-control" class="level2">
@@ -820,7 +831,6 @@ jobs:
 <ul>
 <li>Use it! Even for projects that only you are working on. It’s the closest thing you’ll get to having a time machine!</li>
 <li>Use an issues tracker (e.g., the GitHub issues tracker is quite nice), or at least a simple to-do file, noting changes you’d like to make in the future.</li>
-<li>In addition to good commit messages, it’s a good idea to keep good running notes documenting your projects.</li>
 </ul>
 <p>We’ll be discussing Git a lot separately.</p>
 </section>
@@ -844,14 +854,11 @@ jobs:
 <ul>
 <li>AI-assisted code completion (extended tab completion)</li>
 <li>AI-assisted code suggestions (accept/reject, similar to grammar suggestions in text editing)</li>
-<li>Built-in Chat window providing Chat/Edit/Agent modes.
-<ul>
-<li>Edit/Agent capabilities where a user can ask the tool to change or add to their code based on a text prompt, or potentially generate a whole program/application.</li>
-</ul></li>
+<li>Built-in Chat window providing interaction with an agent that can write and edit code.</li>
 <li>Ability to give files/directories as context.</li>
 </ul>
-<p>Many of the tools are available through VS Code (as extensions, such as GitHub Copilot and Gemini Code Assist) or built on top of VS Code (e.g., Cursor).</p>
-<p>Beware of generating large chunks of code that you don’t understand. At least for now, this is prone to bugs/hallucinations and hard to maintain. Think of the tools as helping you brainstorm.</p>
+<p>Many of the tools are available through VS Code (as extensions, such as GitHub Copilot and Gemini Code Assist) or built on top of VS Code (e.g., Cursor). Other tools provide command line interfaces (e.g., Claude Code, Codex and Antigravity)</p>
+<p>Beware of generating chunks of code (particularly large chunks) that you don’t understand, particularly as you are learning. Think of the tools as helping you brainstorm.</p>
 <p>A potential hierarchy of uses:</p>
 <ul>
 <li>For straightforward syntax where checking the outcome is sufficient (e.g., code for formatting plots).</li>
@@ -876,7 +883,7 @@ jobs:
 <p>Is the bug reproducible - does it always happen in the same way at at the same point? It can help to restart Python and see if the bug persists - this can sometimes help in figuring out if there is a scoping issue and we are using a global variable that we did not mean to.</p>
 <p>If you can’t figure out where the error occurs based on the error messages, a basic strategy is to build up code in pieces (or tear it back in pieces to a simpler version). This allows you to isolate where the error is occurring. You might use a binary search strategy. Figure out which half of the code the error occurs in. Then split the ‘bad’ half in half and figure out which half the error occurs in. Repeat until you’ve isolated the problem.</p>
 <p>If you’ve written your code modularly with lots of functions, you can test individual functions. Often the error will be in what gets passed into and out of each function.</p>
-<p>At the beginning of time (the 1970s?), the standard debugging strategy was to insert print statements in one’s code to see the value of a variable and thereby decipher what could be going wrong. We have better tools nowadays. But sometimes we still need to fall back to inserting print statements.</p>
+<p>At the beginning of time (the 1970s?), the standard debugging strategy was to insert print statements in one’s code to see the value of a variable and thereby decipher what could be going wrong. We have better tools nowadays. But sometimes we still need to fall back to inserting print statements. For example this is often the case in debugging GitHub Actions workflows that fail.</p>
 <p>Python is a scripting language, so you can usually run your code line by line to figure out what is happening. This can be a decent approach, particularly for simple code. However, when you are trying to find errors that occur within a series of many nested function calls or when the errors involve variable scoping (how Python looks for variables that are not local to a function), or in other complicated situations, using formal debugging tools can be much more effective. Finally, if the error occurs inside of functions provided by Python, rather than ones you write, it can be hard to run the code in those functions line by line.</p>
 </section>
 <section id="using-pdb" class="level2">
@@ -902,18 +909,18 @@ jobs:
 </div>
 <p>When I run this, I see this:</p>
 <pre><code>&gt;&gt;&gt; run.fit(data, n_cats)
-&gt; /accounts/vis/paciorek/teaching/243/fall-2025/units/run_with_break.py(10)fit()
+&gt; /accounts/vis/paciorek/teaching/243/fall-2026/units/run_with_break.py(10)fit()
 -&gt; sub = data[data['cats'] == i]
 (Pdb) </code></pre>
 <p>This indicates I am debugging at line 10 of <code>run_with_break.py</code>, which is the line that creates <code>sub</code>, but I haven’t yet created <code>sub</code>.</p>
 <p>I can type <code>n</code> to run that line and go to the next one:</p>
 <pre><code>(Pdb) n
-&gt; /accounts/vis/paciorek/teaching/243/fall-2025/units/run_with_break.py(11)fit()
+&gt; /accounts/vis/paciorek/teaching/243/fall-2026/units/run_with_break.py(11)fit()
 -&gt; model = statsmodels.api.OLS(sub['y'], statsmodels.api.add_constant(sub['x']))</code></pre>
 <p>at which point the debugger is about to execute line 11, which fits the regression.</p>
 <p>I can type <code>c</code> to continue until the next breakpoint:</p>
 <pre><code>(Pdb) c
-&gt; /accounts/vis/paciorek/teaching/243/fall-2025/units/run_with_break.py(10)fit()
+&gt; /accounts/vis/paciorek/teaching/243/fall-2026/units/run_with_break.py(10)fit()
 -&gt; sub = data[data['cats'] == i]</code></pre>
 <p>Now if I print <code>i</code>, I see that it has incremented to <code>1</code>.</p>
 <pre><code>(Pdb) p i
@@ -954,7 +961,7 @@ jobs:
  91     </code></pre>
 <p>We can enter <code>u</code> multiple times (it’s only shown once below) to go up in the stack of function calls until we recognize code that we wrote:</p>
 <pre><code>(Pdb) u
-&gt; /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break.py(10)fit()
+&gt; /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break.py(10)fit()
 -&gt; model = statsmodels.api.OLS(sub['y'], statsmodels.api.add_constant(sub['x']))</code></pre>
 <p>Now let’s use <code>p</code> to print variable values to understand the problem:</p>
 <pre><code>(Pdb)  p i
@@ -1001,23 +1008,23 @@ Index: []</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pdb run_no_break2.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<pre><code>&gt; /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break2.py(1)&lt;module&gt;()
+<pre><code>&gt; /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break2.py(1)&lt;module&gt;()
 -&gt; import numpy as np
 (Pdb) </code></pre>
 <p>Let’s set a breakpoint at the same place we did with <code>breakpoint()</code> but using a line number (this avoids having to actually modify our code):</p>
 <pre><code>(Pdb) b 9
-Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break.py:9</code></pre>
+Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break.py:9</code></pre>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>(Pdb) c</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="op">/</span>accounts<span class="op">/</span>vis<span class="op">/</span>paciorek<span class="op">/</span>teaching<span class="op">/</span><span class="dv">243</span><span class="op">/</span>fall<span class="op">-</span><span class="dv">2025</span><span class="op">/</span>units<span class="op">/</span>run_no_break2.py(<span class="dv">9</span>)fit()</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span> <span class="op">/</span>accounts<span class="op">/</span>vis<span class="op">/</span>paciorek<span class="op">/</span>teaching<span class="op">/</span><span class="dv">243</span><span class="op">/</span>fall<span class="op">-</span><span class="dv">2026</span><span class="op">/</span>units<span class="op">/</span>run_no_break2.py(<span class="dv">9</span>)fit()</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="op">-&gt;</span> model <span class="op">=</span> statsmodels.api.OLS(sub[<span class="st">'y'</span>], statsmodels.api.add_constant(sub[<span class="st">'x'</span>]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>So we’ve broken at the same point where we manually added <code>breakpoint()</code> in <code>run_with_break.py</code>.</p>
 <p>Or we could have set a breakpoint at the start of the function:</p>
 <pre><code>(Pdb) disable 1
-Disabled breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break2.py:9
+Disabled breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break2.py:9
 (Pdb) b fit
-Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break.py:6</code></pre>
+Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2026/units/run_no_break.py:6</code></pre>
 </section>
 </section>
 <section id="some-common-causes-of-bugs" class="level2">
@@ -1033,7 +1040,7 @@ Breakpoint 1 at /accounts/vis/paciorek/teaching/243/fall-2025/units/run_no_break
 <pre><code>False</code></pre>
 </div>
 </div>
-<p>We’ll discuss in detail in Unit 8.</p></li>
+<p>We’ll discuss in detail in Unit 8 in 243B.</p></li>
 <li><p>You expect a single value but execution of the code gives an array</p></li>
 <li><p>Silent type conversion when you don’t want it, or lack of coercion where you’re expecting it</p></li>
 <li><p>Using the wrong function or variable name</p></li>
@@ -1232,7 +1239,7 @@ Regression cannot be fit for stratum 29.</code></pre>
 </section>
 <section id="reproducible-research" class="level1">
 <h1>4. Reproducible research</h1>
-<p>The idea of “reproducible research” has gained a lot of attention in the last decade because of the increasing complexity of research projects, lack of details in the published literature, failures in being able to replicate or reproduce others’ work, fraudulent research, and for other reasons.</p>
+<p>The idea of “reproducible research” has gained a lot of attention in the last 10-20 years because of the increasing complexity of research projects, lack of details in the published literature, failures in being able to replicate or reproduce others’ work, fraudulent research, and for other reasons.</p>
 <p>We’ve seen a number of tools that can help with doing reproducible research, including version control systems such as git, the use of scripting such as bash and Python scripts, and literate programming tools such as Quarto and Jupyter notebooks.</p>
 <p><em>Provenance</em> is becoming increasingly important in science. It basically means being able to trace the steps of an analysis back to its origins. <em>Reproducibility</em> and <em>replicability</em> are related concepts:</p>
 <p><em>Reproducibility</em> - the idea is that a second person/group could get the exact same results as an existing analysis if they use the same input data, methods, and code. This can be surprisingly hard as time passes even if you’re the one attempting to reproduce things.</p>
@@ -1270,7 +1277,7 @@ Regression cannot be fit for stratum 29.</code></pre>
 <li>Package management:
 <ul>
 <li>Python: You can manage the versions of Python packages (and dependent packages) used in your project using Conda environments (or virtualenvs).</li>
-<li>R: You can manage the versions of R packages (and dependent packages) used in your project using package management packages such as <code>renv</code> and <code>packrat</code>. Unfortunately, the useful <code>checkpoint</code> package relies on snapshots of CRAN that are not available after January 2023.</li>
+<li>R: You can manage the versions of R packages (and dependent packages) used in your project using package management packages such as <code>renv</code> and <code>packrat</code>.</li>
 </ul></li>
 <li>If your project uses multiple pieces of software (e.g., not just Python or R), you can set up a reproducible environment using <em>containers</em>, of which Docker containers are the best known. These provide something that is like a lightweight virtual machine in which you can install exactly the software (and versions) you want and then share with others. Docker container images are a key building block of various tools such as GitHub Actions and the <a href="https://mybinder.org">Binder project</a>. Alternatively (and often much easier) Conda is a general package manager that can install lots of non-Python packages and can also be used in many circumstances.</li>
 </ol>
