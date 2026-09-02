@@ -562,18 +562,19 @@ for line in sys.stdin:
 <p>In general, we want to start with a specific case, and then generalize to create the function.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-rt</span> ~/Downloads <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 5</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dummy test files without any spaces.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create dummy test files with names with and without spaces.</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> ~/Downloads/test{1..4}</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-rt</span> ~/Downloads <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 5</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Sometimes the ~ behaves weirdly in scripting, so let's use full path.</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> <span class="st">"/accounts/vis/paciorek/Downloads/</span><span class="va">$(</span><span class="fu">ls</span> <span class="at">-rt</span> <span class="dt">\</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>   /accounts/vis/paciorek/Downloads <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1<span class="va">)</span><span class="st">"</span> ~/Desktop</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> mvlast()</span> <span class="kw">{</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mv</span> <span class="st">"/accounts/vis/paciorek/Downloads/</span><span class="va">$(</span><span class="fu">ls</span> <span class="at">-rt</span> <span class="dt">\</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>       /accounts/vis/paciorek/Downloads <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1<span class="va">)</span><span class="st">"</span> <span class="va">$1</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> ~/Downloads/test\ file  <span class="co"># or "/accounts/vis/paciorek/Downloads/test file"</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-rt</span> ~/Downloads <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 5</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Sometimes the ~ behaves weirdly in scripting, so let's use full path.</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> <span class="st">"/accounts/vis/paciorek/Downloads/</span><span class="va">$(</span><span class="fu">ls</span> <span class="at">-rt</span> <span class="dt">\</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>   /accounts/vis/paciorek/Downloads <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1<span class="va">)</span><span class="st">"</span> ~/Desktop</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span><span class="fu"> mvlast()</span> <span class="kw">{</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mv</span> <span class="st">"/accounts/vis/paciorek/Downloads/</span><span class="va">$(</span><span class="fu">ls</span> <span class="at">-rt</span> <span class="dt">\</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>       /accounts/vis/paciorek/Downloads <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1<span class="va">)</span><span class="st">"</span> <span class="va">$1</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Note that the quotes deal with cases where a file has a space in its name.</p>
 <p>If we wanted to handle multiple files, we could do it with a loop:</p>
@@ -739,7 +740,7 @@ for line in sys.stdin:
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>data_from_csv <span class="op">=</span> pd.read_csv(os.path.join(<span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.csv'</span>))</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time.time() <span class="op">-</span> t0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1.174360752105713</code></pre>
+<pre><code>1.3651432991027832</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -752,7 +753,7 @@ for line in sys.stdin:
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.parquet'</span>))</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time.time() <span class="op">-</span> t0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.1674964427947998</code></pre>
+<pre><code>0.18895816802978516</code></pre>
 </div>
 </div>
 <p>The CSV file is 51 MB while the Parquet file is 8 MB.</p>
@@ -761,7 +762,7 @@ for line in sys.stdin:
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> ../data/airline.parquet</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>-rw-r--r-- 1 paciorek scfstaff 51480244 Aug 11  2025 ../data/airline.csv
--rw-r--r-- 1 paciorek scfstaff 8132907 Aug 30 15:42 ../data/airline.parquet</code></pre>
+-rw-r--r-- 1 paciorek scfstaff 8132907 Sep  2 09:54 ../data/airline.parquet</code></pre>
 </div>
 </div>
 </section>
