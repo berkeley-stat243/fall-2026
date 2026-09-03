@@ -33,7 +33,6 @@ import re, os, sys, time, math
 ```
 
 
-
 # Overview
 
 This unit covers a variety of programming concepts, illustrated in the
@@ -50,6 +49,12 @@ are learning another language or choosing a language for a project.
 This document  uses the `knitr` engine for rendering to be able to run chunks in multiple languages (Python and bash, as well as a few R chunks. It has the Quarto configuration `ipynb-shell-interactivity: all`, so that output from all Python code in a chunk will print in the rendered document; when done with the `knitr` engine, the output is interspersed with the code in the chunk rather than printed all at the end.
 :::
 
+:::{.callout-note title="Background and optional sections"}
+
+Sections titled "(BACKGROUND)" indicate material that will probably be useful to you but is generally straightforward and focused on syntax/mechanics. It's not material I would emphasize in quizzes/exams.
+
+Sections titled "(OPTIONAL)" indicate more advanced or specialized material that you may be interested in, but that I am not expecting you to absorb.
+:::
 
 
 # 1. Text manipulation, string processing and regular expressions (regex)
@@ -60,7 +65,7 @@ and Perl, as many of the ideas/software evolved from UNIX. When I use the term
 include numbers, white space (including newlines), and special characters, usually stored as an object
 of the `str` class.
 
-## String processing and regular expressions in Python
+## (BACKGROUND) String processing and regular expressions in Python
 
 Here we'll see functionality for working with strings in Python, focusing on regular expressions with the `re` package. 
 This will augment our consideration of regular expressions in the shell, in particular
@@ -314,7 +319,7 @@ re.search("[\tZ]", tmp[2])   # Search for a tab or a 'Z'.
 
 Here are some examples of using various special characters in regex syntax.
 To use a special character as a regular character, we need to escape it
-(which in Python 3.12 involves two backslashes, as discussed above):
+(which as of Python 3.12 involves two backslashes, as discussed above):
 
 ```{python, re}
 ## Search for characters that are not 'z'
@@ -352,7 +357,7 @@ print("hello\\nagain")
 print("My Windows path is: C:\\Users\\nadal.")
 ```
 
-Another way to achieve this effect if your string does not contain any special characters is to prefix your string literal with an r for "raw":
+Another way to achieve this effect if your string does not contain any special characters is to prefix your string literal with an `r` for "raw":
 
 ```{python}
 print(r"My Windows path is: C:\Users\nadal.")
@@ -414,7 +419,7 @@ The main downside to working with datasets in Python (true for R and most other 
 dataset resides in memory, so using standard Python tools can be problematic
 in some cases; we'll discuss some alternatives later. 
 
-## Core Python functions for text files
+## (BACKGROUND) Core Python functions for text files
 
 The `read_table`  and `read_csv` functions in the Pandas package are  commonly used for reading
 in data. They read in delimited files (CSV specifically in the latter case).
@@ -665,7 +670,7 @@ Happily this is platform-independent so can be used to transfer
 Python objects between different OS.
 
 
-## Formatting output
+## (BACKGROUND) Formatting output
 
 We can use [string formatting](https://docs.python.org/3/library/string.html#formatstrings) to control how output is printed to the screen.
 
@@ -813,7 +818,7 @@ Here are a variety of tools for interacting with the operating system:
     memory.
 
 
-## Interacting with external code
+## (OPTIONAL) Interacting with external code
 
 Scripting languages such as R, Python, and Julia allow you to call out to "external code",
 which often means C or C++ (but also Fortran, Java and other languages). 
@@ -1074,7 +1079,7 @@ It's also generally recommended to use the `conda-forge` *channel* (i.e., locati
 :::
 
 
-### Making your package installable (optional)
+### (OPTIONAL) Making your package installable
 
 It's pretty easy to configure your package so that it can be built and installed via `pip`. See the structure of
 [this example repository](https://github.com/fperez/mytoy). In fact, one can install the package with only
@@ -1422,7 +1427,7 @@ All objects that fall in a given category share key characteristics. For example
 Object protocols are implemented based on the [Python object model](#the-python-object-model-and-dunder-methods) using **dunder** methods.
 For a class (such as one you write) to implement an object protocol, it must define a particular set of class methods, discussed at the link above.
 
-# 9. Programming paradigms: object-oriented and functional programming
+# 7. Programming paradigms: object-oriented and functional programming
 
 Object-oriented and functional programming are two important approaches to programming.
 
@@ -1459,7 +1464,7 @@ y.append(7.9)  # y modified in place using class method
 
 Different people have different preferences, but which is better sometimes depends on what you are trying to do. If your computation is a data analysis pipeline that involves a series of transformations of some data, a functional approach might make more sense, since the focus is on a series of actions rather than the state of objects. If your computation involves various operations on fixed objects whose state needs to change, OOP might make more sense. For example, if you were writing code to keep track of student information, it would probably make sense to have each student as an object of a `Student` class with methods such as `register` and `assign_grade`. 
 
-# 10. Object-oriented programming (OOP)
+# 8. Object-oriented programming (OOP)
 
 OOP involves organizing your code around objects that contain information, and methods that operate in specific ways on those objects.
 Objects belong to classes. A class is made up of fields (the data) that store information and methods (functions) that operate on the fields.
@@ -1964,7 +1969,7 @@ with MyTimer():
 A more useful example would be setting up a context manager to handle database queries by connecting to the database via `__enter__` and disconnecting via `__exit__`.
 
 
-# 11. Functional programming
+# 9. Functional programming
 
 This section covers an approach to programming called *functional programming* as well as various
 concepts related to writing and using functions. 
@@ -2474,7 +2479,7 @@ That's because a new local variable in the function scope is created. If you mod
 
 The same behavior occurs with other mutable objects such as numpy arrays.
 
-### Pointers (optional)
+### (OPTIONAL) Pointers
 
 To put pass-by-value vs. pass-by-reference in a broader context, I want to briefly discuss
 the idea of a pointer, common in compiled languages such as C.
@@ -2945,7 +2950,7 @@ Our decorator doesn't do anything useful, but hopefully you can imagine that the
 
 One real-world example of using decorators is in setting up functions to run in parallel in `dask`, which we'll discuss in Unit 7. Another is the use of Numba to do [just-in-time (JIT) compilation](#just-in-time-jit-compilation) of Python code.
 
-# 12. Memory and copies
+# 10. Memory and copies
 
 
 ## Overview
@@ -3364,7 +3369,7 @@ fastcount(x, y) # Assume x, y are existing large numpy arrays.
 In the code above, note all the places where new memory must be allocated.
 :::
 
-# 13. Efficiency
+# 11. Efficiency
 
 ## Interpreters and compilation
 
@@ -3444,7 +3449,7 @@ At the end of this unit, we'll see the use of JIT compilation with the JAX packa
 `numba` is a standard JIT compiler for Python and numpy that uses the LLVM compiler library. To use it one applies the `numba.njit` decorator to a Python function.
 
 
-#### Byte compiling (optional)
+#### (OPTIONAL) Byte compiling
 
 Functions in Python and Python packages may byte compiled. What does that mean?
 Byte-compiled code is a special representation that can be

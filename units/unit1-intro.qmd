@@ -155,7 +155,7 @@ Here are the key things to be aware of when you are in the shell or executing co
  - What git branch am I in (if the working directory is in a Git repo)?
  - What Conda environment am I in (if relevant)?
 
-# 6. Editors
+# 6. (BACKGROUND) Editors
 
 For scientific computing, we need a text editor, not a word processor,
 because we're going to be operating on code files, plain-text data files, 
@@ -192,7 +192,7 @@ then your career.
 
 Be careful in Windows - file suffixes are often hidden.
 
-## (Optional) Basic emacs
+## Basic emacs
 
 Emacs is one option as an editor. I use Emacs a fair amount, so I'm
 including some tips here, but other editors listed above are just as
@@ -215,7 +215,7 @@ good.
     emacs -nw file.txt 
     ```
 
-### (Optional) Emacs keystroke sequence shortcuts (aka, *key bindings*).
+### Emacs keystroke sequence shortcuts (aka, *key bindings*).
 
 > **Note**
 > Several of these (Ctrl-a, Ctrl-e, Ctrl-k, Ctrl-y) work in the command line, interactive Python and R sessions, and other places as well.
@@ -235,7 +235,7 @@ good.
 |       `Ctrl-y` *(*after using `Ctrl-k` or `Ctrl-w`*)*   |        Paste from kill buffer ('y' is for 'yank')|
 
 
-## (Optional) Basic vim
+## Basic vim
 
 vim is another option as an editor. Like emacs, it's been around for a long time, and some of the other options above are probably more user friendly. However, it can be helpful to know how to do some basic things in vim.
 
