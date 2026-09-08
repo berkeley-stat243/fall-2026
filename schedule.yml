@@ -54,4 +54,8 @@
           id: "1"
           name: "Problem Set 1"
           href: "ps/ps1.html"
+        - type: "Lab"
+          id: "2"
+          name: "Exceptions and Testing"
+          href: labs/lab2-testing.html
 
