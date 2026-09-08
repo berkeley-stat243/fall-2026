@@ -1,7 +1,7 @@
 ---
 title: "Programming concepts"
 author: "Chris Paciorek"
-date: "2025-10-01"
+date: "2026-09-03"
 format:
   pdf:
     documentclass: article
@@ -736,7 +736,7 @@ Here are a variety of tools for interacting with the operating system:
     ```{python}
     import subprocess, io
     subprocess.run(["ls", "-al"])   ## results apparently not shown when compiled...
-    files = subprocess.run(["ls", "-al"], capture_output = True)
+    files = subprocess.run(["ls", "-al", "*qmd"], capture_output = True)
     files.stdout
     with io.BytesIO(files.stdout) as stream:  # create a file-like object
          content = stream.readlines()
@@ -947,7 +947,7 @@ mkdir mypkg
 
 cat << EOF > mypkg/__init__.py
 ## Make objects from mymod.py available as mypkg.foo rather than mypkg.mymod.foo.
-## The "." is a "relative" import that means find "mymod" here in this directory.
+## The "." is a "relative" import that means "find 'mymod' here in this directory".
 from .mymod import *
 
 print("Welcome to my package.")
@@ -1020,7 +1020,7 @@ or require the user to import them manually, e.g., `import mypkg.mysubpkg`.
 mkdir mypkg/mysubpkg
 
 cat << EOF > mypkg/mysubpkg/__init__.py
-from .values import *
+from .values import b, x
 print("Welcome to my package's subpackage.")
 EOF
 
