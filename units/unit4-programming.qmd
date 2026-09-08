@@ -1187,9 +1187,9 @@ This means that what you plan to do with the data should guide what kind of stru
 - Dictionaries in Python allow for easy use of key-value pairs where one can access values based on their key/label. In R one can do something similar with named vectors or named lists or (more efficiently) by using environments.
 - In R, if we are not working with rectangular datasets or standard numerical objects, we often end up using lists or enhanced versions of lists, sometimes with deeply nested structures.
 
-In Unit 6, we'll talk about *distributed* data structures that allow one to easily work with data distributed across multiple computers.
+In Unit 5, we'll talk about *distributed* data structures that allow one to easily work with data distributed across multiple computers.
 
-## Other kinds of data structures
+## (BACKGROUND) Other kinds of data structures
 
 You may have heard of various other kinds of data structures, such as linked lists, trees, graphs, queues, and stacks. One of the key aspects that differentiate such data structures is how one navigates through the elements.
 
@@ -1214,10 +1214,9 @@ A *queue* is like the line at a grocery store, behaving as "first in, first out"
 
 One can use such data structures either directly or via add-on packages in Python and R, though I don't think they're all that commonly used in R. This is probably because statistical/data science/machine learning workflows often involve either 'rectangular' data (i.e., dataframe-style data) and/or mathematical computations with arrays. That said, trees and graphs are widely used.
 
-Some related concepts that we'll discuss further in Unit 5 include:
+Some related concepts that we'll discuss further in Unit 4 include:
 
  - types: this refers to how a given piece of information is stored and what operations can be done with the information.
-    - 'primitive' types are the most basic types that often relate directly to how data are stored in memory or on disk (e.g., booleans, integers, numeric (real-valued), character, pointer (address, reference).
  - pointers: references to other locations (addresses) in memory. One often uses pointers to avoid unnecessary copying of data. 
  - hashes: hashing involves fast lookup of the value associated with a key (a label), using a hash function, which allows one to convert the key to an address. This avoids having to find the value associated with a specific key by looking through all the keys until the key of interest is found (an O(n) operation).
 

@@ -317,7 +317,7 @@ sets. There is no final exam.
     - substantive contribution to discussions on Ed (i.e., responding to your classmates' questions and asking thoughtful questions about course material).
 
 Grades will generally be As and Bs. An A involves doing all the work,
-getting full credit on most of the problem sets and quizzes, doing well on the mini-exams, and doing a thorough job on the final project.
+getting full credit on most of the problem sets and quizzes and doing well on the mini-exam.
 
 ### Problem sets {#problem-sets .unnumbered}
 
