@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-67f4b2f198c787316d44448b3d063643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7baa8c2dcf50bf9d6aa514b6d32d6f04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -240,6 +240,18 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Lab 0 (Optional setup)</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/lab1-submission.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 1 (Quarto/Git/Submission)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/lab2-testing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 2 (Exceptions/Testing)</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -382,7 +394,7 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Download yearly climate data from the location above for a set of years of interest into a temporary directory. Do not download all the years and feel free to focus on a small number of years to reduce the amount of data you need to download (unzipped, some of the yearly files are as big as ~1 GB). Note that data for Death Valley is only present in the last few decades. As you are processing the files, report the number of observations in each year by printing the information to the screen (i.e., <code>stdout</code>), including if there are no observations for that year. Try to avoid printing anything else out (e.g., the progress of the downloading).</p></li>
 <li><p>Subset to the station corresponding to Death Valley, to the TMAX (maximum daily temperature) variable, and to March, and put all the data into a single file. In subsetting to Death Valley, get the information programmatically from the <code>ghcnd-stations.txt</code> file one level up on the website. Do NOT type (hard code) in the station ID code when you retrieve the Death Valley data from the yearly files.</p></li>
 <li><p>Write a small Python script (or R would be fine too) that takes as input your single file from (b) and makes a single plot showing side-by-side boxplots containing the maximum daily temperatures on each calendar day in March. Note that by creating a script and calling that from the shell you should avoid the challenges of mixing bash and Python chunks discussed in the Quarto references above.</p></li>
-<li><p>Now generalize your code from parts (a) and (b). Write a shell function that takes as arguments (1) a string for identifying the location (this string should not be the station ID), (2) the weather variable of interest, and (3) the time period (i.e., the years of interest and the month of interest), and returns the results (and in this case don’t print out the information about the number of rows). Your function should detect if the user provides the wrong number of arguments or a string that doesn’t allow one to identify a single weather station and return a useful error message. It should also give useful help information if the user invokes the function as: <code>get_weather -h</code>. Finally the function should remove the raw downloaded data files (alternatively, you should download such files into your operating system’s temporary file location).</p></li>
+<li><p>Now generalize your code from parts (a) and (b). Write a shell function whose arguments allow the user to specify (1) a string for identifying the location (this string should not be the station ID), (2) the weather variable of interest, and (3) the time period (i.e., the years of interest and the month of interest), and returns the results (and in this case don’t print out the information about the number of rows). Your function should detect if the user provides the wrong number of arguments or a string that doesn’t allow one to identify a single weather station and return a useful error message. It should also give useful help information if the user invokes the function as: <code>get_weather -h</code>. Finally the function should remove the raw downloaded data files (alternatively, you should download such files into your operating system’s temporary file location).</p></li>
 </ol></li>
 </ol>
 

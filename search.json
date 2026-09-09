@@ -1044,74 +1044,37 @@
     ]
   },
   {
-    "objectID": "labs/lab1-submission.html",
-    "href": "labs/lab1-submission.html",
-    "title": "Lab 1: Submitting problem set solutions",
+    "objectID": "labs/lab2-testing.html",
+    "href": "labs/lab2-testing.html",
+    "title": "Lab 2: Exceptions and Testing",
     "section": "",
-    "text": "By now you should already have access to the following 5 basic tools:\n\nUnix shell\nGit\nQuarto\nPython\nA text editor of your choice\n\nToday we will use all these tools together to submit a solution for Problem Set 0 (not a real problem set) to make sure you know how to submit solutions to upcoming (real) problem sets.\nHere is a selection of some basic reference tutorials and documentation for unix, bash and unix commands, git & GitHub, quarto, python and VS Code\nSome books to learn more about Unix."
+    "text": "Today we will spend some time getting familiar with some of the programming tools that can help make your code more robust and resilient to errors and boundary conditions - tools like unit tests and exceptions (and next week we will spend some time on debugging misbehaving code).\nTesting is what you do when you finish implementing a piece of code and want to try it out to see if it works. Running your code manually and seeing if it works is a workable strategy for simple one-time scripts that do simple tasks, but there are situations (like writing a function that others will repeatedly use, or like running the same piece of code on hundreds of files or URLs) where it is prudent to test your code ahead of its actual use or deployment. In today’s lab, we are going to use pytest to test for correct behavior and verify that exceptions are raised in the right situations.",
+    "crumbs": [
+      "Labs",
+      "Lab 2 (Exceptions/Testing)"
+    ]
   },
   {
-    "objectID": "labs/lab1-submission.html#submitting-problem-set-solutions-sep-4",
-    "href": "labs/lab1-submission.html#submitting-problem-set-solutions-sep-4",
-    "title": "Lab 1: Submitting problem set solutions",
-    "section": "",
-    "text": "By now you should already have access to the following 5 basic tools:\n\nUnix shell\nGit\nQuarto\nPython\nA text editor of your choice\n\nToday we will use all these tools together to submit a solution for Problem Set 0 (not a real problem set) to make sure you know how to submit solutions to upcoming (real) problem sets.\nHere is a selection of some basic reference tutorials and documentation for unix, bash and unix commands, git & GitHub, quarto, python and VS Code\nSome books to learn more about Unix."
+    "objectID": "labs/lab2-testing.html#lab-exercise",
+    "href": "labs/lab2-testing.html#lab-exercise",
+    "title": "Lab 2: Exceptions and Testing",
+    "section": "Lab Exercise",
+    "text": "Lab Exercise\n1- Write a function in Python that finds a number in a string using regular expressions. The number can be positive or negative, integer-valued, or real, and numbers less than one can also be of the form 0.96 or .96. It can be assumed that no numbers appear in scientific notation. Refer to String processing and regular expressions in Python for a quick overview of Python’s re package. You may use AI to generate the regex, but be sure you understand the output.\n2- Write an interface for that function (a function name and arguments), but do not implement the function yet (you can have it return an None, or an empty string for now). We will do this in a good old fashioned .py file (not a notebook or a quarto file).\n3- Build a test suite using the pytest package to test that your function works as intended. Add at least 8 test cases with justification for each. Try to cover the main use cases, and as many potential corner cases or boundary conditions as possible.\n4- Now run the test suite. It should fail for all your tests (unless one of them was passing an empty string).\n5- Implement the function. You can do this at one go, or case by case. As you implement a case, you can rerun the test suite and see some of the tests relevant to that cases stopping to fail. When all the tests pass, you are done. This is called test-driven development.\n6- If some cases are still failing, that’s alright, for the purposes of this lab we don’t need to ensure all edge cases are dealt with.\n7- Make sure you raise an exception to trap invalid input types.\n8- Add a test to check that an exception is properly raised when the function is given invalid input types.",
+    "crumbs": [
+      "Labs",
+      "Lab 2 (Exceptions/Testing)"
+    ]
   },
   {
-    "objectID": "labs/lab1-submission.html#quick-intro-to-git-and-github",
-    "href": "labs/lab1-submission.html#quick-intro-to-git-and-github",
-    "title": "Lab 1: Submitting problem set solutions",
-    "section": "Quick Intro to git and GitHub",
-    "text": "Quick Intro to git and GitHub\n\nCreating a new repository\nMaking changes\n\n\nEditing and saving files\nStaging changes\nCommitting changes locally\nPushing changes to remote repository\n\n\nUndoing changes:\n\n\nLocal changes\nLocal staged changes\nLocal commited changes\nPushed changes\n\n\nMerging divergent versions\nWorking with branches\nGUI options (sourcetree)\nGetting help\n\nDiscussion: - Why is git so damn complicated? - What do you need to remember when working with collaborators on the same repository?"
-  },
-  {
-    "objectID": "labs/lab1-submission.html#lab-submission",
-    "href": "labs/lab1-submission.html#lab-submission",
-    "title": "Lab 1: Submitting problem set solutions",
-    "section": "Lab Submission",
-    "text": "Lab Submission\nRefer to this guide and please ask questions if something is not clear."
-  },
-  {
-    "objectID": "labs/lab1-submission.html#hands-on-lab-instructions---steps",
-    "href": "labs/lab1-submission.html#hands-on-lab-instructions---steps",
-    "title": "Lab 1: Submitting problem set solutions",
-    "section": "Hands-on Lab Instructions - Steps",
-    "text": "Hands-on Lab Instructions - Steps\n\nClone your github repository to your development environment\nCreate a subdirectory in your github repository with the name ps0\nIn that subdirectory, create a quarto document (ps0.qmd) that has some simple code that creates a simple plot (you can follow this example/tutorial here)\nUse the quarto command line to render it into a pdf document (quarto render FILE –to pdf)\nCommit the changes to your repository (git add FILES; git commit -m MESSAGE; git push)\nAdd another section to your quarto document (use your imagination), then preview and commit the changes\nUse the quarto command line to render the updated document into a pdf document\nAdd the pdf document to the repository as well\nMake sure that you can log into Pensive and upload a pdf document\n[optional] Undo your last set of changes and regenerate the pdf file\n\nIf we finish early, we will also take today’s lab as an opportunity to get familiar with the basic use of all the 5 basic tools listed above.\nFor git and quarto, very basic knowledge should be sufficient for now, but for unix commands and python, the more you learn the more effective you will be at solving the problem sets (and at any computational task you take on after that). You will need to learn more advanced use of git and github towards the end of the semester when you start working with other team members on the same project.\n\nChunk options\nLike RMarkdown, quarto allows for several execution options to be set per document and per chunk. Spend some time getting familiar with the various options, and keep this link handy when you are working on the first few problem sets.\nDepending on what’s required in the problem sets, you may need to set eval to false (just print out code) or error to true (print errors and don’t halt rendering of the document). Some of the other options may be useful for controlling how the code gets printed.\n\n\nTroubleshooting\n\nQuarto succeeds in rendering html but fails at rendering pdf\nInstall tinytex via quarto install tinytex\n\n\nProblems running and rendering bash commands in quarto\nIf you are using the knitr engine, you should be able to tag your code chunks in quarto with {bash} and use verbatim bash commands. If you are using the Jupyter engine, the {python} tag should be used instead and every line containing a bash command should be prefixed with an exclamation mark (!).\n\n\nQuarto rendering (or python execution) works from the terminal but not from the IDE\nYou can go to the settings in your IDE and point it to the specific python installation that you find when you execute which python in the terminal.\n\n\nQuarto rendering (or python execution) works from the IDE but not from the terminal\nYou can fix the quarto configuration by setting the environment variable QUARTO_PYTHON to the correct python path or by running quarto check. Restarting the IDE may also help if you had just installed something in the other environment.\n\n\nQuarto rendering fails to find a python package\nIt’s a good idea to test that you can import packages such as numpy when a document is rendered. If that fails, either you haven’t installed the package in python or quarto is using a different python installation than the one in which you installed the package. See the items above.\n\n\nPushing to git fails with message “Make sure you configure your ‘user.email’ and ‘user.name’ in git”\nFollow the suggested course of action in the error message to configure your email and name, then push again."
-  },
-  {
-    "objectID": "labs/lab1-submission.html#acknowledgements",
-    "href": "labs/lab1-submission.html#acknowledgements",
-    "title": "Lab 1: Submitting problem set solutions",
+    "objectID": "labs/lab2-testing.html#acknowledgements",
+    "href": "labs/lab2-testing.html#acknowledgements",
+    "title": "Lab 2: Exceptions and Testing",
     "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester."
-  },
-  {
-    "objectID": "rubric.html",
-    "href": "rubric.html",
-    "title": "",
-    "section": "",
-    "text": "This document provides guidance for submitting high-quality problem set (and project) solutions. This guidance is based on general good practices for scientific communication, reproducible research, and software development."
-  },
-  {
-    "objectID": "rubric.html#general-presentation",
-    "href": "rubric.html#general-presentation",
-    "title": "",
-    "section": "General presentation",
-    "text": "General presentation\n\nSimply presenting code or derivations is not sufficient.\nBriefly describe the overall goal or strategy before providing code/derivations.\nAs needed describe what the pieces of your code/derivation are doing to make it easier for a reader to follow the steps.\nKeep your output focused on illustrating what you did, without distracting from the flow of your solution by showing voluminous output. The output should illustrate and demonstrate, not overwhelm or obscure. If you need to show longer output, you can add it at the end as supplemental material.\nOutput should be produced by your code (i.e., from the code chunks running when the document is rendered), not by copying and pasting results into the document."
-  },
-  {
-    "objectID": "rubric.html#coding-practice",
-    "href": "rubric.html#coding-practice",
-    "title": "",
-    "section": "Coding practice",
-    "text": "Coding practice\n\nMinimize (or eliminate) use of global variables.\nBreak down work into core tasks and develop small, modular, self-contained functions (or class methods) to carry out those tasks.\nDon’t repeat code. As needed refactor code to create new functions (or class methods).\nFunctions and classes should be “weakly coupled”, interacting via their interfaces and not by having to know the internals of how they work.\nUse data structures appropriate for the computations that need to be done.\nDon’t hard code ‘magic’ numbers. Assign such numbers to variables with clear names, e.g., speed_of_light = 3e8.\nProvide reasonable default arguments to functions (or class methods) when possible.\nProvide tests (including unit tests) when requested (this is good general practice but we won’t require it in all cases).\nAvoid overly complicated syntax – try to use the clearest syntax you can to solve the problem.\nIn terms of speed, don’t worry about it too much so long as the code finishes real-world tasks in a reasonable amount of time. When optimizing, focus on the parts of the code that are the bottlenecks.\nUse functions already available in the language rather than recreating yourself."
-  },
-  {
-    "objectID": "rubric.html#code-style",
-    "href": "rubric.html#code-style",
-    "title": "",
-    "section": "Code style",
-    "text": "Code style\n\nFollow a consistent style. While you don’t have to follow Python’s PEP8 style guide exactly, please look at it and follow it generally.\nUse informative variable and function names and have a consistent naming style.\nUse whitespace (spaces, newlines) and parentheses to make the structure of the code easy to understand and the individual syntax pieces clear.\nUse consistent indentation to make the structure of the code easy to understand.\nProvide comments that give the goal of a given piece of code and why it does things, but don’t use comments to restate what the code does when it should be obvious from reading the code.\n\nProvide summaries for blocks of code.\nFor particularly complicated syntax, say what a given piece of code does."
+    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
+    "crumbs": [
+      "Labs",
+      "Lab 2 (Exceptions/Testing)"
+    ]
   },
   {
     "objectID": "labs/lab0-setup.html",
@@ -1144,6 +1107,100 @@
     "crumbs": [
       "Labs",
       "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "rubric.html",
+    "href": "rubric.html",
+    "title": "",
+    "section": "",
+    "text": "This document provides guidance for submitting high-quality problem set (and project) solutions. This guidance is based on general good practices for scientific communication, reproducible research, and software development."
+  },
+  {
+    "objectID": "rubric.html#general-presentation",
+    "href": "rubric.html#general-presentation",
+    "title": "",
+    "section": "General presentation",
+    "text": "General presentation\n\nSimply presenting code or derivations is not sufficient.\nBriefly describe the overall goal or strategy before providing code/derivations.\nAs needed describe what the pieces of your code/derivation are doing to make it easier for a reader to follow the steps.\nKeep your output focused on illustrating what you did, without distracting from the flow of your solution by showing voluminous output. The output should illustrate and demonstrate, not overwhelm or obscure. If you need to show longer output, you can add it at the end as supplemental material.\nOutput should be produced by your code (i.e., from the code chunks running when the document is rendered), not by copying and pasting results into the document."
+  },
+  {
+    "objectID": "rubric.html#coding-practice",
+    "href": "rubric.html#coding-practice",
+    "title": "",
+    "section": "Coding practice",
+    "text": "Coding practice\n\nMinimize (or eliminate) use of global variables.\nBreak down work into core tasks and develop small, modular, self-contained functions (or class methods) to carry out those tasks.\nDon’t repeat code. As needed refactor code to create new functions (or class methods).\nFunctions and classes should be “weakly coupled”, interacting via their interfaces and not by having to know the internals of how they work.\nUse data structures appropriate for the computations that need to be done.\nDon’t hard code ‘magic’ numbers. Assign such numbers to variables with clear names, e.g., speed_of_light = 3e8.\nProvide reasonable default arguments to functions (or class methods) when possible.\nProvide tests (including unit tests) when requested (this is good general practice but we won’t require it in all cases).\nAvoid overly complicated syntax – try to use the clearest syntax you can to solve the problem.\nIn terms of speed, don’t worry about it too much so long as the code finishes real-world tasks in a reasonable amount of time. When optimizing, focus on the parts of the code that are the bottlenecks.\nUse functions already available in the language rather than recreating yourself."
+  },
+  {
+    "objectID": "rubric.html#code-style",
+    "href": "rubric.html#code-style",
+    "title": "",
+    "section": "Code style",
+    "text": "Code style\n\nFollow a consistent style. While you don’t have to follow Python’s PEP8 style guide exactly, please look at it and follow it generally.\nUse informative variable and function names and have a consistent naming style.\nUse whitespace (spaces, newlines) and parentheses to make the structure of the code easy to understand and the individual syntax pieces clear.\nUse consistent indentation to make the structure of the code easy to understand.\nProvide comments that give the goal of a given piece of code and why it does things, but don’t use comments to restate what the code does when it should be obvious from reading the code.\n\nProvide summaries for blocks of code.\nFor particularly complicated syntax, say what a given piece of code does."
+  },
+  {
+    "objectID": "labs/lab1-submission.html",
+    "href": "labs/lab1-submission.html",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "",
+    "text": "By now you should already have access to the following 5 basic tools:\n\nUnix shell\nGit\nQuarto\nPython\nA text editor of your choice\n\nToday we will use all these tools together to submit a solution for Problem Set 0 (not a real problem set) to make sure you know how to submit solutions to upcoming (real) problem sets.\nHere is a selection of some basic reference tutorials and documentation for unix, bash and unix commands, git & GitHub, quarto, python and VS Code\nSome books to learn more about Unix.",
+    "crumbs": [
+      "Labs",
+      "Lab 1 (Quarto/Git/Submission)"
+    ]
+  },
+  {
+    "objectID": "labs/lab1-submission.html#submitting-problem-set-solutions-sep-4",
+    "href": "labs/lab1-submission.html#submitting-problem-set-solutions-sep-4",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "",
+    "text": "By now you should already have access to the following 5 basic tools:\n\nUnix shell\nGit\nQuarto\nPython\nA text editor of your choice\n\nToday we will use all these tools together to submit a solution for Problem Set 0 (not a real problem set) to make sure you know how to submit solutions to upcoming (real) problem sets.\nHere is a selection of some basic reference tutorials and documentation for unix, bash and unix commands, git & GitHub, quarto, python and VS Code\nSome books to learn more about Unix.",
+    "crumbs": [
+      "Labs",
+      "Lab 1 (Quarto/Git/Submission)"
+    ]
+  },
+  {
+    "objectID": "labs/lab1-submission.html#quick-intro-to-git-and-github",
+    "href": "labs/lab1-submission.html#quick-intro-to-git-and-github",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "Quick Intro to git and GitHub",
+    "text": "Quick Intro to git and GitHub\n\nCreating a new repository\nMaking changes\n\n\nEditing and saving files\nStaging changes\nCommitting changes locally\nPushing changes to remote repository\n\n\nUndoing changes:\n\n\nLocal changes\nLocal staged changes\nLocal commited changes\nPushed changes\n\n\nMerging divergent versions\nWorking with branches\nGUI options (sourcetree)\nGetting help\n\nDiscussion: - Why is git so damn complicated? - What do you need to remember when working with collaborators on the same repository?",
+    "crumbs": [
+      "Labs",
+      "Lab 1 (Quarto/Git/Submission)"
+    ]
+  },
+  {
+    "objectID": "labs/lab1-submission.html#lab-submission",
+    "href": "labs/lab1-submission.html#lab-submission",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "Lab Submission",
+    "text": "Lab Submission\nRefer to this guide and please ask questions if something is not clear.",
+    "crumbs": [
+      "Labs",
+      "Lab 1 (Quarto/Git/Submission)"
+    ]
+  },
+  {
+    "objectID": "labs/lab1-submission.html#hands-on-lab-instructions---steps",
+    "href": "labs/lab1-submission.html#hands-on-lab-instructions---steps",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "Hands-on Lab Instructions - Steps",
+    "text": "Hands-on Lab Instructions - Steps\n\nClone your github repository to your development environment\nCreate a subdirectory in your github repository with the name ps0\nIn that subdirectory, create a quarto document (ps0.qmd) that has some simple code that creates a simple plot (you can follow this example/tutorial here)\nUse the quarto command line to render it into a pdf document (quarto render FILE –to pdf)\nCommit the changes to your repository (git add FILES; git commit -m MESSAGE; git push)\nAdd another section to your quarto document (use your imagination), then preview and commit the changes\nUse the quarto command line to render the updated document into a pdf document\nAdd the pdf document to the repository as well\nMake sure that you can log into Pensive and upload a pdf document\n[optional] Undo your last set of changes and regenerate the pdf file\n\nIf we finish early, we will also take today’s lab as an opportunity to get familiar with the basic use of all the 5 basic tools listed above.\nFor git and quarto, very basic knowledge should be sufficient for now, but for unix commands and python, the more you learn the more effective you will be at solving the problem sets (and at any computational task you take on after that). You will need to learn more advanced use of git and github towards the end of the semester when you start working with other team members on the same project.\n\nChunk options\nLike RMarkdown, quarto allows for several execution options to be set per document and per chunk. Spend some time getting familiar with the various options, and keep this link handy when you are working on the first few problem sets.\nDepending on what’s required in the problem sets, you may need to set eval to false (just print out code) or error to true (print errors and don’t halt rendering of the document). Some of the other options may be useful for controlling how the code gets printed.\n\n\nTroubleshooting\n\nQuarto succeeds in rendering html but fails at rendering pdf\nInstall tinytex via quarto install tinytex\n\n\nProblems running and rendering bash commands in quarto\nIf you are using the knitr engine, you should be able to tag your code chunks in quarto with {bash} and use verbatim bash commands. If you are using the Jupyter engine, the {python} tag should be used instead and every line containing a bash command should be prefixed with an exclamation mark (!).\n\n\nQuarto rendering (or python execution) works from the terminal but not from the IDE\nYou can go to the settings in your IDE and point it to the specific python installation that you find when you execute which python in the terminal.\n\n\nQuarto rendering (or python execution) works from the IDE but not from the terminal\nYou can fix the quarto configuration by setting the environment variable QUARTO_PYTHON to the correct python path or by running quarto check. Restarting the IDE may also help if you had just installed something in the other environment.\n\n\nQuarto rendering fails to find a python package\nIt’s a good idea to test that you can import packages such as numpy when a document is rendered. If that fails, either you haven’t installed the package in python or quarto is using a different python installation than the one in which you installed the package. See the items above.\n\n\nPushing to git fails with message “Make sure you configure your ‘user.email’ and ‘user.name’ in git”\nFollow the suggested course of action in the error message to configure your email and name, then push again.",
+    "crumbs": [
+      "Labs",
+      "Lab 1 (Quarto/Git/Submission)"
+    ]
+  },
+  {
+    "objectID": "labs/lab1-submission.html#acknowledgements",
+    "href": "labs/lab1-submission.html#acknowledgements",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
+    "crumbs": [
+      "Labs",
+      "Lab 1 (Quarto/Git/Submission)"
     ]
   },
   {
@@ -1184,7 +1241,7 @@
     "href": "ps/ps1.html#problems",
     "title": "Problem Set 1",
     "section": "Problems",
-    "text": "Problems\n\nPlease read these lecture notes about how computers work, used in a class on statistical computing at CMU. Briefly (a few sentences) describe the difference between disk and memory based on that reference and/or other resources you find. If you’re doing an data analysis, you should have an understanding of what situations might lead to running out of disk space and what situations might lead to running out of memory.\nA friend of mine is planning to get married in Death Valley National Park in March (this problem is based on real events…). She wants to hold it as late in March as possible but without having a high chance of a very hot day. This problem will automate the task of generating information about what day of March to hold the wedding using data from the Global Historical Climatology Network. All of your operations should be done using the bash shell except part (c). Also, ALL of your work should be done using shell commands that you save in your solution file. So you can’t say “I downloaded the data from such-and-such website” or “I unzipped the file”; you need to provide the bash code that someone else could run to repeat what you did. This is partly for practice in writing shell code and partly to enforce the idea that your work should be reproducible and documented.\n\nDownload yearly climate data from the location above for a set of years of interest into a temporary directory. Do not download all the years and feel free to focus on a small number of years to reduce the amount of data you need to download (unzipped, some of the yearly files are as big as ~1 GB). Note that data for Death Valley is only present in the last few decades. As you are processing the files, report the number of observations in each year by printing the information to the screen (i.e., stdout), including if there are no observations for that year. Try to avoid printing anything else out (e.g., the progress of the downloading).\nSubset to the station corresponding to Death Valley, to the TMAX (maximum daily temperature) variable, and to March, and put all the data into a single file. In subsetting to Death Valley, get the information programmatically from the ghcnd-stations.txt file one level up on the website. Do NOT type (hard code) in the station ID code when you retrieve the Death Valley data from the yearly files.\nWrite a small Python script (or R would be fine too) that takes as input your single file from (b) and makes a single plot showing side-by-side boxplots containing the maximum daily temperatures on each calendar day in March. Note that by creating a script and calling that from the shell you should avoid the challenges of mixing bash and Python chunks discussed in the Quarto references above.\nNow generalize your code from parts (a) and (b). Write a shell function that takes as arguments (1) a string for identifying the location (this string should not be the station ID), (2) the weather variable of interest, and (3) the time period (i.e., the years of interest and the month of interest), and returns the results (and in this case don’t print out the information about the number of rows). Your function should detect if the user provides the wrong number of arguments or a string that doesn’t allow one to identify a single weather station and return a useful error message. It should also give useful help information if the user invokes the function as: get_weather -h. Finally the function should remove the raw downloaded data files (alternatively, you should download such files into your operating system’s temporary file location).",
+    "text": "Problems\n\nPlease read these lecture notes about how computers work, used in a class on statistical computing at CMU. Briefly (a few sentences) describe the difference between disk and memory based on that reference and/or other resources you find. If you’re doing an data analysis, you should have an understanding of what situations might lead to running out of disk space and what situations might lead to running out of memory.\nA friend of mine is planning to get married in Death Valley National Park in March (this problem is based on real events…). She wants to hold it as late in March as possible but without having a high chance of a very hot day. This problem will automate the task of generating information about what day of March to hold the wedding using data from the Global Historical Climatology Network. All of your operations should be done using the bash shell except part (c). Also, ALL of your work should be done using shell commands that you save in your solution file. So you can’t say “I downloaded the data from such-and-such website” or “I unzipped the file”; you need to provide the bash code that someone else could run to repeat what you did. This is partly for practice in writing shell code and partly to enforce the idea that your work should be reproducible and documented.\n\nDownload yearly climate data from the location above for a set of years of interest into a temporary directory. Do not download all the years and feel free to focus on a small number of years to reduce the amount of data you need to download (unzipped, some of the yearly files are as big as ~1 GB). Note that data for Death Valley is only present in the last few decades. As you are processing the files, report the number of observations in each year by printing the information to the screen (i.e., stdout), including if there are no observations for that year. Try to avoid printing anything else out (e.g., the progress of the downloading).\nSubset to the station corresponding to Death Valley, to the TMAX (maximum daily temperature) variable, and to March, and put all the data into a single file. In subsetting to Death Valley, get the information programmatically from the ghcnd-stations.txt file one level up on the website. Do NOT type (hard code) in the station ID code when you retrieve the Death Valley data from the yearly files.\nWrite a small Python script (or R would be fine too) that takes as input your single file from (b) and makes a single plot showing side-by-side boxplots containing the maximum daily temperatures on each calendar day in March. Note that by creating a script and calling that from the shell you should avoid the challenges of mixing bash and Python chunks discussed in the Quarto references above.\nNow generalize your code from parts (a) and (b). Write a shell function whose arguments allow the user to specify (1) a string for identifying the location (this string should not be the station ID), (2) the weather variable of interest, and (3) the time period (i.e., the years of interest and the month of interest), and returns the results (and in this case don’t print out the information about the number of rows). Your function should detect if the user provides the wrong number of arguments or a string that doesn’t allow one to identify a single weather station and return a useful error message. It should also give useful help information if the user invokes the function as: get_weather -h. Finally the function should remove the raw downloaded data files (alternatively, you should download such files into your operating system’s temporary file location).",
     "crumbs": [
       "Problem Sets",
       "Problem Set 1"
@@ -1395,7 +1452,7 @@
     "href": "schedule.html",
     "title": "Scheduling information",
     "section": "",
-    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 2 Regex tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
+    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 2 Regex tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Lab 2 Exceptions and Testing\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
     "crumbs": [
       "Schedule"
     ]
@@ -1405,7 +1462,7 @@
     "href": "schedule.html#schedule",
     "title": "Scheduling information",
     "section": "",
-    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 2 Regex tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
+    "text": "Fri Aug 28:\n           \n           Lab 0 (Optional) help session for software installation/setup and UNIX-style command line basics\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 1 Class Survey\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 2 (Optional) work through the UNIX basics tutorial and answer (for yourself) the questions at the end\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Activity 3 Login to github.berkeley.edu with your CalNet credentials\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Event 1 (Optional) Library Introduction to LaTeX with Overleaf session (1-2 pm)\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Mon Aug 31:\n           \n           Assignment 1 Bash shell tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 4:\n           \n           Lab 1 Using Git and Quarto and problem set submission\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Assignment 2 Regex tutorial and exercises\n           \n                \n           \n                \n           \n        \n   \n   \n   \n  \n\n   \n\n   \n   \n   \n   \n   \n   \n\n        \n\n           \n           \n           Wed Sep 9:\n           \n           Event 2 (Optional) Library Introduction to LaTeX with Overleaf session (12-1 pm)\n           \n                \n           \n                \n           \n        \n   \n\n        \n\n           \n           \n           Fri Sep 11:\n           \n           Problem_Set 1 Problem Set 1\n           \n                \n           \n                \n           \n        \n\n           \n           \n           Lab 2 Exceptions and Testing\n           \n                \n           \n                \n           \n        \n   \n   \n   \nNo matching items",
     "crumbs": [
       "Schedule"
     ]
