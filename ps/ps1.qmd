@@ -81,7 +81,7 @@ execute:
         maximum daily temperatures on each calendar day in March. Note that by creating a script and calling that from the shell you should avoid the challenges of mixing bash and Python chunks discussed in the Quarto references above.
 
     d.  Now generalize your code from parts (a) and (b). Write a shell
-        function that takes as arguments (1) a string for identifying the
+        function whose arguments allow the user to specify (1) a string for identifying the
         location (this string should not be the station ID), (2) the weather variable of interest, and (3) the time period
         (i.e., the years of interest and the month of interest), and
         returns the results (and in this case don't print out the information about the number of rows). Your function should detect if the user
