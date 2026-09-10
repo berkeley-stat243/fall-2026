@@ -35,7 +35,7 @@ You can use the *Remote SSH* extension to connect to another machine (e.g., an S
 
 ## GitHub Copilot
 
-You can use GitHub Copilot for AI assistance (including code completion, edit mode (for small guided help), agent mode (for more autonomous code generation and manipulation), and built-in Chat. That said, you shouldn't use Agent mode for our work in class as it's likely to reduce your learning.
+GitHub Copilot is one option for getting AI assistance with coding. As discussed in the first class, be very cautious in relying too heavily on AI (but of course note the exceptions in problem set questions where part of the problem is to explore using AI-based tools).
 
 [GitHub Education](https://github.com/education/students) provides free access to GitHub Copilot Pro.
 
