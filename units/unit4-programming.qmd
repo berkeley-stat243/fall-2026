@@ -1038,15 +1038,25 @@ mypkg.x
 ```
 
 Note that a given `__init__.py` is invoked when importing anything nested within the
-directory containing the `__init__.py`; in the case above the `__init__.py` from `mypkg`
+directory containing the `__init__.py`; in the case above the main/top-level `__init__.py` from `mypkg`
 is invoked, though for some reason the "Welcome to my package." output is not showing 
 up in this rendered document.
 
+Also note that if we just imported `mypkg`, then `mysubpkg` is not available as it is not imported in the main `__init__.py`.
+For reasons unclear to me, I'm not able to illustrate that here in the rendered document, but if you run the code below in
+a new Python session, you'd find that `mypkg.mysubpkg` is not available.
+
+```{python}
+#| eval: false
+import mypkg
+mypkg.mysubpkg.b
+```
+
 If we wanted to automatically import the subpackage we would add
-`from . import mysubpkg` to `mypkg/__init__.py`, which uses [relative imports](https://docs.python.org/3/reference/import.html). The alternative "absolute" import would be `import mypkg.mysubpkg`, which finds `mypkg` using `sys.path` (which specifies a set of paths of where to look).
+`from . import mysubpkg` to `mypkg/__init__.py`, which uses [relative imports](https://docs.python.org/3/reference/import.html). The alternative "absolute" import would be `import mypkg.mysubpkg`, which finds `mypkg` based on `sys.path` (which specifies a set of paths of where to look).
 
 
-One would generally not import the items from `mysubpkg` directly into the `mypkg` namespace
+One would generally not import the items from `mysubpkg` directly into the `mypkg` namespace,
 but there may be cases one would do something like this. For example `numpy.linspace` is actually
 found in `numpy/core/function_base.py`, but we don't need to refer to `numpy.core.linspace`
 because of how `numpy` structures the `import` statements in `__init__.py`. In contrast, the linear algebra
@@ -1249,6 +1259,8 @@ In contrast in a language like C, one has to declare a variable based on its typ
 double y;
 double x = 3.1;
 y = x * 7.1;
+
+double myfun(int x) {return (double) x;}
 ```
 
 Dynamic typing can be quite helpful from the perspective of quick implementation and avoiding tedious type definitions and problems from minor inconsistencies between types (e.g., multiplying an integer by a real-valued number).
@@ -1446,7 +1458,7 @@ x = np.array([1.2, 3.5, 4.2, 9.7])
 x.shape     # field (or attribute) of the numpy array class
 x.sum()     # method of the class
 np.sum(x)   # equivalent numpy function
-len(x)      # built-in function
+len(x)      # built-in function (the Python object model explains how this generic `len` can work on `x` of a particular class).
 
 # functional approach: apply functions sequentially
 x2 = np.reshape(x, (2,2))
@@ -1485,6 +1497,8 @@ type(foo)
 import numpy as np
 x = np.array([1.2, 3.4])
 type(x)
+
+type(np)
 ```
 
 
@@ -1494,7 +1508,7 @@ Some of the standard concepts in object-oriented programming include *encapsulat
 
 *Encapsulation* involves preventing direct access to internal data in an object from outside the object. Instead the class is designed so that access (reading or writing) happens through the interface set up by the programmer (e.g., 'getter' and 'setter' methods). However, Python actually doesn't really enforce the notion of internal or private information.
 
-*Inheritance* allows one class to be based on another class, adding more specialized features.  For example in the `statsmodels` package, the OLS class inherits from the WLS class.
+*Inheritance* allows one class to be based on another class, adding more specialized features.  For example in the `statsmodels` package, the OLS (ordinary least squares) class inherits from the WLS (weighted least squares) class. This makes sense since OLS is a special case of WLS (with weights equal to one), like a bear is a special case of a mammal. It might contradict your initial reaction though, since WLS is taught as an extension of OLS. 
 
 *Polymorphism* allows for different behavior of an object or function depending on the context. A polymorphic function behaves differently depending on the input types. For example, think of a print function or an addition operator behaving differently depending on the type of the input argument(s). A polymorphic object is one that can belong to different classes (e.g., based on inheritance), and a given method name can be used with any of the classes. An example would be having a base or super class called 'algorithm' and various specific machine learning algorithms inheriting from that class. All of the classes might have a 'predict' method.
 
@@ -1648,7 +1662,7 @@ In a module, objects that start with `_` are a weak form of private attributes. 
 
 Inheritance can be a powerful way to reduce code duplication and keep your code organized in a logical (nested) fashion.
 Special cases can be simple extensions of more general classes. A good example of inheritance in Python and R is how regression models are handled.
-E.g., in Python's `statsmodels` package, the [`OLS` class inherits from the `WLS` class](https://www.statsmodels.org/stable/_modules/statsmodels/regression/linear_model.html#OLS). Or if we think back to the random time series example and generalize it, one might have a `StochasticProcess` class, with a `GaussianProcess` class that inherits from it, and a `ExpGaussianProcess` class (implementing a Gaussian process with an exponential covariance` inheriting from the `GaussianProcess` class. 
+E.g., in Python's `statsmodels` package, the [`OLS` class inherits from the `WLS` class](https://www.statsmodels.org/stable/_modules/statsmodels/regression/linear_model.html#OLS). Or if we think back to the random time series example and generalize it, one might have a `StochasticProcess` class, with a `GaussianProcess` class that inherits from it, and a `ExpGaussianProcess` class (implementing a Gaussian process with an exponential covariance) inheriting from the `GaussianProcess` class. 
 
 ```{python}
 class Bear:
@@ -1822,7 +1836,7 @@ Here are some important dunder methods:
  - `__len__` is called by `len()`
  - `__str__` is called by `print()`
  - `__repr__` is called when an object's name is invoked
- - `__call__` is called if the instance is invoked as a function call (e.g., `yog()` in the `Bear` case)
+ - `__call__` is called if the instance is invoked as a function call (e.g., invoking `yog()` in the `Bear` case)
  - `__add__` is called by the `+` operator.
  - `__getitem__` is called by the `[` slicing operator.
 
