@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Using VS Code</title>
+<title>Problem Set 2</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -42,7 +77,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f9406879e630d085cd1424241c1f5148.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-67f4b2f198c787316d44448b3d063643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,6 +109,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -85,7 +121,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../howtos/accessPython.html">How tos</a></li><li class="breadcrumb-item"><a href="../howtos/vscode.html">Using VS Code</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ps/ps1.html">Problem Sets</a></li><li class="breadcrumb-item"><a href="../ps/ps2.html">Problem Set 2</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -270,7 +306,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ps/ps2.html" class="sidebar-item-text sidebar-link">
+  <a href="../ps/ps2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Problem Set 2</span></a>
   </div>
 </li>
@@ -311,7 +347,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../howtos/vscode.html" class="sidebar-item-text sidebar-link active">
+  <a href="../howtos/vscode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using VS Code</span></a>
   </div>
 </li>
@@ -341,24 +377,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#installing-vs-code" id="toc-installing-vs-code" class="nav-link active" data-scroll-target="#installing-vs-code">Installing VS Code</a></li>
-  <li><a href="#using-vs-code" id="toc-using-vs-code" class="nav-link" data-scroll-target="#using-vs-code">Using VS Code</a></li>
-  <li><a href="#using-vs-code-with-linux-and-on-remote-machines" id="toc-using-vs-code-with-linux-and-on-remote-machines" class="nav-link" data-scroll-target="#using-vs-code-with-linux-and-on-remote-machines">Using VS Code with Linux and on remote machines</a></li>
-  <li><a href="#github-copilot" id="toc-github-copilot" class="nav-link" data-scroll-target="#github-copilot">GitHub Copilot</a></li>
-  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions?</a></li>
-  </ul>
-</nav>
-    </div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ps2.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../howtos/accessPython.html">How tos</a></li><li class="breadcrumb-item"><a href="../howtos/vscode.html">Using VS Code</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ps/ps1.html">Problem Sets</a></li><li class="breadcrumb-item"><a href="../ps/ps2.html">Problem Set 2</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Using VS Code</h1>
+<h1 class="title">Problem Set 2</h1>
+<p class="subtitle lead">Due Friday Sep.&nbsp;25, 10 am</p>
 </div>
 
 
@@ -375,44 +401,86 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout-info">
-<p>You’ll see VS Code a fair amount in this class. For the most part, you don’t have to use it if you don’t want to, but it’s worth getting some familiarity with.</p>
+<section id="comments" class="level2">
+<h2 class="anchored" data-anchor-id="comments">Comments</h2>
+<ul>
+<li>This covers material in Units 3 and 4 (up through Section 9).</li>
+<li>It’s due at 10 am (Pacific) on September 25, both submitted as a PDF to Pensive as well as committed to your GitHub repository.</li>
+</ul>
+</section>
+<section id="formatting-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="formatting-requirements">Formatting requirements</h2>
+<ol type="1">
+<li><p>Your electronic solution should be in the form of an Quarto file named <code>ps2.qmd</code>, with Python code chunks. If you want to initially work in a Jupyter notebook, that is fine, but you’ll need to run <code>quarto convert file.ipynb</code> to generate a qmd file before rendering to PDF and submitting.</p></li>
+<li><p>Your solution should not just be Python code - you should have text describing how you approached the problem and what the various steps were. Your code should have comments indicating what each function or block of code does, and for any lines of code or code constructs that may be hard to understand, a comment indicating what that code does.</p></li>
+<li><p>You do not need to (and should not) show exhaustive output, but in general you should show short examples of what your code does to demonstrate its functionality. Please see the <a href="https://stat243.berkeley.edu/fall-2026/rubric.html">grading rubric</a>, and note that the output should be produced as a result of the code chunks being run during the rendering process, not by copy-pasting of output from running the code separately (and definitely not as screenshots).</p></li>
+</ol>
+</section>
+<section id="problems" class="level2">
+<h2 class="anchored" data-anchor-id="problems">Problems</h2>
+<ol type="1">
+<li><p>This problem uses the ideas and tools in Unit 2, Section 5 and Unit 4 Section 2 to explore approaches to reading and writing data from files and to consider file sizes in ASCII plain text vs.&nbsp;binary formats in light of the fact that numbers are (generally) stored as 8 bytes per number in binary formats.</p>
+<ol type="a">
+<li><p>Generate a numpy array (named <code>x</code>) of random numbers from a standard normal distribution with 20 columns and as many rows as needed so that the data take up about 16 MB in size. Then explain the sizes of the two files created below. In discussing the CSV text file, how many characters do you expect to be in the file (i.e., you should be able to estimate this reasonably accurately from first principles without using <code>wc</code> or any explicit program that counts characters)? Hint: what do we know about numbers drawn from a standard normal distribution?</p>
+<div id="90836da6" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x.<span class="bu">round</span>(decimals <span class="op">=</span> <span class="dv">12</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pl.DataFrame(x)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df.write_csv(<span class="st">'x.csv'</span>, include_header <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(os.path.getsize(<span class="st">'x.csv'</span>)<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss"> MB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>30.777617 MB</code></pre>
 </div>
-<p>VS Code is powerful integrated development environment (IDE), with GitHub Copilot AI assistance built in, so it’s useful to have some familiarity with it. We may use it in the lab on testing and possibly other labs.</p>
-<p>VS Code provides a huge number of extensions for working with various languages and tools, including Python, R, Jupyter Notebooks, Quarto, etc., and including integrated debugging.</p>
-<p>I will do many of my demonstrations in class with VS Code, as it allows one to easily run code in the terminal or a Python session from the built-in editor.</p>
-<section id="installing-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="installing-vs-code">Installing VS Code</h2>
-<p>See <a href="https://code.visualstudio.com/download">here</a> to install VS Code.</p>
-<p>A browser-based version of VS Code is available through both the <a href="https://datahub.berkeley.edu">DataHub</a> and the <a href="https://jupyter.stat.berkeley.edu">SCF JupyterHub</a>. It should behave very similarly but the extensions available for VS Code on your own machine versus in the browser/JupyterHub can have differences.</p>
-</section>
-<section id="using-vs-code" class="level2">
-<h2 class="anchored" data-anchor-id="using-vs-code">Using VS Code</h2>
-<p>Here are just a few initial tips on making use of VS Code.</p>
+</div>
+<div id="4d87a41e" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.write_parquet(<span class="st">"x.parquet"</span>, compression <span class="op">=</span> <span class="st">"uncompressed"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(os.path.getsize(<span class="st">'x.parquet'</span>)<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss"> MB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>16.007335 MB</code></pre>
+</div>
+</div>
+<p>Suppose we had rounded each number to four decimal places. Would using CSV have saved disk space relative to the Parquet (binary) file?</p></li>
+<li><p>Read the CSV file into Python using <code>polars.read_csv</code>. Compare the speed of reading the CSV to reading the Parquet file using Polars. As a side note, the speed of reading the data with files you just created will likely be a lot faster than reading a file that had been sitting untouched on the filesystem for a while. This has to do with the operating system caching the file in memory (we’ll discuss this further in Unit 5 when we talk about databases).</p></li>
+</ol></li>
+<li><p>Let’s investigate the structure of the <code>pandas</code> package to get some experience with the structure of a large Python package and with how <code>import</code> and the <code>__init__.py</code> file(s) are used. You’ll need to go into the Pandas source code (see Unit 4). Note that the main <code>__init__.py</code> and the <code>__init__.py</code> files in the subpackages/submodules are complicated, and I’m not expecting you to understand everything about them. Also note that the following cases involve functions, classes, and class methods. Be sure to be clear to say which of those it is and for the class methods cases, make sure you’re clear on what class the method is part of and any class inheritance structure. Run <code>import pandas</code> and then consider the following questions:</p>
+<ol type="a">
+<li>Consider <code>pandas.core.config_init.is_terminal</code>. What namespace is it (or its class) in in your Python session? What file/module is <code>is_terminal</code> in on disk? Is it a function, class, or a class method (and if a class method what is the class)? Describe how it is imported by discussing the relevant statement(s) in the relevant <code>__init__.py</code> file(s).</li>
+<li>Consider <code>pandas.read_csv</code>. Answer the same questions as for (a).</li>
+<li>Consider <code>pandas.arrays.BooleanArray</code>. Answer the same questions as for (a).</li>
+<li>Consider <code>pandas.DataFrame.to_csv</code>. Answer the same questions as for (a).</li>
+</ol>
+<p>Hints: (1) <code>grep -R &lt;pattern&gt; &lt;directory&gt;</code> will search all files within a directory recursively. (2) As you work on this, you may want to be able to modify one or more of the <code>__init__.py</code> files to better understand what is happening (e.g., by commenting out a line of code or adding a print statement). A good way to do this is to create a Conda environment in which pandas is installed, so you isolate any changes you make, e.g., <code>conda create -n test_env python=3.13 pandas</code>. Then you can edit code files in the environment and when you start Python and import pandas, you should see the effects of your changes. Alternatively, you could use the debugger to set breakpoint(s) in an <code>__init__.py</code> file. (3) Or you might create your own small toy package to experiment and see how things work with nested <code>__init__.py</code> files and various ways to use <code>import</code>.</p></li>
+<li><p>Data Science for Love, Python+AI style</p>
+<p>The overall goal is to redo your work from problem 2 in PS1 in Python, adding good error trapping and testing.</p>
+<p>Use an AI-assisted coding tool to help solve the problem. You can use a CLI tool, Desktop app, or VS Code extension (many of the tools provide all of these as options). <a href="https://stat243.berkeley.edu/fall-2026/howtos/vscode.html#github-copilot">GitHub Copilot in VS Code</a> is pretty easy to set up and can make use of GitHub for Education (<a href="https://github.com/settings/education/benefits">see here to apply</a>) to use GitHub Copilot Pro, providing more free queries and use of premium models. But you’re welcome to use whatever tool you want, such as Claude Code, Codex, Positron Assistant, OpenCode, and Gemini Code Assist. You should be able to do the assignment using the free tier of whatever tool you choose.</p>
+<p>Approach: I frame the problem as leaning heavily into AI and assessing/improving/iterating/checking/timing what the AI provides, with the main points being (1) to get experience with AI assistance and (2) to get more experience with writing, organizing, and testing good Python code, critically assessing what AI produces. However, if you feel that what you get from the AI assistance is not that helpful or if you prefer to simply practice writing Python code without AI assistance (or with more limited assistance at a syntax level or line-by-line level) you can do that instead.</p>
+<p>As a general approach, please build up your solution in stages. Start simple, check results, add tests and then add complexity. AI could probably do fine with this fairly simple problem all at once, but for you to make sure you understand the Python code being produced and do a good job of checking correctness, you should do it in stages.</p>
+<p>To start, write up a very careful, specific, detailed prompt saying what you want (and possibly some things you don’t want). Tell it what to do now and what not to do yet (e.g., wait on tests and plotting). You can choose to either work out the scaffolding of the solution (namely what the functions are and how they work together) or have AI come up with that and then iterate to improve it as needed.</p>
+<p>Requirements:</p>
 <ul>
-<li><p>To easily run Python code in a Python session from the VS Code editor, you can start a Python session in the VS Code terminal and then use <code>Shift + Enter</code> to run the current line of code from the editor. You can also right-click and select <code>Run Python -&gt; Run Selection/Line in Python Terminal</code>.</p></li>
-<li><p>To easily run bash code in a terminal from the editor, you can add <code>Cmd + Enter</code> (on a Mac) or <code>Alt + Enter</code> (on Windows) to your <em>Keyboard Shortcuts</em>. (You can choose some other keystrokes of your choice, though I recommend not using <code>Shift + Enter</code> as that affects the behavior for running Python code). In the Keyboard Shortcuts area, Select “Terminal: Run Selected Text in Active Terminal” (<code>workbench.action.terminal.runSelectedText</code>) and specify <code>Cmd + Enter</code>.</p></li>
+<li>Don’t use any shell commands directly or by calling the shell from Python. Instead use Python calls, including for any filesystem operations. (I think this should be possible, but if you run into something you can’t do in Python and need to make a shell call from Python (e.g., using <code>subprocess.run</code>), please post on Ed.)</li>
+<li>Have your Python code be callable from the shell as <code>./get_weather.py</code> with arguments handled using <code>argparse</code>.</li>
+<li>When called from the shell, your Python function should produce an output file (name given by user) and/or a boxplot as requested by the user.</li>
+<li>In addition, you should be able to import your .py file as a module and call the individual functions to do the work from within Python, with the data stored in a Polars dataframe (please use Polars rather than Pandas to get experience with that newer package that many people like). To do this, the code that is run when running as a script should be inside an <code>if __name__ == "__main__":</code> code block.</li>
+<li>Include error trapping of various sorts. Think broadly about what could go wrong when a user actually tries to run the code, working with the AI tool to figure out unexpected/corner cases that should ideally be dealt with.</li>
+<li>Set up tests of the Python functions using <code>pytest</code>, including testing the error trapping.</li>
+<li>As in Problem Set 1, avoid repeatedly downloading the same data files during your development process. One way to help with this is to have an argument that indicates whether the input (yearly) data files are already stored (cached) in a particular directory.</li>
+<li>Make sure your code follows best practices noted in Unit 3.</li>
+<li>Your code will likely read individual files into memory in Python before filtering to the data of interest. This is fine though it has the disadvantages we’ve discussed when doing things line by line in the shell.</li>
+<li>In your final submitted code, there should not be any AI-produced code that you don’t understand <strong>in detail</strong>. This is both to avoid errors and as a way for you to learn from the AI-generated code.</li>
 </ul>
-</section>
-<section id="using-vs-code-with-linux-and-on-remote-machines" class="level2">
-<h2 class="anchored" data-anchor-id="using-vs-code-with-linux-and-on-remote-machines">Using VS Code with Linux and on remote machines</h2>
-<p>You can use the <em>Remote SSH</em> extension to connect to another machine (e.g., an SCF machine) and access your files and run code on that other machine.</p>
-<ul>
-<li>Click on the Extensions icon in the left sidebar and search for “Remote - SSH” and install it.</li>
-<li>Then to connect to another machine, click on the <code>&gt;&lt;</code> (<code>Open a Remote Window</code>) icon in the buttom left, select <code>Connect to Host</code> and follow the prompts.</li>
-</ul>
-</section>
-<section id="github-copilot" class="level2">
-<h2 class="anchored" data-anchor-id="github-copilot">GitHub Copilot</h2>
-<p>GitHub Copilot is one option for getting AI assistance with coding. As discussed in the first class, be very cautious in relying too heavily on AI (but of course note the exceptions in problem set questions where part of the problem is to explore using AI-based tools).</p>
-<p><a href="https://github.com/education/students">GitHub Education</a> provides free access to GitHub Copilot Pro.</p>
-<p>You should see the GitHub Copilot icon in top, just to the right of the search bar. Click it to open the Copilot interface as a window on the right.</p>
-<p>Or in a code file, click on <code>Cmd + I</code> (on a Mac, probably <code>Ctrl + I</code> on Windows) to open an interface within your code file. When using AI edit mode, it’s often important to highlight the code you want it to work on.</p>
-<p>It’s important to provide context for AI code assistance. In general if you open a folder in VS Code, that will set up the folder as a project, and the contents will be treated as context. You can also add files as context with <code>Add Context</code> in the AI window. And you can drag files/folders from the VS Code <code>File Explorer</code> window.</p>
-</section>
-<section id="questions" class="level2">
-<h2 class="anchored" data-anchor-id="questions">Questions?</h2>
-<p>Questions (and even better, tips) on using VS Code are very welcome in the Ed Discussion.</p>
+<ol type="a">
+<li>Provide your complete solution, including example results, tests and results of running tests.</li>
+<li>Discuss your experience with using AI: briefly summarize your workflow in developing your solution and then briefly describe what you thought worked well or not so well and any areas where the AI tool didn’t do a good job (or did a particularly good job, perhaps suggesting something that didn’t occur to you).</li>
+</ol></li>
+<li><p><em>Memoization</em> of a function involves storing (caching) the values produced by a given input and then returning the cached result instead of rerunning the function when the same input is provided in the future. It can be a good approach to improve efficiency when a calculation is expensive (and presuming that sometimes/often the function will be run with inputs on which it has already been used). It’s particularly useful for for recursive calculations that involve solving a subproblem in order to solve a given (larger) problem. If you’ve already solved the subproblem you don’t need to solve it again. For example if one is working with graphs or networks, one often ends up writing recursive algorithms. (Suppose, e.g., you have a geneology giving relationships of parents and children. If you wanted to find all the descendants of a person, and you had already found all the descendants of one of the person’s children, you could make use of that without finding the descendants of the child again.)</p>
+<ol type="a">
+<li><p>Write a decorator that implements memoization. It should handle functions with either one or two arguments (write one decorator, not two!). You can assume these arguments are simple objects like numbers or strings. As part of your solution, explain whether you need to use <code>nonlocal</code> or not in this case.</p></li>
+<li><p>Try your code on basic cases, such as applying the log-gamma function to a number and multiplying together two numbers. These may not be useful cases for memoization, because the lookup process could well take more time than the actual calculation. To assess that, time the memoization approach compared to directly doing the calculation. Be careful that you are getting an accurate timing of such quick calculations (see Unit 4 notes, looking ahead to <a href="https://stat243.berkeley.edu/fall-2026/units/unit4-programming.html#timing-your-code">Section 11</a>).</p></li>
+</ol></li>
+</ol>
 
 
 </section>
