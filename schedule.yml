@@ -58,4 +58,28 @@
           id: "2"
           name: "Exceptions and Testing"
           href: labs/lab2-testing.html
+        - type: "Quiz"
+          id: "1"
+          name: "PS 1 Quiz
+- week: 4
+  days:
+    - date: "Mon Sep 14 - Wed Sep 16 (10 am)"
+      items:
+        - type: "Quiz"
+          id: "1alt"
+          name: "PS 1 Quiz Makeup/Retake
+          href: "https://calendar.app.google/agfHKekcmYXxEwDW8"
+- week: 5
+  days:
+    - date: "Fri Sep 25"
+      items:
+        - type: "Problem_Set"
+          id: "2"
+          name: "Problem Set 2"
+          href: "ps/ps2.html"
+        - type: "Quiz"
+          id: "2"
+          name: "PS 2 Quiz
+
+
 
