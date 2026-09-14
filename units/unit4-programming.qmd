@@ -1759,7 +1759,7 @@ Let's consider the `len` function in Python. It seems to work magically on vario
 x = [3, 5, 7]
 len(x)
 
-x = np.random.normal(size = 5)
+x = np.random.normal(size = (5,2))
 len(x)
 
 x = {'a': 2, 'b': 3}
@@ -1889,6 +1889,8 @@ How would you get Python to quit immediately, without asking for any more inform
 :::
 
 ### Python object protocols: Example 1 -- iterators
+
+We mentioned [object protocols](#python-object-protocols) earlier. A protocol allows classes to have some specific behavior associated with the protocol by implementing the appropriate dunder methods.
 
 A container class that supports iteration should provide the `__iter__` and `__next__` methods to implement the iterator protocol.
 

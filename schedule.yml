@@ -60,15 +60,17 @@
           href: labs/lab2-testing.html
         - type: "Quiz"
           id: "1"
-          name: "PS 1 Quiz
+          name: "PS 1 Quiz"
+          href: "syllabus.html#problem-set-quizzes"
 - week: 4
   days:
     - date: "Mon Sep 14 - Wed Sep 16 (10 am)"
       items:
         - type: "Quiz"
           id: "1alt"
-          name: "PS 1 Quiz Makeup/Retake
+          name: "PS 1 Quiz Makeup/Retake"
           href: "https://calendar.app.google/agfHKekcmYXxEwDW8"
+
 - week: 5
   days:
     - date: "Fri Sep 25"
@@ -79,7 +81,5 @@
           href: "ps/ps2.html"
         - type: "Quiz"
           id: "2"
-          name: "PS 2 Quiz
-
-
-
+          name: "PS 2 Quiz"
+          href: "syllabus.html#problem-set-quizzes"
