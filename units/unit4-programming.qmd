@@ -2441,25 +2441,33 @@ y
 Let's see what operations cause arguments modified in a function to affect state outside of the function:
 
 ```{python, state}
-def myfun(f_scalar, f_x, f_x_new, f_x_newid, f_x_copy):
-    print(id(f_scalar))
-    print(id(f_x))
-    # `scalar` in global unaffected, as `f_scalar` is redefined.
-    f_scalar = 99              
+def myfun(scalar_local, x_local, x_new_local, x_newid_local, x_copy_local):
+    # `scalar` in global unaffected, as `scalar_local` is redefined.
+    print(f"The initial ID of `scalar_local`: {id(scalar_local)}.")
+    scalar_local = 99              
+    print(f"The ID of `scalar_local` is changed: {id(scalar_local)}.")
 
-    # `x` in global is MODIFIED, as `x` and `f_x` have same id.
-    f_x[0] = 99                 
+    # `x` in global is MODIFIED, as `x` and `x_local` have same id.
+    print(f"The initial ID of `x_local`: {id(x_local)}.")
+    x_local[0] = 99                 
+    print(f"The ID of `x_local` is unchanged: {id(x_local)}.")
 
-    # `x_new` in global unaffected as `f_x_new` is redefined.
-    f_x_new = [99,2,3]        
+    # `x_new` in global unaffected as `x_new_local` is redefined.
+    print(f"The initial ID of `x_new_local`: {id(x_new_local)}.")
+    x_new_local = [99,2,3]        
+    print(f"The ID of `x_new_local` is changed: {id(x_new_local)}.")
 
     # `x_newid` in global is MODIFIED as `x_newid` and `y` have same id.
-    y = f_x_newid
+    print(f"The initial ID of `x_newid_local`: {id(x_newid_local)}.")
+    y = x_newid_local
     y[0] = 99              
+    print(f"The ID of `y` is the same as `x_newid_local`: {id(y)}.")
 
     # `x_copy` in global is unaffected as `x_copy` has different id from `z`
-    z = f_x_copy.copy() 
+    print(f"The initial ID of `x_copy_local`: {id(x_copy_local)}.")
+    z = x_copy_local.copy() 
     z[0] = 99              
+    print(f"The ID of `z` is the different than `x_copy_local`: {id(z)}.")
 
 
 scalar = 1
