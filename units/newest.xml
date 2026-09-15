@@ -1,0 +1,1011 @@
+<response>
+<paging>
+<page>1</page>
+<total>5930</total>
+<page_size>20</page_size>
+<pages>297</pages>
+</paging>
+<loans type="list">
+<loan>
+<id>3029798</id>
+<name>Francis</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6055148</id>
+<template_id>1</template_id>
+</image>
+<activity>Poultry</activity>
+<sector>Agriculture</sector>
+<themes type="list">
+<theme>Rural Exclusion</theme>
+<theme>Crop Insurance</theme>
+</themes>
+<use>
+to construct a modern building for poultry project and to buy more chicks.
+</use>
+<location>
+<country_code>UG</country_code>
+<country>Uganda</country>
+<town>Kinoni</town>
+<geo>
+<level>town</level>
+<pairs>-0.352537 31.552699</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>685</partner_id>
+<posted_date>2025-08-12T18:20:43Z</posted_date>
+<planned_expiration_date>2025-09-16T18:20:43Z</planned_expiration_date>
+<loan_amount>1425</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>volunteer_pick</name>
+<id>1</id>
+</tag>
+<tag>
+<name>#Animals</name>
+<id>11</id>
+</tag>
+<tag>
+<name>#Repeat Borrower</name>
+<id>28</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3028200</id>
+<name>Leonor Edith</name>
+<description>
+<languages type="list">
+<language>es</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6049171</id>
+<template_id>1</template_id>
+</image>
+<activity>Retail</activity>
+<sector>Retail</sector>
+<use>
+to buy perfumes, creams, beauty treatments, makeup, pants, T-shirts, blouses, dresses, and other products.
+</use>
+<location>
+<country_code>EC</country_code>
+<country>Ecuador</country>
+<town>Portoviejo</town>
+<geo>
+<level>town</level>
+<pairs>-1.054723 -80.45249</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>137</partner_id>
+<posted_date>2025-08-12T18:10:13Z</posted_date>
+<planned_expiration_date>2025-09-16T18:10:12Z</planned_expiration_date>
+<loan_amount>1700</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+<tag>
+<name>#Repeat Borrower</name>
+<id>28</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3028199</id>
+<name>Delia María</name>
+<description>
+<languages type="list">
+<language>es</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6049170</id>
+<template_id>1</template_id>
+</image>
+<activity>Retail</activity>
+<sector>Retail</sector>
+<use>
+to buy groceries to prepare food as well as clothing, jewelry, perfumes, small miscellaneous goods, cosmetics, creams, etc.
+</use>
+<location>
+<country_code>EC</country_code>
+<country>Ecuador</country>
+<town>Portoviejo</town>
+<geo>
+<level>town</level>
+<pairs>-1.054723 -80.45249</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>137</partner_id>
+<posted_date>2025-08-12T17:50:17Z</posted_date>
+<planned_expiration_date>2025-09-16T17:50:17Z</planned_expiration_date>
+<loan_amount>1500</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+<tag>
+<name>#Repeat Borrower</name>
+<id>28</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3027066</id>
+<name>Nurullo</name>
+<description>
+<languages type="list">
+<language>ru</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6045612</id>
+<template_id>1</template_id>
+</image>
+<activity>Primary/secondary school costs</activity>
+<sector>Education</sector>
+<themes type="list">
+<theme>Higher Education</theme>
+</themes>
+<use>to buy school uniforms.</use>
+<location>
+<country_code>TJ</country_code>
+<country>Tajikistan</country>
+<town>J.Balkhi</town>
+<geo>
+<level>country</level>
+<pairs>39 71</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>63</partner_id>
+<posted_date>2025-08-12T17:50:08Z</posted_date>
+<planned_expiration_date>2025-09-16T17:50:08Z</planned_expiration_date>
+<loan_amount>650</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>0</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Parent</name>
+<id>16</id>
+</tag>
+<tag>
+<name>#Schooling</name>
+<id>18</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029427</id>
+<name>Fatoumata's Group</name>
+<description>
+<languages type="list">
+<language>fr</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6054029</id>
+<template_id>1</template_id>
+</image>
+<activity>Farming</activity>
+<sector>Agriculture</sector>
+<themes type="list">
+<theme>Underfunded Areas</theme>
+<theme>Rural Exclusion</theme>
+</themes>
+<use>
+to buy fertilizer and herbicides, while covering the costs of tillage, sowing and weeding for her farming activity.
+</use>
+<location>
+<country_code>ML</country_code>
+<country>Mali</country>
+<town>KASSARO</town>
+<geo>
+<level>town</level>
+<pairs>12.947945 -8.863846</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>438</partner_id>
+<posted_date>2025-08-12T17:20:25Z</posted_date>
+<planned_expiration_date>2025-09-16T17:20:25Z</planned_expiration_date>
+<loan_amount>4900</loan_amount>
+<borrower_count>12</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>0</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3028196</id>
+<name>Agustina</name>
+<description>
+<languages type="list">
+<language>es</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>50</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6049134</id>
+<template_id>1</template_id>
+</image>
+<activity>Solar Home Systems</activity>
+<sector>Clean Energy</sector>
+<themes type="list">
+<theme>Green</theme>
+<theme>Earth Day Campaign</theme>
+<theme>Solar</theme>
+<theme>Clean Energy</theme>
+<theme>Social Enterprise</theme>
+<theme>Social Enterprise</theme>
+<theme>Social Enterprise</theme>
+</themes>
+<use>
+to buy a solar lighting system that will improve her quality of life.
+</use>
+<location>
+<country_code>HN</country_code>
+<country>Honduras</country>
+<town>Yoro</town>
+<geo>
+<level>town</level>
+<pairs>15.136965 -87.127325</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>390</partner_id>
+<posted_date>2025-08-12T17:20:23Z</posted_date>
+<planned_expiration_date>2025-09-16T17:20:23Z</planned_expiration_date>
+<loan_amount>1150</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>2</lender_count>
+<bonus_credit_eligibility>0</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>volunteer_like</name>
+<id>2</id>
+</tag>
+<tag>
+<name>#Eco-friendly</name>
+<id>9</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029797</id>
+<name>Nazia</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6054302</id>
+<template_id>1</template_id>
+</image>
+<activity>Cloth & Dressmaking Supplies</activity>
+<sector>Retail</sector>
+<use>
+to buy a wide variety of cloth in different colors and designs to attract more customers and expand her business.
+</use>
+<location>
+<country_code>PK</country_code>
+<country>Pakistan</country>
+<town>Lahore</town>
+<geo>
+<level>town</level>
+<pairs>31.549722 74.343611</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>245</partner_id>
+<posted_date>2025-08-12T17:20:22Z</posted_date>
+<planned_expiration_date>2025-09-16T17:20:21Z</planned_expiration_date>
+<loan_amount>375</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+<tag>
+<name>#Parent</name>
+<id>16</id>
+</tag>
+<tag>
+<name>#Fabrics</name>
+<id>26</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029423</id>
+<name>Dodzi</name>
+<description>
+<languages type="list">
+<language>fr</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6053996</id>
+<template_id>1</template_id>
+</image>
+<activity>Food</activity>
+<sector>Food</sector>
+<use>
+to buy to 5 gourds of yam, 6 cans of oil, and 3 bags of rice.
+</use>
+<location>
+<country_code>TG</country_code>
+<country>Togo</country>
+<town>Aného</town>
+<geo>
+<level>town</level>
+<pairs>6.227277 1.581424</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>296</partner_id>
+<posted_date>2025-08-12T17:00:40Z</posted_date>
+<planned_expiration_date>2025-09-16T17:00:40Z</planned_expiration_date>
+<loan_amount>450</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029795</id>
+<name>Zainab</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6055318</id>
+<template_id>1</template_id>
+</image>
+<activity>Food Market</activity>
+<sector>Food</sector>
+<use>
+to purchase more cooking items like oil, palm oil, rice, etc. to increase her business.
+</use>
+<location>
+<country_code>SL</country_code>
+<country>Sierra Leone</country>
+<town>Moriba town Bo</town>
+<geo>
+<level>town</level>
+<pairs>7.955179 -11.740995</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>183</partner_id>
+<posted_date>2025-08-12T17:00:38Z</posted_date>
+<planned_expiration_date>2025-09-16T17:00:37Z</planned_expiration_date>
+<loan_amount>375</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+<tag>
+<name>#Parent</name>
+<id>16</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029415</id>
+<name>Adjovi</name>
+<description>
+<languages type="list">
+<language>fr</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6053976</id>
+<template_id>1</template_id>
+</image>
+<activity>Food</activity>
+<sector>Food</sector>
+<use>
+to buy 2 sacks of onions, 2 cans of oil, and two baskets of fish, etc.
+</use>
+<location>
+<country_code>TG</country_code>
+<country>Togo</country>
+<town>Aného</town>
+<geo>
+<level>town</level>
+<pairs>6.227277 1.581424</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>296</partner_id>
+<posted_date>2025-08-12T16:50:57Z</posted_date>
+<planned_expiration_date>2025-09-16T16:50:57Z</planned_expiration_date>
+<loan_amount>550</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029794</id>
+<name>Justus</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6055129</id>
+<template_id>1</template_id>
+</image>
+<activity>Retail</activity>
+<sector>Retail</sector>
+<themes type="list">
+<theme>Rural Exclusion</theme>
+<theme>Youth</theme>
+</themes>
+<use>
+to buy posho, bread, salt, sugar, tea leaves, etc., to boost his retail shop.
+</use>
+<location>
+<country_code>UG</country_code>
+<country>Uganda</country>
+<town>ISHONGORORO</town>
+<geo>
+<level>town</level>
+<pairs>0.008031 30.562447</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>685</partner_id>
+<posted_date>2025-08-12T16:42:03Z</posted_date>
+<planned_expiration_date>2025-09-16T16:42:03Z</planned_expiration_date>
+<loan_amount>1975</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Supporting Family</name>
+<id>31</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029410</id>
+<name>Deborah</name>
+<description>
+<languages type="list">
+<language>fr</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6053956</id>
+<template_id>1</template_id>
+</image>
+<activity>Fish Selling</activity>
+<sector>Food</sector>
+<use>to buy 10 tubs of fish.</use>
+<location>
+<country_code>TG</country_code>
+<country>Togo</country>
+<town>Aného</town>
+<geo>
+<level>town</level>
+<pairs>6.227277 1.581424</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>296</partner_id>
+<posted_date>2025-08-12T16:41:57Z</posted_date>
+<planned_expiration_date>2025-09-16T16:41:57Z</planned_expiration_date>
+<loan_amount>450</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029392</id>
+<name>Afiwa</name>
+<description>
+<languages type="list">
+<language>fr</language>
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6053931</id>
+<template_id>1</template_id>
+</image>
+<activity>Cereals</activity>
+<sector>Food</sector>
+<use>to buy 50 bags of corn.</use>
+<location>
+<country_code>TG</country_code>
+<country>Togo</country>
+<town>Aného</town>
+<geo>
+<level>town</level>
+<pairs>6.227277 1.581424</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>296</partner_id>
+<posted_date>2025-08-12T16:41:43Z</posted_date>
+<planned_expiration_date>2025-09-16T16:41:43Z</planned_expiration_date>
+<loan_amount>900</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+<tag>
+<name>#Vegan</name>
+<id>10</id>
+</tag>
+<tag>
+<name>#Parent</name>
+<id>16</id>
+</tag>
+<tag>
+<name>#Repeat Borrower</name>
+<id>28</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029793</id>
+<name>Sughran</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6054296</id>
+<template_id>1</template_id>
+</image>
+<activity>General Store</activity>
+<sector>Retail</sector>
+<use>
+to buy rice, sugar, grains, biscuits, oil and flour from the market at lower rates to make her stock available for her customers.
+</use>
+<location>
+<country_code>PK</country_code>
+<country>Pakistan</country>
+<town>Sheikhupura</town>
+<geo>
+<level>town</level>
+<pairs>31.716662 73.985024</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>245</partner_id>
+<posted_date>2025-08-12T16:41:42Z</posted_date>
+<planned_expiration_date>2025-09-16T16:41:42Z</planned_expiration_date>
+<loan_amount>300</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029792</id>
+<name>Martha</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6055302</id>
+<template_id>1</template_id>
+</image>
+<activity>Food Market</activity>
+<sector>Food</sector>
+<themes type="list">
+<theme>Conflict Zones</theme>
+<theme>Vulnerable Groups</theme>
+<theme>Rural Exclusion</theme>
+</themes>
+<use>
+to purchase more cassava, bonnie, pepper, charcoal, fufu and plantain to sell.
+</use>
+<location>
+<country_code>LR</country_code>
+<country>Liberia</country>
+<town>Airport</town>
+<geo>
+<level>town</level>
+<pairs>10.594366 -85.544151</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>182</partner_id>
+<posted_date>2025-08-12T16:41:40Z</posted_date>
+<planned_expiration_date>2025-09-16T16:41:40Z</planned_expiration_date>
+<loan_amount>700</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+<tag>
+<name>#Widowed</name>
+<id>12</id>
+</tag>
+<tag>
+<name>#Single Parent</name>
+<id>17</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029789</id>
+<name>Bashiru</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6055046</id>
+<template_id>1</template_id>
+</image>
+<activity>Retail</activity>
+<sector>Retail</sector>
+<themes type="list">
+<theme>Rural Exclusion</theme>
+<theme>Youth</theme>
+</themes>
+<use>
+to buy more drinks, bread, posho and other shop items.
+</use>
+<location>
+<country_code>UG</country_code>
+<country>Uganda</country>
+<town>Kyegegwa</town>
+<geo>
+<level>town</level>
+<pairs>0.481819 31.055009</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>685</partner_id>
+<posted_date>2025-08-12T16:33:22Z</posted_date>
+<planned_expiration_date>2025-09-16T16:33:22Z</planned_expiration_date>
+<loan_amount>575</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Parent</name>
+<id>16</id>
+</tag>
+<tag>
+<name>#Repeat Borrower</name>
+<id>28</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029791</id>
+<name>Midias</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6055082</id>
+<template_id>1</template_id>
+</image>
+<activity>Agriculture</activity>
+<sector>Agriculture</sector>
+<themes type="list">
+<theme>Rural Exclusion</theme>
+<theme>Crop Insurance</theme>
+</themes>
+<use>
+to buy mulches for her coffee farm to improve on her coffee harvests.
+</use>
+<location>
+<country_code>UG</country_code>
+<country>Uganda</country>
+<town>ISHONGORORO</town>
+<geo>
+<level>town</level>
+<pairs>0.008031 30.562447</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>685</partner_id>
+<posted_date>2025-08-12T16:33:22Z</posted_date>
+<planned_expiration_date>2025-09-16T16:33:22Z</planned_expiration_date>
+<loan_amount>425</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Vegan</name>
+<id>10</id>
+</tag>
+<tag>
+<name>#Parent</name>
+<id>16</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029784</id>
+<name>Rodgers</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>0</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6054015</id>
+<template_id>1</template_id>
+</image>
+<activity>Farming</activity>
+<sector>Agriculture</sector>
+<themes type="list">
+<theme>Rural Exclusion</theme>
+<theme>Crop Insurance</theme>
+</themes>
+<use>
+to buy manure so he can increase his banana harvest.
+</use>
+<location>
+<country_code>UG</country_code>
+<country>Uganda</country>
+<town>MWIZI</town>
+<geo>
+<level>town</level>
+<pairs>-0.796014 30.596976</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>685</partner_id>
+<posted_date>2025-08-12T16:33:21Z</posted_date>
+<planned_expiration_date>2025-09-16T16:33:21Z</planned_expiration_date>
+<loan_amount>425</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>0</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags/>
+</loan>
+<loan>
+<id>3029785</id>
+<name>Restetuta</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>25</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6054998</id>
+<template_id>1</template_id>
+</image>
+<activity>Agriculture</activity>
+<sector>Agriculture</sector>
+<themes type="list">
+<theme>Rural Exclusion</theme>
+<theme>Crop Insurance</theme>
+</themes>
+<use>to buy fertilizers for her garden.</use>
+<location>
+<country_code>UG</country_code>
+<country>Uganda</country>
+<town>Kyegegwa</town>
+<geo>
+<level>town</level>
+<pairs>0.481819 31.055009</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>685</partner_id>
+<posted_date>2025-08-12T16:33:21Z</posted_date>
+<planned_expiration_date>2025-09-16T16:33:21Z</planned_expiration_date>
+<loan_amount>300</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>1</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#First Loan</name>
+<id>5</id>
+</tag>
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+<tag>
+<name>#Vegan</name>
+<id>10</id>
+</tag>
+<tag>
+<name>#Single Parent</name>
+<id>17</id>
+</tag>
+</tags>
+</loan>
+<loan>
+<id>3029787</id>
+<name>Agnes</name>
+<description>
+<languages type="list">
+<language>en</language>
+</languages>
+</description>
+<status>fundraising</status>
+<funded_amount>50</funded_amount>
+<basket_amount>0</basket_amount>
+<image>
+<id>6055301</id>
+<template_id>1</template_id>
+</image>
+<activity>Food</activity>
+<sector>Food</sector>
+<use>
+to purchase more rice by the bag to increase her business.
+</use>
+<location>
+<country_code>SL</country_code>
+<country>Sierra Leone</country>
+<town>Small Bo</town>
+<geo>
+<level>country</level>
+<pairs>8.5 -11.5</pairs>
+<type>point</type>
+</geo>
+</location>
+<partner_id>183</partner_id>
+<posted_date>2025-08-12T16:33:16Z</posted_date>
+<planned_expiration_date>2025-09-16T16:33:16Z</planned_expiration_date>
+<loan_amount>200</loan_amount>
+<borrower_count>1</borrower_count>
+<lender_count>2</lender_count>
+<bonus_credit_eligibility>1</bonus_credit_eligibility>
+<tags type="list">
+<tag>
+<name>#Woman-Owned Business</name>
+<id>6</id>
+</tag>
+<tag>
+<name>#Parent</name>
+<id>16</id>
+</tag>
+</tags>
+</loan>
+</loans>
+</response>
