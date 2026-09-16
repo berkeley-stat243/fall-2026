@@ -70,6 +70,12 @@
           id: "1alt"
           name: "PS 1 Quiz Makeup/Retake"
           href: "https://calendar.app.google/agfHKekcmYXxEwDW8"
+    - date: "Fri Sep 18"
+      items:
+        - type: "Lab"
+          id: "3"
+          name: "Debugging"
+          href: labs/lab3-debugging.qmd
 
 - week: 5
   days:
