@@ -2642,9 +2642,9 @@ np.x = 33
 'x' in dir(np)
 ```
 
-As more motivation, consider this example. 
+### Scoping: motivation
 
-Suppose we have this code in a module named `test_scope.py`:
+Consider this example. Suppose we have this code in a module named `test_scope.py`:
 
 ```{bash}
 cat test_scope.py
@@ -2667,6 +2667,7 @@ rather than the scope of the module?
 
 Consider a case where instead of using the `test_scope.py` module we were using
 code from a package and that code has a variable called `magic_number` or  function called `transform`.
+The same reasoning applies.
 
 ### Lexical scoping and enclosing scopes
 
