@@ -3,8 +3,8 @@ title: Office hours
 ---
 
   - Chris ([Gateway Basement](https://edstem.org/us/courses/102684/discussion/8222211) or [Zoom (email in advance)])
-     - Monday 2-3 pm (B1013)
-     - Tuesday 5-6 pm (B1040C)
+     - Monday 2-3 pm (B110A)
+     - Tuesday 5-6 pm (B1040F)
      - By appointment
      - Feel free to drop by my office (Gateway 3144) if my door is open, though I won't always be able to help at the time.
   - Reece ([Gateway Basement](https://edstem.org/us/courses/102684/discussion/8222211)):
@@ -13,3 +13,6 @@ title: Office hours
      - Fridays during unused section time (B1026 and B1023)
 
 All "B" locations refer to Gateway Basement
+
+Mon 2-3 pm: 1110A (CDSS assigned space approved by Robbie)
+Tues 5-6 pm: 1040F (5) 
