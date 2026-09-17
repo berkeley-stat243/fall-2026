@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2025-09-19">
 
-<title>Office hours</title>
+<title>Lab 3: Debugging</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,26 +24,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-f9406879e630d085cd1424241c1f5148.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-67f4b2f198c787316d44448b3d063643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -73,7 +109,8 @@ ul.task-list li input[type="checkbox"] {
 <script async="" src="https://siteimproveanalytics.com/js/siteanalyze_6294756.js"></script>
 
 
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -85,7 +122,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./office_hours.html">Office Hours</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab0-setup.html">Labs</a></li><li class="breadcrumb-item"><a href="../labs/lab3-debugging.html">Lab 3 (Debugging)</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -99,12 +136,12 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      <img src="./assets/stat_bear.png" alt="UC Berkeley Statistics logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./assets/stat_bear.png" alt="UC Berkeley Statistics logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../assets/stat_bear.png" alt="UC Berkeley Statistics logo" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../assets/stat_bear.png" alt="UC Berkeley Statistics logo" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Stat 243</a> 
+      <a href="../">Stat 243</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/berkeley-stat243/fall-2026" title="" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
 </div>
@@ -119,25 +156,25 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Home</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="../syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./schedule.html" class="sidebar-item-text sidebar-link">
+  <a href="../schedule.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Schedule</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./office_hours.html" class="sidebar-item-text sidebar-link active">
+  <a href="../office_hours.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Office Hours</span></a>
   </div>
 </li>
@@ -152,73 +189,73 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit1-intro.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit1-intro.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit A1 (UNIX intro)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit2-bash.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit2-bash.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit A2 (Bash shell)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit3-goodPractices.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit3-goodPractices.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit A3 (Good practices)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit4-programming.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit4-programming.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit A4 (Programming)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit5-bigData.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit5-bigData.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit A5 (Databases)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit6-parallel.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit6-parallel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit A6 (Parallelization)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit7-dataTech.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit7-dataTech.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit A7 (Data technologies)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit8-numbers.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit8-numbers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit B8 (Precision)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit9-sim.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit9-sim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit B9 (Simulation)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit10-linalg.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit10-linalg.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit B10 (Linear Algebra)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit11-optim.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit11-optim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit B11 (Optimization)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./units/unit12-dl-optim.html" class="sidebar-item-text sidebar-link">
+  <a href="../units/unit12-dl-optim.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Unit B12 (Optimization for Deep Learning)</span></a>
   </div>
 </li>
@@ -235,25 +272,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab0-setup.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab0-setup.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 0 (Optional setup)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab1-submission.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab1-submission.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 1 (Quarto/Git/Submission)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab2-testing.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab2-testing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 2 (Exceptions/Testing)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./labs/lab3-debugging.html" class="sidebar-item-text sidebar-link">
+  <a href="../labs/lab3-debugging.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lab 3 (Debugging)</span></a>
   </div>
 </li>
@@ -270,13 +307,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ps/ps1.html" class="sidebar-item-text sidebar-link">
+  <a href="../ps/ps1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Problem Set 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ps/ps2.html" class="sidebar-item-text sidebar-link">
+  <a href="../ps/ps2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Problem Set 2</span></a>
   </div>
 </li>
@@ -293,43 +330,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./howtos/accessPython.html" class="sidebar-item-text sidebar-link">
+  <a href="../howtos/accessPython.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Accessing Python</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./howtos/accessUnixCommandLine.html" class="sidebar-item-text sidebar-link">
+  <a href="../howtos/accessUnixCommandLine.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Accessing the Unix Command Line</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./howtos/installGit.html" class="sidebar-item-text sidebar-link">
+  <a href="../howtos/installGit.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing Git</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./howtos/installQuarto.html" class="sidebar-item-text sidebar-link">
+  <a href="../howtos/installQuarto.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Installing and Using Quarto</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./howtos/vscode.html" class="sidebar-item-text sidebar-link">
+  <a href="../howtos/vscode.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Using VS Code</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./howtos/submitPS.html" class="sidebar-item-text sidebar-link">
+  <a href="../howtos/submitPS.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Problem Set Submissions</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./howtos/windowsAndLinux.html" class="sidebar-item-text sidebar-link">
+  <a href="../howtos/windowsAndLinux.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Windows 10 and the Ubuntu Subsystem</span></a>
   </div>
 </li>
@@ -337,7 +374,7 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./license.html" class="sidebar-item-text sidebar-link">
+  <a href="../license.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">License</span></a>
   </div>
 </li>
@@ -346,15 +383,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#debugging" id="toc-debugging" class="nav-link active" data-scroll-target="#debugging">Debugging</a></li>
+  <li><a href="#advanced-debugging" id="toc-advanced-debugging" class="nav-link" data-scroll-target="#advanced-debugging">Advanced debugging</a></li>
+  <li><a href="#integrated-gui-debugger-with-vs-code" id="toc-integrated-gui-debugger-with-vs-code" class="nav-link" data-scroll-target="#integrated-gui-debugger-with-vs-code">Integrated GUI debugger (with VS Code)</a></li>
+  <li><a href="#post-mortem-debugging" id="toc-post-mortem-debugging" class="nav-link" data-scroll-target="#post-mortem-debugging">Post-mortem debugging</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="lab3-debugging.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../labs/lab0-setup.html">Labs</a></li><li class="breadcrumb-item"><a href="../labs/lab3-debugging.html">Lab 3 (Debugging)</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Office hours</h1>
+<h1 class="title">Lab 3: Debugging</h1>
 </div>
 
 
@@ -362,6 +409,12 @@ ul.task-list li input[type="checkbox"] {
 <div class="quarto-title-meta">
 
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">September 19, 2025</p>
+    </div>
+  </div>
   
     
   </div>
@@ -371,23 +424,84 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<ul>
-<li>Chris (<a href="https://edstem.org/us/courses/102684/discussion/8222211">Gateway 3rd Floor Common Area</a> or [Zoom (email in advance)])
-<ul>
-<li>Monday 2-3 pm</li>
-<li>Tuesday 5-6 pm</li>
-<li>By appointment</li>
-<li>Feel free to drop by my office (Gateway 3144) if my door is open, though I won’t always be able to help at the time.</li>
-</ul></li>
-<li>Reece (<a href="https://edstem.org/us/courses/102684/discussion/8222211">Gateway 3rd Floor Common Area</a>):
-<ul>
-<li>Wednesday 1-2 pm</li>
-<li>Thursday 1-2 pm</li>
-<li>Fridays during unused section time (Gateway B1026 and B1023)</li>
-</ul></li>
-</ul>
+<section id="debugging" class="level2">
+<h2 class="anchored" data-anchor-id="debugging">Debugging</h2>
+<p>Today we’re going to explore the concept of debugging and some of the tooling that allows for debugging python code.</p>
+<p>It’s widely recognized and accepted that any sizeable code base will have a non-trivial number of bugs (flaws in the design of a system; term used as early as 1878 by Thomas Edison). The main goal of testing is to make sure the main expected cases are behaving correctly.</p>
+<p>Sometimes your code doesn’t do what you expect or want it to do, and it’s not clear just by reading through it, what the problem is.</p>
+<p>In interpreted languages (especially those with interactive shells like python) one can sometimes run the code piece by piece and inspect the state of the variables.</p>
+<p>If the code involves a loop or a function, a common practice is to judiciously place a few print statements that dump the state of some variables to the terminal so that you can spot the problem by tracing through it.</p>
+<p>When the code involves multiple functions and complex state, this strategy starts to break down. This is where you start rolling up your sleeves and invoking a debugger!</p>
+<p>Debugging can be a slow process, so you typically start a debugging session by deciding which line in your code you would like to start tracing the behavior from, and you place a breakpoint. Then you can have the debugger run the program up to that point and stop at it, allowing you to:</p>
+<p>1- inspect the current state of variables 2- step through the code line by line 3- step over or into functions as they are called 4- resume program execution</p>
+</section>
+<section id="advanced-debugging" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-debugging">Advanced debugging</h2>
+<p>Some bugs are really tricky to catch. Those are typically the bugs that happen very rarely, and in unclear circumstances. In statistical computing and data analysis settings these might be conditions that happen in iterative algorithms sometimes, but not very often, and can be hard to reproduce.</p>
+<p>One way to deal with these bugs is to start the debugging session with placing one or more <strong>conditional</strong> breakpoints. These are similar to regular breakpoints but are not going to cause the debugger to stop the execution of the program and hand you the controls unless a specific condition (that you specify) evaluates to true as the program is executing that particular line of code. You may use some conditions that are similar to what you would place in an assert statement (conditions that shouldn’t happen) or any other conditions that you think may be associated with the occurrence of the anomalous behavior your are debugging.</p>
+</section>
+<section id="integrated-gui-debugger-with-vs-code" class="level2">
+<h2 class="anchored" data-anchor-id="integrated-gui-debugger-with-vs-code">Integrated GUI debugger (with VS Code)</h2>
+<p>Today we will experiment with the visual debugging tools integrated with IDEs. We will do that in VS Code (unless you have another IDE with debugger integration). We will load a piece of code, go through it to understand what it does, then try to discover the problem with it and fix it. Our main function is <code>get_commits</code>, which makes use of the GitHub API to retrieve the recent commits to a repository. The fact that there are nested functions makes debugging less straightforward, but we will see how the bug could nevertheless be uncovered. Although the focus is on visual debuggers today, the ideas apply directly to command-line debuggers.</p>
+<div id="3e4206f0" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> warnings</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_login(item):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(item, <span class="bu">dict</span>):</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"`item` argument must be a dictionary"</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> item[<span class="st">'author'</span>][<span class="st">'login'</span>]</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> process(data):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(data, <span class="bu">dict</span>) <span class="kw">or</span> <span class="st">"commit"</span> <span class="kw">not</span> <span class="kw">in</span> data.keys() <span class="kw">or</span> <span class="op">\</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>       <span class="kw">not</span> <span class="bu">isinstance</span>(data[<span class="st">'commit'</span>], <span class="bu">dict</span>) <span class="kw">or</span> <span class="op">\</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>       <span class="st">"author"</span> <span class="kw">not</span> <span class="kw">in</span> data[<span class="st">'commit'</span>].keys() <span class="kw">or</span> <span class="op">\</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>       <span class="kw">not</span> <span class="bu">isinstance</span>(data[<span class="st">'commit'</span>][<span class="st">'author'</span>], <span class="bu">dict</span>) <span class="kw">or</span> <span class="op">\</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>       <span class="st">"name"</span> <span class="kw">not</span> <span class="kw">in</span> data[<span class="st">'commit'</span>][<span class="st">'author'</span>].keys() <span class="kw">or</span> <span class="op">\</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>       <span class="st">"date"</span> <span class="kw">not</span> <span class="kw">in</span> data[<span class="st">'commit'</span>][<span class="st">'author'</span>].keys():</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">RuntimeError</span>(<span class="ss">f"Unexpected json structure returned for commit: </span><span class="sc">{</span>data<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {<span class="st">"user"</span>: data[<span class="st">'commit'</span>][<span class="st">'author'</span>][<span class="st">'name'</span>],</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>            <span class="st">"date"</span>: data[<span class="st">'commit'</span>][<span class="st">'author'</span>][<span class="st">'date'</span>],</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"login"</span>: get_login(data)}</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_commits(org, repo, extended<span class="op">=</span><span class="va">False</span>):</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(org, <span class="bu">str</span>):</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"`org` argument must be a string"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(org, <span class="bu">str</span>):</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">TypeError</span>(<span class="ss">f"`repo` argument must be a string"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    main_url <span class="op">=</span> <span class="st">'https://api.github.com/repos'</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    perpage <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Search parameters</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    request <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>main_url<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>org<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>repo<span class="sc">}</span><span class="ss">/commits?per_page=</span><span class="sc">{</span>perpage<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        response <span class="op">=</span> requests.get(request)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> err:</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Problem making GitHub commits API request over the internet"</span>)</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">200</span>:  <span class="co"># Or `response.reason == 'OK':`</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        content <span class="op">=</span> response.content</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        <span class="cf">raise</span> <span class="pp">RuntimeError</span>(<span class="ss">f"Error in API request: </span><span class="sc">{</span>response<span class="sc">.</span>status_code<span class="sc">}</span><span class="ss">."</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.loads(content)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    data_cleaned <span class="op">=</span> [process(item) <span class="cf">for</span> item <span class="kw">in</span> data]</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    df <span class="op">=</span> pd.DataFrame(data_cleaned)</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="post-mortem-debugging" class="level2">
+<h2 class="anchored" data-anchor-id="post-mortem-debugging">Post-mortem debugging</h2>
+<p>A usual workflow to debug a piece of code that is crashing is to run it, investigate the exact location where the crash happens, add a breakpoint statement and rerun the code. Oftentimes, the bug is not deterministic or only happens at certain iterations inside a loop, so a conditional breakpoint will have to be engineered. Post-mortem debugging simplifies such a workflow, sometimes drastically, by running the program until it crashes and automatically placing the user into a debugging session immediately before the crash. To enter post-mortem debugging automatically, a script that exits abnormally can be called via <code>python -m pdb myscript.py</code>. Alternatively, one may import <code>pdb</code> and call <code>pdb.pm()</code> after a function call crashes.</p>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>This lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2025 semester.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
