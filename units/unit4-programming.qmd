@@ -2862,13 +2862,13 @@ def transform_constructor(baseline_data):
     return g
 
 transform = transform_constructor(obs)
-del obs # to demonstrate we no longer need obs
+del obs # To demonstrate we no longer need `obs`.
 
 gcm_data = np.random.normal(size = 10, loc = 0.2)
-transform(gcm_data)
+gcm_anoms = transform(gcm_data)
 ```
 
-So calling `transform(data)` does the transformation based on the parameters stored in the closure (the namespace of the enclosing scope) of the function `transform`.
+So calling `transform(gc_data)` does the transformation based on the parameters stored in the closure (the namespace of the enclosing scope) of the function `transform`.
 
 Note that it can be hard to inspect the memory use involved in the closure.
 
