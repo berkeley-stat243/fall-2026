@@ -2844,28 +2844,33 @@ can use `nonlocal` to assign into the enclosing scope, to which the
 function (or the multiple functions) have access. The nice thing about
 this compared to using a global variable is that the data in the closure
 is bound up with the function(s) and is protected from being changed by
-the user. 
+the user.
+
+In climate science one often wants to look at "anomalies", which are the variations in the data after shifting and scaling to a common mean and variance. Here's a closure that allows us to set up the values to transform by and then apply the transformation to any new data vector we want.
 
 ```{python}
+import numpy as np
+
 x = np.random.normal(size = 5)
-def scaler_constructor(data):
-    def g(param):
-        return param * data
+def transform_constructor(baseline_data):
+    mn = baseline_data.mean()
+    sd = baseline_data.std()
+    def g(data):
+        return (data - mn) / sd
     return g
 
-scaler = scaler_constructor(x)
+transform = transform_constructor(x)
 del x # to demonstrate we no longer need x
-scaler(3)
-scaler(6)
+
+data = np.random.normal(size = 10, loc = 0.2)
+transform(data)
 ```
 
-So calling `scaler(3)` multiplies 3 by the value of `data` stored in the closure (the namespace of the enclosing scope) of the function `scaler`.
+So calling `transform(data)` does the transformation based on the parameters stored in the closure (the namespace of the enclosing scope) of the function `transform`.
 
 Note that it can be hard to inspect the memory use involved in the closure.
 
-
-
-Here's a more realistic example. There are other ways you could do this, but this is slick:
+Here's a slightly more complicated example that also modifies the stored information using `nonlocal`. There are other ways you could do this, but this is slick:
 
 ```{python}
 #| eval: false
@@ -2959,7 +2964,7 @@ x
 
 Python provides syntax that helps you create decorators with less work (this is an example of the general idea of *syntactic sugar*).
 
-We can easily apply our decorator defined above to a function as follows. Now the function name refers to the wrapped version of the function.
+Here's how we can use that decorator syntax that Python provides to easily apply our decorator defined above to a function. When we do this the function name refers to the wrapped version of the function.
 
 ```{python}
 @verbosity_wrapper
@@ -2971,6 +2976,11 @@ y
 ```
 
 Our decorator doesn't do anything useful, but hopefully you can imagine that the idea of being able to have more control over the operation of functions could be useful. For example we could set up a timing wrapper so that when we run a function, we get a report on how long it took to run the function. Or using the idea of a closure, we could keep a running count of the number of times a function has been called.
+
+:::{.callout-tip title="Challenge"}
+Extend the `verbosity_wrapper` decorator to also count the number of times a function has been called and include that count in what is printed.
+:::
+
 
 One real-world example of using decorators is in setting up functions to run in parallel in `dask`, which we'll discuss in Unit 7. Another is the use of Numba to do [just-in-time (JIT) compilation](#just-in-time-jit-compilation) of Python code.
 
