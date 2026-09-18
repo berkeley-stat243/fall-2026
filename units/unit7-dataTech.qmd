@@ -643,6 +643,7 @@ a site but just want to automate a small number of queries.
 A more sophisticated way to do the download is to pass the request in a structured way with named input parameters. This request is easier to construct programmatically. 
 
 ```{python, http-get2}
+#| eval: false
 data = {"DataFilter": f"itemCode:{itemCode};year:{yrs}",
        "DataMartID": "FAO", 
        "Format": "csv", 
