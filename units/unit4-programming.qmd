@@ -942,8 +942,8 @@ serves to initialize the package.
 Let's create a basic package.
 
 ```{bash}
-#| eval: false
-mkdir mypkg
+#| eval: true
+mkdir -p mypkg
 
 cat << EOF > mypkg/__init__.py
 ## Make objects from mymod.py available as mypkg.foo rather than mypkg.mymod.foo.
