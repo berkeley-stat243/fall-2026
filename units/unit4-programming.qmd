@@ -2792,7 +2792,7 @@ value of that variable may well not be what
 you expect it to be. In general one wants to think carefully before using variables that
 are taken from outside the local scope, but in some cases it can be useful.
 
-Next we'll see some ways of accessing variables outside of the local scope.
+Next we'll see some ways of modifying variables outside of the local scope.
 
 ### Global and non-local variables
 
@@ -2989,7 +2989,7 @@ Extend the `verbosity_wrapper` decorator to also count the number of times a fun
 :::
 
 
-One real-world example of using decorators is in setting up functions to run in parallel in `dask`, which we'll discuss in Unit 7. Another is the use of Numba to do [just-in-time (JIT) compilation](#just-in-time-jit-compilation) of Python code.
+One real-world example of using decorators is in setting up functions to run in parallel in `dask`, which we'll discuss in Unit 6. Another is the use of Numba to do [just-in-time (JIT) compilation](#just-in-time-jit-compilation) of Python code.
 
 # 10. Memory and copies
 
