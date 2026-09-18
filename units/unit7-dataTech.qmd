@@ -561,6 +561,7 @@ so the example code also has some syntax for handling the unzipping and extracti
 file with the data.
 
 ```{python, http-byURL}
+#| eval: false
 import zipfile
 
 ## example URL:
