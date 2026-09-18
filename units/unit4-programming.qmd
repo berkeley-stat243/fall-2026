@@ -864,7 +864,7 @@ runnable code. To access the objects in the module, you need to import the modul
 Here we'll create `mymod.py` from the shell, but of course usually one would create it in an editor.
 
 ```{bash}
-#| eval: false
+#| eval: true
 cat << EOF > mymod.py
 x = 7
 range = 3
