@@ -983,7 +983,7 @@ for direct use by the user. Here we name the function to start with `_` followin
 the convention that this indicates a private/internal function.
 
 ```{bash}
-#| eval: false
+#| eval: true
 cat << EOF > mypkg/auxil.py
 
 def _helper(val):
@@ -1016,8 +1016,8 @@ A package can automatically import the subpackages via the main `__init__.py`
 or require the user to import them manually, e.g., `import mypkg.mysubpkg`.
 
 ```{bash}
-#| eval: false
-mkdir mypkg/mysubpkg
+#| eval: true
+mkdir -p mypkg/mysubpkg
 
 cat << EOF > mypkg/mysubpkg/__init__.py
 from .values import b, x
