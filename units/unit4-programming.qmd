@@ -2631,6 +2631,8 @@ gx = 99
 local.myfun(3)
 ```
 
+Note that "global" in the context of code in the module refers to the module, not to the Python interpreter session. 
+
 Strangely (for me being more used to R, where package namespaces are 'locked' such that objects can't be added), we can add an object to a namespace created from a module or package:
 
 ```{python}
@@ -2662,12 +2664,15 @@ test_scope.myfun(3)
 ```
 
 We see that Python uses `magic_number` and `transform()` from the module.
-What would be bad about using `magic_number` or `transform()` from the scope of the Python session
-rather than the scope of the module? 
+What would be bad about using `magic_number` or `transform()` from the scope of the Python session (i.e., where the function `myfun` is called from)
+rather than the scope of the module (i.e., where the function `myfun` is defined)? 
 
 Consider a case where instead of using the `test_scope.py` module we were using
-code from a package and that code has a variable called `magic_number` or  function called `transform`.
+code from a package and that package code has a variable called `magic_number` or  function called `transform`.
 The same reasoning applies.
+
+Also note that the module does not have access to the namespace of your Python session. I.e., the global/module scope
+for a module is the module itself and there is no access to the Python session namespace. The reason again is modularity; one doesn't want the state of the user session to modify how a module or package behaves. 
 
 ### Lexical scoping and enclosing scopes
 
@@ -2794,7 +2799,7 @@ Next we'll see some ways of accessing variables outside of the local scope.
 We can create and modify global variables and variables in the enclosing scope using
 `global` and `nonlocal` respectively. Note that *global* is in the context of the current module
 so this could be a variable in your current Python session if you're working with functions defined
-in that session or a global variable in a module or package.
+in that session or a global variable in the context of a module or package.
 
 ```{python}
 del x
@@ -2813,7 +2818,7 @@ print(x)
 
 ```{python}
 def outer_function():
-    x = 10  # Outer variable
+    x = 10  # Outer variable in enclosing scope of `inner_function`.
     def inner_function():
         nonlocal x
         x = 20  # Modify the outer variable.
@@ -2945,7 +2950,7 @@ eu_printer(1234.56)
 
 Now that we've seen function generators, it's straightforward to discuss *decorators*.
 
-A decorator is a wrapper around a function that extends the functionality of the function without actually modifying the function.
+A decorator is a wrapper around a function that extends the functionality of the function without actually modifying the function. 
 
 We can create a simple decorator "manually" like this:
 
@@ -2977,10 +2982,10 @@ y = myfun(7)
 y
 ```
 
-Our decorator doesn't do anything useful, but hopefully you can imagine that the idea of being able to have more control over the operation of functions could be useful. For example we could set up a timing wrapper so that when we run a function, we get a report on how long it took to run the function. Or using the idea of a closure, we could keep a running count of the number of times a function has been called.
+Our decorator doesn't do anything useful, but hopefully you can imagine that the idea of being able to have more control over the operation of functions could be useful. For example we could set up a timing wrapper so that when we run a function, we get a report on how long it took to run the function. Or using the idea of a closure with a nonlocal variable, we could keep a running count of the number of times a function has been called.
 
 :::{.callout-tip title="Challenge"}
-Extend the `verbosity_wrapper` decorator to also count the number of times a function has been called and include that count in what is printed.
+Extend the `verbosity_wrapper` decorator to also count the number of times a function has been called and include that count in what is printed. 
 :::
 
 
