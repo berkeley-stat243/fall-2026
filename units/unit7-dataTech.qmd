@@ -742,7 +742,7 @@ Here's some example code for the `PyGitHub` package. We'll repeat the exercise o
 programmatically creating a GitHub issue in my `paciorek/test` repository.
 
 ```{python}
-#| eval: true
+#| eval: false
 from github import Github
 
 with open(".github-access-token.txt", "r") as file:
