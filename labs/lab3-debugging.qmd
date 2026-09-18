@@ -1,6 +1,6 @@
 ---
 title: "Lab 3: Debugging"
-date: "2025-09-19"
+date: "2026-09-18"
 eval: false
 format:
   pdf:
@@ -104,4 +104,4 @@ A usual workflow to debug a piece of code that is crashing is to run it, investi
 
 ## Acknowledgements
 
-This lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2025 semester.
+This lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.
