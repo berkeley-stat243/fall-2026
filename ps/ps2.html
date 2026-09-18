@@ -428,7 +428,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>This problem uses the ideas and tools in Unit 2, Section 5 and Unit 4 Section 2 to explore approaches to reading and writing data from files and to consider file sizes in ASCII plain text vs.&nbsp;binary formats in light of the fact that numbers are (generally) stored as 8 bytes per number in binary formats.</p>
 <ol type="a">
 <li><p>Generate a numpy array (named <code>x</code>) of random numbers from a standard normal distribution with 20 columns and as many rows as needed so that the data take up about 16 MB in size. Then explain the sizes of the two files created below. In discussing the CSV text file, how many characters do you expect to be in the file (i.e., you should be able to estimate this reasonably accurately from first principles without using <code>wc</code> or any explicit program that counts characters)? Hint: what do we know about numbers drawn from a standard normal distribution?</p>
-<div id="90836da6" class="cell" data-execution_count="2">
+<div id="c7bb19f6" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x.<span class="bu">round</span>(decimals <span class="op">=</span> <span class="dv">12</span>)</span>
@@ -436,15 +436,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df.write_csv(<span class="st">'x.csv'</span>, include_header <span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(os.path.getsize(<span class="st">'x.csv'</span>)<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss"> MB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>30.777617 MB</code></pre>
+<pre><code>30.778214 MB</code></pre>
 </div>
 </div>
-<div id="4d87a41e" class="cell" data-execution_count="3">
+<div id="1d21ef9d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df.write_parquet(<span class="st">"x.parquet"</span>, compression <span class="op">=</span> <span class="st">"uncompressed"</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="bu">str</span>(os.path.getsize(<span class="st">'x.parquet'</span>)<span class="op">/</span><span class="fl">1e6</span>)<span class="sc">}</span><span class="ss"> MB"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>16.007335 MB</code></pre>
+<pre><code>16.006827 MB</code></pre>
 </div>
 </div>
 <p>Suppose we had rounded each number to four decimal places. Would using CSV have saved disk space relative to the Parquet (binary) file?</p></li>
@@ -479,7 +479,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <ol type="a">
 <li>Provide your complete solution, including example results, tests and results of running tests.</li>
-<li>Discuss your experience with using AI: briefly summarize your workflow in developing your solution and then briefly describe what you thought worked well or not so well and any areas where the AI tool didn’t do a good job (or did a particularly good job, perhaps suggesting something that didn’t occur to you).</li>
+<li>Discuss your experience with using AI: briefly summarize your workflow in developing your solution and then briefly describe what you thought worked well or not so well and any areas where the AI tool didn’t do a good job (or did a particularly good job, perhaps suggesting something that didn’t occur to you). Describe a few things that you learned about Python or useful Python packages from looking through the code that the tool generated.</li>
 </ol></li>
 <li><p><em>Memoization</em> of a function involves storing (caching) the values produced by a given input and then returning the cached result instead of rerunning the function when the same input is provided in the future. It can be a good approach to improve efficiency when a calculation is expensive (and presuming that sometimes/often the function will be run with inputs on which it has already been used). It’s particularly useful for for recursive calculations that involve solving a subproblem in order to solve a given (larger) problem. If you’ve already solved the subproblem you don’t need to solve it again. For example if one is working with graphs or networks, one often ends up writing recursive algorithms. (Suppose, e.g., you have a geneology giving relationships of parents and children. If you wanted to find all the descendants of a person, and you had already found all the descendants of one of the person’s children, you could make use of that without finding the descendants of the child again.)</p>
 <ol type="a">
