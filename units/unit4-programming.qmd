@@ -1000,7 +1000,7 @@ def myfun10(val):
 EOF
 ```
 
-```{python}
+```{python, helper}
 import importlib
 importlib.reload(mypkg)
 
