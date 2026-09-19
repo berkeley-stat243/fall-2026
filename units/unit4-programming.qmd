@@ -982,6 +982,9 @@ We could add another module that the main module uses but that is not intended
 for direct use by the user. Here we name the function to start with `_` following
 the convention that this indicates a private/internal function.
 
+I'm creating an entirely new package because it is hard to reload the package in
+the current Python session to reflect changes to the package files.
+
 ```{bash}
 #| eval: true
 cp -pr mypkg mypkg2
@@ -1019,7 +1022,7 @@ or require the user to import them manually, e.g., `import mypkg3.mysubpkg`.
 ```{bash}
 #| eval: true
 cp -pr mypkg mypkg3
-mkdir mypkg3/mysubpkg
+mkdir -p mypkg3/mysubpkg
 
 cat << EOF > mypkg3/mysubpkg/__init__.py
 from .values import b, x
