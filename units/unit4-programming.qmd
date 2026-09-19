@@ -1001,10 +1001,10 @@ EOF
 ```
 
 ```{python}
-del mypkg
-import mypkg 
+import importlib
+importlib.reload(mypkg)
+
 mypkg.myfun10(7.3)
-del mypkg
 ```
 
 
@@ -1017,7 +1017,7 @@ or require the user to import them manually, e.g., `import mypkg.mysubpkg`.
 
 ```{bash}
 #| eval: true
-mkdir -p mypkg/mysubpkg
+mkdir mypkg/mysubpkg
 
 cat << EOF > mypkg/mysubpkg/__init__.py
 from .values import b, x
