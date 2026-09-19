@@ -1046,9 +1046,7 @@ Note that a given `__init__.py` is invoked when importing anything nested within
 directory containing the `__init__.py`; in the case above the main/top-level `__init__.py` from `mypkg`
 is invoked.
 
-Also note that if we just imported `mypkg3`, then `mysubpkg` is not available as it is not imported in the main `__init__.py`.
-
-I'm not able to illustrate that here in the rendered document, but if you run the code below in
+Also note that if we just imported `mypkg3`, then `mysubpkg` is not available as it is not imported in the main `__init__.py`. I'm not able to illustrate that here in the rendered document, but if you run the code below in
 a new Python session, you'd find that `mypkg3.mysubpkg` is not available.
 
 ```{python}
