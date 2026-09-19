@@ -984,14 +984,16 @@ the convention that this indicates a private/internal function.
 
 ```{bash}
 #| eval: true
-cat << EOF > mypkg/auxil.py
+cp -pr mypkg mypkg2
+
+cat << EOF > mypkg2/auxil.py
 
 def _helper(val):
     return val + 10
 EOF
 
 
-cat << EOF >> mypkg/mymod.py
+cat << EOF >> mypkg2/mymod.py
 
 from .auxil import _helper
 
@@ -1001,10 +1003,9 @@ EOF
 ```
 
 ```{python, helper}
-import importlib
-importlib.reload(mypkg)
+import mypkg2
 
-mypkg.myfun10(7.3)
+mypkg2.myfun10(7.3)
 ```
 
 
@@ -1017,14 +1018,15 @@ or require the user to import them manually, e.g., `import mypkg.mysubpkg`.
 
 ```{bash}
 #| eval: true
-mkdir mypkg/mysubpkg
+cp -pr mypkg mypkg3
+mkdir mypkg3/mysubpkg
 
-cat << EOF > mypkg/mysubpkg/__init__.py
+cat << EOF > mypkg3/mysubpkg/__init__.py
 from .values import b, x
 print("Welcome to my package's subpackage.")
 EOF
 
-cat << EOF > mypkg/mysubpkg/values.py
+cat << EOF > mypkg3/mysubpkg/values.py
 x = 999
 b = 7
 _my_internal_var = 9
@@ -1032,31 +1034,31 @@ EOF
 ```
 
 ```{python}
-import mypkg.mysubpkg     ## Note that __init__.py is invoked
-mypkg.mysubpkg.b
-mypkg.x
+import mypkg3.mysubpkg     ## Note that __init__.py is invoked
+mypkg3.mysubpkg.b
+mypkg3.x
 ```
 
 Note that a given `__init__.py` is invoked when importing anything nested within the
 directory containing the `__init__.py`; in the case above the main/top-level `__init__.py` from `mypkg`
-is invoked, though for some reason the "Welcome to my package." output is not showing 
-up in this rendered document.
+is invoked.
 
-Also note that if we just imported `mypkg`, then `mysubpkg` is not available as it is not imported in the main `__init__.py`.
-For reasons unclear to me, I'm not able to illustrate that here in the rendered document, but if you run the code below in
-a new Python session, you'd find that `mypkg.mysubpkg` is not available.
+Also note that if we just imported `mypkg3`, then `mysubpkg` is not available as it is not imported in the main `__init__.py`.
+
+I'm not able to illustrate that here in the rendered document, but if you run the code below in
+a new Python session, you'd find that `mypkg3.mysubpkg` is not available.
 
 ```{python}
 #| eval: false
-import mypkg
-mypkg.mysubpkg.b
+import mypkg3
+mypkg3.mysubpkg.b
 ```
 
 If we wanted to automatically import the subpackage we would add
-`from . import mysubpkg` to `mypkg/__init__.py`, which uses [relative imports](https://docs.python.org/3/reference/import.html). The alternative "absolute" import would be `import mypkg.mysubpkg`, which finds `mypkg` based on `sys.path` (which specifies a set of paths of where to look).
+`from . import mysubpkg` to `mypkg3/__init__.py`, which uses [relative imports](https://docs.python.org/3/reference/import.html). The alternative "absolute" import would be `import mypkg.mysubpkg`, which finds `mypkg` based on `sys.path` (which specifies a set of paths of where to look).
 
 
-One would generally not import the items from `mysubpkg` directly into the `mypkg` namespace,
+One would generally not import the items from `mysubpkg` directly into the `mypkg3` namespace,
 but there may be cases one would do something like this. For example `numpy.linspace` is actually
 found in `numpy/core/function_base.py`, but we don't need to refer to `numpy.core.linspace`
 because of how `numpy` structures the `import` statements in `__init__.py`. In contrast, the linear algebra
