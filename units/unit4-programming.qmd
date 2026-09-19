@@ -1014,7 +1014,7 @@ mypkg2.myfun10(7.3)
 Packages can also have modules in nested directories, achieving additional modularity
 via *subpackages*.
 A package can automatically import the subpackages via the main `__init__.py`
-or require the user to import them manually, e.g., `import mypkg.mysubpkg`.
+or require the user to import them manually, e.g., `import mypkg3.mysubpkg`.
 
 ```{bash}
 #| eval: true
@@ -1055,7 +1055,7 @@ mypkg3.mysubpkg.b
 ```
 
 If we wanted to automatically import the subpackage we would add
-`from . import mysubpkg` to `mypkg3/__init__.py`, which uses [relative imports](https://docs.python.org/3/reference/import.html). The alternative "absolute" import would be `import mypkg.mysubpkg`, which finds `mypkg` based on `sys.path` (which specifies a set of paths of where to look).
+`from . import mysubpkg` to `mypkg3/__init__.py`, which uses [relative imports](https://docs.python.org/3/reference/import.html). The alternative "absolute" import would be `import mypkg3.mysubpkg`, which finds `mypkg3` based on `sys.path` (which specifies a set of paths of where to look).
 
 
 One would generally not import the items from `mysubpkg` directly into the `mypkg3` namespace,
@@ -2583,14 +2583,14 @@ We've added `x` twice to the namespace of the global scope. Are both available? 
 This is much better:
 
 ```{python}
-import mypkg
-mypkg.x
+import mypkg3
+mypkg3.x
 
-import mypkg.mysubpkg
-mypkg.mysubpkg.x
+import mypkg3.mysubpkg
+mypkg3.mysubpkg.x
 ```
 
-Side note: notice that `import mypkg` causes the name `mypkg` itself to be in the current (global) scope.
+Side note: notice that `import mypkg3` causes the name `mypkg3` itself to be in the current (global) scope.
 
 
 We can see the objects in a given namespace/scope using `dir()`.
