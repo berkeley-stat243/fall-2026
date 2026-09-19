@@ -1198,7 +1198,8 @@ Suppose we always want the age and displayname of owners of questions to
 be readily available. Once we have the view we can query it like a
 regular table.
 
-```{python}
+```{python, view}
+#| eval: false
 #| cache: true
 db.execute("create view questionsAugment as select \
                 questionid, questions.creationdate, score, viewcount, \
@@ -1216,6 +1217,7 @@ information from multiple tables in the (unnormalized) form you might
 have if you simply had one data frame in Python or R.
 
 ```{python}
+#| eval: false
 #| include: false
 db.execute("drop view if exists questionsAugment") # Drop view, so can create again in next step.
 ```
