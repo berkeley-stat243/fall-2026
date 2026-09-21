@@ -3378,8 +3378,8 @@ If you're really trying to optimize memory use, you may also consider:
     x = np.array([3,4,2,-2], dtype = "int16")
     x.itemsize
     ```
--   Reading data in from files in chunks rather than reading the entire dataset (more in Unit 7).
--   Exploring packages such as `arrow` for efficiently using memory, as discussed in [Unit 2](unit2-dataTech.html#reading-data-quickly-arrow-and-polars).
+-   Reading data in from files in chunks rather than reading the entire dataset, as seen earlier in this Unit.
+-   Exploring packages such as `arrow` for efficiently using memory, as discussed earlier in this Unit.
     
 
 ## Example
@@ -4408,24 +4408,37 @@ def myfun_jnp(x):
     return y
 ```
 
-### Lazy evaluation 
+### Lazy evaluation
 
-What's strange about this R code?
+What's strange about this Python `map()` code?
 
-```{r}
-f <- function(x) print("hi")
-system.time(mean(rnorm(1000000)))
-system.time(f(3))
-system.time(f(mean(rnorm(1000000)))) 
+```{python}
+import numpy as np
+x = np.random.normal(size = 10000000)
+
+import time
+
+t0 = time.time()
+tmp = map(abs, x) 
+t1 = time.time()
+result = list(tmp)
+t2 = time.time()
+
+print(f"Execution time for map(): {t1-t0} seconds.")
+print(f"Execution time for list(): {t2-t1} seconds.")
 ```
 
-It seems like the `rnorm(1000000)` is not actually executed when being passed to `f`. That is "lazy evaluation" in action - the code that is passed in as an argument is only evaluated when it is needed (and in this case it's not needed for the function to run).
+It seems like the `map` operation does not actually execute the absolute value operations. That is "lazy evaluation" in action - the code is only evaluated when needed.
 
-Lazy evaluation is not just an R thing. It also occurs in Tensorflow (particularly version 1),
-the Python Dask package, and in Spark. The basic idea is to delay executation until
+We actually saw this earlier when we first saw `map`, seeing that the result of `map()` is not the actual result but rather an iterator.
+
+I illustrated this with a numpy array in order to easily generate a large object to have the timing result be clear, but we would generally want to use numpy's built-in functionality and vectorization rather than using `map`.
+
+Lazy evaluation is a common strategy; it also occurs in Tensorflow (particularly version 1),
+the Python Dask package, JAX (see `jax.jit`), and in Spark. The basic idea is to delay executation until
 it's really needed, with the goal that if one does so, the system may be
 able to better optimize a series of multiple steps as a joint operation
 relative to executing them one by one.
 
-However, Python itself does not have lazy evaluation.
+
 
