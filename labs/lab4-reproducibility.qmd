@@ -53,7 +53,7 @@ find . -type f -exec grep "import " {} \; |
 
 ## Replicating the results in the paper
 
-The goal is now to try to replicate the paper, pondering about important questions along the way. Format your reasoning to the points below in a pdf file and submit it to Gradescope by the end of the lab.
+The goal is now to try to replicate the paper, pondering about important questions along the way. Format your reasoning to the points below in a pdf file and submit it to Pensive by the end of the lab.
 
 - With a proper environment set up, proceed to identify what is the minimal set of input files that is needed to run all the scripts. Are all input files used? Are there any files provided that you wouldn't expect to be input?
 
