@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -830,7 +830,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## relative perturbation in x much bigger than in b</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>norm2(delta_x) <span class="op">/</span> norm2(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(8.19847546803699)</code></pre>
+<pre><code>np.float64(8.198475468036893)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>norm2(delta_b) <span class="op">/</span> norm2(b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -839,7 +839,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ratio of relative perturbations</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(norm2(delta_x) <span class="op">/</span> norm2(x)) <span class="op">/</span> (norm2(delta_b) <span class="op">/</span> norm2(b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(2460.567236431514)</code></pre>
+<pre><code>np.float64(2460.567236431485)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ratio of largest and smallest magnitude eigenvalues</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">## confusingly evals[2] is the smallest, not evals[3]</span></span>
@@ -1034,13 +1034,13 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> sp.linalg.solve_triangular(L, b, lower<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.0815885066986084</code></pre>
+<pre><code>0.05618596076965332</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> np.linalg.inv(L) <span class="op">@</span> b</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>5.6819775104522705</code></pre>
+<pre><code>3.875544786453247</code></pre>
 </div>
 </div>
 <p>That assumes you have <span class="math inline">\(L\)</span>, but we’ll see in a bit that even when one accounts for the creation of <span class="math inline">\(L\)</span>, you don’t want to invert matrices in order to solve systems of equations.</p>
@@ -1136,8 +1136,8 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> np.linalg.eig(C)</span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>np.sort(e[<span class="dv">0</span>])[::<span class="op">-</span><span class="dv">1</span>][<span class="dv">96</span>:<span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([-3.58440747e-16+7.57451730e-17j, -3.58440747e-16-7.57451730e-17j,
-       -4.98458053e-16+1.77854836e-16j, -4.98458053e-16-1.77854836e-16j])</code></pre>
+<pre><code>array([-4.62480729e-16-7.93853813e-17j, -6.31400382e-16+1.61177775e-16j,
+       -6.31400382e-16-1.61177775e-16j, -1.34873832e-15+0.00000000e+00j])</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> np.linalg.cholesky(C)</span>
@@ -1150,7 +1150,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> np.<span class="bu">abs</span>(e[<span class="dv">0</span>])</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">max</span>(vals)<span class="op">/</span>np.<span class="bu">min</span>(vals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(5.597477620755469e+17)</code></pre>
+<pre><code>np.float64(3.0466359359854406e+17)</code></pre>
 </div>
 </div>
 <p>I don’t see a way to use pivoting with the Cholesky in Python, but in R, one can do <code>chol(C, pivot = TRUE)</code>.</p>

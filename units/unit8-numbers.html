@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -1352,16 +1352,16 @@ f(y^{*}|y,x) &amp; = &amp; \int f(y^{*}|y,x,\theta)\pi(\theta|y,x)d\theta\\
 <span id="cb271-3"><a href="#cb271-3" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> np.exp(<span class="op">-</span>(dists<span class="op">/</span><span class="dv">10</span>)<span class="op">**</span><span class="dv">2</span>)     <span class="co"># This is a p.d. matrix (mathematically).</span></span>
 <span id="cb271-4"><a href="#cb271-4" aria-hidden="true" tabindex="-1"></a>scipy.linalg.eigvals(corr_matrix)[<span class="dv">80</span>:<span class="dv">99</span>]  <span class="co"># But not numerically!</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([-2.10940172e-16+9.49535005e-17j, -2.10940172e-16-9.49535005e-17j,
-       -1.77588414e-16+1.30159787e-16j, -1.77588414e-16-1.30159787e-16j,
-       -2.09305160e-16+0.00000000e+00j,  2.23868953e-16+3.21636714e-17j,
-        2.23868953e-16-3.21636714e-17j,  1.98271728e-16+9.08169093e-17j,
-        1.98271728e-16-9.08169093e-17j, -1.23772161e-16+6.06460242e-17j,
-       -1.23772161e-16-6.06460242e-17j, -1.49116603e-16+0.00000000e+00j,
-       -2.48119681e-18+1.51188614e-16j, -2.48119681e-18-1.51188614e-16j,
-       -4.08134828e-17+6.79676244e-17j, -4.08134828e-17-6.79676244e-17j,
-        1.27902399e-16+2.34692846e-17j,  1.27902399e-16-2.34692846e-17j,
-        5.23485748e-17+4.08641515e-17j])</code></pre>
+<pre><code>array([ 1.56845385e-16+1.48146592e-16j,  1.56845385e-16-1.48146592e-16j,
+       -2.70133580e-16+0.00000000e+00j,  1.77833278e-16+8.22012770e-17j,
+        1.77833278e-16-8.22012770e-17j, -1.78724021e-16+1.02426655e-16j,
+       -1.78724021e-16-1.02426655e-16j, -1.33152279e-16+1.17119370e-16j,
+       -1.33152279e-16-1.17119370e-16j, -2.35938540e-16+8.81764244e-18j,
+       -2.35938540e-16-8.81764244e-18j, -1.19526524e-16+0.00000000e+00j,
+        3.98626041e-17+1.31265557e-16j,  3.98626041e-17-1.31265557e-16j,
+        1.56197850e-16+1.44042140e-17j,  1.56197850e-16-1.44042140e-17j,
+       -6.07946261e-17+0.00000000e+00j,  5.74566571e-17+2.34260848e-17j,
+        5.74566571e-17-2.34260848e-17j])</code></pre>
 </div>
 </div>
 </section>

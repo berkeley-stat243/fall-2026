@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -895,7 +895,7 @@ window.Quarto = {
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.imshow(y.reshape((nGrid, nGrid)), extent<span class="op">=</span>[<span class="op">-</span>const, const, <span class="op">-</span>const, const], origin<span class="op">=</span><span class="st">'lower'</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;matplotlib.colorbar.Colorbar object at 0x7d63564f7cb0&gt;</code></pre>
+<pre><code>&lt;matplotlib.colorbar.Colorbar object at 0x7e412ed9bcb0&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Rastrigin Function'</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
@@ -1100,18 +1100,18 @@ window.Quarto = {
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>deriv1(jnp.array([beta0_init, beta1_init, beta2_init]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Array([-9.1552734e-04, -8.9168549e-04,  4.7961845e+00], dtype=float32)</code></pre>
+<pre><code>Array([-9.7656250e-04, -9.6797943e-04,  4.7962093e+00], dtype=float32)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hess <span class="op">=</span> deriv2(jnp.array([beta0_init, beta1_init, beta2_init]))</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>hess</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Array([[128.      , 130.1952  ,  -7.139159],
-       [130.1952  , 136.91656 , -14.690589],
-       [ -7.139159, -14.69059 ,  12.677566]], dtype=float32)</code></pre>
+       [130.1952  , 136.91656 , -14.690591],
+       [ -7.139159, -14.69059 ,  12.677565]], dtype=float32)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>np.linalg.eig(hess)[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([ 2.6369040e+02, -2.5785028e-03,  1.3906311e+01], dtype=float32)</code></pre>
+<pre><code>array([ 2.6369040e+02, -2.5791468e-03,  1.3906310e+01], dtype=float32)</code></pre>
 </div>
 </div>
 <p>The Hessian is not positive definite. We could try tricks such as adding to the diagonal of the Hessian or using the pseudo-inverse (i.e., setting all negative eigenvalues in the inverse to zero).</p>
@@ -1149,12 +1149,12 @@ window.Quarto = {
 <pre><code>38.304234
 30.817396
 30.443848
-30.442596
-30.442549
-30.442583
-30.442507
-30.44248
-30.442472</code></pre>
+30.442484
+30.442472
+30.442457
+30.442398
+30.442455
+30.44248</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="op">=</span> xvals[t,:]</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
