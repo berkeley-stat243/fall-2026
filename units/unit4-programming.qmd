@@ -864,7 +864,7 @@ runnable code. To access the objects in the module, you need to import the modul
 Here we'll create `mymod.py` from the shell, but of course usually one would create it in an editor.
 
 ```{bash}
-#| eval: false
+#| eval: true
 cat << EOF > mymod.py
 x = 7
 range = 3
@@ -942,8 +942,8 @@ serves to initialize the package.
 Let's create a basic package.
 
 ```{bash}
-#| eval: false
-mkdir mypkg
+#| eval: true
+mkdir -p mypkg
 
 cat << EOF > mypkg/__init__.py
 ## Make objects from mymod.py available as mypkg.foo rather than mypkg.mymod.foo.
@@ -982,16 +982,21 @@ We could add another module that the main module uses but that is not intended
 for direct use by the user. Here we name the function to start with `_` following
 the convention that this indicates a private/internal function.
 
+I'm creating an entirely new package because it is hard to reload the package in
+the current Python session to reflect changes to the package files.
+
 ```{bash}
-#| eval: false
-cat << EOF > mypkg/auxil.py
+#| eval: true
+cp -pr mypkg mypkg2
+
+cat << EOF > mypkg2/auxil.py
 
 def _helper(val):
     return val + 10
 EOF
 
 
-cat << EOF >> mypkg/mymod.py
+cat << EOF >> mypkg2/mymod.py
 
 from .auxil import _helper
 
@@ -1000,11 +1005,10 @@ def myfun10(val):
 EOF
 ```
 
-```{python}
-del mypkg
-import mypkg 
-mypkg.myfun10(7.3)
-del mypkg
+```{python, helper}
+import mypkg2
+
+mypkg2.myfun10(7.3)
 ```
 
 
@@ -1013,18 +1017,19 @@ del mypkg
 Packages can also have modules in nested directories, achieving additional modularity
 via *subpackages*.
 A package can automatically import the subpackages via the main `__init__.py`
-or require the user to import them manually, e.g., `import mypkg.mysubpkg`.
+or require the user to import them manually, e.g., `import mypkg3.mysubpkg`.
 
 ```{bash}
-#| eval: false
-mkdir mypkg/mysubpkg
+#| eval: true
+cp -pr mypkg mypkg3
+mkdir -p mypkg3/mysubpkg
 
-cat << EOF > mypkg/mysubpkg/__init__.py
+cat << EOF > mypkg3/mysubpkg/__init__.py
 from .values import b, x
 print("Welcome to my package's subpackage.")
 EOF
 
-cat << EOF > mypkg/mysubpkg/values.py
+cat << EOF > mypkg3/mysubpkg/values.py
 x = 999
 b = 7
 _my_internal_var = 9
@@ -1032,31 +1037,29 @@ EOF
 ```
 
 ```{python}
-import mypkg.mysubpkg     ## Note that __init__.py is invoked
-mypkg.mysubpkg.b
-mypkg.x
+import mypkg3.mysubpkg     ## Note that __init__.py is invoked
+mypkg3.mysubpkg.b
+mypkg3.x
 ```
 
 Note that a given `__init__.py` is invoked when importing anything nested within the
 directory containing the `__init__.py`; in the case above the main/top-level `__init__.py` from `mypkg`
-is invoked, though for some reason the "Welcome to my package." output is not showing 
-up in this rendered document.
+is invoked.
 
-Also note that if we just imported `mypkg`, then `mysubpkg` is not available as it is not imported in the main `__init__.py`.
-For reasons unclear to me, I'm not able to illustrate that here in the rendered document, but if you run the code below in
-a new Python session, you'd find that `mypkg.mysubpkg` is not available.
+Also note that if we just imported `mypkg3`, then `mysubpkg` is not available as it is not imported in the main `__init__.py`. I'm not able to illustrate that here in the rendered document, but if you run the code below in
+a new Python session, you'd find that `mypkg3.mysubpkg` is not available.
 
 ```{python}
 #| eval: false
-import mypkg
-mypkg.mysubpkg.b
+import mypkg3
+mypkg3.mysubpkg.b
 ```
 
 If we wanted to automatically import the subpackage we would add
-`from . import mysubpkg` to `mypkg/__init__.py`, which uses [relative imports](https://docs.python.org/3/reference/import.html). The alternative "absolute" import would be `import mypkg.mysubpkg`, which finds `mypkg` based on `sys.path` (which specifies a set of paths of where to look).
+`from . import mysubpkg` to `mypkg3/__init__.py`, which uses [relative imports](https://docs.python.org/3/reference/import.html). The alternative "absolute" import would be `import mypkg3.mysubpkg`, which finds `mypkg3` based on `sys.path` (which specifies a set of paths of where to look).
 
 
-One would generally not import the items from `mysubpkg` directly into the `mypkg` namespace,
+One would generally not import the items from `mysubpkg` directly into the `mypkg3` namespace,
 but there may be cases one would do something like this. For example `numpy.linspace` is actually
 found in `numpy/core/function_base.py`, but we don't need to refer to `numpy.core.linspace`
 because of how `numpy` structures the `import` statements in `__init__.py`. In contrast, the linear algebra
@@ -2581,14 +2584,14 @@ We've added `x` twice to the namespace of the global scope. Are both available? 
 This is much better:
 
 ```{python}
-import mypkg
-mypkg.x
+import mypkg3
+mypkg3.x
 
-import mypkg.mysubpkg
-mypkg.mysubpkg.x
+import mypkg3.mysubpkg
+mypkg3.mysubpkg.x
 ```
 
-Side note: notice that `import mypkg` causes the name `mypkg` itself to be in the current (global) scope.
+Side note: notice that `import mypkg3` causes the name `mypkg3` itself to be in the current (global) scope.
 
 
 We can see the objects in a given namespace/scope using `dir()`.
@@ -3375,8 +3378,8 @@ If you're really trying to optimize memory use, you may also consider:
     x = np.array([3,4,2,-2], dtype = "int16")
     x.itemsize
     ```
--   Reading data in from files in chunks rather than reading the entire dataset (more in Unit 7).
--   Exploring packages such as `arrow` for efficiently using memory, as discussed in [Unit 2](unit2-dataTech.html#reading-data-quickly-arrow-and-polars).
+-   Reading data in from files in chunks rather than reading the entire dataset, as seen earlier in this Unit.
+-   Exploring packages such as `arrow` for efficiently using memory, as discussed earlier in this Unit.
     
 
 ## Example
@@ -4405,24 +4408,37 @@ def myfun_jnp(x):
     return y
 ```
 
-### Lazy evaluation 
+### Lazy evaluation
 
-What's strange about this R code?
+What's strange about this Python `map()` code?
 
-```{r}
-f <- function(x) print("hi")
-system.time(mean(rnorm(1000000)))
-system.time(f(3))
-system.time(f(mean(rnorm(1000000)))) 
+```{python}
+import numpy as np
+x = np.random.normal(size = 10000000)
+
+import time
+
+t0 = time.time()
+tmp = map(abs, x) 
+t1 = time.time()
+result = list(tmp)
+t2 = time.time()
+
+print(f"Execution time for map(): {t1-t0} seconds.")
+print(f"Execution time for list(): {t2-t1} seconds.")
 ```
 
-It seems like the `rnorm(1000000)` is not actually executed when being passed to `f`. That is "lazy evaluation" in action - the code that is passed in as an argument is only evaluated when it is needed (and in this case it's not needed for the function to run).
+It seems like the `map` operation does not actually execute the absolute value operations. That is "lazy evaluation" in action - the code is only evaluated when needed.
 
-Lazy evaluation is not just an R thing. It also occurs in Tensorflow (particularly version 1),
-the Python Dask package, and in Spark. The basic idea is to delay executation until
+We actually saw this earlier when we first saw `map`, seeing that the result of `map()` is not the actual result but rather an iterator.
+
+I illustrated this with a numpy array in order to easily generate a large object to have the timing result be clear, but we would generally want to use numpy's built-in functionality and vectorization rather than using `map`.
+
+Lazy evaluation is a common strategy; it also occurs in Tensorflow (particularly version 1),
+the Python Dask package, JAX (see `jax.jit`), and in Spark. The basic idea is to delay executation until
 it's really needed, with the goal that if one does so, the system may be
 able to better optimize a series of multiple steps as a joint operation
 relative to executing them one by one.
 
-However, Python itself does not have lazy evaluation.
+
 
