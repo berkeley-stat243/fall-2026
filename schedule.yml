@@ -85,6 +85,10 @@
           id: "2"
           name: "Problem Set 2"
           href: "ps/ps2.html"
+        - type: "Lab"
+          id: "4"
+          name: "Reproducibility"
+          href: labs/lab4-reproducibility.qmd
         - type: "Quiz"
           id: "2"
           name: "PS 2 Quiz"
