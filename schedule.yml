@@ -93,3 +93,38 @@
           id: "2"
           name: "PS 2 Quiz"
           href: "syllabus.html#problem-set-quizzes"
+- week: 6
+  days:
+    - date: "Mon Sep 28 - Wed Sep 30 (10 am)"
+      items:
+        - type: "Quiz"
+          id: "2alt"
+          name: "PS 2 Quiz Makeup/Retake"
+          href: "https://calendar.app.google/7E2emCiE7Zt9xTSk9"
+    - date: "Fri Oct 2"
+      items:
+        - type: "Lab"
+          id: "5"
+          name: "Linux Cluster/Slurm"
+- week: 7
+  days:
+    - date: "Wed Oct 7"
+      items:
+        - type: "Problem_Set"
+          id: "3"
+          name: "Problem Set 3"
+          href: "ps/ps3.html"
+    - date: "Fri Sep 18"
+      items:
+        - type: "Lab"
+          id: "6"
+          name: "Exam Review"
+        - type: "Quiz"
+          id: "3"
+          name: "PS 3 Quiz"
+          href: "syllabus.html#problem-set-quizzes"
+
+
+
+
+
