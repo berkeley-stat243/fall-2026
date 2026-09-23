@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -697,7 +697,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>myfun(<span class="st">'missing_file.txt'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[Errno 2] No such file or directory: 'missing_file.txt'
-Check that the file `missing_file.txt` can be found in the current path: `/accounts/class/s243/rdhuff/fall-2026/units`.</code></pre>
+Check that the file `missing_file.txt` can be found in the current path: `/accounts/vis/paciorek/teaching/243fall26/fall-2026/units`.</code></pre>
 </div>
 </div>
 <p>Finally let’s see how we can intercept an error but then “re-raise” the error rather than continuing execution. This isn’t printing out nicely in the rendered document if I actually run this code during rendering, so I’ll just insert some of the output that should be produced.</p>
@@ -789,14 +789,14 @@ The event loop scope for asynchronous fixtures will default to the fixture cachi
   warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
 ============================= test session starts ==============================
 platform linux -- Python 3.13.2, pytest-8.3.5, pluggy-1.6.0
-rootdir: /accounts/class/s243/rdhuff/fall-2026/units
+rootdir: /accounts/vis/paciorek/teaching/243fall26/fall-2026/units
 plugins: asyncio-1.1.0, cov-6.2.1, anyio-4.8.0
 asyncio: mode=Mode.STRICT, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
 collected 0 items / 1 error
 
 ==================================== ERRORS ====================================
 ________________________ ERROR collecting test_dummy.py ________________________
-ImportError while importing test module '/accounts/class/s243/rdhuff/fall-2026/units/test_dummy.py'.
+ImportError while importing test module '/accounts/vis/paciorek/teaching/243fall26/fall-2026/units/test_dummy.py'.
 Hint: make sure your test modules/packages have valid Python names.
 Traceback:
 /system/linux/miniforge-3.13/lib/python3.13/importlib/__init__.py:88: in import_module
@@ -807,7 +807,7 @@ E   ModuleNotFoundError: No module named 'dummy'
 =========================== short test summary info ============================
 ERROR test_dummy.py
 !!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
-=============================== 1 error in 0.40s ===============================</code></pre>
+=============================== 1 error in 0.47s ===============================</code></pre>
 </div>
 </div>
 <p>You can run <code>pytest</code> on individual files or on directories or simply in the current working directory. In the latter cases, it will look for test files (those with the letters “test” in the file name) in the directory and all subdirectories.</p>

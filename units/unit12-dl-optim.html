@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -728,7 +728,7 @@ x_{t+1}=x_{t} - \alpha_{t} \frac{v_{t+1}}{\sqrt{S_{t+1}}+\epsilon}
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pred300 <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod300)</span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(pred300)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] NaN NaN</code></pre>
+<pre><code>[1] -7.024817e+89  7.638885e+89</code></pre>
 </div>
 </div>
 <p><a href="https://arxiv.org/pdf/1611.03530">This well-known ArXiv paper</a> shows that deep neural nets (in particular ConvNets for image processing) can perfectly fit noise in observations, resulting in zero train error and large test error. This indicates that nothing in the model architecture is providing regularization. And while one can introduce regularization explicitly (such as through weight decay and dropout), in many uses regularization is not used and the authors show the explicit regularization helps a bit but that unregularized solutions do nearly as well. So how can deep neural networks avoid overfitting? The authors say that it is SGD itself that results in a regularized solution that generalizes well, without requiring explicit regularization.</p>

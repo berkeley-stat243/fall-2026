@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -770,7 +770,7 @@ for line in sys.stdin:
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>data_from_csv <span class="op">=</span> pd.read_csv(os.path.join(<span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.csv'</span>))</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time.time() <span class="op">-</span> t0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1.9571144580841064</code></pre>
+<pre><code>1.3651432991027832</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -783,7 +783,7 @@ for line in sys.stdin:
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.parquet'</span>))</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time.time() <span class="op">-</span> t0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.2525451183319092</code></pre>
+<pre><code>0.18895816802978516</code></pre>
 </div>
 </div>
 <p>The CSV file is 51 MB while the Parquet file is 8 MB.</p>
@@ -791,8 +791,8 @@ for line in sys.stdin:
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> ../data/airline.csv</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> ../data/airline.parquet</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>-rw-r--r-- 1 rdhuff s243 51480244 Sep 22 08:46 ../data/airline.csv
--rw-r--r-- 1 rdhuff s243 8132907 Sep 22 09:07 ../data/airline.parquet</code></pre>
+<pre><code>-rw-r--r-- 1 paciorek scfstaff 51480244 Aug 11  2025 ../data/airline.csv
+-rw-r--r-- 1 paciorek scfstaff 8132907 Sep  2 09:54 ../data/airline.parquet</code></pre>
 </div>
 </div>
 </section>

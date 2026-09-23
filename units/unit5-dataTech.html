@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Chris Paciorek">
+<meta name="dcterms.date" content="2025-08-26">
+
+<title>Data technologies and formats</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://siteimproveanalytics.com/js/siteanalyze_6294756.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../assets/styles.css">
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
+  <li><a href="#data-storage-and-file-formats-on-a-computer" id="toc-data-storage-and-file-formats-on-a-computer" class="nav-link" data-scroll-target="#data-storage-and-file-formats-on-a-computer">1. Data storage and file formats on a computer</a>
+  <ul class="collapse">
+  <li><a href="#text-and-binary-files" id="toc-text-and-binary-files" class="nav-link" data-scroll-target="#text-and-binary-files">Text and binary files</a></li>
+  <li><a href="#common-file-types" id="toc-common-file-types" class="nav-link" data-scroll-target="#common-file-types">Common file types</a></li>
+  <li><a href="#csv-vs.-specialized-formats-such-as-parquet" id="toc-csv-vs.-specialized-formats-such-as-parquet" class="nav-link" data-scroll-target="#csv-vs.-specialized-formats-such-as-parquet">CSV vs.&nbsp;specialized formats such as Parquet</a></li>
+  </ul></li>
+  <li><a href="#working-with-information-on-the-web" id="toc-working-with-information-on-the-web" class="nav-link" data-scroll-target="#working-with-information-on-the-web">2. Working with information on the web</a>
+  <ul class="collapse">
+  <li><a href="#reading-html" id="toc-reading-html" class="nav-link" data-scroll-target="#reading-html">Reading HTML</a></li>
+  <li><a href="#xml-json-and-yaml" id="toc-xml-json-and-yaml" class="nav-link" data-scroll-target="#xml-json-and-yaml">XML, JSON, and YAML</a>
+  <ul class="collapse">
+  <li><a href="#xml" id="toc-xml" class="nav-link" data-scroll-target="#xml">XML</a></li>
+  <li><a href="#json" id="toc-json" class="nav-link" data-scroll-target="#json">JSON</a></li>
+  <li><a href="#yaml" id="toc-yaml" class="nav-link" data-scroll-target="#yaml">YAML</a></li>
+  </ul></li>
+  <li><a href="#web-apis-and-webscraping" id="toc-web-apis-and-webscraping" class="nav-link" data-scroll-target="#web-apis-and-webscraping">Web APIs and webscraping</a>
+  <ul class="collapse">
+  <li><a href="#what-is-http" id="toc-what-is-http" class="nav-link" data-scroll-target="#what-is-http">What is HTTP?</a></li>
+  <li><a href="#apis-rest-based-web-services" id="toc-apis-rest-based-web-services" class="nav-link" data-scroll-target="#apis-rest-based-web-services">APIs: REST-based web services</a></li>
+  <li><a href="#http-requests-by-deconstructing-an-undocumented-api" id="toc-http-requests-by-deconstructing-an-undocumented-api" class="nav-link" data-scroll-target="#http-requests-by-deconstructing-an-undocumented-api">HTTP requests by deconstructing an (undocumented) API</a></li>
+  <li><a href="#webscraping-ethics-and-best-practices" id="toc-webscraping-ethics-and-best-practices" class="nav-link" data-scroll-target="#webscraping-ethics-and-best-practices">Webscraping ethics and best practices</a></li>
+  <li><a href="#more-details-on-http-requests" id="toc-more-details-on-http-requests" class="nav-link" data-scroll-target="#more-details-on-http-requests">More details on HTTP requests</a></li>
+  <li><a href="#packaged-access-to-an-api" id="toc-packaged-access-to-an-api" class="nav-link" data-scroll-target="#packaged-access-to-an-api">Packaged access to an API</a></li>
+  <li><a href="#accessing-dynamic-pages" id="toc-accessing-dynamic-pages" class="nav-link" data-scroll-target="#accessing-dynamic-pages">Accessing dynamic pages</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#file-and-string-encodings" id="toc-file-and-string-encodings" class="nav-link" data-scroll-target="#file-and-string-encodings">3. File and string encodings</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="unit5-dataTech.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data technologies and formats</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Chris Paciorek </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">August 26, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="overview" class="level1">
+<h1>Overview</h1>
+<p>References (see <a href="../syllabus.html">syllabus</a> for links):</p>
+<ul>
+<li>Adler</li>
+<li>Nolan and Temple Lang, XML and Web Technologies for Data Sciences with R.</li>
+<li>Murrell, Introduction to Data Technologies.</li>
+<li>SCF tutorial: <a href="https://computing.stat.berkeley.edu/tutorial-databases/">Working with large datasets in SQL, R, and Python</a></li>
+</ul>
+<p>(Optional) Videos:</p>
+<p>There are four videos from 2020 in the bCourses Media Gallery that you can use for reference if you want to:</p>
+<ol type="1">
+<li>Text files and ASCII</li>
+<li>Encodings and UTF-8</li>
+<li>HTML</li>
+<li>XML and JSON</li>
+</ol>
+<p>Note that the videos were prepared for a version of the course that used R, so there are some differences from the content in the current version of the unit that reflect translating between R and Python. I’m not sure how helpful they’ll be, but they are available.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Quarto configuration details for this document">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Quarto configuration details for this document
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This document uses the <code>knitr</code> engine and the Quarto configuration <code>ipynb-shell-interactivity: all</code>, so that output from all Python code in a chunk will print in the rendered document and the output will be interspersed with the code in the chunk rather than printed all at the end of the code chunk.</p>
+</div>
+</div>
+</section>
+<section id="data-storage-and-file-formats-on-a-computer" class="level1">
+<h1>1. Data storage and file formats on a computer</h1>
+<p>This unit largely covers topics relevant for early on in the data analysis pipeline: getting data, reading data in, writing data out to disk, and webscraping. We’ll focus on doing these manipulations in Python, but the concepts and tools involved are common to other languages, so familarity with these in Python should allow you to pick up other tools easily. The main downside to working with datasets in Python (true for R and most other languages as well) is that the entire dataset resides in memory, so using standard Python tools can be problematic in some cases; we’ll discuss some alternatives later. Python (and similar languages) has the capability to read in a wide variety of file formats.</p>
+<section id="text-and-binary-files" class="level2">
+<h2 class="anchored" data-anchor-id="text-and-binary-files">Text and binary files</h2>
+<p>In general, files can be divided into text files and binary files. In both cases, information is stored as a series of bits. Recall that a bit is a single value in base 2 (i.e., a 0 or a 1), while a byte is 8 bits.</p>
+<p>A <strong>text file</strong> is one in which the bits in the file encode individual characters. Note that the characters can include the digit characters 0-9, so one can include numbers in a text file by writing down the digits needed for the number of interest. Examples of text file formats include CSV, XML, HTML, and JSON.</p>
+<p>Text files may be simple ASCII files (i.e., files encoded using ASCII) or files in other encodings such as UTF-8, both covered in Section 5.</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/ASCII">ASCII</a> files have 8 bits (1 byte) per character and can represent 128 characters (the 52 lower and upper case letters in English, 10 digits, punctuation and a few other things – basically what you see on a standard US keyboard).</li>
+<li>UTF-8 files have between 1 and 4 bytes per character.</li>
+</ul>
+<p>Some text file formats, such as JSON or HTML, are not easily interpretable/manipulable on a line-by-line basis (unlike, e.g., CSV), so they are not as amenable to processing using shell commands.</p>
+<p>A <strong>binary file</strong> is one in which the bits in the file encode the information in a custom format and not simply individual characters. Binary formats are not (easily) human readable but can be more space-efficient and faster to work with (because it can allow random access into the data rather than requiring sequential reading). The meaning of the bytes in such files depends on the specific binary format being used and a program that uses the file needs to know how the format represents information. Examples of binary files include netCDF files, Python pickle files, R data (e.g., .Rda) files, , and compiled code files.</p>
+<p>Numbers in binary files are usually stored as 8 bytes per number. We’ll discuss this much more in Unit 8.</p>
+</section>
+<section id="common-file-types" class="level2">
+<h2 class="anchored" data-anchor-id="common-file-types">Common file types</h2>
+<p>Here are some of the common file types, some of which are text formats and some of which are binary formats.</p>
+<ol type="1">
+<li><p>‘Flat’ text files: data are often provided as simple text files. Often one has one record or observation per row and each column or field is a different variable or type of information about the record. Such files can either have a fixed number of characters in each field (<em>fixed width format</em>) or a special character (a <em>delimiter</em>) that separates the fields in each row. Common delimiters are tabs, commas, one or more spaces, and the pipe (|). Common file extensions are <code>.txt</code> and <code>.csv</code>. Metadata (information about the data) are often stored in a separate file. CSV files are quite common, but if you have files where the data contain commas, other delimiters might be preferable. Text can be put in quotes in CSV files, and this can allow use of commas within the data. This is difficult to deal with from the command line, but <code>read_table()</code> in Pandas handles this situation.</p>
+<ul>
+<li>One occasionally tricky difficulty is as follows. If you have a text file created in Windows, the line endings are coded differently than in UNIX. Windows uses a newline (the ASCII character <code>\n</code>) and a carriage return (the ASCII character <code>\r</code>) whereas UNIX uses only a newline in UNIX). There are UNIX utilities (<code>fromdos</code> in Ubuntu, including the SCF Linux machines and <code>dos2unix</code> in other Linux distributions) that can do the necessary conversion. If you see <code>\^M</code> at the end of the lines in a file, that’s the tool you need. Alternatively, if you open a UNIX file in Windows, it may treat all the lines as a single line. You can fix this with <code>todos</code> or <code>unix2dos</code>.</li>
+</ul></li>
+<li><p>In some contexts, such as textual data and bioinformatics data, the data may be in a text file with one piece of information per row, but without meaningful columns/fields.</p></li>
+<li><p>Data may also be in text files in formats designed for data interchange between various languages, in particular XML or JSON. These formats are “self-describing”; namely the metadata is part of the file. The <code>lxml</code> and <code>json</code> packages are useful for reading and writing from these formats. More in Section 4.</p></li>
+<li><p>You may be scraping information on the web, so dealing with text files in various formats, including HTML. The <code>requests</code> and <code>BeautifulSoup</code> packages are useful for reading HTML.</p></li>
+<li><p>In scientific contexts, netCDF (<code>.nc</code>) (and the related HDF5) are popular format for gridded data that allows for highly-efficient storage and contains the metadata within the file. The basic structure of a netCDF file is that each variable is an array with multiple dimensions (e.g., latitude, longitude, and time), and one can also extract the values of and metadata about each dimension. The <code>netCDF4</code> package in Python nicely handles working with netCDF files.</p></li>
+<li><p>Data may already be in a database or in the data storage format of another statistical package (<code>Stata</code>, <code>SAS</code>, <code>SPSS</code>, etc.). The <code>Pandas</code> package in Python has capabilities for importing Stata (<code>read_stata</code>), SPSS (<code>read_spss</code>), and SAS (<code>read_sas</code>) files, among others.</p></li>
+<li><p>For Excel, there are capabilities to read an Excel file (see the <code>read_excel</code> function in Pandas), but you can also just go into Excel and export as a CSV file or the like and then read that into Python. In general, it’s best not to pass around data files as Excel or other spreadsheet format files because (1) Excel is proprietary, so someone may not have Excel and the format is subject to change, (2) Excel imposes limits on the number of rows, (3) one can easily manipulate text files such as CSV using UNIX tools, but this is not possible with an Excel file, (4) Excel files often have more than one sheet, graphs, macros, etc., so they’re not a data storage format per se.</p></li>
+<li><p>Python can easily interact with databases (SQLite, DuckDB, PostgreSQL, MySQL, Oracle, etc.), querying the database using SQL and returning results to Python. More in Unit 7 and in the <a href="https://computing.stat.berkeley.edu/tutorial-databases/">large datasets tutorial</a>.</p></li>
+</ol>
+</section>
+<section id="csv-vs.-specialized-formats-such-as-parquet" class="level2">
+<h2 class="anchored" data-anchor-id="csv-vs.-specialized-formats-such-as-parquet">CSV vs.&nbsp;specialized formats such as Parquet</h2>
+<p>CSV is a common format (particularly in some disciplines/contexts) and has the advantages of being simple to understand, human readable, and readily manipulable by line-based processing tools such as shell commands. However, it has various disadvantages:</p>
+<ul>
+<li>storage is by row, which will often mix values of different types;</li>
+<li>extra space is taken up by explicitly storing commas and newlines; and</li>
+<li>one must search through the document to find a given row or value – e.g., to find the 10th row, we must search for the 9th newline and then read until the 10th newline.</li>
+</ul>
+<p>A popular file format that has some advantages over plain text formats such as CSV is <a href="https://parquet.apache.org/docs/overview/motivation/">Parquet</a>. The storage is by column (actually in chunks of columns). This works well with how datasets are often structured in that a given field/variable will generally have values of all the same type and there may be many repeated values, so there are opportunities for efficient storage including compression. Storage by column also allows retrieval only of the columns that a user needs. As a result data stored in the Parquet format often takes up much less space than stored as CSV and can be queried much faster. Also note that data stored in Parquet will often be stored as multiple files.</p>
+<p>Here’s a brief exploration using a data file not in the class repository because of its size but available <a href="https://www.stat.berkeley.edu/~paciorek/transfer/airline.csv">online here</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">## Read from CSV.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data_from_csv <span class="op">=</span> pd.read_csv(os.path.join(<span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.csv'</span>))</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time.time() <span class="op">-</span> t0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.1239852905273438</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Write out Parquet-formatted data.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data_from_csv.to_parquet(os.path.join(<span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.parquet'</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Read from Parquet.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>data_from_parquet <span class="op">=</span> pd.read_parquet(os.path.join(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                                    <span class="st">'..'</span>, <span class="st">'data'</span>, <span class="st">'airline.parquet'</span>))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(time.time() <span class="op">-</span> t0)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.14897990226745605</code></pre>
+</div>
+</div>
+<p>The CSV file is 51 MB while the Parquet file is 8 MB.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> ../data/airline.csv</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> ../data/airline.parquet</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-rw-r--r-- 1 paciorek scfstaff 51480244 Aug 11  2025 ../data/airline.csv
+-rw-r--r-- 1 paciorek scfstaff 8132907 Jun 30 14:45 ../data/airline.parquet</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="working-with-information-on-the-web" class="level1">
+<h1>2. Working with information on the web</h1>
+<p>In this section, we’ll see some ways to programmatically interact with information on the web, focusing on downloading information, but also showing how we can upload as well. As part of this we’ll see some details about file formats commonly used in this context.</p>
+<p>The main theme of this section is using tools to make it easy to interact with the web and with information in formats such as HTML, XML, JSON, and YAML.</p>
+<section id="reading-html" class="level2">
+<h2 class="anchored" data-anchor-id="reading-html">Reading HTML</h2>
+<p>We’ll cover a few basic examples in this section, but HTML and XML formatting and navigating the structure of such pages in great detail is beyond the scope of what we can cover. The key thing is to see the main concepts and know that the tools exist so that you can learn how to use them if faced with such formats.</p>
+<p>HTML (Hypertext Markup Language) is the standard markup language used for displaying content in a web browser. In simple webpages (ignoring the more complicated pages that involve Javascript), what you see in your browser is simply a <em>rendering</em> (by the browser) of a text file containing HTML.</p>
+<p>However, instead of rendering the HTML in a browser, we might want to use code to extract information from the HTML.</p>
+<p>Let’s see a brief example of reading in HTML tables.</p>
+<p>Note that before doing any coding, it can be helpful to look at the raw HTML source code for a given page. We can explore the underlying HTML source in advance of writing our code by looking at the page source directly in the browser (e.g., in Firefox under the 3-lines (hamburger) “open menu” symbol, see <code>Web Developer (or More Tools) -&gt; Page Source</code> and in Chrome <code>View -&gt; Developer -&gt; View Source</code>), or by downloading the webpage and looking at it in an editor, although in some cases (such as the nytimes.com case), what we might see is a lot of JavaScript.</p>
+<p>One lesson here is not to write a lot of your own code to do something that someone else has probably already written a package for. We’ll use the <code>BeautifulSoup4</code> package.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> io</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> bs4 <span class="im">import</span> BeautifulSoup <span class="im">as</span> bs</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>URL <span class="op">=</span> <span class="st">"https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Wikipedia requires information about the bot/program making an automated request.</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>user_agent <span class="op">=</span> <span class="st">"stat243_educational_bot/0.1 (paciorek@berkeley.edu)"</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {<span class="st">'User-Agent'</span>: user_agent}</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(URL, headers<span class="op">=</span>headers)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>html <span class="op">=</span> response.content</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a BeautifulSoup object to parse the HTML</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(html, <span class="st">'html.parser'</span>)</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>html_tables <span class="op">=</span> soup.find_all(<span class="st">'table'</span>)</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="co">## Pandas `read_html` doesn't want `str` input directly.</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>pd_tables <span class="op">=</span> [pd.read_html(io.StringIO(<span class="bu">str</span>(tbl)))[<span class="dv">0</span>] <span class="cf">for</span> tbl <span class="kw">in</span> html_tables]</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>[x.shape <span class="cf">for</span> x <span class="kw">in</span> pd_tables]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[(241, 6), (13, 2), (1, 2)]</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>pd_tables[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                                Location  ...  Notes
+0                                  World  ...    NaN
+1                                  India  ...    [b]
+2                                  China  ...    [c]
+3                          United States  ...    [d]
+4                              Indonesia  ...    NaN
+..                                   ...  ...    ...
+236         Christmas Island (Australia)  ...    NaN
+237                   Niue (New Zealand)  ...    NaN
+238                         Vatican City  ...   [ah]
+239  Cocos (Keeling) Islands (Australia)  ...    NaN
+240                Pitcairn Islands (UK)  ...    NaN
+
+[241 rows x 6 columns]</code></pre>
+</div>
+</div>
+<p>Beautiful Soup works by reading in the HTML as text and then parsing it to build up a tree containing the HTML elements. Then one can <a href="https://beautiful-soup-4.readthedocs.io/en/latest/#searching-the-tree">search by HTML tag or attribute</a> for information you want using <code>find_all</code>.</p>
+<p>As another example, it’s often useful to be able to extract the hyperlinks in an HTML document.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>URL <span class="op">=</span> <span class="st">"http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year"</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(URL)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>soup <span class="op">=</span> bs(response.content, <span class="st">'html.parser'</span>)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">## Approach 1: search for HTML 'a' tags.</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>a_elements <span class="op">=</span> soup.find_all(<span class="st">'a'</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>links1 <span class="op">=</span> [x.get(<span class="st">'href'</span>) <span class="cf">for</span> x <span class="kw">in</span> a_elements]</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Approach 2: search for 'a' elements with 'href' attribute</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>href_elements <span class="op">=</span> soup.find_all(<span class="st">'a'</span>, href <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>links2 <span class="op">=</span> [x.get(<span class="st">'href'</span>) <span class="cf">for</span> x <span class="kw">in</span> href_elements]</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co">## In either case, then use `get` to retrieve the `href` attribute value.</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>links2[<span class="dv">0</span>:<span class="dv">9</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['..', '1750.csv.gz', '1763.csv.gz', '1764.csv.gz', '1765.csv.gz', '1766.csv.gz', '1767.csv.gz', '1768.csv.gz', '1769.csv.gz']</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># help(bs.find_all)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The <code>kwargs</code> keyword arguments to <code>find</code> and <code>find_all</code> allow one to search for elements with particular characteristics, such as having a particular attribute (seen above) or having an attribute have a particular value (e.g., picking out an element with a particular <code>id</code>).</p>
+<p>Here’s another example of extracting specific components of information from a webpage (results not shown, since headlines will vary from day to day). We’ll use <code>get_text</code> to retrieve the element’s value.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>URL <span class="op">=</span> <span class="st">"https://dailycal.org"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>response_news <span class="op">=</span> requests.get(URL)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>soup_news <span class="op">=</span> bs(response_news.content, <span class="st">'html.parser'</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>h2_elements <span class="op">=</span> soup_news.find_all(<span class="st">"h2"</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>headlines2 <span class="op">=</span> [x.get_text() <span class="cf">for</span> x <span class="kw">in</span> h2_elements]</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>h3_elements <span class="op">=</span> soup_news.find_all(<span class="st">"h3"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>headlines3 <span class="op">=</span> [x.get_text() <span class="cf">for</span> x <span class="kw">in</span> h3_elements]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>More generally, we may want to read an HTML document, parse it into its components (i.e., the HTML elements), and navigate through the tree structure of the HTML.</p>
+<p>We can use <a href="https://www.w3schools.com/cssref/css_selectors.asp">CSS selectors</a> with the <code>select</code> method for more powerful extraction capabilities. Going back to the climate data, let’s extract all the <code>th</code> elements nested within <code>tr</code> elements:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>soup.select(<span class="st">"tr th"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[&lt;th&gt;Name&lt;/th&gt;, &lt;th&gt;Last modified&lt;/th&gt;, &lt;th&gt;Size&lt;/th&gt;, &lt;th&gt;Description&lt;/th&gt;, &lt;th colspan="4"&gt;&lt;hr/&gt;&lt;/th&gt;, &lt;th colspan="4"&gt;&lt;hr/&gt;&lt;/th&gt;]</code></pre>
+</div>
+</div>
+<p>Or we could extract the <code>a</code> elements whose parents are <code>th</code> elements:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>soup.select(<span class="st">"th &gt; a"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[]</code></pre>
+</div>
+</div>
+<p>Next let’s use the <em>XPath</em> language to specify elements rather than CSS selectors. XPath can also be used for navigating through XML documents.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> lxml.html</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert the BeautifulSoup object to a lxml object</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>lxml_doc <span class="op">=</span> lxml.html.fromstring(<span class="bu">str</span>(soup))</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Use XPath to select elements</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>a_elements <span class="op">=</span> lxml_doc.xpath(<span class="st">'//a[@href]'</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>links <span class="op">=</span> [x.get(<span class="st">'href'</span>) <span class="cf">for</span> x <span class="kw">in</span> a_elements]</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>links[<span class="dv">0</span>:<span class="dv">9</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['..', '1750.csv.gz', '1763.csv.gz', '1764.csv.gz', '1765.csv.gz', '1766.csv.gz', '1767.csv.gz', '1768.csv.gz', '1769.csv.gz']</code></pre>
+</div>
+</div>
+</section>
+<section id="xml-json-and-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="xml-json-and-yaml">XML, JSON, and YAML</h2>
+<p>XML, JSON, and YAML are three common file formats for storing data. All of them allow for key-value pairs and arrays/lists of unnamed elements and for hierarchical structure.</p>
+<p>To read them into Python (or other languages), we want to use a package that understands the file format and can read the data into appropriate Python data structures. Usually one ends up with a set of nested (because of the hierarchical structure) lists and dictionaries.</p>
+<section id="xml" class="level3">
+<h3 class="anchored" data-anchor-id="xml">XML</h3>
+<p>XML is a markup language used to store data in self-describing (no metadata needed) format, often with a hierarchical structure. It consists of sets of elements (also known as nodes because they generally occur in a hierarchical structure and therefore have parents, children, etc.) with tags that identify/name the elements, with some similarity to HTML. Some examples of the use of XML include serving as the underlying format for Microsoft Office and Google Docs documents and for the KML language used for spatial information in Google Earth.</p>
+<p>Here’s a brief example. The book with id attribute <code>bk101</code> is an element; the author of the book is also an element that is a child element of the book. The id attribute allows us to uniquely identify the element.</p>
+<pre><code>    &lt;?xml version="1.0"?&gt;
+    &lt;catalog&gt;
+       &lt;book id="bk101"&gt;
+          &lt;author&gt;Gambardella, Matthew&lt;/author&gt;
+          &lt;title&gt;XML Developer's Guide&lt;/title&gt;
+          &lt;genre&gt;Computer&lt;/genre&gt;
+          &lt;price&gt;44.95&lt;/price&gt;
+          &lt;publish_date&gt;2000-10-01&lt;/publish_date&gt;
+          &lt;description&gt;An in-depth look at creating applications with XML.&lt;/description&gt;
+       &lt;/book&gt;
+       &lt;book id="bk102"&gt;
+          &lt;author&gt;Ralls, Kim&lt;/author&gt;
+          &lt;title&gt;Midnight Rain&lt;/title&gt;
+          &lt;genre&gt;Fantasy&lt;/genre&gt;
+          &lt;price&gt;5.95&lt;/price&gt;
+          &lt;publish_date&gt;2000-12-16&lt;/publish_date&gt;
+         &lt;description&gt;A former architect battles corporate zombies, an evil sorceress, and her own childhood to become queen of the world.&lt;/description&gt;
+       &lt;/book&gt;
+    &lt;/catalog&gt;</code></pre>
+<p>We can read XML documents into Python using various packages, including <code>lxml</code> and then manipulate the resulting structured data object. Here’s an example of working with lending data from the Kiva lending non-profit. You can see the XML format in a browser at <a href="http://api.kivaws.org/v1/loans/newest.xml" class="uri">http://api.kivaws.org/v1/loans/newest.xml</a>.</p>
+<p>XML documents have a tree structure with information at nodes. As above with HTML, one can use the <em>XPath</em> language for navigating the tree and finding and extracting information from the node(s) of interest.</p>
+<p>Here is some example code for extracting loan info from the Kiva data. We’ll first show the ‘brute force’ approach of working with the data as a list and then the better approach of using XPath.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> xmltodict</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>URL <span class="op">=</span> <span class="st">"https://api.kivaws.org/v1/loans/newest.xml"</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">## This used to be accessible for automated download, but now gives a 403 error (access denied).</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">## response = requests.get(URL)   </span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co">## data = xmltodict.parse(response.content)</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">## Instead, download to `newest.xml` file manually.</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'newest.xml'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>content <span class="op">=</span> content.replace(<span class="st">"&amp;"</span>, <span class="st">"and"</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> xmltodict.parse(content)</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>data.keys()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['response'])</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'response'</span>].keys()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['paging', 'loans'])</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'response'</span>][<span class="st">'loans'</span>].keys()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>dict_keys(['@type', 'loan'])</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data[<span class="st">'response'</span>][<span class="st">'loans'</span>][<span class="st">'loan'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>20</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'response'</span>][<span class="st">'loans'</span>][<span class="st">'loan'</span>][<span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'id': '3028199', 'name': 'Delia María', 'description': {'languages': {'@type': 'list', 'language': ['es', 'en']}}, 'status': 'fundraising', 'funded_amount': '0', 'basket_amount': '0', 'image': {'id': '6049170', 'template_id': '1'}, 'activity': 'Retail', 'sector': 'Retail', 'use': 'to buy groceries to prepare food as well as clothing, jewelry, perfumes, small miscellaneous goods, cosmetics, creams, etc.', 'location': {'country_code': 'EC', 'country': 'Ecuador', 'town': 'Portoviejo', 'geo': {'level': 'town', 'pairs': '-1.054723 -80.45249', 'type': 'point'}}, 'partner_id': '137', 'posted_date': '2025-08-12T17:50:17Z', 'planned_expiration_date': '2025-09-16T17:50:17Z', 'loan_amount': '1500', 'borrower_count': '1', 'lender_count': '0', 'bonus_credit_eligibility': '1', 'tags': {'@type': 'list', 'tag': [{'name': '#Woman-Owned Business', 'id': '6'}, {'name': '#Repeat Borrower', 'id': '28'}]}}</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'response'</span>][<span class="st">'loans'</span>][<span class="st">'loan'</span>][<span class="dv">2</span>][<span class="st">'activity'</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'Retail'</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> lxml <span class="im">import</span> etree</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>doc <span class="op">=</span> etree.fromstring(content)  <span class="co"># formerly etree.fromstring(response.content)</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>loans <span class="op">=</span> doc.xpath(<span class="st">"//loan"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>[loan.xpath(<span class="st">"activity/text()"</span>) <span class="cf">for</span> loan <span class="kw">in</span> loans]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[['Poultry'], ['Retail'], ['Retail'], ['Primary/secondary school costs'], ['Farming'], ['Solar Home Systems'], ['Cloth and Dressmaking Supplies'], ['Food'], ['Food Market'], ['Food'], ['Retail'], ['Fish Selling'], ['Cereals'], ['General Store'], ['Food Market'], ['Retail'], ['Agriculture'], ['Farming'], ['Agriculture'], ['Food']]</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">## suppose we only want the country locations of the loans (using XPath)</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>[loan.xpath(<span class="st">"location/country/text()"</span>) <span class="cf">for</span> loan <span class="kw">in</span> loans]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[['Uganda'], ['Ecuador'], ['Ecuador'], ['Tajikistan'], ['Mali'], ['Honduras'], ['Pakistan'], ['Togo'], ['Sierra Leone'], ['Togo'], ['Uganda'], ['Togo'], ['Togo'], ['Pakistan'], ['Liberia'], ['Uganda'], ['Uganda'], ['Uganda'], ['Uganda'], ['Sierra Leone']]</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">## or extract the geographic coordinates</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>[loan.xpath(<span class="st">"location/geo/pairs/text()"</span>) <span class="cf">for</span> loan <span class="kw">in</span> loans]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[['-0.352537 31.552699'], ['-1.054723 -80.45249'], ['-1.054723 -80.45249'], ['39 71'], ['12.947945 -8.863846'], ['15.136965 -87.127325'], ['31.549722 74.343611'], ['6.227277 1.581424'], ['7.955179 -11.740995'], ['6.227277 1.581424'], ['0.008031 30.562447'], ['6.227277 1.581424'], ['6.227277 1.581424'], ['31.716662 73.985024'], ['10.594366 -85.544151'], ['0.481819 31.055009'], ['0.008031 30.562447'], ['-0.796014 30.596976'], ['0.481819 31.055009'], ['8.5 -11.5']]</code></pre>
+</div>
+</div>
+</section>
+<section id="json" class="level3">
+<h3 class="anchored" data-anchor-id="json">JSON</h3>
+<p>JSON files are structured as “attribute-value” pairs (aka “key-value” pairs), often with a hierarchical structure. Here’s a brief example:</p>
+<pre><code>    {
+      "firstName": "John",
+      "lastName": "Smith",
+      "isAlive": true,
+      "age": 25,
+      "address": {
+        "streetAddress": "21 2nd Street",
+        "city": "New York",
+        "state": "NY",
+        "postalCode": "10021-3100"
+      },
+      "phoneNumbers": [
+        {
+          "type": "home",
+          "number": "212 555-1234"
+        },
+        {
+          "type": "office",
+          "number": "646 555-4567"
+        }
+      ],
+      "children": [],
+      "spouse": null
+    }</code></pre>
+<p>A set of key-value pairs is a named array and is placed inside braces (squiggly brackets). Note the nestedness of arrays within arrays (e.g., address within the overarching person array and the use of square brackets for unnamed arrays (i.e., vectors of information), as well as the use of different types: character strings, numbers, null, and (not shown) boolean/logical values. JSON and XML can be used in similar ways, but JSON is less <em>verbose</em> than XML.</p>
+<p>We can read JSON into Python using the <code>json</code> package. Let’s play again with the Kiva data. The same data that we had worked with in XML format is also available in JSON format: <a href="https://api.kivaws.org/v1/loans/newest.json" class="uri">https://api.kivaws.org/v1/loans/newest.json</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>URL <span class="op">=</span> <span class="st">"https://api.kivaws.org/v1/loans/newest.json"</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">## This used to be accessible for automated download, but now gives a 403 error (access denied).</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">## response = requests.get(URL)   </span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Instead download manually to `newest.json`.</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'newest.json'</span>, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    content <span class="op">=</span> <span class="bu">file</span>.read()</span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> json.loads(content)</span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(data)</span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>data.keys()</span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(data[<span class="st">'loans'</span>])</span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'loans'</span>][<span class="dv">0</span>].keys()</span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>data[<span class="st">'loans'</span>][<span class="dv">0</span>][<span class="st">'location'</span>][<span class="st">'country'</span>]</span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a>[loan[<span class="st">'location'</span>][<span class="st">'country'</span>]  <span class="cf">for</span> loan <span class="kw">in</span> data[<span class="st">'loans'</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>One disadvantage of JSON is that it is not set up to deal with missing values, infinity, etc.</p>
+</section>
+<section id="yaml" class="level3">
+<h3 class="anchored" data-anchor-id="yaml">YAML</h3>
+<p>YAML is a similar format commonly used for configuration files that control how code/software/tools behave.</p>
+<p>Here’s an example of the <a href="https://github.com/UCB-stat-159-s23/site/blob/main/.github/workflows/book.yml">YAML file specifying a GitHub Actions workflow</a>.</p>
+<p>Note the use of indentation (similar to Python) for nesting/hierarchy and the lack of quotation with the strings. This makes it lightweight and readable. However, the use of indentation makes it fragile (easy to have errors). Also note the use of arrays/lists and sets of key-value pairs.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> yaml</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"book.yml"</span>) <span class="im">as</span> stream:</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>   config <span class="op">=</span> yaml.safe_load(stream)  <span class="co">## `safe_load` avoids running embedded code.</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(config)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'name': 'deploy-book', True: {'push': {'branches': ['main']}}, 'jobs': {'deploy-book': {'runs-on': 'ubuntu-latest', 'steps': [{'uses': 'actions/checkout@v2'}, {'name': 'Set up Python 3.9', 'uses': 'actions/setup-python@v1', 'with': {'python-version': 3.9}}, {'name': 'Install dependencies', 'run': 'pip install -r book-requirements.txt\n'}, {'name': 'Build the book', 'run': 'jupyter-book build .\n'}, {'name': 'GitHub Pages action', 'uses': 'peaceiris/actions-gh-pages@v3', 'with': {'github_token': '${{ secrets.GITHUB_TOKEN }}', 'publish_dir': './_build/html'}}]}}}</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">## How many steps in the `deploy-book` job?</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(config[<span class="st">'jobs'</span>][<span class="st">'deploy-book'</span>][<span class="st">'steps'</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>5</code></pre>
+</div>
+</div>
+<p>Note that (unfortunately) <code>on</code> is treated as a boolean, as <a href="https://github.com/yaml/pyyaml/issues/376">discussed in this GitHub issue</a> for the PyYAML package.</p>
+</section>
+</section>
+<section id="web-apis-and-webscraping" class="level2">
+<h2 class="anchored" data-anchor-id="web-apis-and-webscraping">Web APIs and webscraping</h2>
+<p>Here we’ll see some examples of making requests over the Web to get data. We’ll use APIs to systematically query a website for information. Ideally, but not always, the API will be documented. In many cases that simply amounts to making an HTTP GET request, which is done by constructing a URL.</p>
+<p>The <code>requests</code> package is useful for a wide variety of such functionality. Note that much of the functionality I describe below is also possible within the shell using either <code>wget</code> or <code>curl</code>.</p>
+<section id="what-is-http" class="level3">
+<h3 class="anchored" data-anchor-id="what-is-http">What is HTTP?</h3>
+<p>HTTP (hypertext transfer protocol) is a system for communicating information from a server (i.e., the website of interest) to a client (e.g., your laptop). The client sends a request and the server sends a response.</p>
+<p>When you go to a website in a browser, your browser makes an HTTP GET request to the website. Similarly, when we did some downloading of html from webpages above, we used an HTTP GET request.</p>
+<p>Anytime the URL you enter includes parameter information after a question mark (<code>www.somewebsite.com?param1=arg1&amp;param2=arg2</code>), you are using an API.</p>
+<p>The response to an HTTP request will include a status code, which can be interpreted based on <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status">this information</a>.</p>
+<p>The response will generally contain content in the form of text (e.g., HTML, XML, JSON) or raw bytes.</p>
+</section>
+<section id="apis-rest-based-web-services" class="level3">
+<h3 class="anchored" data-anchor-id="apis-rest-based-web-services">APIs: REST-based web services</h3>
+<p>Ideally, a web service documents their API (Application Programming Interface) that serves data or allows other interactions. REST is a popular API standard/style that we’ll focus on here.</p>
+<p>REST uses HTTP requests. When using REST, we access <em>resources</em>, which might be a Facebook account or a database of stock quotes. The API will (hopefully) document what information it expects from the user and will return the result in a standard format (often a particular file format rather than producing a webpage).</p>
+<p>Often the format of the request is a URL (aka an endpoint) plus a query string, passed as a GET request. Let’s search for plumbers near Berkeley, and we’ll see the GET request, in the form:</p>
+<p><a href="https://www.yelp.com/search?find_desc=plumbers&amp;find_loc=Berkeley+CA&amp;ns=1" class="uri">https://www.yelp.com/search?find_desc=plumbers&amp;find_loc=Berkeley+CA&amp;ns=1</a></p>
+<ul>
+<li><p>the query string begins with <code>?</code></p></li>
+<li><p>there are one or more <code>Parameter=Argument</code> pairs</p></li>
+<li><p>pairs are separated by <code>&amp;</code></p></li>
+<li><p><code>+</code> is used in place of each space</p></li>
+</ul>
+<p>Let’s see an example of accessing economic data from the World Bank, using the <a href="https://datahelpdesk.worldbank.org/knowledgebase/topics/125589-developer-information">documentation for their API</a>. Following the <a href="https://datahelpdesk.worldbank.org/knowledgebase/articles/898581-api-basic-call-structures">API call structure</a> for their “Country” API, we can download (for example), data on various countries. The documentation indicates that our REST-based query can use either a URL structure or an argument-based structure.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> json</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">## Queries based on the documentation</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>api_url <span class="op">=</span> <span class="st">"https://api.worldbank.org/V2/incomeLevel/LIC/country"</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>api_args <span class="op">=</span> <span class="st">"https://api.worldbank.org/V2/country?incomeLevel=LIC"</span></span>
+<span id="cb46-5"><a href="#cb46-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-6"><a href="#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">## Generalizing a bit</span></span>
+<span id="cb46-7"><a href="#cb46-7" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">"https://api.worldbank.org/V2/country?incomeLevel=MIC&amp;format=json"</span></span>
+<span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
+<span id="cb46-9"><a href="#cb46-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-10"><a href="#cb46-10" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> json.loads(response.content)</span>
+<span id="cb46-11"><a href="#cb46-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-12"><a href="#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co">## Be careful of data truncation/pagination</span></span>
+<span id="cb46-13"><a href="#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="va">False</span>:</span>
+<span id="cb46-14"><a href="#cb46-14" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> <span class="st">"https://api.worldbank.org/V2/country?incomeLevel=MIC&amp;format=json&amp;per_page=1000"</span></span>
+<span id="cb46-15"><a href="#cb46-15" aria-hidden="true" tabindex="-1"></a>    response <span class="op">=</span> requests.get(url)</span>
+<span id="cb46-16"><a href="#cb46-16" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> json.loads(response.content)</span>
+<span id="cb46-17"><a href="#cb46-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-18"><a href="#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="co">## Programmatic control</span></span>
+<span id="cb46-19"><a href="#cb46-19" aria-hidden="true" tabindex="-1"></a>baseURL <span class="op">=</span> <span class="st">"https://api.worldbank.org/V2/country"</span></span>
+<span id="cb46-20"><a href="#cb46-20" aria-hidden="true" tabindex="-1"></a>group <span class="op">=</span> <span class="st">'MIC'</span></span>
+<span id="cb46-21"><a href="#cb46-21" aria-hidden="true" tabindex="-1"></a><span class="bu">format</span> <span class="op">=</span> <span class="st">'json'</span></span>
+<span id="cb46-22"><a href="#cb46-22" aria-hidden="true" tabindex="-1"></a>args <span class="op">=</span> {<span class="st">'incomeLevel'</span>: group, <span class="st">'format'</span>: <span class="bu">format</span>, <span class="st">'per_page'</span>: <span class="dv">1000</span>}</span>
+<span id="cb46-23"><a href="#cb46-23" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> baseURL <span class="op">+</span> <span class="st">'?'</span> <span class="op">+</span> <span class="st">'&amp;'</span>.join([<span class="st">'='</span>.join(</span>
+<span id="cb46-24"><a href="#cb46-24" aria-hidden="true" tabindex="-1"></a>                               [key, <span class="bu">str</span>(args[key])]) <span class="cf">for</span> key <span class="kw">in</span> args])</span>
+<span id="cb46-25"><a href="#cb46-25" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
+<span id="cb46-26"><a href="#cb46-26" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> json.loads(response.content)</span>
+<span id="cb46-27"><a href="#cb46-27" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb46-28"><a href="#cb46-28" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'list'&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(data[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>106</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(data[<span class="dv">1</span>][<span class="dv">5</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'dict'&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>data[<span class="dv">1</span>][<span class="dv">5</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'id': 'BEN', 'iso2Code': 'BJ', 'name': 'Benin', 'region': {'id': 'SSF', 'iso2code': 'ZG', 'value': 'Sub-Saharan Africa '}, 'adminregion': {'id': 'SSA', 'iso2code': 'ZF', 'value': 'Sub-Saharan Africa (excluding high income)'}, 'incomeLevel': {'id': 'LMC', 'iso2code': 'XN', 'value': 'Lower middle income'}, 'lendingType': {'id': 'IDX', 'iso2code': 'XI', 'value': 'IDA'}, 'capitalCity': 'Porto-Novo', 'longitude': '2.6323', 'latitude': '6.4779'}</code></pre>
+</div>
+</div>
+<p>APIs can change and disappear. A few years ago, the example above involved the World Bank’s Climate Data API, which I can no longer find!</p>
+<p>As another example, here we can see the <a href="https://fiscaldata.treasury.gov/api-documentation/">US Treasury Department API</a>, which allows us to construct queries for federal financial data.</p>
+<p>In many cases you’ll need to authenticate with web services that control access to the service. This can involve sending an access token with the request or going through an initial authorization procedure in your browser (e.g., logging into a Google account so that one can then interact with Google Drive via its API).</p>
+<p>Finally, some web services allow us to pass information to the service in addition to just getting data or information. E.g., you can programmatically interact with your Facebook, Dropbox, and Google Drive accounts using REST based on HTTP POST, PUT, and DELETE requests. Authentication is of course important in these contexts and some times you would first authenticate with your login and password and receive a “token”. This token would then be used in subsequent interactions in the same session.</p>
+<p>I created your <code>github.berkeley.edu</code> accounts from Python by interacting with the <a href="https://docs.github.com/en/rest/reference/repos">GitHub API</a> using <code>requests</code>.</p>
+</section>
+<section id="http-requests-by-deconstructing-an-undocumented-api" class="level3">
+<h3 class="anchored" data-anchor-id="http-requests-by-deconstructing-an-undocumented-api">HTTP requests by deconstructing an (undocumented) API</h3>
+<p>In some cases an API may not be documented or we might be lazy and not use the documentation. Instead we might deconstruct the queries a browser makes and then mimic that behavior, in some cases having to parse HTML output to get at data. Note that if the webpage changes even a little bit, our carefully constructed query syntax may fail.</p>
+<p>Let’s look at some UN data (agricultural crop data). By going to<br>
+<a href="https://data.un.org/Explorer.aspx?d=FAO" class="uri">https://data.un.org/Explorer.aspx?d=FAO</a>, and clicking on “Crops”, we’ll see a bunch of agricultural products with “View data” links. Click on “apricots” as an example and you’ll see a “Download” button that allows you to download a CSV of the data. Let’s select a range of years and then try to download “by hand”. Sometimes we can right-click on the link that will download the data and directly see the URL that is being accessed and then one can deconstruct it so that you can create URLs programmatically to download the data you want.</p>
+<p>In this case, we can’t see the full URL that is being used because there’s some Javascript involved. Therefore, rather than looking at the URL associated with a link we need to view the actual HTTP request sent by our browser to the server. We can do this using features of the browser (e.g., in Firefox see <code>Web Developer -&gt; Network</code> and in Chrome <code>View -&gt; Developer -&gt; Developer tools</code> and choose the <code>Network</code> tab) (or right-click on the webpage and select <code>Inspect</code> and then <code>Network</code>). Based on this we can see that an HTTP GET request is being used with a URL such as:<br>
+<a href="http://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=itemCode:526;year:2012,2013,2014,2015,2016,2017&amp;DataMartId=FAO&amp;Format=csv&amp;c=2,4,5,6,7&amp;s=countryName:asc,elementCode:asc,year:desc" class="uri">http://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=itemCode:526;year:2012,2013,2014,2015,2016,2017&amp;DataMartId=FAO&amp;Format=csv&amp;c=2,4,5,6,7&amp;s=countryName:asc,elementCode:asc,year:desc</a>.</p>
+<p>We’e now able to easily download the data using that URL, which we can fairly easily construct using string processing in bash, Python, or R, such as this (here I just paste it together directly, but using more structured syntax such as I used for the World Bank example would be better):</p>
+<p>Here what is returned is a zip file, which is represented in Python as a sequence of “raw” bytes, so the example code also has some syntax for handling the unzipping and extraction of the CSV file with the data.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> zipfile</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co">## example URL:</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co">## https://data.un.org/Handlers/DownloadHandler.ashx?DataFilter=itemCode:526;</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co">##year:2012,2013,2014,2015,2016,2017&amp;DataMartId=FAO&amp;Format=csv&amp;c=2,4,5,6,7&amp;</span></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="co">##s=countryName:asc,elementCode:asc,year:desc</span></span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>itemCode <span class="op">=</span> <span class="dv">526</span></span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>baseURL <span class="op">=</span> <span class="st">"https://data.un.org/Handlers/DownloadHandler.ashx"</span></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>yrs <span class="op">=</span> <span class="st">','</span>.join([<span class="bu">str</span>(yr) <span class="cf">for</span> yr <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2012</span>,<span class="dv">2018</span>)])</span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="bu">filter</span> <span class="op">=</span> <span class="ss">f"?DataFilter=itemCode:</span><span class="sc">{</span>itemCode<span class="sc">}</span><span class="ss">;year:</span><span class="sc">{</span>yrs<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>args1 <span class="op">=</span> <span class="st">"&amp;DataMartId=FAO&amp;Format=csv&amp;c=2,3,4,5,6,7&amp;"</span></span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>args2 <span class="op">=</span> <span class="st">"s=countryName:asc,elementCode:asc,year:desc"</span></span>
+<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> baseURL <span class="op">+</span> <span class="bu">filter</span> <span class="op">+</span> args1 <span class="op">+</span> args2</span>
+<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="co">## If the website provided a CSV, this would be easier, but it zips the file.</span></span>
+<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(url)</span>
+<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-17"><a href="#cb54-17" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> io.BytesIO(response.content) <span class="im">as</span> stream:  <span class="co"># create a file-like object</span></span>
+<span id="cb54-18"><a href="#cb54-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> zipfile.ZipFile(stream, <span class="st">'r'</span>) <span class="im">as</span> archive:   <span class="co"># treat the object as a zip file</span></span>
+<span id="cb54-19"><a href="#cb54-19" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> archive.<span class="bu">open</span>(archive.filelist[<span class="dv">0</span>].filename, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:  <span class="co"># get a pointer to the embedded file</span></span>
+<span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>            dat <span class="op">=</span> pd.read_csv(<span class="bu">file</span>)</span>
+<span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>dat.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Country or Area Element Code  ...   Value  Value Footnotes
+0     Afghanistan          432  ...  202.19              NaN
+1     Afghanistan          432  ...   27.45              NaN
+2     Afghanistan          432  ...  134.50              NaN
+3     Afghanistan          432  ...  138.05              NaN
+4     Afghanistan          432  ...  138.05              NaN
+
+[5 rows x 7 columns]</code></pre>
+</div>
+</div>
+<p>So, what have we achieved?</p>
+<ol type="1">
+<li><p>We have a reproducible workflow we can share with others (perhaps ourself in the future).</p></li>
+<li><p>We can automate the process of downloading many such files.</p></li>
+</ol>
+</section>
+<section id="webscraping-ethics-and-best-practices" class="level3">
+<h3 class="anchored" data-anchor-id="webscraping-ethics-and-best-practices">Webscraping ethics and best practices</h3>
+<p>Webscraping is the process of extracting data from the web, either directly from a website or using a web API (application programming interface).</p>
+<ol type="1">
+<li><p><strong>Should you webscrape?</strong> In general, if we can avoid webscraping (particularly if there is not an API) and instead directly download a data file from a website, that is greatly preferred.</p></li>
+<li><p><strong>May you webscrape?</strong> Before you set up any automated downloading of materials/data from the web you should make sure that what you are about to do is consistent with the rules provided by the website.</p></li>
+</ol>
+<p>Some places to look for information on what the website allows are:</p>
+<ul>
+<li><p>legal pages such as Terms of Service or Terms and Conditions on the website.</p></li>
+<li><p>check the <code>robots.txt</code> file to see what a web crawler/automated request is allowed to do, and whether the site requires a particular delay between requests to the sites. Here are a couple examples:</p>
+<ul>
+<li><a href="https://wikitech.wikimedia.org/wiki/Robot_policy">Wikipedia</a></li>
+<li><a href="https://scholar.google.com/robots.txt">Google Scholar</a></li>
+</ul></li>
+<li><p>potentially contact the site owner if you plan to scrape a large amount of data</p></li>
+</ul>
+<p>Here are some links with useful information:</p>
+<ul>
+<li><p><a href="https://towardsdatascience.com/ethics-in-web-scraping-b96b18136f01">Blog post on webscraping ethics</a></p></li>
+<li><p><a href="https://www.promptcloud.com/blog/how-to-read-and-respect-robots-file">Some information on how to understand a robots.txt file</a></p></li>
+</ul>
+<p>Tips for when you make automated requests:</p>
+<ul>
+<li>When debugging code that processes the result of such a request, just run the request once, save (i.e., cache) the result, and then work on the processing code applied to the result. Don’t make the same request over and over again.</li>
+<li>In many cases you will want to include a time delay between your automated requests to a site, including if you are not actually crawling a site but just want to automate a small number of queries.</li>
+<li>API documentation often includes information about any limits on the rate of requests that can be made.</li>
+</ul>
+</section>
+<section id="more-details-on-http-requests" class="level3">
+<h3 class="anchored" data-anchor-id="more-details-on-http-requests">More details on HTTP requests</h3>
+<p>A more sophisticated way to do the download is to pass the request in a structured way with named input parameters. This request is easier to construct programmatically.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">"DataFilter"</span>: <span class="ss">f"itemCode:</span><span class="sc">{</span>itemCode<span class="sc">}</span><span class="ss">;year:</span><span class="sc">{</span>yrs<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">"DataMartID"</span>: <span class="st">"FAO"</span>, </span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">"Format"</span>: <span class="st">"csv"</span>, </span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">"c"</span>: <span class="st">"2,3,4,5,6,7"</span>,</span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">"s"</span>: <span class="st">"countryName:asc,elementCode:asc,year:desc"</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>       }    </span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.get(baseURL, params <span class="op">=</span> data)</span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> io.BytesIO(response.content) <span class="im">as</span> stream:  </span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> zipfile.ZipFile(stream, <span class="st">'r'</span>) <span class="im">as</span> archive:</span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> archive.<span class="bu">open</span>(archive.filelist[<span class="dv">0</span>].filename, <span class="st">'r'</span>) <span class="im">as</span> <span class="bu">file</span>:  </span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>            dat <span class="op">=</span> pd.read_csv(<span class="bu">file</span>)</span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>               </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In some cases we may need to send a lot of information as part of the URL in a GET request. If it gets to be too long (e.g,, more than 2048 characters) many web servers will reject the request. Instead we may need to use an HTTP POST request.</p>
+<p>POST requests are also often used for submitting web forms. Here’s an example POST request in which we will create a GitHub issue in an automated fashion.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">".github-access-token.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  ghtoken <span class="op">=</span> <span class="bu">file</span>.read().strip()</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Repository details</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>owner <span class="op">=</span> <span class="st">"paciorek"</span></span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>repo <span class="op">=</span> <span class="st">"test"</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="ss">f"https://api.github.com/repos/</span><span class="sc">{</span>owner<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>repo<span class="sc">}</span><span class="ss">/issues"</span></span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Information about the issue in dict/json format.</span></span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>issue <span class="op">=</span> {</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"title"</span>: <span class="st">"This is an example issue"</span>,</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"body"</span>: <span class="st">"This is the body of the issue created via API."</span>,</span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up authentication and headers</span></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>headers <span class="op">=</span> {</span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Authorization"</span>: <span class="ss">f"token </span><span class="sc">{</span>ghtoken<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Accept"</span>: <span class="st">"application/vnd.github+json"</span></span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> requests.post(url, json<span class="op">=</span>issue, headers<span class="op">=</span>headers)</span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> response.status_code <span class="op">==</span> <span class="dv">201</span>:</span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Successfully created Issue! </span><span class="sc">{</span>response<span class="sc">.</span>json()[<span class="st">'html_url'</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb57-27"><a href="#cb57-27" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb57-28"><a href="#cb57-28" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Could not create Issue"</span>)</span>
+<span id="cb57-29"><a href="#cb57-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(response.status_code, response.text)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Note that for security, I created a <a href="https://github.com/settings/personal-access-tokens">GitHub fine-grained personal access token</a> that is limited in <em>scope</em> to only be able to handle issues in my test repository. And I’ve put the token into a file that is not committed to the GitHub repository containing these materials. (When doing this sort of thing with GitHub Actions, one would generally <a href="https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets.">store the token as a “secret” in the repository</a></p>
+<p>I could also have done this from the command line with <code>curl</code>, along the following lines:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-L</span> <span class="dt">\</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">-X</span> POST <span class="dt">\</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"Accept: application/vnd.github+json"</span> <span class="dt">\</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"Authorization: Bearer </span><span class="va">${GH_PERSONAL_ACCESS_TOKEN}</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"X-GitHub-Api-Version: 2022-11-28"</span> <span class="dt">\</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">-H</span> <span class="st">"User-Agent: My-Issue-Creator"</span> <span class="dt">\</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a>  https://api.github.com/repos/paciorek/test/issues <span class="dt">\</span></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">-d</span> <span class="st">'{"title":"New issue from API","body":"This issue was created using the GitHub API.","labels":["bug"]}'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>where <code>${GH_PERSONAL_ACCESS_TOKEN}</code> is an environment variable containing the token.</p>
+<p><code>requests</code> can handle other kinds of HTTP requests such as PUT and DELETE. Finally, some websites use cookies to keep track of users, and you may need to download a cookie in the first interaction with the HTTP server and then send that cookie with later interactions. More details are available in the Nolan and Temple Lang book.</p>
+</section>
+<section id="packaged-access-to-an-api" class="level3">
+<h3 class="anchored" data-anchor-id="packaged-access-to-an-api">Packaged access to an API</h3>
+<p>For popular websites/data sources, a developer may have packaged up the API calls in a user-friendly fashion as functions for use from Python, R, or other software.</p>
+<p>For example there are various Python and R packages for interacting with GitHub via its API.</p>
+<p>Here’s some example code for the <code>PyGitHub</code> package. We’ll repeat the exercise of programmatically creating a GitHub issue in my <code>paciorek/test</code> repository.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> github <span class="im">import</span> Github</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">".github-access-token.txt"</span>, <span class="st">"r"</span>) <span class="im">as</span> <span class="bu">file</span>:</span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  ghtoken <span class="op">=</span> <span class="bu">file</span>.read().strip()</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> Github(ghtoken)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;string&gt;:2: DeprecationWarning: Argument login_or_token is deprecated, please use auth=github.Auth.Token(...) instead</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>repo_name <span class="op">=</span> <span class="st">"paciorek/test"</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>repo <span class="op">=</span> g.get_repo(repo_name)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Issue details</span></span>
+<span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a>issue_title <span class="op">=</span> <span class="st">"Test Issue Created Programmatically"</span></span>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a>issue_body <span class="op">=</span> <span class="st">"This is an issue filed programmatically using PyGitHub."</span></span>
+<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the issue</span></span>
+<span id="cb61-9"><a href="#cb61-9" aria-hidden="true" tabindex="-1"></a>issue <span class="op">=</span> repo.create_issue(</span>
+<span id="cb61-10"><a href="#cb61-10" aria-hidden="true" tabindex="-1"></a>    title<span class="op">=</span>issue_title,</span>
+<span id="cb61-11"><a href="#cb61-11" aria-hidden="true" tabindex="-1"></a>    body<span class="op">=</span>issue_body</span>
+<span id="cb61-12"><a href="#cb61-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb61-13"><a href="#cb61-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb61-14"><a href="#cb61-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the results.</span></span>
+<span id="cb61-15"><a href="#cb61-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Successfully created issue #</span><span class="sc">{</span>issue<span class="sc">.</span>number<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Successfully created issue #24</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"URL: </span><span class="sc">{</span>issue<span class="sc">.</span>html_url<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>URL: https://github.com/paciorek/test/issues/24</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>g.close()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="accessing-dynamic-pages" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-dynamic-pages">Accessing dynamic pages</h3>
+<p>Many websites dynamically change in reaction to the user behavior. In these cases you need a tool that can mimic the behavior of a human interacting with a site. Some options are:</p>
+<ul>
+<li><code>selenium</code> is a popular tool for doing this, and there is a Python package of the same name.</li>
+<li>Using <code>scrapy</code> plus <code>splash</code> is another approach.</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="file-and-string-encodings" class="level1">
+<h1>3. File and string encodings</h1>
+<p>Text (either in the form of a file with regular language in it or a data file with fields of character strings) will often contain characters that are not part of the <a href="http://en.wikipedia.org/wiki/ASCII">limited ASCII set of characters</a>, which has <span class="math inline">\(2^{7}=128\)</span> characters and control codes; basically what you see on a standard US keyboard. Each character takes up one byte (8 bits) of space (there is an unused bit that comes in handy in the UTF-8 context). We can actually hand-generate an ASCII file using the binary representation of each character in Python as an illustration.</p>
+<p>The letter “M” is encoded based on the ASCII standard in bits as “01001101” as seen in the link above. For convenience, this is often written as two base-16 numbers (i.e., hexadecimal), where “0100”=“4” and “1101”=“d”, hence we have “4d” in hexadecimal.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">## 4d in hexadecimal is 'M'</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="co">## 0a is a newline (at least in Linux/Mac)</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>hexvals <span class="op">=</span> <span class="st">b'</span><span class="ch">\x4d\x6f\x6d\x0a</span><span class="st">'</span>  <span class="co"># "Mom\n" in ASCII as hexadecimal</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp.txt'</span>, <span class="st">'wb'</span>) <span class="im">as</span> textfile:</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>     nbytes <span class="op">=</span> textfile.write(hexvals)</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>nbytes</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>subprocess.run([<span class="st">"ls"</span>, <span class="st">"-l"</span>, <span class="st">"tmp.txt"</span>], capture_output<span class="op">=</span><span class="va">True</span>).stdout</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>b'-rw-r--r-- 1 paciorek scfstaff 4 Jun 30 14:45 tmp.txt\n'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> textfile:</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>     line <span class="op">=</span> textfile.readlines()</span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>line</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['Mom\n']</code></pre>
+</div>
+</div>
+<p>When encountering non-ASCII files, in some cases you may need to deal with the text encoding (the mapping of individual characters (including tabs, returns, etc.) to a set of numeric codes). There are a variety of different encodings for text files, with different ones common on different operating systems.</p>
+<p>We’ll focus on the most common and universal approach, using <a href="https://en.wikipedia.org/wiki/UTF-8">Unicode</a> as the numeric codes for characters/symbols and <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> as the encoding to bytes.</p>
+<p>Unicode includes includes more than 110,000 characters from 100 different alphabets/scripts. It’s widely used on the web. One alternative that is sometimes seen is Latin-1, which encodes a small subset of Unicode and contains the characters used in many European languages (e.g., letters with accents).</p>
+<p>Unicode characters have unique integer identifiers (the unicode <em>code point</em>), which is given by <code>ord</code> in Python. UTF-8 is the encoding that represents each Unicode character in actual bytes (in memory or on disk).</p>
+<p>Here’s an example of using non-ASCII Unicode characters. We can verify <a href="https://www.ascii-code.com/character/%C3%B1">online the representation of ñ</a>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Python `str` type stores Unicode characters.</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>x2_unicode <span class="op">=</span> <span class="st">'Pe</span><span class="ch">\u00f1</span><span class="st">a 3</span><span class="ch">\u00f7</span><span class="st">2'</span></span>
+<span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a>x2_unicode</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'Peña 3÷2'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(x2_unicode)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'str'&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co">## From Unicode code point to hexadecimal representation of the code point:</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="bu">ord</span>(<span class="st">'ñ'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>241</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="bu">hex</span>(<span class="bu">ord</span>(<span class="st">'ñ'</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'0xf1'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co">## And now to the actual UTF-8 encoding, again in hexadecimal:</span></span>
+<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="bu">bytes</span>(<span class="st">'</span><span class="ch">\u00f1</span><span class="st">'</span>, <span class="st">'utf-8'</span>)    <span class="co"># indeed - two bytes, not one</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>b'\xc3\xb1'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="bu">bytes</span>(<span class="st">'</span><span class="ch">\u00f7</span><span class="st">'</span>, <span class="st">'utf-8'</span>)    <span class="co"># indeed - two bytes, not one</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>b'\xc3\xb7'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co">## specified directly as hexadecimal in UTF-8 encoding </span></span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>x2_utf8 <span class="op">=</span> <span class="st">b'Pe</span><span class="ch">\xc3\xb1</span><span class="st">a 3</span><span class="ch">\xc3\xb7</span><span class="st">2'</span> </span>
+<span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>x2_utf8</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>b'Pe\xc3\xb1a 3\xc3\xb72'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp2.txt'</span>, <span class="st">'wb'</span>) <span class="im">as</span> textfile:</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>     nbytes <span class="op">=</span> textfile.write(x2_utf8)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Now in the shell, let’s check it.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Here n-tilde and division symbol take up two bytes</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> tmp2.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>-rw-r--r-- 1 paciorek scfstaff 10 Jun 30 14:45 tmp2.txt</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co">## The shell knows how to interpret the UTF-8 encoded file</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="co">## and represent the Unicode character on the screen:</span></span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> tmp2.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Peña 3÷2</code></pre>
+</div>
+</div>
+<p>UTF-8 is cleverly designed in terms of the bit-wise representation of characters such that ASCII characters still take up one byte, and most other characters take two bytes, but some take four bytes. In fact it is even more clever than that - the representation is such that the bits of a one-byte character never appear within the representation of a two- or three- or four-byte character (and similarly for two-byte characters in three- or four-byte characters, etc.). And from the initial bit or bits, one can determine how many bytes are used for the character. For example if the first bit is a zero, it’s clear that the character is an ASCII character using only one byte. If it starts with a one, then one needs to look at the next bit(s) to determine if the character takes up 2, 3, or 4 bytes.</p>
+<p>The UNIX utility <code>file</code>, e.g.&nbsp;<code>file tmp.txt</code> can help provide some information.</p>
+<p>Various Python functions such as <code>readlines</code> allow one to specify the encoding as one reads text in. The UNIX utility <code>iconv</code> and the Python function <code>encode</code> can help with conversions.</p>
+<p>The default encoding in Python is UTF-8; note below that various types of information are interpreted in US English with the encoding UTF-8:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> locale</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>locale.getlocale()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>('en_US', 'UTF-8')</code></pre>
+</div>
+</div>
+<p>Note that in Python and various other languages (including R and Julia), you can use Unicode characters as part of variable names:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>peña <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(peña)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>7</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>σ <span class="op">=</span> <span class="dv">4</span>   <span class="co"># \sigma = 4 (the sigma doesn't show up in the PDF version of this document)</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>σ <span class="op">*</span> peña</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>28</code></pre>
+</div>
+</div>
+<p>With strings already in Python, you can convert between encodings with the <code>encode</code> method for string objects:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>text <span class="op">=</span> <span class="st">'Pe</span><span class="ch">\u00f1</span><span class="st">a 3</span><span class="ch">\u00f7</span><span class="st">2'</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>text</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'Peña 3÷2'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>text.encode(<span class="st">'utf-8'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>b'Pe\xc3\xb1a 3\xc3\xb72'</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>text.encode(<span class="st">'latin1'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>b'Pe\xf1a 3\xf72'</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>    text.encode(<span class="st">'ascii'</span>)</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span> <span class="pp">Exception</span> <span class="im">as</span> error:</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(error)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'ascii' codec can't encode character '\xf1' in position 2: ordinal not in range(128)</code></pre>
+</div>
+</div>
+<p>The results above show that the two non-ASCII characters we had been working with, which required two bytes in UTF-8, require only one byte in the Latin1 (ISO 8859-1) encoding, which provides 191 characters that include ASCII characters and various characters (mostly letters with accents) used in European languages.</p>
+<p>An error message about decoding/invalid bytes in the message often indicates an encoding issue. In particular errors may arise when trying to do read or manipulate strings in Python for which the encoding is not properly set. Here’s an example with some Internet logging data that we used a few years ago in class in a problem set and which caused some problems.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'file_nonascii.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> textfile:</span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> textfile.readlines()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>UnicodeDecodeError: 'utf-8' codec can't decode byte 0xac in position 7922: invalid start byte</code></pre>
+</div>
+</div>
+<p>If we specify the file is encoded with Latin1, it works.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'file_nonascii.txt'</span>, <span class="st">'r'</span>, encoding <span class="op">=</span> <span class="st">'latin1'</span>) <span class="im">as</span> textfile:</span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>    lines <span class="op">=</span> textfile.readlines()</span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Note the non-ASCII (Latin-1) character (the upside-down question mark)</span></span>
+<span id="cb107-5"><a href="#cb107-5" aria-hidden="true" tabindex="-1"></a>lines[<span class="dv">16925</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'from 5#c¿a7lw8lz2nX,%@ [128.32.244.179] by ncpc-email with ESMTP\n'</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/stat243\.berkeley\.edu\/fall-2026");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
