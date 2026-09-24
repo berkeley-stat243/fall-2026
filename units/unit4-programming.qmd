@@ -3456,7 +3456,7 @@ for i in range(10):
 
 There is no way around the fact that because of how dynamic this is, the interpreter needs to check if `x` exists, if it is an array of sufficient length, if it contains numeric values, and it needs to go retrieve the required value, EVERY TIME the `np.exp()` is executed. Now the code above is unusual, and in most cases, we wouldn't have the `if` statements that modify `x`. So you could imagine a process by which the checking were done on the first iteration and then not needed after that -- that gets into the idea of just-in-time compilation, discussed later. 
 
-The standard Python interpreter (CPython) is a C function so in some sense everything that happens is running as compiled code, but there are lots more things being done to accomplish a given task using interpreted code than if the task had been written directly in code that is compiled. By analogy, consider talking directly to a person in a language you both know compared to talking to a person via an interpreter who has to translate between two languages. Ultimately, the same information gets communicated (hopefully!) but the number of words spoken and time involved is much greater. 
+The standard Python interpreter (CPython) is a C program so in some sense everything that happens is running as compiled code, but there are lots more things being done to accomplish a given task using interpreted code than if the task had been written directly in code that is compiled. By analogy, consider talking directly to a person in a language you both know compared to talking to a person via an interpreter who has to translate between two languages. Ultimately, the same information gets communicated (hopefully!) but the number of words spoken and time involved is much greater. 
 
 When running more complicated functions, there is often a lot of checking that is part of the function itself. For example scipy's `solve_triangular` function ultimately calls out to the `trtrs` Lapack function, but before doing so, there is a lot of checking that can take time. To that point, the documentation suggests you might set `check_finite=False` to improve performance at the expense of potential problems if the input matrices contain troublesome elements.
 
@@ -3683,7 +3683,7 @@ cProfile.run('lr_slow(y,x)')
 ```
 
 
-The `cumtime` column includes the time spent in nested calls to functions while the `tottime` column excludes it.
+The `cumtime` column includes the time spent in nested calls to functions while the `tottime` column excludes it. (If you profile the `lr_fast` code below, you should see that `cholesky` is a wrapper that calls `_cholesky` and the `tottime` for `cholesky` is negligible because it excludes the time spend in the nested call to `_cholesky`.)
 
 As we'll discuss in detail in Unit 10, we almost never want to explicitly invert
 a matrix. Instead we factorize the matrix and use the factorized result to do the
@@ -4037,10 +4037,10 @@ time.time() - t0
 
 Here they're about the same time (depending on when I render the document, I am getting some stochasticity in the timing). This is not too surprising -- the overhead of the iteration should be small relative to the fundamental cost of the model fitting, and we wouldn't be concerned with the overhead of using a loop. 
 
-### Matrix algebra efficiency
+### Linear/Matrix algebra efficiency
 
 Often calculations that are not explicitly linear algebra calculations
-can be done as matrix algebra. If our Python installation has a fast (and possibly parallelized) BLAS, this allows our calculation to take advantage of it.
+can be done as linear algebra. If our Python installation has a fast (and possibly parallelized) BLAS, this allows our calculation to take advantage of it.
 
 For example, we can sum the rows of a matrix by multiplying by a 1-d array of ones. 
 
@@ -4056,12 +4056,14 @@ timeit.timeit('np.sum(mat, axis = 1)', setup = 'import numpy as np',
 
 Given the extra computation involved in actually multiplying each number by one, it's surprising that this is faster than numpy sum function. One thing we'd want to know is whether the BLAS matrix multiplication call is being done in parallel.
 
+Another benefit of writing calculations as linear algebra operations is that it can allow us to use packages like PyTorch or JAX to implement the calculations. Such packages can do linear algebra in parallel on either the CPU or GPU. 
+
 On the other hand, big matrix operations can be slow.
 
 :::{.callout-tip title="Challenge"}
 Suppose you
 want a new matrix that computes the differences between successive
-columns of a matrix of arbitrary size. How would you do this as matrix
+columns of a matrix of arbitrary size. How would you do this as linear
 algebra operations? It's possible to write it as multiplying the matrix
 by another matrix that contains 0s, 1s, and -1s in appropriate places.
  Here it turns out that the
