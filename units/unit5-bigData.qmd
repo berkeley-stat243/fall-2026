@@ -494,7 +494,7 @@ while rendering this document.
 ```{python}
 #| eval: false
 import duckdb as dd
-dir_path = '../data'  # Replace with the actual path
+dir_path = '/mirror/data/pub/users/paciorek/share'  # Replace with the actual path
 db_filename = 'stackoverflow-2021.duckdb' 
 ## Download from http://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.duckdb.
 
@@ -1013,7 +1013,7 @@ student_data.to_sql('student', con, if_exists='replace', index=False)
 
 One can use SQL syntax in lots of situations in which there is not a formal database set up. For example, one can use SQL syntax to query a Polars DataFrame or LazyFrame using `polars.sql`.
 
-# 4. Recent tools and data storage formats
+# 3. Recent tools and data storage formats
 
 There has been a lot of work in recent years to provide file formats and tools for working with very large datasets in ways other than traditional databases, often optimized for speed when doing large-scale analytics on the data.
 
@@ -1027,7 +1027,7 @@ After loading the data in (which doesn’t initially involve actually reading th
 
 *Polars* is advertised as a very fast in-memory package for working with dataframes (i.e., an alternative to Pandas) that provides a Python interface. It uses the Arrow columnar format. It also provides a lazy execution model (using a lazy version of a DataFrame called a "LazyFrame") like Dask or Spark that allows for automatic optimization of queries.
 
-# 3. MapReduce and Dask
+# 4. MapReduce and Dask
 
 Traditionally, high-performance computing (HPC) has concentrated on
 techniques and tools for message passing such as MPI and on developing
