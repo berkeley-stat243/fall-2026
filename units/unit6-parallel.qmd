@@ -391,7 +391,7 @@ This table shows the different types of schedulers.
 |  -------------| ---------------------------------------| ------------| -------------------------|
 |   synchronous |        not in parallel (serial)        |      no     |            no |
 |    threads*|threads within current Python session   |      no     |            no |
-|    processes  |       background Python sessions       |      no     |            yes |
+|    processes** |       background Python sessions       |      no     |            yes |
 |distributed**|Python sessions across multiple nodes   |     yes     |            yes |
 
 
@@ -401,10 +401,10 @@ This table shows the different types of schedulers.
     however computations on numeric data in numpy arrays, Pandas
     dataframes and other C/C++/Cython-based code will parallelize.
 
-(**) It's fine to use the distributed scheduler on one machine, such as
-    your laptop. According to the Dask documentation, it has advantages
-    over multiprocessing, including the diagnostic dashboard (see the
-    tutorial) and better handling of when copies need to be made. In
+(**) It's fine, and actually recommended, to use the distributed scheduler on one machine, such as
+    your laptop. [According to the Dask documentation, it has advantages
+    over the processes scheduler](https://docs.dask.org/en/stable/scheduling.html), including the diagnostic dashboard (see the
+    tutorial), smarter task scheduling, and better handling of when copies need to be made. In
     addition, one needs to use it for parallel map operations (see next
     section).
 

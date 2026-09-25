@@ -3806,7 +3806,7 @@ def fun_append2(vals):
    x = []
    print(f"Initial id: {id(x)}")
    sz = sys.getsizeof(x)
-   print(f"iteration 0: size {sz}")
+   print(f"Empty list: size {sz}")
    for i in range(n):
        x.append(np.exp(vals[i]))
        if sys.getsizeof(x) != sz:
@@ -4003,7 +4003,7 @@ which is of course the recommended approach in this case, both for speed and rea
 
 Second, is it faster to use `map` than to use a loop? In the example above it is somewhat (but not substantially) faster to use `map` (and still much slower than vectorization). In the loop case, the interpreter needs to do the checking we discussed earlier in this section at each iteration of the loop. What about in the `map` case? For mapping over a numpy array, perhaps not, but what if mapping over a list? Without digging into how `map` works, it's hard to say, but it does seem that based on this example, `map` is not doing anything special that saves much time when mapping over the elements of a numpy array.
 
-Here's an example where the bulk of time is in the actual computation and not in the looping itself. We'll run a bunch of regressions on a matrix `X` (i.e., each column of `X` is a predictor) using each column of the matrix `mat` to do a separate regression. 
+Here's an example where the bulk of time is in the actual computation and not in the looping itself. We'll run a bunch of regressions on a matrix `X` (i.e., each column of `X` is a predictor) using each column of the matrix `mat` as the observation vector in  a separate regression. 
 
 ```{python, map-vs-for}
 import time
@@ -4011,7 +4011,7 @@ import statsmodels.api as sm
 
 n = 500000;
 nr = 10000
-nCalcs = int(n/nr)
+nCalcs = int(n/nr)   # Number of iterations in the for loop.
 
 mat = np.random.normal(size = (nr, nCalcs))
 
@@ -4410,7 +4410,7 @@ def myfun_jnp(x):
     return y
 ```
 
-### Lazy evaluation
+### (BACKGROUND) Lazy evaluation 
 
 What's strange about this Python `map()` code?
 
@@ -4436,11 +4436,10 @@ We actually saw this earlier when we first saw `map`, seeing that the result of 
 
 I illustrated this with a numpy array in order to easily generate a large object to have the timing result be clear, but we would generally want to use numpy's built-in functionality and vectorization rather than using `map`.
 
-Lazy evaluation is a common strategy; it also occurs in Tensorflow (particularly version 1),
-the Python Dask package, JAX (see `jax.jit`), and in Spark. The basic idea is to delay executation until
+Lazy evaluation is a common strategy; it also occurs in the Python Dask package, JAX (see `jax.jit`), "LazyFrames" in Polars (a lazy framework for operating on DataFrames), Tensorflow (particularly version 1)and in Spark. The basic idea is to delay executation until
 it's really needed, with the goal that if one does so, the system may be
 able to better optimize a series of multiple steps as a joint operation
-relative to executing them one by one.
+relative to executing them one by one. We'll see this more in Units 5 and 6.
 
 
 

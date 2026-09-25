@@ -1,7 +1,7 @@
 ---
 title: "Big data and databases"
 author: "Chris Paciorek"
-date: "2025-10-15"
+date: "2026-09-28"
 format:
   pdf:
     documentclass: article
@@ -50,13 +50,15 @@ For a lot of the demo code I ran the code separately from rendering this documen
 with large datasets.
 :::
 
-We'll focus on Dask and databases/SQL in this Unit. The material on using Spark is provided for reference, but you're not responsible for that material.
+We'll focus on databases/SQL and Dask in this Unit. The landscape of tools for working with large datasets is huge, so we can only cover so much here, but a main goal of the unit is to see various general concepts in specific contexts. This should set you up to understand and use those concepts with other tools/platforms.
+
+The material on using Spark is provided for reference, but you're not responsible for that material.
 If you're interested in working with big datasets in R or with tools other than Dask in Python, there is [some material in the tutorial on working with large datasets](https://computing.stat.berkeley.edu/tutorial-databases/R-and-Python).
 
 
 # 1. A few preparatory notes
 
-## An editorial on 'big data'
+## (BACKGROUND) An editorial on 'big data'
 
 'Big data' was trendy for a while, though I guess it's not quite the
 buzzword/buzzphrase that it was a few years ago, given the AI/ML
@@ -75,7 +77,7 @@ either needs to carry out a designed experiment or think carefully about
 how to infer causation from observational data. Nor does big data help
 with the problem that an ad hoc 'sample' is not a statistical sample and
 does not provide the ability to directly infer properties of a
-population. Consider the immense difficulties we've seen in
+population. Consider the immense difficulties we saw in
 answering questions about Covid despite large amounts of data, because it
 is incomplete/non-representative. A well-chosen smaller dataset may be much more informative
 than a much larger, more ad hoc dataset. However, having big datasets
@@ -145,428 +147,7 @@ formats than in flat text (e.g., csv) files.
 Finally, for many applications, storing large datasets in a standard
 database will work well. 
 
-# 2. MapReduce and Dask
-
-Traditionally, high-performance computing (HPC) has concentrated on
-techniques and tools for message passing such as MPI and on developing
-efficient algorithms to use these techniques. In the last 20 years,
-focus has shifted to technologies for processing large datasets that are
-distributed across multiple machines but can be manipulated as if they
-are one dataset.
-
-Two commonly-used tools for doing this are Spark and Python's Dask
-package. We'll cover Dask. Spark was popular for a while, but I'm
-not sure how much it is used now.
-
-## Overview
-
-A basic paradigm for working with big datasets is the *MapReduce*
-paradigm. The basic idea is to store the data in a distributed fashion
-across multiple nodes and try to do the computation in pieces on the
-data on each node. Results can also be stored in a distributed fashion.
-
-A key benefit of this is that if you can't fit your dataset on disk on
-one machine you can on a cluster of machines. And your processing of the
-dataset can happen in parallel. This is the basic idea of *MapReduce*.
-
-The basic steps of *MapReduce* are as follows:
-
--   read individual data objects (e.g., records/lines from CSVs or
-    individual data files)
--   *map*: create key-value pairs using the inputs (more formally, the map
-    step takes a key-value pair and returns a new key-value pair)
--   *reduce*: for each key, do an operation on the associated values and
-    create a result - i.e., aggregate within the values assigned to each
-    key
--   write out the {key,result} pair
-
-A similar paradigm that is implemented in `pandas` and `dplyr` is the
-[split-apply-combine strategy](http://www.jstatsoft.org/v40/i01/paper).
-
-A few additional comments. In our map function, we could exclude values
-or transform them in some way, including producing multiple records from
-a single record. And in our reduce function, we can do more complicated
-analysis. So one can actually do fairly sophisticated things within what
-may seem like a restrictive paradigm. But we are constrained such that
-in the map step, each record needs to be treated independently and in
-the reduce step each key needs to be treated independently. This allows
-for the parallelization.
-
-
-::: {.callout-warning title="'Shuffling' data"}
-One important note is that any operations that require moving a lot of
-data between the workers can take a long time. (This is sometimes
-called a *shuffle*.) This could happen if, for example, you computed the
-median value within each of many groups if the data for each group are
-spread across the workers. In contrast, if we compute the mean or sum,
-one can compute the partial sums on each worker and then just add up the
-partial sums.
-:::
-
-Note that as discussed in Unit 5 the concepts of *map* and *reduce* are core concepts in
-functional programming, and of course Python provides the `map` function.
-
-*Hadoop* is an infrastructure for enabling MapReduce across a network of
-machines. The basic idea is to hide the complexity of distributing the
-calculations and collecting results. Hadoop includes a file system for
-distributed storage (HDFS), where each piece of information is stored
-redundantly (on multiple machines). Calculations can then be done in a
-parallel fashion, often on data in place on each machine thereby
-limiting the amount of communication that has to be done over the
-network. Hadoop also monitors completion of tasks and if a node fails,
-it will redo the relevant tasks on another node. Hadoop is based on
-Java. Given the popularity of Spark, I'm not sure how much usage these
-approaches currently see. Setting up a Hadoop cluster can be tricky.
-Hopefully if you're in a position to need to use Hadoop, it will be set
-up for you and you will be interacting with it as a user/data analyst.
-
-Ok, so what is Spark? You can think of Spark as in-memory Hadoop. Spark
-allows one to treat the memory across multiple nodes as a big pool of
-memory. Therefore, Spark should be faster than Hadoop when the data
-will fit in the collective memory of multiple nodes. In cases where it
-does not, Spark will make use of the HDFS (and generally, Spark will be
-reading the data initially from HDFS.) While Spark is more user-friendly
-than Hadoop, there are also some things that can make it hard to use.
-Setting up a Spark cluster also involves a bit of work, Spark can be
-hard to configure for optimal performance, and Spark calculations have a
-tendency to fail (often involving memory issues) in ways that are hard
-for users to debug.
-
-## Using Dask for big data processing
-
-Unit 6 on parallelization gives an overview of using Dask for flexible parallelization
-on different kinds of computational resources (in particular,
-parallelizing across multiple cores on one machine versus parallelizing
-across multiple cores across multiple machines/nodes).
-
-Here we'll see the use of Dask to work with distributed datasets. Dask
-can process datasets (potentially very large ones) by parallelizing
-operations across subsets of the data using multiple cores on one or
-more machines.
-
-Like Spark, Dask automatically reads data from files in parallel and
-operates on *chunks* (also called *partitions* or *shards*) of the full
-dataset in parallel. There are two big advantages of this:
-
--   You can do calculations (including reading from disk) in parallel
-    because each worker will work on a piece of the data.
--   When the data is split across machines, you can use the memory of
-    multiple machines to handle much larger datasets than would be
-    possible in memory on one machine. That said, Dask processes the
-    data in chunks, so one often doesn't need a lot of memory, even just
-    on one machine.
-
-While reading from disk in parallel is a good goal, if all the data are
-on one hard drive, there are limitations on the speed of reading the
-data from disk because of having multiple processes all trying to access
-the disk at once. Supercomputing systems will generally have parallel
-file systems that support truly parallel reading (and writing, i.e.,
-*parallel I/O*). Hadoop/Spark deal with this by distributing across
-multiple disks, generally one disk per machine/node.
-
-Because computations are done in external compiled code (e.g., via
-`numpy`) it's effective to use the `threads` scheduler when operating on
-one node to avoid having to copy and move the data.
-
-### Dask dataframes (pandas)
-
-Dask dataframes are Pandas-like dataframes where each dataframe is split
-into groups of rows, stored as smaller Pandas dataframes.
-
-One can do a lot of the kinds of computations that you would do on a
-Pandas dataframe on a Dask dataframe, but many operations are not
-possible. See [here](http://docs.dask.org/en/latest/dataframe-api.html).
-
-By default dataframes are handled by the `threads` scheduler.
-(Recall we discussed Dask's various schedulers in Unit 6.)
-
-Here's an example of reading from a dataset of flight delays (about 11
-GB data). You can get the data
-[here](https://www.stat.berkeley.edu/share/paciorek/1987-2008.csvs.tgz).
-
-We'll specify some dtypes as otherwise Pandas complains about the fact
-that some columns mix what appear to be ints and floats.
-
-```{python}
-#| eval: false
-import dask
-dask.config.set(scheduler='threads', num_workers = 4)  
-import dask.dataframe as ddf
-path = '/scratch/users/paciorek/243/AirlineData/csvs/'
-air = ddf.read_csv(path + '*.csv.bz2',
-      compression = 'bz2',
-      encoding = 'latin1', # (unexpected) latin1 value(s) in TailNum field in 2001
-      dtype = {'Distance': 'float64', 'CRSElapsedTime': 'float64',
-      'TailNum': 'object', 'CancellationCode': 'object', 'DepDelay': 'float64',
-      'ActualElapsedTime': 'float64', 'ArrDelay': 'float64', 'ArrTime': 'float64',
-       'DepTime': 'float64'})
-air
-air.npartitions
-```
-
-Dask will reads the data in parallel from the various .csv.bz2 files
-(unzipping on the fly), but note the caveat in the previous section
-about the possibilities for truly parallel I/O.
-
-However, recall that Dask uses delayed (lazy) evaluation. In this case, the reading is delayed until
-`compute()` is called. For that matter, the various other calculations
-(`max`, `groupby`, `mean`) shown below are only done after `compute()` is called.
-
-```{python}
-#| eval: false
-import time
-
-t0 = time.time()
-max_delay = air.DepDelay.max().compute()   # This takes a while.
-print(time.time() - t0)
-
-t0 = time.time()
-mean_delay = air.DepDelay.mean().compute()   # This takes a while.
-print(time.time() - t0)
-
-air.DepDelay.median().compute() 
-```
-
-We'll discuss in class why Dask won't do the median. Consider the discussion about moving data in the earlier section on MapReduce.
-
-Next let's see a full split-apply-combine (aka MapReduce) type of analysis.
-
-```{python}
-#| eval: false
-sub = air[(air.UniqueCarrier == 'UA') & (air.Origin == 'SFO')]
-byDest = sub.groupby('Dest').DepDelay.mean()
-results = byDest.compute()            # This takes a while too.
-results
-```
-
-
-You should see this:
-
-```
-    Dest 
-    ACV 26.200000 
-    BFL 1.000000 
-    BOI 12.855069 
-    BOS 9.316795 
-    CLE 4.000000
-    ...
-```
-
-Note: calling `compute` twice is a bad idea as Dask will read in the data
-twice - more on this in a bit.
-
-
-::: {.callout-warning title="Memory use for results objects"}
-Think carefully about the size of the result from calling `compute`. The
-result will be returned as a standard Python object, not distributed across
-multiple workers (and possibly machines), and with the object entirely in memory.
-It's easy to accidentally return an entire giant dataset.
-:::
-
-### Dask bags
-
-Bags are like lists but there is no particular ordering, so it doesn't
-make sense to ask for the i'th element.
-
-You can think of operations on Dask bags as being like parallel map
-operations on lists in Python or R.
-
-By default bags are handled via the `processes` scheduler.
-
-Let's see some basic operations on a large dataset of Wikipedia log
-files. You can get a subset of the Wikipedia data
-[here](https://www.stat.berkeley.edu/share/paciorek/wikistats_example.tar.gz).
-
-Here we again read the data in (which Dask will do in parallel):
-
-```{python}
-#| eval: false
-import dask.multiprocessing
-dask.config.set(scheduler='processes', num_workers = 4)  
-import dask.bag as db
-## This is the full data
-## path = '/scratch/users/paciorek/wikistats/dated_2017/'
-## For demo we'll just use a small subset.
-path = '/scratch/users/paciorek/wikistats/dated_2017_small/dated/'
-wiki = db.read_text(path + 'part-0*gz')
-```
-
-
-Here we'll just count the number of records.
-
-```{python}
-#| eval: false
-import time
-t0 = time.time()
-n = wiki.count().compute()
-time.time() - t0   # 136 sec. for full data
-```
-
-
-And here is a more realistic example of filtering (subsetting).
-
-```{python}
-#| eval: false
-import re
-
-def find(line, regex = 'Armenia'):
-    vals = line.split(' ')
-    if len(vals) < 6:
-        return(False)
-    tmp = re.search(regex, vals[3])
-    if tmp is None:
-        return(False)
-    else:
-        return(True)
-    
-
-wiki.filter(find).count().compute()
-
-armenia = wiki.filter(find)
-smp = armenia.take(100)   # Grab a handful as proof of concept.
-smp[0:5]
-```
-
-
-Note that it is quite inefficient to do the `find()` (and implicitly
-read the data in) and then compute on top of that intermediate result
-in two separate calls to `compute()`. Rather, we should set up the code
-so that all the operations are set up before a single call to
-`compute()`. This is discussed in detail in the [Dask/future tutorial](https://computing.stat.berkeley.edu/tutorial-dask-future/python-dask#63-avoid-repeated-calculations-by-embedding-tasks-within-one-call-to-compute).
-
-Since the data are just treated as raw strings, we might want to
-introduce structure by converting each line to a tuple and then
-converting to a data frame.
-
-```{python}
-#| eval: false
-def make_tuple(line):
-    return(tuple(line.split(' ')))
-
-dtypes = {'date': 'object', 'time': 'object', 'language': 'object',
-'webpage': 'object', 'hits': 'float64', 'size': 'float64'}
-
-## Let's create a Dask dataframe. 
-## This will take a while if done on full data.
-df = armenia.map(make_tuple).to_dataframe(dtypes)
-type(df)
-
-## Now let's actually do the computation,
-## returning a **Pandas** (not Dask) df to the main process.
-result = df.compute()  
-type(result)
-result[0:5]
-```
-
-
-### Dask arrays (numpy)
-
-Dask arrays are numpy-like arrays where each array is split up by both
-rows and columns into smaller numpy arrays.
-
-One can do a lot of the kinds of computations that you would do on a
-numpy array on a Dask array, but many operations are not possible. See
-[here](http://docs.dask.org/en/latest/array-api.html).
-
-By default arrays are handled via the `threads` scheduler.
-
-#### Non-distributed arrays
-
-Let's first see operations on a single node, using a single 13 GB two-dimensional
-array. Again, Dask uses lazy evaluation, so creation of the array
-doesn't happen until an operation requiring output is done.
-
-```{python}
-#| eval: false
-import dask
-dask.config.set(scheduler = 'threads', num_workers = 4) 
-import dask.array as da
-x = da.random.normal(0, 1, size=(40000,40000), chunks=(10000, 10000))
-# square 10k x 10k chunks
-mycalc = da.mean(x, axis = 1)  # by row
-import time
-t0 = time.time()
-rs = mycalc.compute()
-time.time() - t0  # 41 sec.
-```
-
-
-For a row-based operation, we would presumably only want to chunk things
-up by row, but this doesn't seem to actually make a difference,
-presumably because the mean calculation can be done in pieces and only a
-small number of summary statistics moved between workers.
-
-```{python}
-#| eval: false
-import dask
-dask.config.set(scheduler='threads', num_workers = 4)  
-import dask.array as da
-# x = da.from_array(x, chunks=(2500, 40000))  # How to adjust chunk size of existing array.
-x = da.random.normal(0, 1, size=(40000,40000), chunks=(2500, 40000))
-mycalc = da.mean(x, axis = 1)  # row means
-import time
-t0 = time.time()
-rs = mycalc.compute()
-time.time() - t0   # 42 sec.
-```
-
-
-Of course, given the lazy evaluation, this timing comparison is not just
-timing the actual row mean calculations.
-
-But this doesn't really clarify the story...
-
-```{python}
-#| eval: false
-import dask
-dask.config.set(scheduler='threads', num_workers = 4)  
-import dask.array as da
-import numpy as np
-import time
-t0 = time.time()
-x = np.random.normal(0, 1, size=(40000,40000))
-time.time() - t0   # 110 sec.
-# For some reason the `from_array` and `da.mean` calculations are not done lazily here.
-t0 = time.time()
-dx = da.from_array(x, chunks=(2500, 40000))
-time.time() - t0   # 27 sec.
-t0 = time.time()
-mycalc = da.mean(x, axis = 1)  # What is this doing given .compute() also takes time?
-time.time() - t0   # 28 sec.
-t0 = time.time()
-rs = mycalc.compute()
-time.time() - t0   # 21 sec.
-```
-
-
-Dask will avoid storing all the chunks in memory. (It appears to just
-generate them on the fly.) Here we have an 80 GB array, but we never use
-more than a few GB of memory (based on `top` or `free -h`).
-
-```{python}
-#| eval: false
-import dask
-dask.config.set(scheduler='threads', num_workers = 4)  
-import dask.array as da
-x = da.random.normal(0, 1, size=(100000,100000), chunks=(10000, 10000))
-mycalc = da.mean(x, axis = 1)  # row means
-import time
-t0 = time.time()
-rs = mycalc.compute()
-time.time() - t0   # 205 sec.
-rs[0:5]
-```
-
-
-#### Distributed arrays
-
-Using arrays distributed across multiple machines should be straightforward based on using *Dask distributed*. However,
-one would want to be careful about creating arrays by distributing the
-data from a single Python process as that would involve copying between
-machines.
-
-
-# 3. Databases
+# 2. Databases
 
 This material is drawn from the tutorial on [Working with large datasets
 in SQL, R, and
@@ -696,7 +277,7 @@ There are a lot of problems with this (to be filled out in class):
 #  4.  We have to know in advance how big 'n' is. Then if a single student takes more than 'n' classes, the whole database needs to be restructured.
 ```
 
-It would get even worse if there was a field related to teachers for
+It would get even worse if there were a field related to teachers for
 which a given teacher could have multiple values (e.g., teachers could
 be in multiple departments). This would lead to even more redundancy -
 each student-class-teacher combination would be crossed with all of the
@@ -1348,7 +929,7 @@ so you'd only want to create it if you were doing multiple queries
 that could take advantage of the index. See the databases tutorial
 for more discussion of how using indexes in a lookup is not always advantageous.
 
-## Set operations: union, intersect, except
+## Set operations: UNION, INTERSECT, EXCEPT
 
 You can do set operations like union, intersection, and set difference using the UNION, INTERSECT, and EXCEPT keywords, respectively, on tables that have the same schema (same column names and types), though most often these would be used on single columns (i.e., single-column tables).
 
@@ -1428,6 +1009,10 @@ con = sq.connect(db_path)
 student_data.to_sql('student', con, if_exists='replace', index=False)
 ```
 
+## SQL everywhere
+
+One can use SQL syntax in lots of situations in which there is not a formal database set up. For example, one can use SQL syntax to query a Polars DataFrame or LazyFrame using `polars.sql`.
+
 # 4. Recent tools and data storage formats
 
 There has been a lot of work in recent years to provide file formats and tools for working with very large datasets in ways other than traditional databases, often optimized for speed when doing large-scale analytics on the data.
@@ -1440,7 +1025,469 @@ Arrow is designed to read data from various file formats, including Parquet, nat
 
 After loading the data in (which doesn’t initially involve actually reading the data from disk), you can then operate on the resulting object. PyArrow will only read the data it needs for your computations (how much has to be read depends on the file format, with the native `arrow` format best in this regard), which can reduce I/O and memory usage.
 
-*Polars* is advertised as a very fast in-memory package for working with dataframes (i.e., an alternative to Pandas) that provides a Python interface. It uses the Arrow columnar format. It also provides a lazy execution model like Spark or Dask that allows for automatic optimization of queries.
+*Polars* is advertised as a very fast in-memory package for working with dataframes (i.e., an alternative to Pandas) that provides a Python interface. It uses the Arrow columnar format. It also provides a lazy execution model (using a lazy version of a DataFrame called a "LazyFrame") like Dask or Spark that allows for automatic optimization of queries.
+
+# 3. MapReduce and Dask
+
+Traditionally, high-performance computing (HPC) has concentrated on
+techniques and tools for message passing such as MPI and on developing
+efficient algorithms to use these techniques. In the last 20 years,
+focus has shifted to technologies for processing large datasets that are
+distributed across multiple machines but can be manipulated as if they
+are one dataset.
+
+Two commonly-used tools for doing this are Python's Dask
+package and Spark. We'll cover Dask. Spark was popular for a while, but I'm
+not sure how much it is used now.
+
+## Overview
+
+A basic paradigm for working with big datasets is the *MapReduce*
+paradigm. The basic idea is to store the data in a distributed fashion
+across multiple nodes and try to do the computation in pieces on the
+data on each node. Results can also be stored in a distributed fashion.
+
+A key benefit of this is that if you can't fit your dataset on disk on
+one machine you can on a cluster of machines. And your processing of the
+dataset can happen in parallel. This is the basic idea of *MapReduce*.
+
+The basic steps of *MapReduce* are as follows:
+
+-   read individual data objects (e.g., records/lines from CSVs or
+    individual data files)
+-   *map*: create key-value pairs using the inputs (more formally, the map
+    step takes a key-value pair and returns a new key-value pair)
+-   *reduce*: for each key, do an operation on the associated values and
+    create a result - i.e., aggregate within the values assigned to each
+    key
+-   write out the {key,result} pair
+
+A similar paradigm that is implemented in `pandas`, `polars`, and `dplyr` is the
+[split-apply-combine strategy](http://www.jstatsoft.org/v40/i01/paper).
+
+A few additional comments. In our map function, we could exclude values
+or transform them in some way, including producing multiple records from
+a single record. And in our reduce function, we can do more complicated
+analysis. So one can actually do fairly sophisticated things within what
+may seem like a restrictive paradigm. But we are constrained such that
+in the map step, each record needs to be treated independently and in
+the reduce step each key needs to be treated independently. This allows
+for the parallelization.
+
+
+::: {.callout-warning title="'Shuffling' data"}
+One important note is that any operations that require moving a lot of
+data between the workers can take a long time. (This is sometimes
+called a *shuffle*.) This could happen if, for example, you computed the
+median value within each of many groups if the data for each group are
+spread across the workers. In contrast, if we compute the mean or sum,
+one can compute the partial sums on each worker and then just add up the
+partial sums.
+:::
+
+Note that as discussed in Unit 4 the concepts of *map* and *reduce* are core concepts in
+functional programming, and of course Python provides the `map` function.
+
+### (OPTIONAL) Hadoop and Spark
+
+*Hadoop* is an infrastructure for enabling MapReduce across a network of
+machines. The basic idea is to hide the complexity of distributing the
+calculations and collecting results. Hadoop includes a file system for
+distributed storage (HDFS), where each piece of information is stored
+redundantly (on multiple machines). Calculations can then be done in a
+parallel fashion, often on data in place on each machine thereby
+limiting the amount of communication that has to be done over the
+network. Hadoop also monitors completion of tasks and if a node fails,
+it will redo the relevant tasks on another node. Hadoop is based on
+Java. Given the popularity of Spark, I'm not sure how much usage these
+approaches currently see. Setting up a Hadoop cluster can be tricky.
+Hopefully if you're in a position to need to use Hadoop, it will be set
+up for you and you will be interacting with it as a user/data analyst.
+
+Ok, so what is Spark? You can think of Spark as in-memory Hadoop. Spark
+allows one to treat the memory across multiple nodes as a big pool of
+memory. Therefore, Spark should be faster than Hadoop when the data
+will fit in the collective memory of multiple nodes. In cases where it
+does not, Spark will make use of the HDFS (and generally, Spark will be
+reading the data initially from HDFS.) While Spark is more user-friendly
+than Hadoop, there are also some things that can make it hard to use.
+Setting up a Spark cluster also involves a bit of work, Spark can be
+hard to configure for optimal performance, and Spark calculations have a
+tendency to fail (often involving memory issues) in ways that are hard
+for users to debug.
+
+
+## Using Dask for big data processing
+
+Unit 6 on parallelization gives an overview of using Dask for flexible parallelization
+on different kinds of computational resources (in particular,
+parallelizing across multiple cores on one machine versus parallelizing
+across multiple cores across multiple machines/nodes).
+
+Here we'll see the use of Dask to work with distributed datasets. Dask
+can process datasets (potentially very large ones) by parallelizing
+operations across subsets of the data using multiple cores on one or
+more machines.
+
+Like Spark, Dask automatically reads data from files in parallel and
+operates on *chunks* (also called *partitions* or *shards*) of the full
+dataset in parallel. There are two big advantages of this:
+
+-   You can do calculations (including reading from disk) in parallel
+    because each worker will work on a piece of the data.
+-   When the data is split across machines, you can use the memory of
+    multiple machines to handle much larger datasets than would be
+    possible in memory on one machine. That said, Dask processes the
+    data in chunks, so one often doesn't need a lot of memory, even just
+    on one machine.
+
+While reading from disk in parallel is a good goal, if all the data are
+on one hard drive, there are limitations on the speed of reading the
+data from disk because of having multiple processes all trying to access
+the disk at once. Supercomputing systems will generally have parallel
+file systems that support truly parallel reading (and writing, i.e.,
+*parallel I/O*). Hadoop/Spark deal with this by distributing across
+multiple disks, generally one disk per machine/node.
+
+Because computations are done in external compiled code (e.g., via
+`numpy`) it's effective to use the `threads` scheduler when operating on
+one node to avoid having to copy and move the data.
+
+## Dask "schedulers" and parallelization concepts
+
+We'll talk about the following ideas much more in Unit 6, but we need a bit of
+knowledge about them here to understand how Dask divides computation on large datasets.
+
+One sets the Dask *scheduler* to control how parallelization is done, whether
+to run code on multiple machines, and how many cores on each machine to use.
+
+The Dask schedulers are:
+
+|      Type     |               Description              |  Multi-node |  Copies of objects made? |
+|  -------------| ---------------------------------------| ------------| -------------------------|
+|   synchronous |        not in parallel (serial)        |      no     |            no |
+|    threads|threads within current Python session   |      no     |            no |
+|    processes |       background Python sessions       |      no     |            yes |
+|distributed|Python sessions across multiple nodes   |     yes     |            yes |
+
+
+Threads are multiple paths of execution within a single process. If you
+are monitoring CPU usage (such as with `top` in Linux or Mac) and
+watching a job that is executing threaded code, you'll see the process
+using more than 100% of CPU. When this occurs, the process is using
+multiple cores, although it appears as a single process rather than as
+multiple processes. (You can think of threads as "lightweight" processes.)
+An advantage of using the `threads` scheduler is that
+the different threads can share objects in memory without making copies.
+
+The `distributed` scheduler was originally developed for parallelizing across multiple machines (i.e., nodes in a cluster),
+but it's fine and actually now recommended to use `distributed` instead of `processes` even when working on a single machine
+as well. [According to the Dask documentation, it has advantages
+    over the processes scheduler](https://docs.dask.org/en/stable/scheduling.html), including the diagnostic dashboard (see the
+    tutorial), smarter task scheduling, and better handling of when copies need to be made. 
+
+
+### Dask dataframes (pandas)
+
+Dask dataframes are Pandas-like dataframes where each dataframe is split
+into groups of rows, stored as smaller Pandas dataframes.
+
+One can do a lot of the kinds of computations that you would do on a
+Pandas dataframe on a Dask dataframe, but many operations are not
+possible. See [here](http://docs.dask.org/en/latest/dataframe-api.html).
+
+By default dataframes are handled by the `threads` scheduler.
+(Recall we discussed Dask's various schedulers in Unit 6.)
+
+Here's an example of reading from a dataset of flight delays (about 11
+GB data). You can get the data
+[here](https://www.stat.berkeley.edu/share/paciorek/1987-2008.csvs.tgz).
+
+We'll specify some dtypes as otherwise Pandas complains about the fact
+that some columns mix what appear to be ints and floats.
+
+```{python}
+#| eval: false
+import dask
+dask.config.set(scheduler='threads', num_workers = 4)  
+import dask.dataframe as ddf
+path = '/scratch/users/paciorek/243/AirlineData/csvs/'
+air = ddf.read_csv(path + '*.csv.bz2',
+      compression = 'bz2',
+      encoding = 'latin1', # (unexpected) latin1 value(s) in TailNum field in 2001
+      dtype = {'Distance': 'float64', 'CRSElapsedTime': 'float64',
+      'TailNum': 'object', 'CancellationCode': 'object', 'DepDelay': 'float64',
+      'ActualElapsedTime': 'float64', 'ArrDelay': 'float64', 'ArrTime': 'float64',
+       'DepTime': 'float64'})
+air
+air.npartitions
+```
+
+Dask will reads the data in parallel from the various .csv.bz2 files
+(unzipping on the fly), but note the caveat in the previous section
+about the possibilities for truly parallel I/O.
+
+However, Dask uses delayed (lazy) evaluation. In this case, the reading is delayed until
+`compute()` is called. For that matter, the various other calculations
+(`max`, `groupby`, `mean`) shown below are only done after `compute()` is called.
+
+```{python}
+#| eval: false
+import time
+
+t0 = time.time()
+max_delay = air.DepDelay.max().compute()   # This takes a while.
+print(time.time() - t0)
+
+t0 = time.time()
+mean_delay = air.DepDelay.mean().compute()   # This takes a while.
+print(time.time() - t0)
+
+air.DepDelay.median().compute() 
+```
+
+We'll discuss in class why Dask won't do the median. Consider the discussion about moving data in the earlier section on MapReduce.
+
+Next let's see a full split-apply-combine (aka MapReduce) type of analysis.
+
+```{python}
+#| eval: false
+sub = air[(air.UniqueCarrier == 'UA') & (air.Origin == 'SFO')]
+byDest = sub.groupby('Dest').DepDelay.mean()
+results = byDest.compute()            # This takes a while too.
+results
+```
+
+
+You should see this:
+
+```
+    Dest 
+    ACV 26.200000 
+    BFL 1.000000 
+    BOI 12.855069 
+    BOS 9.316795 
+    CLE 4.000000
+    ...
+```
+
+Note: calling `compute` twice is a bad idea as Dask will read in the data
+twice - more on this in a bit.
+
+
+::: {.callout-warning title="Memory use for results objects"}
+Think carefully about the size of the result from calling `compute`. The
+result will be returned as a standard Python object, not distributed across
+multiple workers (and possibly machines), and with the object entirely in memory.
+It's easy to accidentally return an entire giant dataset.
+:::
+
+### Dask bags
+
+Bags are like lists but there is no particular ordering, so it doesn't
+make sense to ask for the i'th element.
+
+You can think of operations on Dask bags as being like parallel map
+operations on lists in Python or R.
+
+By default bags are handled via the `processes` scheduler, but as noted
+earlier, it's best practice to use the `distributed` scheduler.
+
+Let's see some basic operations on a large dataset of Wikipedia log
+files. You can get a subset of the Wikipedia data
+[here](https://www.stat.berkeley.edu/share/paciorek/wikistats_example.tar.gz).
+
+Here we again read the data in (which Dask will do in parallel):
+
+```{python}
+#| eval: false
+n_cores = 4
+from dask.distributed import Client, LocalCluster
+cluster = LocalCluster(n_workers = n_cores)
+c = Client(cluster)
+
+## This is the full data
+## path = '/scratch/users/paciorek/wikistats/dated_2017/'
+## For demo we'll just use a small subset.
+path = '/scratch/users/paciorek/wikistats/dated_2017_small/dated/'
+wiki = db.read_text(path + 'part-0*gz')
+```
+
+
+Here we'll just count the number of records.
+
+```{python}
+#| eval: false
+import time
+t0 = time.time()
+n = wiki.count().compute()
+time.time() - t0   # 136 sec. for full data
+```
+
+
+And here is a more realistic example of filtering (subsetting).
+
+```{python}
+#| eval: false
+import re
+
+def find(line, regex = 'Armenia'):
+    vals = line.split(' ')
+    if len(vals) < 6:
+        return(False)
+    tmp = re.search(regex, vals[3])
+    if tmp is None:
+        return(False)
+    else:
+        return(True)
+    
+
+wiki.filter(find).count().compute()
+
+armenia = wiki.filter(find)
+smp = armenia.take(100)   # Grab a handful as proof of concept.
+smp[0:5]
+```
+
+
+Note that it is quite inefficient to do the `find()` (and implicitly
+read the data in) and then compute on top of that intermediate result
+in two separate calls to `compute()`. Rather, we should set up the code
+so that all the operations are set up before a single call to
+`compute()`. This is discussed in detail in the [Dask/future tutorial](https://computing.stat.berkeley.edu/tutorial-dask-future/python-dask#63-avoid-repeated-calculations-by-embedding-tasks-within-one-call-to-compute).
+
+Since the data are just treated as raw strings, we might want to
+introduce structure by converting each line to a tuple and then
+converting to a data frame.
+
+```{python}
+#| eval: false
+def make_tuple(line):
+    return(tuple(line.split(' ')))
+
+dtypes = {'date': 'object', 'time': 'object', 'language': 'object',
+'webpage': 'object', 'hits': 'float64', 'size': 'float64'}
+
+## Let's create a Dask dataframe. 
+## This will take a while if done on full data.
+df = armenia.map(make_tuple).to_dataframe(dtypes)
+type(df)
+
+## Now let's actually do the computation,
+## returning a **Pandas** (not Dask) df to the main process.
+result = df.compute()  
+type(result)
+result[0:5]
+```
+
+
+### (OPTIONAL) Dask arrays (numpy)
+
+Dask arrays are numpy-like arrays where each array is split up by both
+rows and columns into smaller numpy arrays.
+
+One can do a lot of the kinds of computations that you would do on a
+numpy array on a Dask array, but many operations are not possible. See
+[here](http://docs.dask.org/en/latest/array-api.html).
+
+By default arrays are handled via the `threads` scheduler.
+
+#### Non-distributed arrays
+
+Let's first see operations on a single node, using a single 13 GB two-dimensional
+array. Again, Dask uses lazy evaluation, so creation of the array
+doesn't happen until an operation requiring output is done.
+
+```{python}
+#| eval: false
+import dask
+dask.config.set(scheduler = 'threads', num_workers = 4) 
+import dask.array as da
+x = da.random.normal(0, 1, size=(40000,40000), chunks=(10000, 10000))
+# square 10k x 10k chunks
+mycalc = da.mean(x, axis = 1)  # by row
+import time
+t0 = time.time()
+rs = mycalc.compute()
+time.time() - t0  # 41 sec.
+```
+
+
+For a row-based operation, we would presumably only want to chunk things
+up by row, but this doesn't seem to actually make a difference,
+presumably because the mean calculation can be done in pieces and only a
+small number of summary statistics moved between workers.
+
+```{python}
+#| eval: false
+import dask
+dask.config.set(scheduler='threads', num_workers = 4)  
+import dask.array as da
+# x = da.from_array(x, chunks=(2500, 40000))  # How to adjust chunk size of existing array.
+x = da.random.normal(0, 1, size=(40000,40000), chunks=(2500, 40000))
+mycalc = da.mean(x, axis = 1)  # row means
+import time
+t0 = time.time()
+rs = mycalc.compute()
+time.time() - t0   # 42 sec.
+```
+
+
+Of course, given the lazy evaluation, this timing comparison is not just
+timing the actual row mean calculations.
+
+But this doesn't really clarify the story...
+
+```{python}
+#| eval: false
+import dask
+dask.config.set(scheduler='threads', num_workers = 4)  
+import dask.array as da
+import numpy as np
+import time
+t0 = time.time()
+x = np.random.normal(0, 1, size=(40000,40000))
+time.time() - t0   # 110 sec.
+# For some reason the `from_array` and `da.mean` calculations are not done lazily here.
+t0 = time.time()
+dx = da.from_array(x, chunks=(2500, 40000))
+time.time() - t0   # 27 sec.
+t0 = time.time()
+mycalc = da.mean(x, axis = 1)  # What is this doing given .compute() also takes time?
+time.time() - t0   # 28 sec.
+t0 = time.time()
+rs = mycalc.compute()
+time.time() - t0   # 21 sec.
+```
+
+
+Dask will avoid storing all the chunks in memory. (It appears to just
+generate them on the fly.) Here we have an 80 GB array, but we never use
+more than a few GB of memory (based on `top` or `free -h`).
+
+```{python}
+#| eval: false
+import dask
+dask.config.set(scheduler='threads', num_workers = 4)  
+import dask.array as da
+x = da.random.normal(0, 1, size=(100000,100000), chunks=(10000, 10000))
+mycalc = da.mean(x, axis = 1)  # row means
+import time
+t0 = time.time()
+rs = mycalc.compute()
+time.time() - t0   # 205 sec.
+rs[0:5]
+```
+
+
+#### Distributed arrays
+
+Using arrays distributed across multiple machines should be straightforward based on using *Dask distributed*. However,
+one would want to be careful about creating arrays by distributing the
+data from a single Python process as that would involve copying between
+machines.
+
+
 
 
 # 5. Sparsity
