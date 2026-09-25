@@ -1044,47 +1044,251 @@
     ]
   },
   {
-    "objectID": "ps/ps2.html",
-    "href": "ps/ps2.html",
-    "title": "Problem Set 2",
+    "objectID": "ps/ps3.html",
+    "href": "ps/ps3.html",
+    "title": "Problem Set 3",
     "section": "",
-    "text": "This covers material in Units 3 and 4 (up through Section 9).\nIt’s due at 10 am (Pacific) on September 25, both submitted as a PDF to Pensive as well as committed to your GitHub repository.",
+    "text": "This covers material in Unit 4.\nIt’s due at 10 am (Pacific) on Wednesday October 7, both submitted as a PDF to Pensive as well as committed to your GitHub repository.",
     "crumbs": [
       "Problem Sets",
-      "Problem Set 2"
+      "Problem Set 3"
     ]
   },
   {
-    "objectID": "ps/ps2.html#comments",
-    "href": "ps/ps2.html#comments",
-    "title": "Problem Set 2",
+    "objectID": "ps/ps3.html#comments",
+    "href": "ps/ps3.html#comments",
+    "title": "Problem Set 3",
     "section": "",
-    "text": "This covers material in Units 3 and 4 (up through Section 9).\nIt’s due at 10 am (Pacific) on September 25, both submitted as a PDF to Pensive as well as committed to your GitHub repository.",
+    "text": "This covers material in Unit 4.\nIt’s due at 10 am (Pacific) on Wednesday October 7, both submitted as a PDF to Pensive as well as committed to your GitHub repository.",
     "crumbs": [
       "Problem Sets",
-      "Problem Set 2"
+      "Problem Set 3"
     ]
   },
   {
-    "objectID": "ps/ps2.html#formatting-requirements",
-    "href": "ps/ps2.html#formatting-requirements",
-    "title": "Problem Set 2",
+    "objectID": "ps/ps3.html#formatting-requirements",
+    "href": "ps/ps3.html#formatting-requirements",
+    "title": "Problem Set 3",
     "section": "Formatting requirements",
-    "text": "Formatting requirements\n\nYour electronic solution should be in the form of an Quarto file named ps2.qmd, with Python code chunks. If you want to initially work in a Jupyter notebook, that is fine, but you’ll need to run quarto convert file.ipynb to generate a qmd file before rendering to PDF and submitting.\nYour solution should not just be Python code - you should have text describing how you approached the problem and what the various steps were. Your code should have comments indicating what each function or block of code does, and for any lines of code or code constructs that may be hard to understand, a comment indicating what that code does.\nYou do not need to (and should not) show exhaustive output, but in general you should show short examples of what your code does to demonstrate its functionality. Please see the grading rubric, and note that the output should be produced as a result of the code chunks being run during the rendering process, not by copy-pasting of output from running the code separately (and definitely not as screenshots).",
+    "text": "Formatting requirements\n\nYour electronic solution should be in the form of an Quarto file named ps3.qmd, with Python code chunks. If you want to initially work in a Jupyter notebook, that is fine, but you’ll need to run quarto convert file.ipynb to generate a qmd file before rendering to PDF and submitting.\nYour solution should not just be Python code - you should have text describing how you approached the problem and what the various steps were. Your code should have comments indicating what each function or block of code does, and for any lines of code or code constructs that may be hard to understand, a comment indicating what that code does.\nYou do not need to (and should not) show exhaustive output, but in general you should show short examples of what your code does to demonstrate its functionality. Please see the grading rubric, and note that the output should be produced as a result of the code chunks being run during the rendering process, not by copy-pasting of output from running the code separately (and definitely not as screenshots).",
     "crumbs": [
       "Problem Sets",
-      "Problem Set 2"
+      "Problem Set 3"
     ]
   },
   {
-    "objectID": "ps/ps2.html#problems",
-    "href": "ps/ps2.html#problems",
-    "title": "Problem Set 2",
+    "objectID": "ps/ps3.html#problems",
+    "href": "ps/ps3.html#problems",
+    "title": "Problem Set 3",
     "section": "Problems",
-    "text": "Problems\n\nThis problem uses the ideas and tools in Unit 2, Section 5 and Unit 4 Section 2 to explore approaches to reading and writing data from files and to consider file sizes in ASCII plain text vs. binary formats in light of the fact that numbers are (generally) stored as 8 bytes per number in binary formats.\n\nGenerate a numpy array (named x) of random numbers from a standard normal distribution with 20 columns and as many rows as needed so that the data take up about 16 MB in size. Then explain the sizes of the two files created below. In discussing the CSV text file, how many characters do you expect to be in the file (i.e., you should be able to estimate this reasonably accurately from first principles without using wc or any explicit program that counts characters)? Hint: what do we know about numbers drawn from a standard normal distribution?\n\nimport polars as pl\nimport os\nx = x.round(decimals = 12)\ndf = pl.DataFrame(x)\ndf.write_csv('x.csv', include_header = False)\nprint(f\"{str(os.path.getsize('x.csv')/1e6)} MB\")\n\n30.778214 MB\n\n\n\ndf.write_parquet(\"x.parquet\", compression = \"uncompressed\")\n\nprint(f\"{str(os.path.getsize('x.parquet')/1e6)} MB\")\n\n16.006827 MB\n\n\nSuppose we had rounded each number to four decimal places. Would using CSV have saved disk space relative to the Parquet (binary) file?\nRead the CSV file into Python using polars.read_csv. Compare the speed of reading the CSV to reading the Parquet file using Polars. As a side note, the speed of reading the data with files you just created will likely be a lot faster than reading a file that had been sitting untouched on the filesystem for a while. This has to do with the operating system caching the file in memory (we’ll discuss this further in Unit 5 when we talk about databases).\n\nLet’s investigate the structure of the pandas package to get some experience with the structure of a large Python package and with how import and the __init__.py file(s) are used. You’ll need to go into the Pandas source code (see Unit 4). Note that the main __init__.py and the __init__.py files in the subpackages/submodules are complicated, and I’m not expecting you to understand everything about them. Also note that the following cases involve functions, classes, and class methods. Be sure to be clear to say which of those it is and for the class methods cases, make sure you’re clear on what class the method is part of and any class inheritance structure. Run import pandas and then consider the following questions:\n\nConsider pandas.core.config_init.is_terminal. What namespace is it (or its class) in in your Python session? What file/module is is_terminal in on disk? Is it a function, class, or a class method (and if a class method what is the class)? Describe how it is imported by discussing the relevant statement(s) in the relevant __init__.py file(s).\nConsider pandas.read_csv. Answer the same questions as for (a).\nConsider pandas.arrays.BooleanArray. Answer the same questions as for (a).\nConsider pandas.DataFrame.to_csv. Answer the same questions as for (a).\n\nHints: (1) grep -R &lt;pattern&gt; &lt;directory&gt; will search all files within a directory recursively. (2) As you work on this, you may want to be able to modify one or more of the __init__.py files to better understand what is happening (e.g., by commenting out a line of code or adding a print statement). A good way to do this is to create a Conda environment in which pandas is installed, so you isolate any changes you make, e.g., conda create -n test_env python=3.13 pandas. Then you can edit code files in the environment and when you start Python and import pandas, you should see the effects of your changes. Alternatively, you could use the debugger to set breakpoint(s) in an __init__.py file. (3) Or you might create your own small toy package to experiment and see how things work with nested __init__.py files and various ways to use import.\nData Science for Love, Python+AI style\nThe overall goal is to redo your work from problem 2 in PS1 in Python, adding good error trapping and testing.\nUse an AI-assisted coding tool to help solve the problem. You can use a CLI tool, Desktop app, or VS Code extension (many of the tools provide all of these as options). GitHub Copilot in VS Code is pretty easy to set up and can make use of GitHub for Education (see here to apply) to use GitHub Copilot Pro, providing more free queries and use of premium models. But you’re welcome to use whatever tool you want, such as Claude Code, Codex, Positron Assistant, OpenCode, and Gemini Code Assist. You should be able to do the assignment using the free tier of whatever tool you choose.\nApproach: I frame the problem as leaning heavily into AI and assessing/improving/iterating/checking/timing what the AI provides, with the main points being (1) to get experience with AI assistance and (2) to get more experience with writing, organizing, and testing good Python code, critically assessing what AI produces. However, if you feel that what you get from the AI assistance is not that helpful or if you prefer to simply practice writing Python code without AI assistance (or with more limited assistance at a syntax level or line-by-line level) you can do that instead.\nAs a general approach, please build up your solution in stages. Start simple, check results, add tests and then add complexity. AI could probably do fine with this fairly simple problem all at once, but for you to make sure you understand the Python code being produced and do a good job of checking correctness, you should do it in stages.\nTo start, write up a very careful, specific, detailed prompt saying what you want (and possibly some things you don’t want). Tell it what to do now and what not to do yet (e.g., wait on tests and plotting). You can choose to either work out the scaffolding of the solution (namely what the functions are and how they work together) or have AI come up with that and then iterate to improve it as needed.\nRequirements:\n\nDon’t use any shell commands directly or by calling the shell from Python. Instead use Python calls, including for any filesystem operations. (I think this should be possible, but if you run into something you can’t do in Python and need to make a shell call from Python (e.g., using subprocess.run), please post on Ed.)\nHave your Python code be callable from the shell as ./get_weather.py with arguments handled using argparse.\nWhen called from the shell, your Python function should produce an output file (name given by user) and/or a boxplot as requested by the user.\nIn addition, you should be able to import your .py file as a module and call the individual functions to do the work from within Python, with the data stored in a Polars dataframe (please use Polars rather than Pandas to get experience with that newer package that many people like). To do this, the code that is run when running as a script should be inside an if __name__ == \"__main__\": code block.\nInclude error trapping of various sorts. Think broadly about what could go wrong when a user actually tries to run the code, working with the AI tool to figure out unexpected/corner cases that should ideally be dealt with.\nSet up tests of the Python functions using pytest, including testing the error trapping.\nAs in Problem Set 1, avoid repeatedly downloading the same data files during your development process. One way to help with this is to have an argument that indicates whether the input (yearly) data files are already stored (cached) in a particular directory.\nMake sure your code follows best practices noted in Unit 3.\nYour code will likely read individual files into memory in Python before filtering to the data of interest. This is fine though it has the disadvantages we’ve discussed when doing things line by line in the shell.\nIn your final submitted code, there should not be any AI-produced code that you don’t understand in detail. This is both to avoid errors and as a way for you to learn from the AI-generated code.\n\n\nProvide your complete solution, including example results, tests and results of running tests.\nDiscuss your experience with using AI: briefly summarize your workflow in developing your solution and then briefly describe what you thought worked well or not so well and any areas where the AI tool didn’t do a good job (or did a particularly good job, perhaps suggesting something that didn’t occur to you). Describe a few things that you learned about Python or useful Python packages from looking through the code that the tool generated.\n\nMemoization of a function involves storing (caching) the values produced by a given input and then returning the cached result instead of rerunning the function when the same input is provided in the future. It can be a good approach to improve efficiency when a calculation is expensive (and presuming that sometimes/often the function will be run with inputs on which it has already been used). It’s particularly useful for for recursive calculations that involve solving a subproblem in order to solve a given (larger) problem. If you’ve already solved the subproblem you don’t need to solve it again. For example if one is working with graphs or networks, one often ends up writing recursive algorithms. (Suppose, e.g., you have a geneology giving relationships of parents and children. If you wanted to find all the descendants of a person, and you had already found all the descendants of one of the person’s children, you could make use of that without finding the descendants of the child again.)\n\nWrite a decorator that implements memoization. It should handle functions with either one or two arguments (write one decorator, not two!). You can assume these arguments are simple objects like numbers or strings. As part of your solution, explain whether you need to use nonlocal or not in this case.\nTry your code on basic cases, such as applying the log-gamma function to a number and multiplying together two numbers. These may not be useful cases for memoization, because the lookup process could well take more time than the actual calculation. To assess that, time the memoization approach compared to directly doing the calculation. Be careful that you are getting an accurate timing of such quick calculations (see Unit 4 notes, looking ahead to Section 11).",
+    "text": "Problems\n\nThis problem explores how Python stores strings (and more about lists), which we saw some in class.\n\nLet’s consider the following lists of strings. Determine what storage is reused (if any) in storing ‘abc’ in the two lists.\n\na = ['abc', 'xyz', 'def', 'ghi']\nb = ['abc']*4\n\nNext, let’s dig into how much memory is used to store the information in a list of strings. Determine (i) how much memory is used to store a simple string (and how this varies with the length of the string), including any metadata, (ii) how much memory is used for metadata of the list object, and (iii) how much is used for the references to the actual elements of the list (i.e., how the size of the list grows with the number of elements). Experimenting with lists of different lengths and strings of different lengths should allow you to work this out from examples without having to try to find technical documentation for Python’s internals. In your solution, show the examples you used to determine your answers.\n\nConsider multiplying an arbitrary \\(n \\times n\\) matrix \\(X\\) and a diagonal \\(n \\times n\\) matrix \\(D\\).\n\nHow many multiplications are done if you simply matrix multiply \\(D\\) and \\(X\\)?\nIn principle, how many multiplications need to be done to obtain the result without doing unnecessary calculations?\nHow can I use numpy operations to compute \\(XD\\) efficiently (without any use of loops)?\nHow can I use numpy operations to compute \\(DX\\) efficiently (without any use of loops)?\n\nThis problem asks you to efficiently compute a somewhat complicated log likelihood, arising from a computation from a student’s PhD research. The following is the probability mass function for an overdispersed binomial random variable: \\[\nP(Y =y;n,p,\\phi)  =  \\frac{f(y;n,p,\\phi)}{\\sum_{k=0}^{n}f(k;n,p,\\phi)} \\\\\n\\] \\[\nf(k;n,p,\\phi)  =  {n \\choose k}\\frac{k^{k}(n-k)^{n-k}}{n^{n}}\\left(\\frac{n^{n}}{k^{k}(n-k)^{n-k}}\\right)^{\\phi}p^{k\\phi}(1-p)^{(n-k)\\phi}\n\\]\nwhere the denominator of \\(P(Y =y;n,p,\\phi)\\) serves as a normalizing constant to ensure this is a valid probability mass function.\nWe’ll explore how would one efficiently code the computation of the denominator. For our purposes here you can take \\(n=10000\\), \\(p=0.3\\) and \\(\\phi=0.5\\) when you need to actually run your code. Recall that \\(0^0=1\\).\n\nWrite a basic version using map operations, where you have a function that carries out a single calculation of \\(f\\) for a value of \\(k\\) and then use map to execute it for all the elements of the sum. Make sure to do all calculations on the log scale and only exponentiate before doing the summation. This avoids the possibility of numerical overflow or underflow that we’ll discuss in 243B in Unit 8.\nNow create a vectorized version using numpy arrays. Compare timing to the basic non-vectorized version.\nUse timing and profiling tools to understand what steps are slow and try to improve your efficiency. Keep an eye out for repeated calculations and calculations/operations that don’t need to be done. Compare timing to your initial vectorized version in (b).\n\nSQL practice using the Stack Overflow database.\n\nFind all the users (including their displayname) who have answered but never asked a question. You’re welcome to set up your solution using views, but you should not need to (apart from dealing with the NULL ownerid values mentioned below). In your solution, provide as many separate queries as needed to illustrate all of the following SQL functionality: (i) a subquery, (ii) a set operation using INTERSECT, UNION or EXCEPT, and (iii) an outer join (note that SQLite does not have a right outer join). Check the count of the number of results from the different queries to make sure they are the same.\nNote that for reasons I haven’t looked into, both the questions and answers tables contain rows where the ownerid is NULL. These can mess up certain versions of the queries I’m asking you to create. So first create views that omit those cases from those two tables. (One could do that within the main queries, but this is a good situation for using views to make the main queries easier to understand.)\nDo the different approaches vary much in terms of how much time they take? What about using SQLite versus DuckDB?\nSee if you can get faster query times by setting up appropriate indexes.",
     "crumbs": [
       "Problem Sets",
-      "Problem Set 2"
+      "Problem Set 3"
+    ]
+  },
+  {
+    "objectID": "labs/lab2-testing.html",
+    "href": "labs/lab2-testing.html",
+    "title": "Lab 2: Exceptions and Testing",
+    "section": "",
+    "text": "Today we will spend some time getting familiar with some of the programming tools that can help make your code more robust and resilient to errors and boundary conditions - tools like unit tests and exceptions (and next week we will spend some time on debugging misbehaving code).\nTesting is what you do when you finish implementing a piece of code and want to try it out to see if it works. Running your code manually and seeing if it works is a workable strategy for simple one-time scripts that do simple tasks, but there are situations (like writing a function that others will repeatedly use, or like running the same piece of code on hundreds of files or URLs) where it is prudent to test your code ahead of its actual use or deployment. In today’s lab, we are going to use pytest to test for correct behavior and verify that exceptions are raised in the right situations.",
+    "crumbs": [
+      "Labs",
+      "Lab 2 (Exceptions/Testing)"
+    ]
+  },
+  {
+    "objectID": "labs/lab2-testing.html#lab-exercise",
+    "href": "labs/lab2-testing.html#lab-exercise",
+    "title": "Lab 2: Exceptions and Testing",
+    "section": "Lab Exercise",
+    "text": "Lab Exercise\n1- Write a function in Python that finds a number in a string using regular expressions. The number can be positive or negative, integer-valued, or real, and numbers less than one can also be of the form 0.96 or .96. It can be assumed that no numbers appear in scientific notation. Refer to String processing and regular expressions in Python for a quick overview of Python’s re package. You may use AI to generate the regex, but be sure you understand the output.\n2- Write an interface for that function (a function name and arguments), but do not implement the function yet (you can have it return an None, or an empty string for now). We will do this in a good old fashioned .py file (not a notebook or a quarto file).\n3- Build a test suite using the pytest package to test that your function works as intended. Add at least 8 test cases with justification for each. Try to cover the main use cases, and as many potential corner cases or boundary conditions as possible.\n4- Now run the test suite. It should fail for all your tests (unless one of them was passing an empty string).\n5- Implement the function. You can do this at one go, or case by case. As you implement a case, you can rerun the test suite and see some of the tests relevant to that cases stopping to fail. When all the tests pass, you are done. This is called test-driven development.\n6- If some cases are still failing, that’s alright, for the purposes of this lab we don’t need to ensure all edge cases are dealt with.\n7- Make sure you raise an exception to trap invalid input types.\n8- Add a test to check that an exception is properly raised when the function is given invalid input types.",
+    "crumbs": [
+      "Labs",
+      "Lab 2 (Exceptions/Testing)"
+    ]
+  },
+  {
+    "objectID": "labs/lab2-testing.html#acknowledgements",
+    "href": "labs/lab2-testing.html#acknowledgements",
+    "title": "Lab 2: Exceptions and Testing",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
+    "crumbs": [
+      "Labs",
+      "Lab 2 (Exceptions/Testing)"
+    ]
+  },
+  {
+    "objectID": "labs/lab0-setup.html",
+    "href": "labs/lab0-setup.html",
+    "title": "Lab 0: Setup",
+    "section": "",
+    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
+    "href": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
+    "title": "Lab 0: Setup",
+    "section": "",
+    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "labs/lab0-setup.html#acknowledgements",
+    "href": "labs/lab0-setup.html#acknowledgements",
+    "title": "Lab 0: Setup",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "labs/lab4-reproducibility.html",
+    "href": "labs/lab4-reproducibility.html",
+    "title": "Lab 4: Reproducibility",
+    "section": "",
+    "text": "Today’s lab is about reproducibility, an important skill to professionals in industry and academia alike. Intimately related to communication and documentation, the main goal of reproducibility is to ensure others (and your future self) are able to reach the same results you did by following a sequence of steps. Our focus in the context of this course will be to attempt to reproduce the results from a recently published papr, pondering along the way whether we would have done anything different and assessing our overall experience. The paper in question is Comparative Advantage of Humans versus AI in the Long Tail (2024) by Agarwal, Huang, Moehring, Rajpurkar, Salz and Yu.",
+    "crumbs": [
+      "Labs",
+      "Lab 4 (Reproducibility)"
+    ]
+  },
+  {
+    "objectID": "labs/lab4-reproducibility.html#reproducibility",
+    "href": "labs/lab4-reproducibility.html#reproducibility",
+    "title": "Lab 4: Reproducibility",
+    "section": "",
+    "text": "Today’s lab is about reproducibility, an important skill to professionals in industry and academia alike. Intimately related to communication and documentation, the main goal of reproducibility is to ensure others (and your future self) are able to reach the same results you did by following a sequence of steps. Our focus in the context of this course will be to attempt to reproduce the results from a recently published papr, pondering along the way whether we would have done anything different and assessing our overall experience. The paper in question is Comparative Advantage of Humans versus AI in the Long Tail (2024) by Agarwal, Huang, Moehring, Rajpurkar, Salz and Yu.",
+    "crumbs": [
+      "Labs",
+      "Lab 4 (Reproducibility)"
+    ]
+  },
+  {
+    "objectID": "labs/lab4-reproducibility.html#setup",
+    "href": "labs/lab4-reproducibility.html#setup",
+    "title": "Lab 4: Reproducibility",
+    "section": "Setup",
+    "text": "Setup\n\nFind a link to “Replication Package” on the paper’s page and click on “Download this project”. Authentication is required; we recommend to “access through your institution” and fall back to the other options in case this fails. By the end of this step, you should have a file named 202185-V1.zip on your machine. If that also does not work, you may try wget www.stat.berkeley.edu/~paciorek/transfer/202185-V1.zip.\nUnzip 202185-V1.zip and enter Rad_AI_Longtail/. (if you are unzipping from the mirror instead, after running wget, create a directory Rad_AI_Longtail/ and unzip the file inside it.)\nInvestigate which files are likely to contain reproducibility instructions and give it a quick read.\nWe now need to use the specific python version mentioned by the authors (3.11) to install the packages necessary to reproduce the results, which should be straightforward given the requirements.txt. But there are several caveats here. Try installing those packages and document your experience. Creating a conda environment using the provided requirements.txt file may be a reasonable attempt: conda create --name lab4 python=3.11 --file requirements.txt. If it fails on your system, try to identify why.\nAs an alternative, you may try the following command to generate an adjusted requirements file that you can then use to install relevant packages:\n\nfind . -type f -exec grep \"import \" {} \\; |\n    sed 's/\"//g; s/,//g; s/\\\\n//g; s/^ *//; s/ *$//' |\n    cut -d ' ' -f 2 |\n    cut -d '.' -f 1 |\n    sort |\n    uniq |\n    grep -F -f - requirements.txt |\n    grep -v '^#' |\n    cut -d '=' -f 1,2 |\n    sed 's/=/==/g' |\n    grep -v '_' |\n    grep -v '\\-base' \\\n    &gt; requirements_adjusted.txt\n\nRunning the command above incrementally might be useful to better understand what each step does if it is not immediately clear. Installing the packages should then be less prone to error by using this requirements_adjusted.txt file. You will also need nbformat==5.9.2 and jinja2==3.1.2 to be installed. Think in particular about the following modification sed 's/=/==/g' and what are the implications.",
+    "crumbs": [
+      "Labs",
+      "Lab 4 (Reproducibility)"
+    ]
+  },
+  {
+    "objectID": "labs/lab4-reproducibility.html#replicating-the-results-in-the-paper",
+    "href": "labs/lab4-reproducibility.html#replicating-the-results-in-the-paper",
+    "title": "Lab 4: Reproducibility",
+    "section": "Replicating the results in the paper",
+    "text": "Replicating the results in the paper\nThe goal is now to try to replicate the paper, pondering about important questions along the way. Format your reasoning to the points below in a pdf file and submit it to Pensive by the end of the lab.\n\nWith a proper environment set up, proceed to identify what is the minimal set of input files that is needed to run all the scripts. Are all input files used? Are there any files provided that you wouldn’t expect to be input?\nStart following the instructions to replicate the results. Try to locate the “radiology experiment data” mentioned nd report back. If you are unable to find it, you may download it via wget https://www.stat.berkeley.edu/~paciorek/transfer/data_public.txt instead. Discuss the implications.\nCheck the file permissions of the shell script via ls -l make.sh. You may change the permissions via chmod if desired. Discuss.\nExplore the make.sh script and discuss how it helps or hinders reproducibility. In addition, pay attention to how failures are handled via bash in the script and discuss what you think the motivation was.\nNote that make.sh invokes both python and ipython. Double check both executables are on the correct version. If you do not have ipython installed, you may do so via conda install ipython or pip install ipython depending on what kind of virtual environment you set up.\nIn what follows, we are going to run scripts that output text to the terminal. Document along do way your opinion about the text that is purposefully printed (informative or uninformative; excessive or lacking; etc.) and about any other text printed to screen (are there warnings, for example?).\nRun the make.sh script up to the “main calculations” part. That step takes hours because the number of “bootstrap replicates” is large. Identify how that parameter is set and decrease it. Discuss your experience in making this change and whether you would have programmed this differently.\nEven though we adjusted the “bootstrap replicates” parameter to reduce the time the script takes, we are going to skip this step and conveniently download the files that would be generated by the script with “bootstrap replicates” set to 51. Run wget www.stat.berkeley.edu/~paciorek/transfer/data-analysis-bootstrap.zip and wget www.stat.berkeley.edu/~paciorek/transfer/data-analysis.zip to do so. Proceed to unzip the files and ensure the files are in the correct directories.\nRun the last two scripts in make.sh to generate the plots. Do they look similar to the ones in the paper? If not, what could explain the difference?\nNote the contact information given in the instructions file. Are the two options feasible ways to reach the authors?",
+    "crumbs": [
+      "Labs",
+      "Lab 4 (Reproducibility)"
+    ]
+  },
+  {
+    "objectID": "rubric.html",
+    "href": "rubric.html",
+    "title": "",
+    "section": "",
+    "text": "This document provides guidance for submitting high-quality problem set (and project) solutions. This guidance is based on general good practices for scientific communication, reproducible research, and software development."
+  },
+  {
+    "objectID": "rubric.html#general-presentation",
+    "href": "rubric.html#general-presentation",
+    "title": "",
+    "section": "General presentation",
+    "text": "General presentation\n\nSimply presenting code or derivations is not sufficient.\nBriefly describe the overall goal or strategy before providing code/derivations.\nAs needed describe what the pieces of your code/derivation are doing to make it easier for a reader to follow the steps.\nKeep your output focused on illustrating what you did, without distracting from the flow of your solution by showing voluminous output. The output should illustrate and demonstrate, not overwhelm or obscure. If you need to show longer output, you can add it at the end as supplemental material.\nOutput should be produced by your code (i.e., from the code chunks running when the document is rendered), not by copying and pasting results into the document."
+  },
+  {
+    "objectID": "rubric.html#coding-practice",
+    "href": "rubric.html#coding-practice",
+    "title": "",
+    "section": "Coding practice",
+    "text": "Coding practice\n\nMinimize (or eliminate) use of global variables.\nBreak down work into core tasks and develop small, modular, self-contained functions (or class methods) to carry out those tasks.\nDon’t repeat code. As needed refactor code to create new functions (or class methods).\nFunctions and classes should be “weakly coupled”, interacting via their interfaces and not by having to know the internals of how they work.\nUse data structures appropriate for the computations that need to be done.\nDon’t hard code ‘magic’ numbers. Assign such numbers to variables with clear names, e.g., speed_of_light = 3e8.\nProvide reasonable default arguments to functions (or class methods) when possible.\nProvide tests (including unit tests) when requested (this is good general practice but we won’t require it in all cases).\nAvoid overly complicated syntax – try to use the clearest syntax you can to solve the problem.\nIn terms of speed, don’t worry about it too much so long as the code finishes real-world tasks in a reasonable amount of time. When optimizing, focus on the parts of the code that are the bottlenecks.\nUse functions already available in the language rather than recreating yourself."
+  },
+  {
+    "objectID": "rubric.html#code-style",
+    "href": "rubric.html#code-style",
+    "title": "",
+    "section": "Code style",
+    "text": "Code style\n\nFollow a consistent style. While you don’t have to follow Python’s PEP8 style guide exactly, please look at it and follow it generally.\nUse informative variable and function names and have a consistent naming style.\nUse whitespace (spaces, newlines) and parentheses to make the structure of the code easy to understand and the individual syntax pieces clear.\nUse consistent indentation to make the structure of the code easy to understand.\nProvide comments that give the goal of a given piece of code and why it does things, but don’t use comments to restate what the code does when it should be obvious from reading the code.\n\nProvide summaries for blocks of code.\nFor particularly complicated syntax, say what a given piece of code does."
+  },
+  {
+    "objectID": "labs/lab3-debugging.html",
+    "href": "labs/lab3-debugging.html",
+    "title": "Lab 3: Debugging",
+    "section": "",
+    "text": "Today we’re going to explore the concept of debugging and some of the tooling that allows for debugging python code.\nIt’s widely recognized and accepted that any sizeable code base will have a non-trivial number of bugs (flaws in the design of a system; term used as early as 1878 by Thomas Edison). The main goal of testing is to make sure the main expected cases are behaving correctly.\nSometimes your code doesn’t do what you expect or want it to do, and it’s not clear just by reading through it, what the problem is.\nIn interpreted languages (especially those with interactive shells like python) one can sometimes run the code piece by piece and inspect the state of the variables.\nIf the code involves a loop or a function, a common practice is to judiciously place a few print statements that dump the state of some variables to the terminal so that you can spot the problem by tracing through it.\nWhen the code involves multiple functions and complex state, this strategy starts to break down. This is where you start rolling up your sleeves and invoking a debugger!\nDebugging can be a slow process, so you typically start a debugging session by deciding which line in your code you would like to start tracing the behavior from, and you place a breakpoint. Then you can have the debugger run the program up to that point and stop at it, allowing you to:\n1- inspect the current state of variables 2- step through the code line by line 3- step over or into functions as they are called 4- resume program execution",
+    "crumbs": [
+      "Labs",
+      "Lab 3 (Debugging)"
+    ]
+  },
+  {
+    "objectID": "labs/lab3-debugging.html#debugging",
+    "href": "labs/lab3-debugging.html#debugging",
+    "title": "Lab 3: Debugging",
+    "section": "",
+    "text": "Today we’re going to explore the concept of debugging and some of the tooling that allows for debugging python code.\nIt’s widely recognized and accepted that any sizeable code base will have a non-trivial number of bugs (flaws in the design of a system; term used as early as 1878 by Thomas Edison). The main goal of testing is to make sure the main expected cases are behaving correctly.\nSometimes your code doesn’t do what you expect or want it to do, and it’s not clear just by reading through it, what the problem is.\nIn interpreted languages (especially those with interactive shells like python) one can sometimes run the code piece by piece and inspect the state of the variables.\nIf the code involves a loop or a function, a common practice is to judiciously place a few print statements that dump the state of some variables to the terminal so that you can spot the problem by tracing through it.\nWhen the code involves multiple functions and complex state, this strategy starts to break down. This is where you start rolling up your sleeves and invoking a debugger!\nDebugging can be a slow process, so you typically start a debugging session by deciding which line in your code you would like to start tracing the behavior from, and you place a breakpoint. Then you can have the debugger run the program up to that point and stop at it, allowing you to:\n1- inspect the current state of variables 2- step through the code line by line 3- step over or into functions as they are called 4- resume program execution",
+    "crumbs": [
+      "Labs",
+      "Lab 3 (Debugging)"
+    ]
+  },
+  {
+    "objectID": "labs/lab3-debugging.html#advanced-debugging",
+    "href": "labs/lab3-debugging.html#advanced-debugging",
+    "title": "Lab 3: Debugging",
+    "section": "Advanced debugging",
+    "text": "Advanced debugging\nSome bugs are really tricky to catch. Those are typically the bugs that happen very rarely, and in unclear circumstances. In statistical computing and data analysis settings these might be conditions that happen in iterative algorithms sometimes, but not very often, and can be hard to reproduce.\nOne way to deal with these bugs is to start the debugging session with placing one or more conditional breakpoints. These are similar to regular breakpoints but are not going to cause the debugger to stop the execution of the program and hand you the controls unless a specific condition (that you specify) evaluates to true as the program is executing that particular line of code. You may use some conditions that are similar to what you would place in an assert statement (conditions that shouldn’t happen) or any other conditions that you think may be associated with the occurrence of the anomalous behavior your are debugging.",
+    "crumbs": [
+      "Labs",
+      "Lab 3 (Debugging)"
+    ]
+  },
+  {
+    "objectID": "labs/lab3-debugging.html#integrated-gui-debugger-with-vs-code",
+    "href": "labs/lab3-debugging.html#integrated-gui-debugger-with-vs-code",
+    "title": "Lab 3: Debugging",
+    "section": "Integrated GUI debugger (with VS Code)",
+    "text": "Integrated GUI debugger (with VS Code)\nToday we will experiment with the visual debugging tools integrated with IDEs. We will do that in VS Code (unless you have another IDE with debugger integration). We will load a piece of code, go through it to understand what it does, then try to discover the problem with it and fix it. Our main function is get_commits, which makes use of the GitHub API to retrieve the recent commits to a repository. The fact that there are nested functions makes debugging less straightforward, but we will see how the bug could nevertheless be uncovered. Although the focus is on visual debuggers today, the ideas apply directly to command-line debuggers.\n\nimport json\nimport pandas as pd\nimport requests\nimport warnings\n\ndef get_login(item):\n    if not isinstance(item, dict):\n        raise TypeError(f\"`item` argument must be a dictionary\")\n    return item['author']['login']\n\ndef process(data):\n    if not isinstance(data, dict) or \"commit\" not in data.keys() or \\\n       not isinstance(data['commit'], dict) or \\\n       \"author\" not in data['commit'].keys() or \\\n       not isinstance(data['commit']['author'], dict) or \\\n       \"name\" not in data['commit']['author'].keys() or \\\n       \"date\" not in data['commit']['author'].keys():\n        raise RuntimeError(f\"Unexpected json structure returned for commit: {data}\")\n    return {\"user\": data['commit']['author']['name'],\n            \"date\": data['commit']['author']['date'],\n            \"login\": get_login(data)}\n\ndef get_commits(org, repo, extended=False):\n    if not isinstance(org, str):\n        raise TypeError(f\"`org` argument must be a string\")\n    if not isinstance(org, str):\n        raise TypeError(f\"`repo` argument must be a string\")\n    main_url = 'https://api.github.com/repos'\n    perpage = 100\n    # Search parameters\n    request = f\"{main_url}/{org}/{repo}/commits?per_page={perpage}\"\n    try:\n        response = requests.get(request)\n    except Exception as err:\n        print(\"Problem making GitHub commits API request over the internet\")\n        raise\n\n    if response.status_code == 200:  # Or `response.reason == 'OK':`\n        content = response.content\n    else:\n        raise RuntimeError(f\"Error in API request: {response.status_code}.\")\n\n    data = json.loads(content)\n    data_cleaned = [process(item) for item in data]\n    df = pd.DataFrame(data_cleaned)\n    return df",
+    "crumbs": [
+      "Labs",
+      "Lab 3 (Debugging)"
+    ]
+  },
+  {
+    "objectID": "labs/lab3-debugging.html#post-mortem-debugging",
+    "href": "labs/lab3-debugging.html#post-mortem-debugging",
+    "title": "Lab 3: Debugging",
+    "section": "Post-mortem debugging",
+    "text": "Post-mortem debugging\nA usual workflow to debug a piece of code that is crashing is to run it, investigate the exact location where the crash happens, add a breakpoint statement and rerun the code. Oftentimes, the bug is not deterministic or only happens at certain iterations inside a loop, so a conditional breakpoint will have to be engineered. Post-mortem debugging simplifies such a workflow, sometimes drastically, by running the program until it crashes and automatically placing the user into a debugging session immediately before the crash. To enter post-mortem debugging automatically, a script that exits abnormally can be called via python -m pdb myscript.py. Alternatively, one may import pdb and call pdb.pm() after a function call crashes.",
+    "crumbs": [
+      "Labs",
+      "Lab 3 (Debugging)"
+    ]
+  },
+  {
+    "objectID": "labs/lab3-debugging.html#acknowledgements",
+    "href": "labs/lab3-debugging.html#acknowledgements",
+    "title": "Lab 3: Debugging",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
+    "crumbs": [
+      "Labs",
+      "Lab 3 (Debugging)"
     ]
   },
   {
@@ -1154,207 +1358,47 @@
     ]
   },
   {
-    "objectID": "labs/lab3-debugging.html",
-    "href": "labs/lab3-debugging.html",
-    "title": "Lab 3: Debugging",
+    "objectID": "ps/ps2.html",
+    "href": "ps/ps2.html",
+    "title": "Problem Set 2",
     "section": "",
-    "text": "Today we’re going to explore the concept of debugging and some of the tooling that allows for debugging python code.\nIt’s widely recognized and accepted that any sizeable code base will have a non-trivial number of bugs (flaws in the design of a system; term used as early as 1878 by Thomas Edison). The main goal of testing is to make sure the main expected cases are behaving correctly.\nSometimes your code doesn’t do what you expect or want it to do, and it’s not clear just by reading through it, what the problem is.\nIn interpreted languages (especially those with interactive shells like python) one can sometimes run the code piece by piece and inspect the state of the variables.\nIf the code involves a loop or a function, a common practice is to judiciously place a few print statements that dump the state of some variables to the terminal so that you can spot the problem by tracing through it.\nWhen the code involves multiple functions and complex state, this strategy starts to break down. This is where you start rolling up your sleeves and invoking a debugger!\nDebugging can be a slow process, so you typically start a debugging session by deciding which line in your code you would like to start tracing the behavior from, and you place a breakpoint. Then you can have the debugger run the program up to that point and stop at it, allowing you to:\n1- inspect the current state of variables 2- step through the code line by line 3- step over or into functions as they are called 4- resume program execution",
+    "text": "This covers material in Units 3 and 4 (up through Section 9).\nIt’s due at 10 am (Pacific) on September 25, both submitted as a PDF to Pensive as well as committed to your GitHub repository.",
     "crumbs": [
-      "Labs",
-      "Lab 3 (Debugging)"
+      "Problem Sets",
+      "Problem Set 2"
     ]
   },
   {
-    "objectID": "labs/lab3-debugging.html#debugging",
-    "href": "labs/lab3-debugging.html#debugging",
-    "title": "Lab 3: Debugging",
+    "objectID": "ps/ps2.html#comments",
+    "href": "ps/ps2.html#comments",
+    "title": "Problem Set 2",
     "section": "",
-    "text": "Today we’re going to explore the concept of debugging and some of the tooling that allows for debugging python code.\nIt’s widely recognized and accepted that any sizeable code base will have a non-trivial number of bugs (flaws in the design of a system; term used as early as 1878 by Thomas Edison). The main goal of testing is to make sure the main expected cases are behaving correctly.\nSometimes your code doesn’t do what you expect or want it to do, and it’s not clear just by reading through it, what the problem is.\nIn interpreted languages (especially those with interactive shells like python) one can sometimes run the code piece by piece and inspect the state of the variables.\nIf the code involves a loop or a function, a common practice is to judiciously place a few print statements that dump the state of some variables to the terminal so that you can spot the problem by tracing through it.\nWhen the code involves multiple functions and complex state, this strategy starts to break down. This is where you start rolling up your sleeves and invoking a debugger!\nDebugging can be a slow process, so you typically start a debugging session by deciding which line in your code you would like to start tracing the behavior from, and you place a breakpoint. Then you can have the debugger run the program up to that point and stop at it, allowing you to:\n1- inspect the current state of variables 2- step through the code line by line 3- step over or into functions as they are called 4- resume program execution",
+    "text": "This covers material in Units 3 and 4 (up through Section 9).\nIt’s due at 10 am (Pacific) on September 25, both submitted as a PDF to Pensive as well as committed to your GitHub repository.",
     "crumbs": [
-      "Labs",
-      "Lab 3 (Debugging)"
+      "Problem Sets",
+      "Problem Set 2"
     ]
   },
   {
-    "objectID": "labs/lab3-debugging.html#advanced-debugging",
-    "href": "labs/lab3-debugging.html#advanced-debugging",
-    "title": "Lab 3: Debugging",
-    "section": "Advanced debugging",
-    "text": "Advanced debugging\nSome bugs are really tricky to catch. Those are typically the bugs that happen very rarely, and in unclear circumstances. In statistical computing and data analysis settings these might be conditions that happen in iterative algorithms sometimes, but not very often, and can be hard to reproduce.\nOne way to deal with these bugs is to start the debugging session with placing one or more conditional breakpoints. These are similar to regular breakpoints but are not going to cause the debugger to stop the execution of the program and hand you the controls unless a specific condition (that you specify) evaluates to true as the program is executing that particular line of code. You may use some conditions that are similar to what you would place in an assert statement (conditions that shouldn’t happen) or any other conditions that you think may be associated with the occurrence of the anomalous behavior your are debugging.",
+    "objectID": "ps/ps2.html#formatting-requirements",
+    "href": "ps/ps2.html#formatting-requirements",
+    "title": "Problem Set 2",
+    "section": "Formatting requirements",
+    "text": "Formatting requirements\n\nYour electronic solution should be in the form of an Quarto file named ps2.qmd, with Python code chunks. If you want to initially work in a Jupyter notebook, that is fine, but you’ll need to run quarto convert file.ipynb to generate a qmd file before rendering to PDF and submitting.\nYour solution should not just be Python code - you should have text describing how you approached the problem and what the various steps were. Your code should have comments indicating what each function or block of code does, and for any lines of code or code constructs that may be hard to understand, a comment indicating what that code does.\nYou do not need to (and should not) show exhaustive output, but in general you should show short examples of what your code does to demonstrate its functionality. Please see the grading rubric, and note that the output should be produced as a result of the code chunks being run during the rendering process, not by copy-pasting of output from running the code separately (and definitely not as screenshots).",
     "crumbs": [
-      "Labs",
-      "Lab 3 (Debugging)"
+      "Problem Sets",
+      "Problem Set 2"
     ]
   },
   {
-    "objectID": "labs/lab3-debugging.html#integrated-gui-debugger-with-vs-code",
-    "href": "labs/lab3-debugging.html#integrated-gui-debugger-with-vs-code",
-    "title": "Lab 3: Debugging",
-    "section": "Integrated GUI debugger (with VS Code)",
-    "text": "Integrated GUI debugger (with VS Code)\nToday we will experiment with the visual debugging tools integrated with IDEs. We will do that in VS Code (unless you have another IDE with debugger integration). We will load a piece of code, go through it to understand what it does, then try to discover the problem with it and fix it. Our main function is get_commits, which makes use of the GitHub API to retrieve the recent commits to a repository. The fact that there are nested functions makes debugging less straightforward, but we will see how the bug could nevertheless be uncovered. Although the focus is on visual debuggers today, the ideas apply directly to command-line debuggers.\n\nimport json\nimport pandas as pd\nimport requests\nimport warnings\n\ndef get_login(item):\n    if not isinstance(item, dict):\n        raise TypeError(f\"`item` argument must be a dictionary\")\n    return item['author']['login']\n\ndef process(data):\n    if not isinstance(data, dict) or \"commit\" not in data.keys() or \\\n       not isinstance(data['commit'], dict) or \\\n       \"author\" not in data['commit'].keys() or \\\n       not isinstance(data['commit']['author'], dict) or \\\n       \"name\" not in data['commit']['author'].keys() or \\\n       \"date\" not in data['commit']['author'].keys():\n        raise RuntimeError(f\"Unexpected json structure returned for commit: {data}\")\n    return {\"user\": data['commit']['author']['name'],\n            \"date\": data['commit']['author']['date'],\n            \"login\": get_login(data)}\n\ndef get_commits(org, repo, extended=False):\n    if not isinstance(org, str):\n        raise TypeError(f\"`org` argument must be a string\")\n    if not isinstance(org, str):\n        raise TypeError(f\"`repo` argument must be a string\")\n    main_url = 'https://api.github.com/repos'\n    perpage = 100\n    # Search parameters\n    request = f\"{main_url}/{org}/{repo}/commits?per_page={perpage}\"\n    try:\n        response = requests.get(request)\n    except Exception as err:\n        print(\"Problem making GitHub commits API request over the internet\")\n        raise\n\n    if response.status_code == 200:  # Or `response.reason == 'OK':`\n        content = response.content\n    else:\n        raise RuntimeError(f\"Error in API request: {response.status_code}.\")\n\n    data = json.loads(content)\n    data_cleaned = [process(item) for item in data]\n    df = pd.DataFrame(data_cleaned)\n    return df",
+    "objectID": "ps/ps2.html#problems",
+    "href": "ps/ps2.html#problems",
+    "title": "Problem Set 2",
+    "section": "Problems",
+    "text": "Problems\n\nThis problem uses the ideas and tools in Unit 2, Section 5 and Unit 4 Section 2 to explore approaches to reading and writing data from files and to consider file sizes in ASCII plain text vs. binary formats in light of the fact that numbers are (generally) stored as 8 bytes per number in binary formats.\n\nGenerate a numpy array (named x) of random numbers from a standard normal distribution with 20 columns and as many rows as needed so that the data take up about 16 MB in size. Then explain the sizes of the two files created below. In discussing the CSV text file, how many characters do you expect to be in the file (i.e., you should be able to estimate this reasonably accurately from first principles without using wc or any explicit program that counts characters)? Hint: what do we know about numbers drawn from a standard normal distribution?\n\nimport polars as pl\nimport os\nx = x.round(decimals = 12)\ndf = pl.DataFrame(x)\ndf.write_csv('x.csv', include_header = False)\nprint(f\"{str(os.path.getsize('x.csv')/1e6)} MB\")\n\n30.778214 MB\n\n\n\ndf.write_parquet(\"x.parquet\", compression = \"uncompressed\")\n\nprint(f\"{str(os.path.getsize('x.parquet')/1e6)} MB\")\n\n16.006827 MB\n\n\nSuppose we had rounded each number to four decimal places. Would using CSV have saved disk space relative to the Parquet (binary) file?\nRead the CSV file into Python using polars.read_csv. Compare the speed of reading the CSV to reading the Parquet file using Polars. As a side note, the speed of reading the data with files you just created will likely be a lot faster than reading a file that had been sitting untouched on the filesystem for a while. This has to do with the operating system caching the file in memory (we’ll discuss this further in Unit 5 when we talk about databases).\n\nLet’s investigate the structure of the pandas package to get some experience with the structure of a large Python package and with how import and the __init__.py file(s) are used. You’ll need to go into the Pandas source code (see Unit 4). Note that the main __init__.py and the __init__.py files in the subpackages/submodules are complicated, and I’m not expecting you to understand everything about them. Also note that the following cases involve functions, classes, and class methods. Be sure to be clear to say which of those it is and for the class methods cases, make sure you’re clear on what class the method is part of and any class inheritance structure. Run import pandas and then consider the following questions:\n\nConsider pandas.core.config_init.is_terminal. What namespace is it (or its class) in in your Python session? What file/module is is_terminal in on disk? Is it a function, class, or a class method (and if a class method what is the class)? Describe how it is imported by discussing the relevant statement(s) in the relevant __init__.py file(s).\nConsider pandas.read_csv. Answer the same questions as for (a).\nConsider pandas.arrays.BooleanArray. Answer the same questions as for (a).\nConsider pandas.DataFrame.to_csv. Answer the same questions as for (a).\n\nHints: (1) grep -R &lt;pattern&gt; &lt;directory&gt; will search all files within a directory recursively. (2) As you work on this, you may want to be able to modify one or more of the __init__.py files to better understand what is happening (e.g., by commenting out a line of code or adding a print statement). A good way to do this is to create a Conda environment in which pandas is installed, so you isolate any changes you make, e.g., conda create -n test_env python=3.13 pandas. Then you can edit code files in the environment and when you start Python and import pandas, you should see the effects of your changes. Alternatively, you could use the debugger to set breakpoint(s) in an __init__.py file. (3) Or you might create your own small toy package to experiment and see how things work with nested __init__.py files and various ways to use import.\nData Science for Love, Python+AI style\nThe overall goal is to redo your work from problem 2 in PS1 in Python, adding good error trapping and testing.\nUse an AI-assisted coding tool to help solve the problem. You can use a CLI tool, Desktop app, or VS Code extension (many of the tools provide all of these as options). GitHub Copilot in VS Code is pretty easy to set up and can make use of GitHub for Education (see here to apply) to use GitHub Copilot Pro, providing more free queries and use of premium models. But you’re welcome to use whatever tool you want, such as Claude Code, Codex, Positron Assistant, OpenCode, and Gemini Code Assist. You should be able to do the assignment using the free tier of whatever tool you choose.\nApproach: I frame the problem as leaning heavily into AI and assessing/improving/iterating/checking/timing what the AI provides, with the main points being (1) to get experience with AI assistance and (2) to get more experience with writing, organizing, and testing good Python code, critically assessing what AI produces. However, if you feel that what you get from the AI assistance is not that helpful or if you prefer to simply practice writing Python code without AI assistance (or with more limited assistance at a syntax level or line-by-line level) you can do that instead.\nAs a general approach, please build up your solution in stages. Start simple, check results, add tests and then add complexity. AI could probably do fine with this fairly simple problem all at once, but for you to make sure you understand the Python code being produced and do a good job of checking correctness, you should do it in stages.\nTo start, write up a very careful, specific, detailed prompt saying what you want (and possibly some things you don’t want). Tell it what to do now and what not to do yet (e.g., wait on tests and plotting). You can choose to either work out the scaffolding of the solution (namely what the functions are and how they work together) or have AI come up with that and then iterate to improve it as needed.\nRequirements:\n\nDon’t use any shell commands directly or by calling the shell from Python. Instead use Python calls, including for any filesystem operations. (I think this should be possible, but if you run into something you can’t do in Python and need to make a shell call from Python (e.g., using subprocess.run), please post on Ed.)\nHave your Python code be callable from the shell as ./get_weather.py with arguments handled using argparse.\nWhen called from the shell, your Python function should produce an output file (name given by user) and/or a boxplot as requested by the user.\nIn addition, you should be able to import your .py file as a module and call the individual functions to do the work from within Python, with the data stored in a Polars dataframe (please use Polars rather than Pandas to get experience with that newer package that many people like). To do this, the code that is run when running as a script should be inside an if __name__ == \"__main__\": code block.\nInclude error trapping of various sorts. Think broadly about what could go wrong when a user actually tries to run the code, working with the AI tool to figure out unexpected/corner cases that should ideally be dealt with.\nSet up tests of the Python functions using pytest, including testing the error trapping.\nAs in Problem Set 1, avoid repeatedly downloading the same data files during your development process. One way to help with this is to have an argument that indicates whether the input (yearly) data files are already stored (cached) in a particular directory.\nMake sure your code follows best practices noted in Unit 3.\nYour code will likely read individual files into memory in Python before filtering to the data of interest. This is fine though it has the disadvantages we’ve discussed when doing things line by line in the shell.\nIn your final submitted code, there should not be any AI-produced code that you don’t understand in detail. This is both to avoid errors and as a way for you to learn from the AI-generated code.\n\n\nProvide your complete solution, including example results, tests and results of running tests.\nDiscuss your experience with using AI: briefly summarize your workflow in developing your solution and then briefly describe what you thought worked well or not so well and any areas where the AI tool didn’t do a good job (or did a particularly good job, perhaps suggesting something that didn’t occur to you). Describe a few things that you learned about Python or useful Python packages from looking through the code that the tool generated.\n\nMemoization of a function involves storing (caching) the values produced by a given input and then returning the cached result instead of rerunning the function when the same input is provided in the future. It can be a good approach to improve efficiency when a calculation is expensive (and presuming that sometimes/often the function will be run with inputs on which it has already been used). It’s particularly useful for for recursive calculations that involve solving a subproblem in order to solve a given (larger) problem. If you’ve already solved the subproblem you don’t need to solve it again. For example if one is working with graphs or networks, one often ends up writing recursive algorithms. (Suppose, e.g., you have a geneology giving relationships of parents and children. If you wanted to find all the descendants of a person, and you had already found all the descendants of one of the person’s children, you could make use of that without finding the descendants of the child again.)\n\nWrite a decorator that implements memoization. It should handle functions with either one or two arguments (write one decorator, not two!). You can assume these arguments are simple objects like numbers or strings. As part of your solution, explain whether you need to use nonlocal or not in this case.\nTry your code on basic cases, such as applying the log-gamma function to a number and multiplying together two numbers. These may not be useful cases for memoization, because the lookup process could well take more time than the actual calculation. To assess that, time the memoization approach compared to directly doing the calculation. Be careful that you are getting an accurate timing of such quick calculations (see Unit 4 notes, looking ahead to Section 11).",
     "crumbs": [
-      "Labs",
-      "Lab 3 (Debugging)"
-    ]
-  },
-  {
-    "objectID": "labs/lab3-debugging.html#post-mortem-debugging",
-    "href": "labs/lab3-debugging.html#post-mortem-debugging",
-    "title": "Lab 3: Debugging",
-    "section": "Post-mortem debugging",
-    "text": "Post-mortem debugging\nA usual workflow to debug a piece of code that is crashing is to run it, investigate the exact location where the crash happens, add a breakpoint statement and rerun the code. Oftentimes, the bug is not deterministic or only happens at certain iterations inside a loop, so a conditional breakpoint will have to be engineered. Post-mortem debugging simplifies such a workflow, sometimes drastically, by running the program until it crashes and automatically placing the user into a debugging session immediately before the crash. To enter post-mortem debugging automatically, a script that exits abnormally can be called via python -m pdb myscript.py. Alternatively, one may import pdb and call pdb.pm() after a function call crashes.",
-    "crumbs": [
-      "Labs",
-      "Lab 3 (Debugging)"
-    ]
-  },
-  {
-    "objectID": "labs/lab3-debugging.html#acknowledgements",
-    "href": "labs/lab3-debugging.html#acknowledgements",
-    "title": "Lab 3: Debugging",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
-    "crumbs": [
-      "Labs",
-      "Lab 3 (Debugging)"
-    ]
-  },
-  {
-    "objectID": "rubric.html",
-    "href": "rubric.html",
-    "title": "",
-    "section": "",
-    "text": "This document provides guidance for submitting high-quality problem set (and project) solutions. This guidance is based on general good practices for scientific communication, reproducible research, and software development."
-  },
-  {
-    "objectID": "rubric.html#general-presentation",
-    "href": "rubric.html#general-presentation",
-    "title": "",
-    "section": "General presentation",
-    "text": "General presentation\n\nSimply presenting code or derivations is not sufficient.\nBriefly describe the overall goal or strategy before providing code/derivations.\nAs needed describe what the pieces of your code/derivation are doing to make it easier for a reader to follow the steps.\nKeep your output focused on illustrating what you did, without distracting from the flow of your solution by showing voluminous output. The output should illustrate and demonstrate, not overwhelm or obscure. If you need to show longer output, you can add it at the end as supplemental material.\nOutput should be produced by your code (i.e., from the code chunks running when the document is rendered), not by copying and pasting results into the document."
-  },
-  {
-    "objectID": "rubric.html#coding-practice",
-    "href": "rubric.html#coding-practice",
-    "title": "",
-    "section": "Coding practice",
-    "text": "Coding practice\n\nMinimize (or eliminate) use of global variables.\nBreak down work into core tasks and develop small, modular, self-contained functions (or class methods) to carry out those tasks.\nDon’t repeat code. As needed refactor code to create new functions (or class methods).\nFunctions and classes should be “weakly coupled”, interacting via their interfaces and not by having to know the internals of how they work.\nUse data structures appropriate for the computations that need to be done.\nDon’t hard code ‘magic’ numbers. Assign such numbers to variables with clear names, e.g., speed_of_light = 3e8.\nProvide reasonable default arguments to functions (or class methods) when possible.\nProvide tests (including unit tests) when requested (this is good general practice but we won’t require it in all cases).\nAvoid overly complicated syntax – try to use the clearest syntax you can to solve the problem.\nIn terms of speed, don’t worry about it too much so long as the code finishes real-world tasks in a reasonable amount of time. When optimizing, focus on the parts of the code that are the bottlenecks.\nUse functions already available in the language rather than recreating yourself."
-  },
-  {
-    "objectID": "rubric.html#code-style",
-    "href": "rubric.html#code-style",
-    "title": "",
-    "section": "Code style",
-    "text": "Code style\n\nFollow a consistent style. While you don’t have to follow Python’s PEP8 style guide exactly, please look at it and follow it generally.\nUse informative variable and function names and have a consistent naming style.\nUse whitespace (spaces, newlines) and parentheses to make the structure of the code easy to understand and the individual syntax pieces clear.\nUse consistent indentation to make the structure of the code easy to understand.\nProvide comments that give the goal of a given piece of code and why it does things, but don’t use comments to restate what the code does when it should be obvious from reading the code.\n\nProvide summaries for blocks of code.\nFor particularly complicated syntax, say what a given piece of code does."
-  },
-  {
-    "objectID": "labs/lab4-reproducibility.html",
-    "href": "labs/lab4-reproducibility.html",
-    "title": "Lab 4: Reproducibility",
-    "section": "",
-    "text": "Today’s lab is about reproducibility, an important skill to professionals in industry and academia alike. Intimately related to communication and documentation, the main goal of reproducibility is to ensure others (and your future self) are able to reach the same results you did by following a sequence of steps. Our focus in the context of this course will be to attempt to reproduce the results from a recently published papr, pondering along the way whether we would have done anything different and assessing our overall experience. The paper in question is Comparative Advantage of Humans versus AI in the Long Tail (2024) by Agarwal, Huang, Moehring, Rajpurkar, Salz and Yu.",
-    "crumbs": [
-      "Labs",
-      "Lab 4 (Reproducibility)"
-    ]
-  },
-  {
-    "objectID": "labs/lab4-reproducibility.html#reproducibility",
-    "href": "labs/lab4-reproducibility.html#reproducibility",
-    "title": "Lab 4: Reproducibility",
-    "section": "",
-    "text": "Today’s lab is about reproducibility, an important skill to professionals in industry and academia alike. Intimately related to communication and documentation, the main goal of reproducibility is to ensure others (and your future self) are able to reach the same results you did by following a sequence of steps. Our focus in the context of this course will be to attempt to reproduce the results from a recently published papr, pondering along the way whether we would have done anything different and assessing our overall experience. The paper in question is Comparative Advantage of Humans versus AI in the Long Tail (2024) by Agarwal, Huang, Moehring, Rajpurkar, Salz and Yu.",
-    "crumbs": [
-      "Labs",
-      "Lab 4 (Reproducibility)"
-    ]
-  },
-  {
-    "objectID": "labs/lab4-reproducibility.html#setup",
-    "href": "labs/lab4-reproducibility.html#setup",
-    "title": "Lab 4: Reproducibility",
-    "section": "Setup",
-    "text": "Setup\n\nFind a link to “Replication Package” on the paper’s page and click on “Download this project”. Authentication is required; we recommend to “access through your institution” and fall back to the other options in case this fails. By the end of this step, you should have a file named 202185-V1.zip on your machine. If that also does not work, you may try wget www.stat.berkeley.edu/~paciorek/transfer/202185-V1.zip.\nUnzip 202185-V1.zip and enter Rad_AI_Longtail/. (if you are unzipping from the mirror instead, after running wget, create a directory Rad_AI_Longtail/ and unzip the file inside it.)\nInvestigate which files are likely to contain reproducibility instructions and give it a quick read.\nWe now need to use the specific python version mentioned by the authors (3.11) to install the packages necessary to reproduce the results, which should be straightforward given the requirements.txt. But there are several caveats here. Try installing those packages and document your experience. Creating a conda environment using the provided requirements.txt file may be a reasonable attempt: conda create --name lab4 python=3.11 --file requirements.txt. If it fails on your system, try to identify why.\nAs an alternative, you may try the following command to generate an adjusted requirements file that you can then use to install relevant packages:\n\nfind . -type f -exec grep \"import \" {} \\; |\n    sed 's/\"//g; s/,//g; s/\\\\n//g; s/^ *//; s/ *$//' |\n    cut -d ' ' -f 2 |\n    cut -d '.' -f 1 |\n    sort |\n    uniq |\n    grep -F -f - requirements.txt |\n    grep -v '^#' |\n    cut -d '=' -f 1,2 |\n    sed 's/=/==/g' |\n    grep -v '_' |\n    grep -v '\\-base' \\\n    &gt; requirements_adjusted.txt\n\nRunning the command above incrementally might be useful to better understand what each step does if it is not immediately clear. Installing the packages should then be less prone to error by using this requirements_adjusted.txt file. You will also need nbformat==5.9.2 and jinja2==3.1.2 to be installed. Think in particular about the following modification sed 's/=/==/g' and what are the implications.",
-    "crumbs": [
-      "Labs",
-      "Lab 4 (Reproducibility)"
-    ]
-  },
-  {
-    "objectID": "labs/lab4-reproducibility.html#replicating-the-results-in-the-paper",
-    "href": "labs/lab4-reproducibility.html#replicating-the-results-in-the-paper",
-    "title": "Lab 4: Reproducibility",
-    "section": "Replicating the results in the paper",
-    "text": "Replicating the results in the paper\nThe goal is now to try to replicate the paper, pondering about important questions along the way. Format your reasoning to the points below in a pdf file and submit it to Pensive by the end of the lab.\n\nWith a proper environment set up, proceed to identify what is the minimal set of input files that is needed to run all the scripts. Are all input files used? Are there any files provided that you wouldn’t expect to be input?\nStart following the instructions to replicate the results. Try to locate the “radiology experiment data” mentioned nd report back. If you are unable to find it, you may download it via wget https://www.stat.berkeley.edu/~paciorek/transfer/data_public.txt instead. Discuss the implications.\nCheck the file permissions of the shell script via ls -l make.sh. You may change the permissions via chmod if desired. Discuss.\nExplore the make.sh script and discuss how it helps or hinders reproducibility. In addition, pay attention to how failures are handled via bash in the script and discuss what you think the motivation was.\nNote that make.sh invokes both python and ipython. Double check both executables are on the correct version. If you do not have ipython installed, you may do so via conda install ipython or pip install ipython depending on what kind of virtual environment you set up.\nIn what follows, we are going to run scripts that output text to the terminal. Document along do way your opinion about the text that is purposefully printed (informative or uninformative; excessive or lacking; etc.) and about any other text printed to screen (are there warnings, for example?).\nRun the make.sh script up to the “main calculations” part. That step takes hours because the number of “bootstrap replicates” is large. Identify how that parameter is set and decrease it. Discuss your experience in making this change and whether you would have programmed this differently.\nEven though we adjusted the “bootstrap replicates” parameter to reduce the time the script takes, we are going to skip this step and conveniently download the files that would be generated by the script with “bootstrap replicates” set to 51. Run wget www.stat.berkeley.edu/~paciorek/transfer/data-analysis-bootstrap.zip and wget www.stat.berkeley.edu/~paciorek/transfer/data-analysis.zip to do so. Proceed to unzip the files and ensure the files are in the correct directories.\nRun the last two scripts in make.sh to generate the plots. Do they look similar to the ones in the paper? If not, what could explain the difference?\nNote the contact information given in the instructions file. Are the two options feasible ways to reach the authors?",
-    "crumbs": [
-      "Labs",
-      "Lab 4 (Reproducibility)"
-    ]
-  },
-  {
-    "objectID": "labs/lab0-setup.html",
-    "href": "labs/lab0-setup.html",
-    "title": "Lab 0: Setup",
-    "section": "",
-    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
-    "crumbs": [
-      "Labs",
-      "Lab 0 (Optional setup)"
-    ]
-  },
-  {
-    "objectID": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
-    "href": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
-    "title": "Lab 0: Setup",
-    "section": "",
-    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
-    "crumbs": [
-      "Labs",
-      "Lab 0 (Optional setup)"
-    ]
-  },
-  {
-    "objectID": "labs/lab0-setup.html#acknowledgements",
-    "href": "labs/lab0-setup.html#acknowledgements",
-    "title": "Lab 0: Setup",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
-    "crumbs": [
-      "Labs",
-      "Lab 0 (Optional setup)"
-    ]
-  },
-  {
-    "objectID": "labs/lab2-testing.html",
-    "href": "labs/lab2-testing.html",
-    "title": "Lab 2: Exceptions and Testing",
-    "section": "",
-    "text": "Today we will spend some time getting familiar with some of the programming tools that can help make your code more robust and resilient to errors and boundary conditions - tools like unit tests and exceptions (and next week we will spend some time on debugging misbehaving code).\nTesting is what you do when you finish implementing a piece of code and want to try it out to see if it works. Running your code manually and seeing if it works is a workable strategy for simple one-time scripts that do simple tasks, but there are situations (like writing a function that others will repeatedly use, or like running the same piece of code on hundreds of files or URLs) where it is prudent to test your code ahead of its actual use or deployment. In today’s lab, we are going to use pytest to test for correct behavior and verify that exceptions are raised in the right situations.",
-    "crumbs": [
-      "Labs",
-      "Lab 2 (Exceptions/Testing)"
-    ]
-  },
-  {
-    "objectID": "labs/lab2-testing.html#lab-exercise",
-    "href": "labs/lab2-testing.html#lab-exercise",
-    "title": "Lab 2: Exceptions and Testing",
-    "section": "Lab Exercise",
-    "text": "Lab Exercise\n1- Write a function in Python that finds a number in a string using regular expressions. The number can be positive or negative, integer-valued, or real, and numbers less than one can also be of the form 0.96 or .96. It can be assumed that no numbers appear in scientific notation. Refer to String processing and regular expressions in Python for a quick overview of Python’s re package. You may use AI to generate the regex, but be sure you understand the output.\n2- Write an interface for that function (a function name and arguments), but do not implement the function yet (you can have it return an None, or an empty string for now). We will do this in a good old fashioned .py file (not a notebook or a quarto file).\n3- Build a test suite using the pytest package to test that your function works as intended. Add at least 8 test cases with justification for each. Try to cover the main use cases, and as many potential corner cases or boundary conditions as possible.\n4- Now run the test suite. It should fail for all your tests (unless one of them was passing an empty string).\n5- Implement the function. You can do this at one go, or case by case. As you implement a case, you can rerun the test suite and see some of the tests relevant to that cases stopping to fail. When all the tests pass, you are done. This is called test-driven development.\n6- If some cases are still failing, that’s alright, for the purposes of this lab we don’t need to ensure all edge cases are dealt with.\n7- Make sure you raise an exception to trap invalid input types.\n8- Add a test to check that an exception is properly raised when the function is given invalid input types.",
-    "crumbs": [
-      "Labs",
-      "Lab 2 (Exceptions/Testing)"
-    ]
-  },
-  {
-    "objectID": "labs/lab2-testing.html#acknowledgements",
-    "href": "labs/lab2-testing.html#acknowledgements",
-    "title": "Lab 2: Exceptions and Testing",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
-    "crumbs": [
-      "Labs",
-      "Lab 2 (Exceptions/Testing)"
+      "Problem Sets",
+      "Problem Set 2"
     ]
   },
   {
@@ -1800,7 +1844,7 @@
     "href": "units/unit5-bigData.html#accessing-databases-in-python",
     "title": "Big data and databases",
     "section": "Accessing databases in Python",
-    "text": "Accessing databases in Python\nPython provides a variety of front-end packages for manipulating databases from a variety of DBMS (SQLite, DuckDB, MySQL, PostgreSQL, among others). Basically, you start with a bit of code that links to the actual database, and then you can easily query the database using SQL syntax regardless of the back-end. The Python function calls that wrap around the SQL syntax will also look the same regardless of the back-end (basically execute(\"SOME SQL STATEMENT\")).\nWith SQLite, Python processes make calls against the stand-alone SQLite database (.db) file, so there are no SQLite-specific processes. With a client-server DBMS like PostgreSQL, Python processes call out to separate Postgres processes; these are started from the overall Postgres background process\nYou can access and navigate an SQLite database from Python as follows.\n\nimport sqlite3 as sq\ndir_path = '/mirror/data/pub/users/paciorek/share'  # Replace with the actual path\ndb_filename = 'stackoverflow-2021.db'\n## Download from http://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.db.\n\ncon = sq.connect(os.path.join(dir_path, db_filename))\ndb = con.cursor()\ndb.execute(\"select * from questions limit 3\")  # simple query \n\n&lt;sqlite3.Cursor object at 0x7374b85fb5c0&gt;\n\ndb.fetchall() # retrieve results\n\n[(65534165.0, '2021-01-01 22:15:54', 0.0, 112.0, 2.0, 0.0, None, \"Can't update a value in sqlite3\", 13189393.0), (65535296.0, '2021-01-02 01:33:13', 2.0, 1109.0, 0.0, 0.0, None, 'Install and run ROS on Google Colab', 14924336.0), (65535910.0, '2021-01-02 04:01:34', -1.0, 110.0, 1.0, 8.0, 0.0, 'Operators on date/time fields', 651174.0)]\n\n\nAlternatively, we could use DuckDB, but I haven’t run this code while rendering this document.\n\nimport duckdb as dd\ndir_path = '../data'  # Replace with the actual path\ndb_filename = 'stackoverflow-2021.duckdb' \n## Download from http://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.duckdb.\n\ncon = dd.connect(os.path.join(dir_path, db_filename))\ndb = con.cursor()\ndb.execute(\"select * from questions limit 5\")  # simple query \ndb.fetchall() # retrieve results\n\nWe can (fairly) easily see the tables in SQLite (this is easier from R):\n\ndef db_list_tables(db):\n    db.execute(\"SELECT name FROM sqlite_master WHERE type='table';\")\n    tables = db.fetchall()\n    return [table[0] for table in tables]\n\ndb_list_tables(db)\n\n['questions', 'answers', 'questions_tags', 'users']\n\n\nOr it’s easy in DuckDB (code not executed while rendering).\n\ncon.execute(\"show tables\").fetchall()\n\nTo see the fields in the table, if you’ve just queried the table, you can look at description:\n\ndb.execute(\"select * from questions\")\n\n&lt;sqlite3.Cursor object at 0x7374b85fb5c0&gt;\n\n[item[0] for item in db.description]\n\n['questionid', 'creationdate', 'score', 'viewcount', 'answercount', 'commentcount', 'favoritecount', 'title', 'ownerid']\n\n\ndef get_fields():\n    return [item[0] for item in db.description]\n\nHere’s how to make a basic SQL query. One can either make the query and get the results in one go or make the query and separately fetch the results. Here we’ve selected the first five rows (and all columns, based on the * wildcard) and brought them into Python as list of tuples.\n\nresults = db.execute(\"select * from questions limit 5\").fetchall()  # simple query \ntype(results)\n\n&lt;class 'list'&gt;\n\ntype(results[0])\n\n&lt;class 'tuple'&gt;\n\nquery = db.execute(\"select * from questions\")  # simple query \nresults2 = query.fetchmany(5)\nresults == results2\n\nTrue\n\n\nTo disconnect from the database:\n\ndb.close()\n\nIt’s convenient to get a Pandas dataframe back as the result. To do that we can execute queries like this:\n\nimport pandas as pd\nresults = pd.read_sql(\"select * from questions limit 5\", con)\n\nIf I do that with DuckDB rather than SQLite, I get a warning, but it seems to work.",
+    "text": "Accessing databases in Python\nPython provides a variety of front-end packages for manipulating databases from a variety of DBMS (SQLite, DuckDB, MySQL, PostgreSQL, among others). Basically, you start with a bit of code that links to the actual database, and then you can easily query the database using SQL syntax regardless of the back-end. The Python function calls that wrap around the SQL syntax will also look the same regardless of the back-end (basically execute(\"SOME SQL STATEMENT\")).\nWith SQLite, Python processes make calls against the stand-alone SQLite database (.db) file, so there are no SQLite-specific processes. With a client-server DBMS like PostgreSQL, Python processes call out to separate Postgres processes; these are started from the overall Postgres background process\nYou can access and navigate an SQLite database from Python as follows.\n\nimport sqlite3 as sq\ndir_path = '/mirror/data/pub/users/paciorek/share'  # Replace with the actual path\ndb_filename = 'stackoverflow-2021.db'\n## Download from http://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.db.\n\ncon = sq.connect(os.path.join(dir_path, db_filename))\ndb = con.cursor()\ndb.execute(\"select * from questions limit 3\")  # simple query \n\n&lt;sqlite3.Cursor object at 0x7f537e5ab5c0&gt;\n\ndb.fetchall() # retrieve results\n\n[(65534165.0, '2021-01-01 22:15:54', 0.0, 112.0, 2.0, 0.0, None, \"Can't update a value in sqlite3\", 13189393.0), (65535296.0, '2021-01-02 01:33:13', 2.0, 1109.0, 0.0, 0.0, None, 'Install and run ROS on Google Colab', 14924336.0), (65535910.0, '2021-01-02 04:01:34', -1.0, 110.0, 1.0, 8.0, 0.0, 'Operators on date/time fields', 651174.0)]\n\n\nAlternatively, we could use DuckDB, but I haven’t run this code while rendering this document.\n\nimport duckdb as dd\ndir_path = '/mirror/data/pub/users/paciorek/share'  # Replace with the actual path\ndb_filename = 'stackoverflow-2021.duckdb' \n## Download from http://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.duckdb.\n\ncon = dd.connect(os.path.join(dir_path, db_filename))\ndb = con.cursor()\ndb.execute(\"select * from questions limit 5\")  # simple query \ndb.fetchall() # retrieve results\n\nWe can (fairly) easily see the tables in SQLite (this is easier from R):\n\ndef db_list_tables(db):\n    db.execute(\"SELECT name FROM sqlite_master WHERE type='table';\")\n    tables = db.fetchall()\n    return [table[0] for table in tables]\n\ndb_list_tables(db)\n\n['questions', 'answers', 'questions_tags', 'users']\n\n\nOr it’s easy in DuckDB (code not executed while rendering).\n\ncon.execute(\"show tables\").fetchall()\n\nTo see the fields in the table, if you’ve just queried the table, you can look at description:\n\ndb.execute(\"select * from questions\")\n\n&lt;sqlite3.Cursor object at 0x7f537e5ab5c0&gt;\n\n[item[0] for item in db.description]\n\n['questionid', 'creationdate', 'score', 'viewcount', 'answercount', 'commentcount', 'favoritecount', 'title', 'ownerid']\n\n\ndef get_fields():\n    return [item[0] for item in db.description]\n\nHere’s how to make a basic SQL query. One can either make the query and get the results in one go or make the query and separately fetch the results. Here we’ve selected the first five rows (and all columns, based on the * wildcard) and brought them into Python as list of tuples.\n\nresults = db.execute(\"select * from questions limit 5\").fetchall()  # simple query \ntype(results)\n\n&lt;class 'list'&gt;\n\ntype(results[0])\n\n&lt;class 'tuple'&gt;\n\nquery = db.execute(\"select * from questions\")  # simple query \nresults2 = query.fetchmany(5)\nresults == results2\n\nTrue\n\n\nTo disconnect from the database:\n\ndb.close()\n\nIt’s convenient to get a Pandas dataframe back as the result. To do that we can execute queries like this:\n\nimport pandas as pd\nresults = pd.read_sql(\"select * from questions limit 5\", con)\n\nIf I do that with DuckDB rather than SQLite, I get a warning, but it seems to work.",
     "crumbs": [
       "Units",
       "Unit A5 (Databases)"

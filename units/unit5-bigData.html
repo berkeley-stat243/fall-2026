@@ -352,6 +352,12 @@ window.Quarto = {
  <span class="menu-text">Problem Set 2</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ps/ps3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 3</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -461,8 +467,8 @@ window.Quarto = {
   <li><a href="#creating-database-tables" id="toc-creating-database-tables" class="nav-link" data-scroll-target="#creating-database-tables">Creating database tables</a></li>
   <li><a href="#sql-everywhere" id="toc-sql-everywhere" class="nav-link" data-scroll-target="#sql-everywhere">SQL everywhere</a></li>
   </ul></li>
-  <li><a href="#recent-tools-and-data-storage-formats" id="toc-recent-tools-and-data-storage-formats" class="nav-link" data-scroll-target="#recent-tools-and-data-storage-formats">4. Recent tools and data storage formats</a></li>
-  <li><a href="#mapreduce-and-dask" id="toc-mapreduce-and-dask" class="nav-link" data-scroll-target="#mapreduce-and-dask">3. MapReduce and Dask</a>
+  <li><a href="#recent-tools-and-data-storage-formats" id="toc-recent-tools-and-data-storage-formats" class="nav-link" data-scroll-target="#recent-tools-and-data-storage-formats">3. Recent tools and data storage formats</a></li>
+  <li><a href="#mapreduce-and-dask" id="toc-mapreduce-and-dask" class="nav-link" data-scroll-target="#mapreduce-and-dask">4. MapReduce and Dask</a>
   <ul class="collapse">
   <li><a href="#overview-2" id="toc-overview-2" class="nav-link" data-scroll-target="#overview-2">Overview</a>
   <ul class="collapse">
@@ -771,7 +777,7 @@ Note
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> con.cursor()</span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>db.execute(<span class="st">"select * from questions limit 3"</span>)  <span class="co"># simple query </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;sqlite3.Cursor object at 0x7374b85fb5c0&gt;</code></pre>
+<pre><code>&lt;sqlite3.Cursor object at 0x7f537e5ab5c0&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db.fetchall() <span class="co"># retrieve results</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -781,7 +787,7 @@ Note
 <p>Alternatively, we could use DuckDB, but I haven’t run this code while rendering this document.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> duckdb <span class="im">as</span> dd</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dir_path <span class="op">=</span> <span class="st">'../data'</span>  <span class="co"># Replace with the actual path</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dir_path <span class="op">=</span> <span class="st">'/mirror/data/pub/users/paciorek/share'</span>  <span class="co"># Replace with the actual path</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>db_filename <span class="op">=</span> <span class="st">'stackoverflow-2021.duckdb'</span> </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Download from http://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.duckdb.</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
@@ -810,7 +816,7 @@ Note
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>db.execute(<span class="st">"select * from questions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;sqlite3.Cursor object at 0x7374b85fb5c0&gt;</code></pre>
+<pre><code>&lt;sqlite3.Cursor object at 0x7f537e5ab5c0&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>[item[<span class="dv">0</span>] <span class="cf">for</span> item <span class="kw">in</span> db.description]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1251,7 +1257,7 @@ WHERE &lt;condition(s) on column(s)&gt; ORDER BY &lt;column(s)&gt;</code></pre>
 </section>
 </section>
 <section id="recent-tools-and-data-storage-formats" class="level1">
-<h1>4. Recent tools and data storage formats</h1>
+<h1>3. Recent tools and data storage formats</h1>
 <p>There has been a lot of work in recent years to provide file formats and tools for working with very large datasets in ways other than traditional databases, often optimized for speed when doing large-scale analytics on the data.</p>
 <p>Rather than being stored in a formal database, data are often stored in multiple files, often using Parquet (<a href="unit2-dataTech.html#csv-vs.-specialized-formats-such-as-parquet">discussed in Unit 2</a>) or CSV as the file format. When stored in the cloud, this is often referred to as a <em>data lake</em>.</p>
 <p>We’ll briefly discuss <em>Apache Arrow</em>. Apache Arrow provides efficient data structures for working with data in memory, usable via the <code>PyArrow</code> package in Python (and the <code>arrow</code> package in R). Data are stored by column, with values in a column stored sequentially and in such a way that one can access a specific value without reading the other values in the column (O(1) lookup).</p>
@@ -1260,7 +1266,7 @@ WHERE &lt;condition(s) on column(s)&gt; ORDER BY &lt;column(s)&gt;</code></pre>
 <p><em>Polars</em> is advertised as a very fast in-memory package for working with dataframes (i.e., an alternative to Pandas) that provides a Python interface. It uses the Arrow columnar format. It also provides a lazy execution model (using a lazy version of a DataFrame called a “LazyFrame”) like Dask or Spark that allows for automatic optimization of queries.</p>
 </section>
 <section id="mapreduce-and-dask" class="level1">
-<h1>3. MapReduce and Dask</h1>
+<h1>4. MapReduce and Dask</h1>
 <p>Traditionally, high-performance computing (HPC) has concentrated on techniques and tools for message passing such as MPI and on developing efficient algorithms to use these techniques. In the last 20 years, focus has shifted to technologies for processing large datasets that are distributed across multiple machines but can be manipulated as if they are one dataset.</p>
 <p>Two commonly-used tools for doing this are Python’s Dask package and Spark. We’ll cover Dask. Spark was popular for a while, but I’m not sure how much it is used now.</p>
 <section id="overview-2" class="level2">
