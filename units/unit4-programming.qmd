@@ -4192,13 +4192,17 @@ and then take the remainder when dividing by the number of possible results
 Here's the procedure in pseudocode:
 
 ```
-    hash = hashfunc(key) 
-    index = hash %% array_size 
+    hash = hashfunc(key)           #  A number.
+    index = hash %% array_size     #  An index between 0 and `array_size`.
     ## %% is modulo operator - it gives the remainder
 ```
 
+So one would choose `array_size` as the maximum value of the `index` that
+one wants to produce. In some cases (but not the git commit case) this might be a value similar in
+magnitude to the maximum value of `hash`. 
+
 In general, there will be collisions -- multiple keys will be assigned to the
-same index (this is unavoidable because of the fact that the hash function returns a fixed length output). However with a good hash function, usually there will be a small number of keys associated
+same index (this is unavoidable because of the fact that the hash function returns a fixed length output). However with a good hash function (and a large enough value of `array_size`), usually there will be a small number of keys associated
 with a given bucket. So each bucket will contain a list of a small number of values and the associated keys.
 (The buckets might contain the actual values or they might contain the addresses of where the values are actually stored
 if the values are complicated objects.) Then determining the correct value (or the required address) within
