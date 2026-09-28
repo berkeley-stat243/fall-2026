@@ -4240,11 +4240,11 @@ I'll create a long matrix with a small number of very long columns and a wide ma
 nr = 800000
 nc = 100
 
-A = np.random.normal(size=(nr, nc))   # long matrix
-tA = np.random.normal(size=(nc, nr))  # wide matrix
+A_long = np.random.normal(size=(nr, nc))   # long matrix
+A_wide = np.random.normal(size=(nc, nr))  # wide matrix
 
 ## Verify that A is row-major using `.flags` (notice the `C_CONTIGUOUS: True`).
-A.flags
+A_long.flags
 ```
 
 Note that I didn't use `A.T` or `np.transpose` as that doesn't make a copy in memory and so the transposed
@@ -4259,28 +4259,32 @@ summations. This focuses the example on the efficiency of the column-wise vs. ro
 rather than any issues that might be involved in managing large numbers of such summations (e.g.,
 doing many, many summations that involve just a few numbers).
 
+Suppose we do the looping manually (in a loop, using list comprehension).
+
+```{python, cache-aware3}
+timeit.timeit('[np.sum(A_long[:,col]) for col in range(A.shape[1])]',
+    setup = 'import numpy as np', number=10, globals = {'A': A})   
+timeit.timeit('[np.sum(A_wide[row,:]) for row in range(tA.shape[0])]',
+    setup = 'import numpy as np', number=10, globals = {'tA': tA})  
+```
+
+Indeed, the row-wise calculations are much faster when done manually.
+
+Instead, suppose we use numpy functionality:
+
 ```{python, cache-aware2}
 # Define the sum calculations as functions
 def sum_by_row():
-    return np.sum(tA, axis=1)
+    return np.sum(A_wide, axis=1)
 
 def sum_by_column():
-    return np.sum(A, axis=0)
+    return np.sum(A_long, axis=0)
 
 timeit.timeit(sum_by_row, number=10)
 timeit.timeit(sum_by_column, number=10)  # potentially slow
 ```
 
-Suppose we instead do the looping manually.
-
-```{python, cache-aware3}
-timeit.timeit('[np.sum(A[:,col]) for col in range(A.shape[1])]',
-    setup = 'import numpy as np', number=10, globals = {'A': A})   
-timeit.timeit('[np.sum(tA[row,:]) for row in range(tA.shape[0])]',
-    setup = 'import numpy as np', number=10, globals = {'tA': tA})  
-```
-
-Indeed, the row-wise calculations are much faster when done manually. However, when done with the `axis` argument in `np.sum` there is little difference. So that suggests numpy might be doing something clever in its implementation of `sum` with the `axis` argument.
+So when done with the `axis` argument in `np.sum` there is little difference. So that suggests numpy might be doing something clever in its implementation of `sum` with the `axis` argument.
 
 :::{.callout-tip title="Challenge"}
 Suppose you were writing code for this kind of use case. How could you set up your calculations to do either row-wise or column-wise operations in a way that processes each number sequentially based on the order in which the numbers are stored? For example suppose the values are stored row-major but you want the column sums.
