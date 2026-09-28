@@ -1339,11 +1339,11 @@ dtype: object</code></pre>
 <span id="cb110-7"><a href="#cb110-7" aria-hidden="true" tabindex="-1"></a>t2 <span class="op">=</span> time.time()</span>
 <span id="cb110-8"><a href="#cb110-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Timing for Pandas: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Timing for Pandas: 1.0786411762237549.</code></pre>
+<pre><code>Timing for Pandas: 1.01326322555542.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Timing for Polars: </span><span class="sc">{</span>t2<span class="op">-</span>t1<span class="sc">}</span><span class="ss">."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Timing for Polars: 0.21669316291809082.</code></pre>
+<pre><code>Timing for Polars: 0.3081085681915283.</code></pre>
 </div>
 </div>
 </section>
@@ -2095,11 +2095,11 @@ double myfun(int x) {return (double) x;}</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb262"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb262-1"><a href="#cb262-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">5</span>)</span>
 <span id="cb262-2"><a href="#cb262-2" aria-hidden="true" tabindex="-1"></a>x[<span class="fl">2.0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -2.875351</code></pre>
+<pre><code>[1] -0.1979653</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb264"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb264-1"><a href="#cb264-1" aria-hidden="true" tabindex="-1"></a>x[<span class="fl">2.73</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -2.875351</code></pre>
+<pre><code>[1] -0.1979653</code></pre>
 </div>
 </div>
 <p>Question: What are the advantages and disadvantages of the different behaviors of Python and R?</p>
@@ -2529,7 +2529,7 @@ double myfun(int x) {return (double) x;}</code></pre>
 <span id="cb324-7"><a href="#cb324-7" aria-hidden="true" tabindex="-1"></a>yog <span class="op">=</span> Bear(<span class="st">"Yogi the Bear"</span>, <span class="dv">23</span>)</span>
 <span id="cb324-8"><a href="#cb324-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(yog)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;__main__.Bear object at 0x7ab7ff41cec0&gt;</code></pre>
+<pre><code>&lt;__main__.Bear object at 0x7b1956934ec0&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb326"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb326-1"><a href="#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Class definition with various dunder methods</span></span>
 <span id="cb326-2"><a href="#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Bear:</span>
@@ -2677,8 +2677,8 @@ cherry</code></pre>
 <span id="cb356-11"><a href="#cb356-11" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.random.normal(size<span class="op">=</span><span class="dv">50000000</span>)</span>
 <span id="cb356-12"><a href="#cb356-12" aria-hidden="true" tabindex="-1"></a>    <span class="kw">del</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Starting at Fri Sep 25 09:24:49 2026.
-Ending at Fri Sep 25 09:24:50 2026.</code></pre>
+<pre><code>Starting at Mon Sep 28 10:00:44 2026.
+Ending at Mon Sep 28 10:00:45 2026.</code></pre>
 </div>
 </div>
 <p>A more useful example would be setting up a context manager to handle database queries by connecting to the database via <code>__enter__</code> and disconnecting via <code>__exit__</code>.</p>
@@ -3120,24 +3120,24 @@ Ending at Fri Sep 25 09:24:50 2026.</code></pre>
 <span id="cb428-35"><a href="#cb428-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb428-36"><a href="#cb428-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(scalar))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134931439622960</code></pre>
+<pre><code>135349353478960</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb430"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb430-1"><a href="#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">id</span>(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930678304896</code></pre>
+<pre><code>135348754274688</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb432"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb432-1"><a href="#cb432-1" aria-hidden="true" tabindex="-1"></a>myfun(scalar, x, x_new, x_newid, x_copy)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The initial ID of `scalar_local`: 134931439622960.
-The ID of `scalar_local` is changed: 134931439626096.
-The initial ID of `x_local`: 134930678304896.
-The ID of `x_local` is unchanged: 134930678304896.
-The initial ID of `x_new_local`: 134930683765504.
-The ID of `x_new_local` is changed: 134930679290368.
-The initial ID of `x_newid_local`: 134930679288128.
-The ID of `y` is the same as `x_newid_local`: 134930679288128.
-The initial ID of `x_copy_local`: 134930679286400.
-The ID of `z` is the different than `x_copy_local`: 134930679299584.</code></pre>
+<pre><code>The initial ID of `scalar_local`: 135349353478960.
+The ID of `scalar_local` is changed: 135349353482096.
+The initial ID of `x_local`: 135348754274688.
+The ID of `x_local` is unchanged: 135348754274688.
+The initial ID of `x_new_local`: 135348754178304.
+The ID of `x_new_local` is changed: 135348754353728.
+The initial ID of `x_newid_local`: 135348758003392.
+The ID of `y` is the same as `x_newid_local`: 135348758003392.
+The initial ID of `x_copy_local`: 135348757997248.
+The ID of `z` is the different than `x_copy_local`: 135348758003648.</code></pre>
 </div>
 </div>
 <p>Here are the cases where state is preserved:</p>
@@ -3672,7 +3672,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb502-6"><a href="#cb502-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the memory usage</span></span>
 <span id="cb502-7"><a href="#cb502-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Memory usage:"</span>, memory_info.rss<span class="op">/</span><span class="dv">10</span><span class="op">**</span><span class="dv">6</span>, <span class="st">" MB."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Memory usage: 777.4208  MB.</code></pre>
+<pre><code>Memory usage: 788.791296  MB.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb504"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb504-1"><a href="#cb504-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb504-2"><a href="#cb504-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's turn that into a function for later use:</span></span>
@@ -3721,7 +3721,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb513"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb513-1"><a href="#cb513-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(size <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="dv">7</span>)</span>
 <span id="cb513-2"><a href="#cb513-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405648</code></pre>
+<pre><code>135348756324176</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb515"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb515-1"><a href="#cb515-1" aria-hidden="true" tabindex="-1"></a>sys.getsizeof(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -3730,7 +3730,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb517"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb517-1"><a href="#cb517-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x</span>
 <span id="cb517-2"><a href="#cb517-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405648</code></pre>
+<pre><code>135348756324176</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb519"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb519-1"><a href="#cb519-1" aria-hidden="true" tabindex="-1"></a>x <span class="kw">is</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -3743,7 +3743,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb523"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb523-1"><a href="#cb523-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> x.copy()</span>
 <span id="cb523-2"><a href="#cb523-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680804048</code></pre>
+<pre><code>135348755927024</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb525"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb525-1"><a href="#cb525-1" aria-hidden="true" tabindex="-1"></a>sys.getsizeof(z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -3762,31 +3762,31 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb527-3"><a href="#cb527-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb527-4"><a href="#cb527-4" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(nums)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405264</code></pre>
+<pre><code>135348756323696</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb529"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb529-1"><a href="#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(obj)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930676931712</code></pre>
+<pre><code>135348752452096</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb531"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb531-1"><a href="#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(obj[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405264</code></pre>
+<pre><code>135348756323696</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb533"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb533-1"><a href="#cb533-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(obj[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405264</code></pre>
+<pre><code>135348756323696</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb535"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb535-1"><a href="#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(obj[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680404976</code></pre>
+<pre><code>135348756323600</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb537"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb537-1"><a href="#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(obj[<span class="dv">3</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930678923584</code></pre>
+<pre><code>135348752385792</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb539"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb539-1"><a href="#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(obj[<span class="dv">3</span>][<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680534224</code></pre>
+<pre><code>135348755276608</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb541"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb541-1"><a href="#cb541-1" aria-hidden="true" tabindex="-1"></a>obj[<span class="dv">0</span>] <span class="kw">is</span> obj[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -3822,17 +3822,17 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb547"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb547-1"><a href="#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680390032</code></pre>
+<pre><code>135348756287280</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb549"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb549-1"><a href="#cb549-1" aria-hidden="true" tabindex="-1"></a>tmp1 <span class="op">=</span> x[<span class="dv">1</span>]</span>
 <span id="cb549-2"><a href="#cb549-2" aria-hidden="true" tabindex="-1"></a>tmp2 <span class="op">=</span> x[<span class="dv">1</span>]</span>
 <span id="cb549-3"><a href="#cb549-3" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(tmp1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930679578768</code></pre>
+<pre><code>135348754900464</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb551"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb551-1"><a href="#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(tmp2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930679586480</code></pre>
+<pre><code>135348754907056</code></pre>
 </div>
 </div>
 <p>Each time we get the <code>x[1]</code> element we are creating a new numpy float64 scalar object. This is because each element of the array is not its own object (unlike a list element) so extracting the element involves copying the value and making a new object.</p>
@@ -3845,12 +3845,12 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb553"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb553-1"><a href="#cb553-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(size <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb553-2"><a href="#cb553-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405360</code></pre>
+<pre><code>135348756318320</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb555"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb555-1"><a href="#cb555-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>] <span class="op">=</span> <span class="fl">3.5</span></span>
 <span id="cb555-2"><a href="#cb555-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405360</code></pre>
+<pre><code>135348756318320</code></pre>
 </div>
 </div>
 <p>It makes some sense that modifying elements of an object here doesn’t cause a copy – if it did, working with large objects would be very difficult.</p>
@@ -3863,11 +3863,11 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb557-2"><a href="#cb557-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x.copy()</span>
 <span id="cb557-3"><a href="#cb557-3" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930676931072</code></pre>
+<pre><code>135348752451456</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb559"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb559-1"><a href="#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680684544</code></pre>
+<pre><code>135348759071360</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb561"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb561-1"><a href="#cb561-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">9</span></span>
 <span id="cb561-2"><a href="#cb561-2" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -3876,11 +3876,11 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb563"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb563-1"><a href="#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930678860992</code></pre>
+<pre><code>135348752457856</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb565"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb565-1"><a href="#cb565-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(y[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930678860992</code></pre>
+<pre><code>135348752457856</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb567"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb567-1"><a href="#cb567-1" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">1</span>][<span class="dv">2</span>] <span class="op">=</span> <span class="dv">99</span></span>
 <span id="cb567-2"><a href="#cb567-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -3896,11 +3896,11 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb569-4"><a href="#cb569-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb569-5"><a href="#cb569-5" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680334720</code></pre>
+<pre><code>135348754778496</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb571"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb571-1"><a href="#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(y[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930677002816</code></pre>
+<pre><code>135348752517824</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb573"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb573-1"><a href="#cb573-1" aria-hidden="true" tabindex="-1"></a>y[<span class="dv">1</span>][<span class="dv">2</span>] <span class="op">=</span> <span class="dv">99</span></span>
 <span id="cb573-2"><a href="#cb573-2" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -3917,17 +3917,17 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb575"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb575-1"><a href="#cb575-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(size <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="dv">8</span>)</span>
 <span id="cb575-2"><a href="#cb575-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680399984</code></pre>
+<pre><code>135348756318608</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb577"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb577-1"><a href="#cb577-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x</span>
 <span id="cb577-2"><a href="#cb577-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680399984</code></pre>
+<pre><code>135348756318608</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb579"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb579-1"><a href="#cb579-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(size <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="dv">8</span>)</span>
 <span id="cb579-2"><a href="#cb579-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405168</code></pre>
+<pre><code>135348756323312</code></pre>
 </div>
 </div>
 <p>Only if we re-assign <code>x</code> to reference a different object does additional memory get used.</p>
@@ -4171,7 +4171,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb616-6"><a href="#cb616-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb616-7"><a href="#cb616-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Execution time: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">}</span><span class="ss"> seconds."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Execution time: 0.07471895217895508 seconds.</code></pre>
+<pre><code>Execution time: 0.07338929176330566 seconds.</code></pre>
 </div>
 </div>
 <p>In general, it’s a good idea to repeat (replicate) your timing, as there is some stochasticity in how fast your computer will run a piece of code at any given moment.</p>
@@ -4183,7 +4183,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb618-5"><a href="#cb618-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb618-6"><a href="#cb618-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Execution time: </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">}</span><span class="ss"> seconds."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Execution time: 0.005906581878662109 seconds.</code></pre>
+<pre><code>Execution time: 0.00610804557800293 seconds.</code></pre>
 </div>
 </div>
 <p>Using <code>time</code> is fine for code that takes a little while to run, but for code that is really fast (such as the code above), it may not be very accurate. Measuring fast bits of code is tricky to do well. This next approach is better for benchmarking code (particularly faster bits of code).</p>
@@ -4192,7 +4192,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb620-2"><a href="#cb620-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb620-3"><a href="#cb620-3" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">'x = np.exp(3.)'</span>, setup <span class="op">=</span> <span class="st">'import numpy as np'</span>, number <span class="op">=</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>8.600996807217598e-05</code></pre>
+<pre><code>9.68538224697113e-05</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb622"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb622-1"><a href="#cb622-1" aria-hidden="true" tabindex="-1"></a>code <span class="op">=</span> <span class="st">'''</span></span>
 <span id="cb622-2"><a href="#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="st">x = np.exp(3.)</span></span>
@@ -4200,7 +4200,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb622-4"><a href="#cb622-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb622-5"><a href="#cb622-5" aria-hidden="true" tabindex="-1"></a>timeit.timeit(code, setup <span class="op">=</span> <span class="st">'import numpy as np'</span>, number <span class="op">=</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>8.741999045014381e-05</code></pre>
+<pre><code>8.53219535201788e-05</code></pre>
 </div>
 </div>
 <p>That reports the <strong>total</strong> time for the 100 replications.</p>
@@ -4211,8 +4211,8 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb624-3"><a href="#cb624-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> timeit <span class="at">-s</span> <span class="st">'from scipy.special import gammaln'</span> <span class="at">-n</span> 1000 <span class="st">'x = gammaln(3.)'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1000 loops, best of 5: 15.9 nsec per loop
-1000 loops, best of 5: 611 nsec per loop
-1000 loops, best of 5: 599 nsec per loop</code></pre>
+1000 loops, best of 5: 1.04 usec per loop
+1000 loops, best of 5: 612 nsec per loop</code></pre>
 </div>
 </div>
 <p><code>timeit</code> ran the code 1000 times for 5 different repetitions, giving the <strong>average</strong> time for the 1000 samples for the best of the 5 repetitions.</p>
@@ -4316,19 +4316,19 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb628-31"><a href="#cb628-31" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> fun_prealloc(z)</span>
 <span id="cb628-32"><a href="#cb628-32" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.08987665176391602</code></pre>
+<pre><code>0.09680032730102539</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb630"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb630-1"><a href="#cb630-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
 <span id="cb630-2"><a href="#cb630-2" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> fun_append(z)</span>
 <span id="cb630-3"><a href="#cb630-3" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.09485673904418945</code></pre>
+<pre><code>0.10545611381530762</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb632"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb632-1"><a href="#cb632-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
 <span id="cb632-2"><a href="#cb632-2" aria-hidden="true" tabindex="-1"></a>out3 <span class="op">=</span> fun_append_np(z)</span>
 <span id="cb632-3"><a href="#cb632-3" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>2.430755138397217</code></pre>
+<pre><code>2.52594256401062</code></pre>
 </div>
 </div>
 <p>So what’s going on? First let’s consider what is happening with the use of <code>np.append</code>. Note that it is a function, rather than a method, and we need to reassign to <code>x</code>. What must be happening in terms of memory use and copying when we append an element?</p>
@@ -4336,11 +4336,11 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb634"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb634-1"><a href="#cb634-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(size <span class="op">=</span> <span class="dv">5</span>)</span>
 <span id="cb634-2"><a href="#cb634-2" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134931128444432</code></pre>
+<pre><code>135348755936624</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb636"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb636-1"><a href="#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="bu">id</span>(np.append(x, <span class="fl">3.34</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>134930680405360</code></pre>
+<pre><code>135348851121616</code></pre>
 </div>
 </div>
 <p>We can avoid that large cost of copying and memory allocation by pre-allocating space for the entire output array. (This is equivalent to variable initialization in compiled languages.)</p>
@@ -4364,7 +4364,7 @@ MiB Swap: 262144.0 total, 220103.3 free,  42040.7 used. 105020.6 avail Mem </cod
 <span id="cb638-15"><a href="#cb638-15" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.random.normal(size <span class="op">=</span> <span class="dv">1000</span>)</span>
 <span id="cb638-16"><a href="#cb638-16" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> fun_append2(z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Initial id: 134930677092288
+<pre><code>Initial id: 135348752595840
 Empty list: size 56
 iteration 0: size 88
 iteration 4: size 120
@@ -4394,7 +4394,7 @@ iteration 672: size 6136
 iteration 760: size 6936
 iteration 860: size 7832
 iteration 972: size 8856
-Final id: 134930677092288</code></pre>
+Final id: 135348752595840</code></pre>
 </div>
 </div>
 <p>Surprisingly, the id of <code>x</code> doesn’t seem to change, even though we are allocating new memory at many of the iterations. What is happening is that <code>x</code> is a wrapper object that contains within it a reference to an array of references (pointers) to the list elements. The location of the wrapper object doesn’t change, but the underlying array of references/pointers is being reallocated.</p>
@@ -4553,7 +4553,7 @@ Final id: 134930677092288</code></pre>
 <span id="cb662-6"><a href="#cb662-6" aria-hidden="true" tabindex="-1"></a>out <span class="op">=</span> np.exp(x)</span>
 <span id="cb662-7"><a href="#cb662-7" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.015652894973754883</code></pre>
+<pre><code>0.013963460922241211</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb664"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb664-1"><a href="#cb664-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
 <span id="cb664-2"><a href="#cb664-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> np.zeros(n)</span>
@@ -4563,19 +4563,19 @@ Final id: 134930677092288</code></pre>
 <span id="cb664-6"><a href="#cb664-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb664-7"><a href="#cb664-7" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>1.0194153785705566</code></pre>
+<pre><code>1.134044885635376</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb666"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb666-1"><a href="#cb666-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
 <span id="cb666-2"><a href="#cb666-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> [np.exp(v) <span class="cf">for</span> v <span class="kw">in</span> x]</span>
 <span id="cb666-3"><a href="#cb666-3" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.8364944458007812</code></pre>
+<pre><code>0.8820483684539795</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb668"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb668-1"><a href="#cb668-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
 <span id="cb668-2"><a href="#cb668-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(np.exp, x))</span>
 <span id="cb668-3"><a href="#cb668-3" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.7464172840118408</code></pre>
+<pre><code>0.8263156414031982</code></pre>
 </div>
 </div>
 <p>Regardless of how we do the looping (an explicit loop, list comprehension, or <code>map</code>), it looks like we can’t avoid the overhead unless we use the vectorized call, which is of course the recommended approach in this case, both for speed and readability (and conciseness).</p>
@@ -4602,7 +4602,7 @@ Final id: 134930677092288</code></pre>
 <span id="cb670-18"><a href="#cb670-18" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(regrFun, <span class="bu">range</span>(nCalcs)))</span>
 <span id="cb670-19"><a href="#cb670-19" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.05805325508117676</code></pre>
+<pre><code>0.055251359939575195</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb672"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb672-1"><a href="#cb672-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
 <span id="cb672-2"><a href="#cb672-2" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> np.zeros(nCalcs)</span>
@@ -4612,7 +4612,7 @@ Final id: 134930677092288</code></pre>
 <span id="cb672-6"><a href="#cb672-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb672-7"><a href="#cb672-7" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.06099748611450195</code></pre>
+<pre><code>0.059607744216918945</code></pre>
 </div>
 </div>
 <p>Here they’re about the same time (depending on when I render the document, I am getting some stochasticity in the timing). This is not too surprising – the overhead of the iteration should be small relative to the fundamental cost of the model fitting, and we wouldn’t be concerned with the overhead of using a loop.</p>
@@ -4627,12 +4627,12 @@ Final id: 134930677092288</code></pre>
 <span id="cb674-3"><a href="#cb674-3" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">'mat.dot(np.ones(500))'</span>, setup <span class="op">=</span> <span class="st">'import numpy as np'</span>,</span>
 <span id="cb674-4"><a href="#cb674-4" aria-hidden="true" tabindex="-1"></a>              number <span class="op">=</span> <span class="dv">1000</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'mat'</span>: mat})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.02896832302212715</code></pre>
+<pre><code>0.024160774191841483</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb676"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb676-1"><a href="#cb676-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">'np.sum(mat, axis = 1)'</span>, setup <span class="op">=</span> <span class="st">'import numpy as np'</span>,</span>
 <span id="cb676-2"><a href="#cb676-2" aria-hidden="true" tabindex="-1"></a>              number <span class="op">=</span> <span class="dv">1000</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'mat'</span>: mat})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.11770354490727186</code></pre>
+<pre><code>0.11808307911269367</code></pre>
 </div>
 </div>
 <p>Given the extra computation involved in actually multiplying each number by one, it’s surprising that this is faster than numpy sum function. One thing we’d want to know is whether the BLAS matrix multiplication call is being done in parallel.</p>
@@ -4756,18 +4756,18 @@ Final id: 134930677092288</code></pre>
 <span id="cb683-5"><a href="#cb683-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb683-6"><a href="#cb683-6" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">"x[500]"</span>, number <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="dv">6</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'x'</span>:x})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.024073797976598144</code></pre>
+<pre><code>0.021606873953714967</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb685"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb685-1"><a href="#cb685-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">"xD['500']"</span>, number<span class="op">=</span><span class="dv">10</span><span class="op">**</span><span class="dv">6</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'xD'</span>:xD})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.03358649485744536</code></pre>
+<pre><code>0.03137005399912596</code></pre>
 </div>
 </div>
 <p>How is it that Python can look up by key in the dictionary at essentially the same speed as jumping to an index position? It uses hashing, which allows O(1) lookup. In contrast, if one has to look through each label (key) in turn, that is O(n), which is much slower:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb687"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb687-1"><a href="#cb687-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">"x[labels.index('500')]"</span>, number <span class="op">=</span> <span class="dv">10</span><span class="op">**</span><span class="dv">6</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'x'</span>:x, <span class="st">'labels'</span>: labels})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>6.364634727826342</code></pre>
+<pre><code>6.422094476874918</code></pre>
 </div>
 </div>
 <p>As a further point of contrast, if we look up elements by name in R in named vectors or lists, that is much slower than looking up by index, because R doesn’t use hashing in that context and has to scan through the objects one by one until it finds the one with the name it is looking for. This stands in contrast to R and Python being able to directly go to the position of interest based on the index of an array, or to the hash-based lookup in a Python dictionary or an R environment.</p>
@@ -4801,11 +4801,11 @@ Final id: 134930677092288</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb690"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb690-1"><a href="#cb690-1" aria-hidden="true" tabindex="-1"></a>nr <span class="op">=</span> <span class="dv">800000</span></span>
 <span id="cb690-2"><a href="#cb690-2" aria-hidden="true" tabindex="-1"></a>nc <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb690-3"><a href="#cb690-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb690-4"><a href="#cb690-4" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.normal(size<span class="op">=</span>(nr, nc))   <span class="co"># long matrix</span></span>
-<span id="cb690-5"><a href="#cb690-5" aria-hidden="true" tabindex="-1"></a>tA <span class="op">=</span> np.random.normal(size<span class="op">=</span>(nc, nr))  <span class="co"># wide matrix</span></span>
+<span id="cb690-4"><a href="#cb690-4" aria-hidden="true" tabindex="-1"></a>A_long <span class="op">=</span> np.random.normal(size<span class="op">=</span>(nr, nc))   <span class="co"># long matrix</span></span>
+<span id="cb690-5"><a href="#cb690-5" aria-hidden="true" tabindex="-1"></a>A_wide <span class="op">=</span> np.random.normal(size<span class="op">=</span>(nc, nr))  <span class="co"># wide matrix</span></span>
 <span id="cb690-6"><a href="#cb690-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb690-7"><a href="#cb690-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Verify that A is row-major using `.flags` (notice the `C_CONTIGUOUS: True`).</span></span>
-<span id="cb690-8"><a href="#cb690-8" aria-hidden="true" tabindex="-1"></a>A.flags</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb690-7"><a href="#cb690-7" aria-hidden="true" tabindex="-1"></a><span class="co">## Verify that `A_long` is row-major using `.flags` (notice the `C_CONTIGUOUS: True`).</span></span>
+<span id="cb690-8"><a href="#cb690-8" aria-hidden="true" tabindex="-1"></a>A_long.flags</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  C_CONTIGUOUS : True
   F_CONTIGUOUS : False
@@ -4817,37 +4817,39 @@ Final id: 134930677092288</code></pre>
 </div>
 <p>Note that I didn’t use <code>A.T</code> or <code>np.transpose</code> as that doesn’t make a copy in memory and so the transposed matrix doesn’t end up being row-major. You can use <code>A.flags</code> and A.T.flags` to see this.</p>
 <p>Now let’s time calculating the sum by column in the long matrix vs.&nbsp;the sum by row in the wide matrix. Exactly the same number of arithmetic operations needs to be done in an equivalent manner for the two cases. We want to use a large enough matrix so the entire matrix doesn’t fit in the cache, but not so large that the example takes a long time or a huge amount of memory. We’ll use a rectangular matrix, such that the summation for a single column of the long matrix or a single row of the wide matrix involves many numbers, but there are a limited number of such summations. This focuses the example on the efficiency of the column-wise vs.&nbsp;row-wise summation rather than any issues that might be involved in managing large numbers of such summations (e.g., doing many, many summations that involve just a few numbers).</p>
+<p>Suppose we do the looping manually (in a loop, using list comprehension).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb692"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb692-1"><a href="#cb692-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the sum calculations as functions</span></span>
-<span id="cb692-2"><a href="#cb692-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_by_row():</span>
-<span id="cb692-3"><a href="#cb692-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(tA, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb692-4"><a href="#cb692-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb692-5"><a href="#cb692-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_by_column():</span>
-<span id="cb692-6"><a href="#cb692-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb692-7"><a href="#cb692-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb692-8"><a href="#cb692-8" aria-hidden="true" tabindex="-1"></a>timeit.timeit(sum_by_row, number<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb692"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb692-1"><a href="#cb692-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">'[np.sum(A_long[:,col]) for col in range(A_long.shape[1])]'</span>,</span>
+<span id="cb692-2"><a href="#cb692-2" aria-hidden="true" tabindex="-1"></a>    setup <span class="op">=</span> <span class="st">'import numpy as np'</span>, number<span class="op">=</span><span class="dv">10</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'A_long'</span>: A_long})   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.419390861177817</code></pre>
+<pre><code>5.276981493923813</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb694"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb694-1"><a href="#cb694-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(sum_by_column, number<span class="op">=</span><span class="dv">10</span>)  <span class="co"># potentially slow</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb694"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb694-1"><a href="#cb694-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">'[np.sum(A_wide[row,:]) for row in range(A_wide.shape[0])]'</span>,</span>
+<span id="cb694-2"><a href="#cb694-2" aria-hidden="true" tabindex="-1"></a>    setup <span class="op">=</span> <span class="st">'import numpy as np'</span>, number<span class="op">=</span><span class="dv">10</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'A_wide'</span>: A_wide})  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.480757714016363</code></pre>
+<pre><code>0.4191975020803511</code></pre>
 </div>
 </div>
-<p>Suppose we instead do the looping manually.</p>
+<p>Indeed, the row-wise calculations are much faster when done manually.</p>
+<p>Instead, suppose we use numpy functionality:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb696"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb696-1"><a href="#cb696-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">'[np.sum(A[:,col]) for col in range(A.shape[1])]'</span>,</span>
-<span id="cb696-2"><a href="#cb696-2" aria-hidden="true" tabindex="-1"></a>    setup <span class="op">=</span> <span class="st">'import numpy as np'</span>, number<span class="op">=</span><span class="dv">10</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'A'</span>: A})   </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb696"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb696-1"><a href="#cb696-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the sum calculations as functions</span></span>
+<span id="cb696-2"><a href="#cb696-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_by_row():</span>
+<span id="cb696-3"><a href="#cb696-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(A_wide, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb696-4"><a href="#cb696-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb696-5"><a href="#cb696-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_by_column():</span>
+<span id="cb696-6"><a href="#cb696-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(A_long, axis<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb696-7"><a href="#cb696-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb696-8"><a href="#cb696-8" aria-hidden="true" tabindex="-1"></a>timeit.timeit(sum_by_row, number<span class="op">=</span><span class="dv">10</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>5.385893594939262</code></pre>
+<pre><code>0.3999230689369142</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb698"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb698-1"><a href="#cb698-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(<span class="st">'[np.sum(tA[row,:]) for row in range(tA.shape[0])]'</span>,</span>
-<span id="cb698-2"><a href="#cb698-2" aria-hidden="true" tabindex="-1"></a>    setup <span class="op">=</span> <span class="st">'import numpy as np'</span>, number<span class="op">=</span><span class="dv">10</span>, <span class="bu">globals</span> <span class="op">=</span> {<span class="st">'tA'</span>: tA})  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb698"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb698-1"><a href="#cb698-1" aria-hidden="true" tabindex="-1"></a>timeit.timeit(sum_by_column, number<span class="op">=</span><span class="dv">10</span>)  <span class="co"># potentially slow</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.4287404778879136</code></pre>
+<pre><code>0.47753385198302567</code></pre>
 </div>
 </div>
-<p>Indeed, the row-wise calculations are much faster when done manually. However, when done with the <code>axis</code> argument in <code>np.sum</code> there is little difference. So that suggests numpy might be doing something clever in its implementation of <code>sum</code> with the <code>axis</code> argument.</p>
+<p>So when done with the <code>axis</code> argument in <code>np.sum</code> there is little difference. So that suggests numpy might be doing something clever in its implementation of <code>sum</code> with the <code>axis</code> argument.</p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Challenge">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -4979,11 +4981,11 @@ jax time: 5.722</code></pre>
 <span id="cb710-11"><a href="#cb710-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb710-12"><a href="#cb710-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Execution time for map(): </span><span class="sc">{</span>t1<span class="op">-</span>t0<span class="sc">}</span><span class="ss"> seconds."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Execution time for map(): 0.005799531936645508 seconds.</code></pre>
+<pre><code>Execution time for map(): 0.0054645538330078125 seconds.</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb712"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb712-1"><a href="#cb712-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Execution time for list(): </span><span class="sc">{</span>t2<span class="op">-</span>t1<span class="sc">}</span><span class="ss"> seconds."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Execution time for list(): 0.8050365447998047 seconds.</code></pre>
+<pre><code>Execution time for list(): 0.7796518802642822 seconds.</code></pre>
 </div>
 </div>
 <p>It seems like the <code>map</code> operation does not actually execute the absolute value operations. That is “lazy evaluation” in action - the code is only evaluated when needed.</p>
