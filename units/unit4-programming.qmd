@@ -4243,7 +4243,7 @@ nc = 100
 A_long = np.random.normal(size=(nr, nc))   # long matrix
 A_wide = np.random.normal(size=(nc, nr))  # wide matrix
 
-## Verify that A is row-major using `.flags` (notice the `C_CONTIGUOUS: True`).
+## Verify that `A_long` is row-major using `.flags` (notice the `C_CONTIGUOUS: True`).
 A_long.flags
 ```
 
@@ -4262,10 +4262,10 @@ doing many, many summations that involve just a few numbers).
 Suppose we do the looping manually (in a loop, using list comprehension).
 
 ```{python, cache-aware3}
-timeit.timeit('[np.sum(A_long[:,col]) for col in range(A.shape[1])]',
-    setup = 'import numpy as np', number=10, globals = {'A': A})   
-timeit.timeit('[np.sum(A_wide[row,:]) for row in range(tA.shape[0])]',
-    setup = 'import numpy as np', number=10, globals = {'tA': tA})  
+timeit.timeit('[np.sum(A_long[:,col]) for col in range(A_long.shape[1])]',
+    setup = 'import numpy as np', number=10, globals = {'A_long': A_long})   
+timeit.timeit('[np.sum(A_wide[row,:]) for row in range(A_wide.shape[0])]',
+    setup = 'import numpy as np', number=10, globals = {'A_wide': A_wide})  
 ```
 
 Indeed, the row-wise calculations are much faster when done manually.

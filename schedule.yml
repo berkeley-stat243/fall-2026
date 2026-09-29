@@ -114,7 +114,7 @@
           id: "3"
           name: "Problem Set 3"
           href: "ps/ps3.html"
-    - date: "Fri Sep 18"
+    - date: "Fri Oct 9"
       items:
         - type: "Lab"
           id: "6"
@@ -123,6 +123,40 @@
           id: "3"
           name: "PS 3 Quiz"
           href: "syllabus.html#problem-set-quizzes"
+- week: 8
+  days:
+    - date: "Mon Oct 12"
+      items:
+        - type: "Exam"
+          id: "1"
+          name: "Exam (in class)"
+    - date: "Mon Oct 12 - Wed Oct 14 (10 am)"
+      items:
+        - type: "Quiz"
+          id: "3alt"
+          name: "PS 3 Quiz Makeup/Retake"
+          href: ""
+    - date: "Fri Oct 16"
+      items:
+        - type: "Problem_Set"
+          id: "4"
+          name: "Problem Set 4"
+          href: ""
+        - type: "Lab"
+          id: "7"
+          name: "TBD"
+        - type: "Quiz"
+          id: "4"
+          name: "PS 4 Quiz"
+          href: "syllabus.html#problem-set-quizzes"
+- week: 8
+  days:
+    - date: "Mon Oct 19 - Wed Oct 21 (10 am)"
+      items:
+        - type: "Quiz"
+          id: "4alt"
+          name: "PS 4 Quiz Makeup/Retake"
+          href: ""
 
 
 

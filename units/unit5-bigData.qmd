@@ -478,9 +478,10 @@ You can access and navigate an SQLite database from Python as follows.
 
 ```{python}
 import sqlite3 as sq
-dir_path = '/mirror/data/pub/users/paciorek/share'  # Replace with the actual path
+# Download from https://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.db if not on SCF machine
+# Path on SCF; replace with the actual path if not on an SCF machine.
+dir_path = '/mirror/data/pub/users/paciorek/share'  
 db_filename = 'stackoverflow-2021.db'
-## Download from http://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.db.
 
 con = sq.connect(os.path.join(dir_path, db_filename))
 db = con.cursor()
@@ -494,9 +495,12 @@ while rendering this document.
 ```{python}
 #| eval: false
 import duckdb as dd
-dir_path = '/mirror/data/pub/users/paciorek/share'  # Replace with the actual path
+
+# Download from https://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.duckdb if not on SCF machine.
+# Path on SCF; replace with the actual path if not on an SCF machine.
+dir_path = '/mirror/data/pub/users/paciorek/share'  
 db_filename = 'stackoverflow-2021.duckdb' 
-## Download from http://www.stat.berkeley.edu/share/paciorek/stackoverflow-2021.duckdb.
+
 
 con = dd.connect(os.path.join(dir_path, db_filename))
 db = con.cursor()
