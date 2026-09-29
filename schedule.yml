@@ -127,7 +127,7 @@
   days:
     - date: "Mon Oct 12"
       items:
-        - type: "Exam"
+        - type: "Quiz"
           id: "1"
           name: "Exam (in class)"
     - date: "Mon Oct 12 - Wed Oct 14 (10 am)"
