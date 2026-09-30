@@ -106,6 +106,7 @@
         - type: "Lab"
           id: "5"
           name: "Linux Cluster/Slurm"
+          href: labs/lab5-scfparallel.qmd
 - week: 7
   days:
     - date: "Wed Oct 7"

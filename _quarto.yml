@@ -59,6 +59,8 @@ website:
             text: "Lab 3 (Debugging)"
           - href: labs/lab4-reproducibility.qmd
             text: "Lab 4 (Reproducibility)"
+          - href: labs/lab5-scfparallel.qmd
+            text: "Lab 5 (Linux Cluster/Slurm)"
       - section: "Problem Sets"
         contents:
           - href: ps/ps1.qmd
