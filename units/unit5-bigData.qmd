@@ -624,7 +624,7 @@ For logical comparisons in a `WHERE` clause, some common syntax for setting
 conditions includes `LIKE` (for patterns), `=`, `>`, `<`, `>=`, `<=`, `!=`.
 
 Some other keywords are: `DISTINCT`, `ON`, `JOIN`, `GROUP BY`, `AS`, `USING`, `UNION`,
-`INTERSECT`, `SIMILAR TO`.
+`INTERSECT`, `EXCEPT`, `SIMILAR TO`.
 
 :::{.callout-tip title="Challenge"}
 What are a couple ways we could find the oldest users in the database? How do the different ways scale
@@ -635,7 +635,7 @@ as a function of the number of records in the table?
 
 The result of an SQL query (e.g., from `.execute` in Python) is an SQL table. It might only have one field or one row.
 
-For example, `select count(*) from questions` will produce a table with one row and one field.
+For example, `select count(*) as n from questions` will produce a table with one row and one field (`n`).
 
 When we return the result to Python (e.g., via `fetch` or `fetchall`), we create a Python object, which in the most basic case is a list of tuples (but with `pandas.read_sql` is a DataFrame). 
 
@@ -806,6 +806,23 @@ have if you simply had one data frame in Python or R.
 #| include: false
 db.execute("drop view if exists questionsAugment") # Drop view, so can create again in next step.
 ```
+
+::: {.callout-tip title="Common table expressions (CTE) as temporary 'views'}
+Instead of creating an actual view that will persist between queries, you can specify a common table expression using `with` and use that in the rest of your query.
+
+For example, here we create the CTE named `questionsAugment` and then use it in a simple query. In most use cases, it would be used (potentially multiple times) in the context of a more complicated query. 
+
+```{python, cte}
+#| eval: false
+db.execute("with questionsAugment as (select \
+                questionid, questions.creationdate, score, viewcount, \
+                title, ownerid, age, displayname \
+                from questions join users \
+                on questions.ownerid = users.userid) \
+            select * from questionsAugment limit 5")
+```
+
+:::
 
 ## More on joins
 

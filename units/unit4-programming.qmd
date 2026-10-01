@@ -865,12 +865,7 @@ Here we'll create `mymod.py` from the shell, but of course usually one would cre
 
 ```{bash}
 #| eval: true
-cat << EOF > mymod.py
-x = 7
-range = 3
-def myfun(x):
-    print("The arg is: ", str(x), ".", sep = '')
-EOF
+cat mymod.py
 ```
 
 ```{python}
@@ -943,22 +938,11 @@ Let's create a basic package.
 
 ```{bash}
 #| eval: true
-mkdir -p mypkg
+cat mypkg/__init__.py
+```
+```{bash}
+cat mypkg/mymod.py
 
-cat << EOF > mypkg/__init__.py
-## Make objects from mymod.py available as mypkg.foo rather than mypkg.mymod.foo.
-## The "." is a "relative" import that means "find 'mymod' here in this directory".
-from .mymod import *
-
-print("Welcome to my package.")
-EOF
-
-cat << EOF > mypkg/mymod.py
-x = 7
-
-def myfun(val):
-    print(f"Converting {val} to integer: {int(val)}.")
-EOF
 ```
 
 Note that if there were other modules, we could have imported from those as well.
@@ -987,22 +971,10 @@ the current Python session to reflect changes to the package files.
 
 ```{bash}
 #| eval: true
-cp -pr mypkg mypkg2
-
-cat << EOF > mypkg2/auxil.py
-
-def _helper(val):
-    return val + 10
-EOF
-
-
-cat << EOF >> mypkg2/mymod.py
-
-from .auxil import _helper
-
-def myfun10(val):
-    print(f"Converting {val} to integer plus 10: {int(_helper(val))}.")
-EOF
+cat mypkg2/auxil.py
+```
+```{bash}
+cat mypkg2/mymod.py
 ```
 
 ```{python, helper}
@@ -1019,21 +991,14 @@ via *subpackages*.
 A package can automatically import the subpackages via the main `__init__.py`
 or require the user to import them manually, e.g., `import mypkg3.mysubpkg`.
 
+
+
 ```{bash}
 #| eval: true
-cp -pr mypkg mypkg3
-mkdir -p mypkg3/mysubpkg
-
-cat << EOF > mypkg3/mysubpkg/__init__.py
-from .values import b, x
-print("Welcome to my package's subpackage.")
-EOF
-
-cat << EOF > mypkg3/mysubpkg/values.py
-x = 999
-b = 7
-_my_internal_var = 9
-EOF
+cat mypkg3/mysubpkg/__init__.py
+```
+```{bash}
+cat mypkg3/mysubpkg/values.py
 ```
 
 ```{python}
