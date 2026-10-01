@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>sql-context</title>
+<title>sql-query</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -92,9 +92,8 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<p>I am working with an sqlite database of information on questions and answers on Stack Overflow. The information contained is the metadata without the full question or answer text. Each question is tagged with one or more keywords (tags) that indicate the topic of the question. There are four tables, with their fields indicated below:</p>
-<p>questions: questionid, score, viewcount, title, ownerid answers: questionid, answerid, ownerid, score users: userid, creationdate, location, reputation, displayname, upvotes, downvotes questions_tags: questionid, tag</p>
-<p>questionid is a foreign key in questions_tags for questionid in questions questionid is a foreign key in answers for questionid in questions ownerid is a foreign key in questions for userid in users ownerid is a foreign key in answers for userid in users</p>
+<p>I want to find all the questions asked about python and viewed (the viewcount field) at least 1000 times. I want information about the users who asked the questions included as well. Write an SQL query.</p>
+<p>I want to get the answers (and their corresponding questions) provided by Stack Overflow users who were amongst the top 1000 users in terms of how many answers they have posted on the site. Write an SQL query.</p>
 
 
 
