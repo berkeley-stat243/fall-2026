@@ -807,10 +807,10 @@ have if you simply had one data frame in Python or R.
 db.execute("drop view if exists questionsAugment") # Drop view, so can create again in next step.
 ```
 
-::: {.callout-tip title="Common table expressions (CTE) as temporary 'views'}
+::: {.callout-tip title="Common table expressions (CTE) as temporary 'views'"}
 Instead of creating an actual view that will persist between queries, you can specify a *common table expression* using `with` and use that in the rest of your query.
 
-For example, here we create the CTE named `questionsAugment` and then use it in a simple query. In most use cases, it would be used (potentially multiple times) in the context of a more complicated query. 
+For example, here we create the CTE named `questionsAugment`. Here we demonstrate using it in a very simple query, but in most situations, it would be used (potentially multiple times) in the context of a more complicated query. 
 
 ```{python, cte}
 #| eval: false
