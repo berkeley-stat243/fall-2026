@@ -784,7 +784,7 @@ Note
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> con.cursor()</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>db.execute(<span class="st">"select * from questions limit 3"</span>)  <span class="co"># simple query </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;sqlite3.Cursor object at 0x783eb191b5c0&gt;</code></pre>
+<pre><code>&lt;sqlite3.Cursor object at 0x7c7d2ae5b5c0&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>db.fetchall() <span class="co"># retrieve results</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -826,7 +826,7 @@ Note
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>db.execute(<span class="st">"select * from questions"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;sqlite3.Cursor object at 0x783eb191b5c0&gt;</code></pre>
+<pre><code>&lt;sqlite3.Cursor object at 0x7c7d2ae5b5c0&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>[item[<span class="dv">0</span>] <span class="cf">for</span> item <span class="kw">in</span> db.description]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -1114,8 +1114,18 @@ WHERE &lt;condition(s) on column(s)&gt; ORDER BY &lt;column(s)&gt;</code></pre>
 <span id="cb46-8"><a href="#cb46-8" aria-hidden="true" tabindex="-1"></a>db.execute(<span class="st">"select * from questionsAugment where viewcount &gt; 1000 limit 3"</span>).fetchall()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>One use of a view would be to create a mega table that stores all the information from multiple tables in the (unnormalized) form you might have if you simply had one data frame in Python or R.</p>
-<p>::: {.callout-tip title=“Common table expressions (CTE) as temporary ‘views’} Instead of creating an actual view that will persist between queries, you can specify a <em>common table expression</em> using <code>with</code> and use that in the rest of your query.</p>
-<p>For example, here we create the CTE named <code>questionsAugment</code> and then use it in a simple query. In most use cases, it would be used (potentially multiple times) in the context of a more complicated query.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Common table expressions (CTE) as temporary 'views'">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Common table expressions (CTE) as temporary ‘views’
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Instead of creating an actual view that will persist between queries, you can specify a <em>common table expression</em> using <code>with</code> and use that in the rest of your query.</p>
+<p>For example, here we create the CTE named <code>questionsAugment</code>. Here we demonstrate using it in a very simple query, but in most situations, it would be used (potentially multiple times) in the context of a more complicated query.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>db.execute(<span class="st">"with questionsAugment as (select </span><span class="op">\</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="st">                questionid, questions.creationdate, score, viewcount, </span><span class="op">\</span></span>
@@ -1124,7 +1134,8 @@ WHERE &lt;condition(s) on column(s)&gt; ORDER BY &lt;column(s)&gt;</code></pre>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="st">                on questions.ownerid = users.userid) </span><span class="op">\</span></span>
 <span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="st">            select * from questionsAugment limit 5"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>:::</p>
+</div>
+</div>
 </section>
 <section id="more-on-joins" class="level2">
 <h2 class="anchored" data-anchor-id="more-on-joins">More on joins</h2>
