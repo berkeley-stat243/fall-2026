@@ -449,6 +449,7 @@ As we saw, the basic command for seeing what is running on the system is `squeue
 ```bash
 squeue # this shows all the queued jobs!
 squeue -u SCF_USERNAME # this shows your jobs
+watch squeue -u SCF_USERNAME # reruns `squeue -u SCF_USERNAME` every 2 seconds 
 ```
 
 To see what nodes are available in a given partition, you can use `sinfo`:
@@ -471,25 +472,25 @@ See the "How to Monitor Jobs" section of the SCF's documentation on [this page](
 You can either do 1. on your local machine and transfer the file to the SCF
 cluster, or you can do it remotely. 2 - 4 should be done on the SCF.
 
-1. Create a submission `submit_boot.sh` that will execute the code in `boot_dist.py`.
+1. Create a submission `submit_boot.sh` that will execute the code in `boot_proc.py`.
   To do this I suggest copying the text from `submit_py.sh` and updating a couple
   lines:
   - Change `job-name` to whatever you want to call this job.
   - Change time to `00:10:00` just in case your code runs longer than one minute.
   - Change the `--cpus-per-task` to 3. This is where you are telling Slurm to
   execute in parallel on 3 CPUs.
-  - Change the last line from `python boot_serial.py` to `python boot_dist.py`.
+  - Change the last line from `python boot_serial.py` to `python boot_proc.py`.
 
-2. Call `sbatch submit_boot.sh` to execute the python script `boot_dist.py`.
+2. Call `sbatch submit_boot.sh` to execute the python script `boot_proc.py`.
 
 3. Use `squeue` to verify the job is complete and check that the execution worked by examining the `ex.out` file.
 
-4. Note that the number of Dask workers in `boot_dist.py` is
+4. Note that the number of Dask workers in `boot_proc.py` is
   hard-coded. In many cases, it would be better for this value to be set
   dynamically based on an appropriate Slurm environment variable. Make this
   small adjustment to those files and verify it works as intended.
 
-  - **Note:** We also include `boot_mp.py` and `boot_proc.py` which provide alternative methods for parallelizing. 
+  - **Note:** We also include `boot_mp.py` and `boot_dist.py` which provide alternative methods for parallelizing. 
 
 ## Acknowledgements
 
