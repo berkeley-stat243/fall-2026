@@ -10,6 +10,7 @@
 #SBATCH --nodes=1          # use 1 node
 #SBATCH --ntasks=1         # use 1 task
 #SBATCH --cpus-per-task=1  # use 1 CPU core
+#SBATCH --mem=10G          # use 10 GB memory (only needed because of SCF-Dask problem when using Dask distributed)
 
 # Command(s) to run
 
