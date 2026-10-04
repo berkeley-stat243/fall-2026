@@ -3,7 +3,7 @@ import boot
 from dask.distributed import Client, LocalCluster
 
 if __name__ == "__main__":
-    cluster = LocalCluster(n_workers=4)
+    cluster = LocalCluster(n_workers=4, memory_limit = None)
     c = Client(cluster)
     # number of tasks
     b = 10

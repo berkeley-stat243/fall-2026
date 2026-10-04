@@ -1322,6 +1322,8 @@ Here we again read the data in (which Dask will do in parallel):
 
 ```{python}
 #| eval: false
+import dask.bag as db
+
 n_cores = 4
 from dask.distributed import Client, LocalCluster
 cluster = LocalCluster(n_workers = n_cores)

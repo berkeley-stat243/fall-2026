@@ -3192,7 +3192,7 @@ What do we notice?
   - A list element can use the same memory as another object (or part of another object).
   
 
-A note about calling `id` on list elements, e.g., `id(obj[0])`. Running that code causes execution of `obj[0]`, and the result is passed into `id`. That creates a new temporary object that is passed to `id`. The temporary object references the same object that `obj[0]` does, so we find out the id of `obj[0]`. 
+A note about calling `id` on list elements, e.g., `id(obj[0])`. Running that code causes execution of `obj[0]`, and the result is passed into `id`. That creates a new local variable (the first argument of `id`) in the namespace of `id`. The local variable references the same object that `obj[0]` does, so we find out the id of `obj[0]`. 
 
 #### How character strings are stored.
 
