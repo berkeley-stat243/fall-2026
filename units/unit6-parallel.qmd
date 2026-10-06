@@ -1,7 +1,7 @@
 ---
 title: "Parallel processing"
 author: "Chris Paciorek"
-date: "2025-10-13"
+date: "2026-10-06"
 format:
   pdf:
     documentclass: article
@@ -46,7 +46,7 @@ are different for Windows.
 As context, let's consider some ways we might be able to achieve faster computation:
 
   - better algorithms: This has been quite important in many areas of science but is not the focus here.
-  - more computationally-efficient implementations of an algorithm: This was a topic in Unit 5.
+  - more computationally-efficient implementations of an algorithm: This was a topic in Unit 4.
   - faster computers: When CPUs were getting faster at a rapid pace (Moore's Law) this was quite important, but that's no longer the case for CPUs. However, GPU technology is improving rapidly.
   - "more" computers: We can try to exploit more processors (more CPUs, more GPU threads, more compute nodes) for a given computation. That is the topic of this Unit.
 
@@ -253,13 +253,13 @@ main (CPU) memory and GPU memory. Also, since there is overhead in
 launching a GPU kernel, one wants to avoid launching a lot of kernels
 relative to the amount of work being done by each kernel. 
 
-## Some other approaches to parallel processing
+## (BACKGROUND) Some other approaches to parallel processing
 
 ### Spark and Hadoop
 
 Spark and Hadoop are systems for implementing computations in a
 distributed memory environment, using the MapReduce approach, as
-discussed in Unit 7.
+discussed in Unit 5.
 
 ### Cloud computing
 
@@ -419,7 +419,10 @@ Note the use of the `@delayed` decorator to flag the function so that it operate
 
 ```{python}
 import dask
-dask.config.set(scheduler='processes', num_workers = 4, chunksize = 1)  
+from dask.distributed import Client, LocalCluster
+cluster = LocalCluster(n_workers = 4)
+c = Client(cluster)
+
 
 import numpy as np
 n = 10
@@ -477,7 +480,7 @@ help(sklearn.ensemble.RandomForestClassifier)
 
 :::{.callout-tip}
 You'll usually need to look for an argument with one of the words *threads*, *processes*,
-*cores*, *cpus*, *jobs*, etc. in the argument name.
+*cores*, *cpus*, *jobs*, etc., in the argument name.
 :::
 
 ### Scenario 1B: Parallelized linear algebra
@@ -603,10 +606,10 @@ We'd also want to think about how many CPU cores should be used for the comparis
 Similarly, packages such as PyTorch, Tensorflow, and JAX can parallelize vectorized calculations
 on either the CPU or GPU.
 
-Recall that in Unit 5, we [used JAX to run a vectorized calculation on a very large 1-d array](../unit5-programming.html#jit-compilation-with-jax).
+Recall that in Unit 4, we [used JAX to run a vectorized calculation on a very large 1-d array](../unit4-programming.html#jit-compilation-with-jax).
 JAX automatically ran that in parallel across multiple (CPU) cores.
 
-Here we'll see that if we have GPU available, JAX will automatically run the calculation in parallel on the GPU.
+Here we'll see that if we have a GPU available, JAX will automatically run the calculation in parallel on the GPU.
 I'll do this separately on a machine with a GPU and paste the results in here.
 
 ```{python}
@@ -666,21 +669,28 @@ What are some options?
     parallelized implementations of each model, you might use one node
     per model
 
-Here we'll use the `processes` scheduler.
+Here we'll use the `distributed` scheduler (we could also use `processes`).
 In principal given this relies on numpy code, we could have also used the `threads` scheduler,
-but I'm not seeing effective parallelization when I try that. 
+but I'm not seeing effective parallelization when I try that.
+
+When we invoke `Client`, things are set up automatically so that calls to `compute` use the distributed scheduler.
+
 
 ```{python}
 import dask
 import time
 import numpy as np
 
+n = 250000000
+
 def gen_and_mean(func, n, par1, par2):
     return np.mean(func(par1, par2, size = n))
 
-dask.config.set(scheduler='processes', num_workers = 3, chunksize = 1)  
+from dask.distributed import Client, LocalCluster
+cluster = LocalCluster(n_workers = 3)
+c = Client(cluster)
 
-n = 250000000
+
 
 tasks = []
 tasks.append(dask.delayed(gen_and_mean)(np.random.normal, n, 0, 1))
@@ -713,7 +723,7 @@ a *blocking* call because execution of the task in the worker processes blocks t
 In contrast, if control returns to the user before the worker processes are done, that would be
 *asynchronous* evaluation (aka, a *non-blocking* call).
 
-Note: the use of `chunksize = 1` forces Dask to immediately start one task on each worker. Without that argument, by default it groups tasks so as to reduce the overhead of starting each task individually, but when we have few tasks, that prevents effective parallelization. We'll discuss this in much more detail in Scenario 4.
+Note: We could also have used the `processes` scheduler. If we did, we'd want to include `chunksize = 1` as an argument to `dask.config.set` when choosing the scheduler, in order to force Dask to immediately start one task on each worker. Without that argument, by default it groups tasks so as to reduce the overhead of starting each task individually, but when we have few tasks, that prevents effective parallelization. We'll discuss this in much more detail in Scenario 4.
 
 Lazy evaluation is a concept that works well with computational graphs where the start of one piece of a computation can't start until another piece ends. For example, when we use `dask.delayed`, Dask will first [figure out the computational graph](https://docs.dask.org/en/stable/delayed.html) underlying a set of function calls and then execute them in the order needed. This makes use of lazy evaluation.
 
@@ -1102,7 +1112,7 @@ cluster.close()
 Also, Dask gives a warning about sending the data to the workers in advance. I’m not sure of the distinction between what it is recommending and use of `dask.delayed(x)`. When I tried to use `scatter()` in various ways, I wasn't able to silence the warning.
 
 
-## Scenario 7: Simulation study with n=1000 replicates: parallel random number generation
+## (OPTIONAL) Scenario 7: Simulation study with n=1000 replicates: parallel random number generation
 
 We’ll probably skip this for now and come back to it when we discuss random number generation in the Simulation Unit.
 
@@ -1198,7 +1208,7 @@ def myrandomfun(rng):
 
 In R, the `rlecuyer` package deals with this. The L’Ecuyer algorithm has a period of $2^{191}$, which it divides into subsequences of length $2^{127}$.
 
-# 6. Additional details and topics (optional)
+# 6. (OPTIONAL) Additional details and topics
 
 ## Avoiding repeated calculations by calling `.compute` once
 
@@ -1280,14 +1290,13 @@ taking advantage of the threaded BLAS (i.e., restricting each process to
 a single thread).
 
 
-# 7. Introduction to R's future package (optional)
+# 7. (OPTIONAL) Introduction to R's future package
 
-Before we illustrate implementation of various kinds of parallelization,
-I'll give an overview of the `future` package, which we'll use for many
-of the implementations. The future package has been developed over the
+The future package has been developed over the
 last few years and provides some nice functionality that is easier to
 use and more cohesive than the various other approaches to
-parallelization in R.
+parallelization in R. It has some similarities to Dask in terms of setting
+up parallel calculations (but does not have distributed data structures).
 
 Other approaches include `parallel::parLapply`, `parallel::mclapply`,
 the use of `foreach` without `future`, and the `partools` package.
