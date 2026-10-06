@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Accessing the Unix Command Line</title>
+<title>Problem Set 4</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f9406879e630d085cd1424241c1f5148.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-67f4b2f198c787316d44448b3d063643.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -74,6 +74,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <link rel="stylesheet" href="../assets/styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-sidebar docked quarto-light">
@@ -85,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../howtos/accessPython.html">How tos</a></li><li class="breadcrumb-item"><a href="../howtos/accessUnixCommandLine.html">Accessing the Unix Command Line</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ps/ps1.html">Problem Sets</a></li><li class="breadcrumb-item"><a href="../ps/ps4.html">Problem Set 4</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -300,7 +301,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../ps/ps4.html" class="sidebar-item-text sidebar-link">
+  <a href="../ps/ps4.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Problem Set 4</span></a>
   </div>
 </li>
@@ -323,7 +324,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../howtos/accessUnixCommandLine.html" class="sidebar-item-text sidebar-link active">
+  <a href="../howtos/accessUnixCommandLine.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Accessing the Unix Command Line</span></a>
   </div>
 </li>
@@ -371,24 +372,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#mac-os-on-your-personal-machine" id="toc-mac-os-on-your-personal-machine" class="nav-link active" data-scroll-target="#mac-os-on-your-personal-machine">Mac OS (on your personal machine):</a></li>
-  <li><a href="#windows-on-your-personal-machine" id="toc-windows-on-your-personal-machine" class="nav-link" data-scroll-target="#windows-on-your-personal-machine">Windows (on your personal machine):</a></li>
-  <li><a href="#linux-on-your-personal-machine" id="toc-linux-on-your-personal-machine" class="nav-link" data-scroll-target="#linux-on-your-personal-machine">Linux (on your personal machine):</a></li>
-  <li><a href="#access-via-datahub-provided-by-uc-berkeleys-data-science-education-program" id="toc-access-via-datahub-provided-by-uc-berkeleys-data-science-education-program" class="nav-link" data-scroll-target="#access-via-datahub-provided-by-uc-berkeleys-data-science-education-program">Access via DataHub (provided by UC Berkeley’s Data Science Education Program)</a></li>
-  <li><a href="#access-via-the-statistical-computing-facility-scf" id="toc-access-via-the-statistical-computing-facility-scf" class="nav-link" data-scroll-target="#access-via-the-statistical-computing-facility-scf">Access via the Statistical Computing Facility (SCF)</a></li>
-  </ul>
-</nav>
-    </div>
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="ps4.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../howtos/accessPython.html">How tos</a></li><li class="breadcrumb-item"><a href="../howtos/accessUnixCommandLine.html">Accessing the Unix Command Line</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ps/ps1.html">Problem Sets</a></li><li class="breadcrumb-item"><a href="../ps/ps4.html">Problem Set 4</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Accessing the Unix Command Line</h1>
+<h1 class="title">Problem Set 4</h1>
+<p class="subtitle lead">Due Friday Oct.&nbsp;16, 10 am</p>
 </div>
 
 
@@ -405,46 +396,54 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>You have several options for UNIX command-line access. You’ll need to choose one of these and get it working.</p>
-<section id="mac-os-on-your-personal-machine" class="level3">
-<h3 class="anchored" data-anchor-id="mac-os-on-your-personal-machine">Mac OS (on your personal machine):</h3>
-<p>Open a Terminal by going to Applications -&gt; Utilities -&gt; Terminal</p>
-</section>
-<section id="windows-on-your-personal-machine" class="level3">
-<h3 class="anchored" data-anchor-id="windows-on-your-personal-machine">Windows (on your personal machine):</h3>
-<ol type="1">
-<li><p>You may be able to use the Ubuntu bash shell available in Windows.</p>
-<p>Your PC must be running a 64-bit version of Windows 10 Anniversary Update or later (build 1607+).</p>
-<p>Please see this link for more information:</p>
+<section id="comments-logistics" class="level2">
+<h2 class="anchored" data-anchor-id="comments-logistics">Comments (logistics)</h2>
 <ul>
-<li><a href="https://msdn.microsoft.com/en-us/commandline/wsl/install_guide">https://msdn.microsoft.com/en-us/commandline/wsl/install_guide</a></li>
+<li>This covers material in Units 5 and 6.</li>
+<li>It’s due at 10 am (Pacific) on October 16, both submitted as a PDF to Pensive as well as committed to your GitHub repository.</li>
+<li>You can turn the problem set in as late as Wednesday October 21 without penalty. However, there is no quiz retake option for this PS, so by the time of the quiz in lab section on October 16 you should have done the core work on the problem set, leaving only cleanup work and your writeup, so that you are prepared for the quiz.</li>
+<li>Running parallel code, working with large datasets, and using shared computers can result in delays and unexpected problems. Don’t wait until the last minute. We are happy to help troubleshoot problems you may have with accessing the SCF, running parallel Python code, submitting jobs to the SCF cluster, etc. We will not be happy to do so if it is clear that you started at the last minute.</li>
 </ul>
-<p>For more detailed instructions, see the <a href="../howtos/windowsAndLinux.html">Installing the Linux Subsystem on Windows</a> tutorial.</p></li>
-<li><p>(Not recommended) There’s an older program called cygwin that provides a UNIX command-line interface.</p></li>
-</ol>
-<p>Note that when you install Git on Windows, you will get Git Bash. While you can use this to control Git, the functionality is limited so this will not be enough for general UNIX command-line access for the course.</p>
 </section>
-<section id="linux-on-your-personal-machine" class="level3">
-<h3 class="anchored" data-anchor-id="linux-on-your-personal-machine">Linux (on your personal machine):</h3>
-<p>If you have access to a Linux machine, you very likely know how to access a terminal.</p>
+<section id="comments-technical" class="level2">
+<h2 class="anchored" data-anchor-id="comments-technical">Comments (technical)</h2>
+<ul>
+<li>Given that you’ll be running batch jobs and operating on remote servers, you’ll need to provide your solution code in chunks with <code>#| eval: false</code>. You can paste in any output you need to demonstrate your work. Remember that you can use three backticks to delineate blocks of text you want printed verbatim.</li>
+<li>To monitor an <code>sbatch</code> job, see <a href="https://statistics.berkeley.edu/computing/servers/cluster/monitoring">this SCF doc</a>.</li>
+<li>When running a Slurm job that uses the Dask <code>distributed</code> subpackage, please include the Slurm flag <code>--mem-per-cpu=5G</code> when submitting the Slurm job. In general one doesn’t need to request memory when submitting jobs to the SCF cluster, but there is a bad interaction between Dask and the SCF Slurm configuration that requires that you request memory specifically if using the Dask <code>distributed</code> package.</li>
+</ul>
 </section>
-<section id="access-via-datahub-provided-by-uc-berkeleys-data-science-education-program" class="level3">
-<h3 class="anchored" data-anchor-id="access-via-datahub-provided-by-uc-berkeleys-data-science-education-program">Access via DataHub (provided by UC Berkeley’s Data Science Education Program)</h3>
+<section id="problems" class="level2">
+<h2 class="anchored" data-anchor-id="problems">Problems</h2>
 <ol type="1">
-<li>Go to <a href="https://datahub.berkeley.edu">https://datahub.berkeley.edu</a></li>
-<li>Click on <code>Log in to continue</code>, sign in via CalNet, and authorize DataHub to have access to your account.</li>
-<li>In the upper left, click on <code>File</code>, <code>New</code> and <code>Terminal</code>.</li>
-<li>To end your session, click on <code>File</code>, <code>Hub Control Panel</code> and <code>Stop My Server</code>. Note that <code>Logout</code> will not end your running session, it will just log you out of it.</li>
+<li><p>This problem asks you to use Dask to process some Wikipedia traffic data and makes use of tools discussed in Section on October 3. The files in <code>/scratch/users/paciorek/wikistats/dated_2017_small/dated</code> (on the SCF) contain data on the number of visits to different Wikipedia pages on November 4, 2008 (which was the date of the US election in 2008 in which Barack Obama was elected). The columns are: date, time, language, webpage, number of hits, and page size. (Note that the Unit 5 Dask bag example and Question 2 below use a larger set of the same data.)</p>
+<ol type="a">
+<li><p>In an terminal on one of the SCF login nodes, start an interactive session on one of the cluster nodes using <code>srun</code> (as discussed in Section). Request four cores. Then follow these steps:</p>
+<ol type="i">
+<li>Copy the data files to a subdirectory of the <code>/tmp</code> directory of the machine your interactive session is running on. (Keep your code files in your home directory.) Putting the files on the local hard drive of the machine you are computing on reduces the amount of copying data across the network (in the situation where you read the data into your program multiple times) and should speed things up in step ii.</li>
+<li>Write efficient Python code to do the following: Using the <code>dask</code> package as seen in Unit 6, with either <code>map</code> or a list of delayed tasks, write code that, in parallel, reads in the space-delimited files and filters to only the rows that refer to pages where “Barack_Obama” appears in the page title (column 4). You can use the code from Unit 6 as a template. Collect all the results into a single Polars or Pandas data frame. In your <code>srun</code> invocation and in your code, please use four cores in your parallelization so that other cores are saved for use by other users/students. IMPORTANT: before running the code on the full set of data, please test your code on a small subset first (and test your function on a single input file serially).</li>
+<li>Tabulate the number of hits for each hour of the day and make a (time-series) plot showing how the number of visits varied over the day (I don’t care how you do this - using either Python or R is fine.). Note that the time zone is UTC/GMT, so you won’t actually see the evening times when Obama’s victory was announced - we’ll see that in Question 2. Feel free to do this step outside the context of the parallelization. You’ll want to use datetime functions from Pandas or the <code>datetime</code> package to manipulate the timing information (i.e., don’t use string manipulations).</li>
+<li>Remove the files from <code>/tmp</code>.</li>
 </ol>
-<p><strong>While using DataHub for the bash unit (Unit 2) should be fine, if you try to use it for any problems sets or other work in class, you are likely to run out of memory.</strong> The SCF JupyterHub (see below) should be used instead if you want browser-based access to a Linux environment, including the bash shell.</p>
-</section>
-<section id="access-via-the-statistical-computing-facility-scf" class="level3">
-<h3 class="anchored" data-anchor-id="access-via-the-statistical-computing-facility-scf">Access via the Statistical Computing Facility (SCF)</h3>
-<p>With an SCF account (available <a href="https://scf.berkeley.edu/account">here</a>), you can access a bash shell in the ways listed below.</p>
-<p>Those of you in the Statistics Department should be in the process of getting an SCF account. Everyone else will need an SCF account when we get to the unit on parallel computing, but you can request an account now if you prefer.</p>
-<ol type="1">
-<li><p>You can login to our various Linux servers and access a bash shell that way. Please see <a href="https://computing.stat.berkeley.edu/access">https://computing.stat.berkeley.edu/access</a>.</p></li>
-<li><p>You can also access a bash shell via the SCF JupyterHub interface; please see the <a href="../howtos/accessPython.html">Accessing Python</a> instructions but select <code>Terminal</code> from the launcher (equivalently, click on ‘File’, ‘New’, and ‘Terminal’). This is very similar to the DataHub functionality discussed above.</p></li>
+<p>Tip:</p>
+<ul>
+<li>In general, keep in mind various ideas from Units 2/4 about reading data from files. A couple things that posed problems when I was prototyping this using <code>pandas.read_csv</code> were that there are lines with fewer than six fields and that there are lines that have quotes that should be treated as part of the text of the fields and not as separators. To get things to work ok, I needed to set the <code>dtype</code> to <code>str</code> for the first two fields (for ease of dealing with the date/time info later) but NOT set the <code>dtype</code> for the other fields, and to use the <code>quoting</code> argument to handle the literal quotes. I’m not sure if the same issues would arise using Polars.</li>
+</ul></li>
+<li><p>Now replicate steps (i) and (ii) but using <code>sbatch</code> to submit your job as a batch job to the SCF Linux cluster, where step (ii) involves running Python from the command line (e.g., <code>python your_file.py</code>. You don’t need to make the plot again. As discussed <a href="https://docs.dask.org/en/stable/scheduling.html?highlight=__name__#standalone-python-scripts">here in the Dask documentation</a>, put your Python/Dask code inside an <code>if __name__ == '__main__'</code> block.</p>
+<p>Note that you need to copy the files to <code>/tmp</code> in your submission script, so that the files are copied to <code>/tmp</code> on whichever node of the SCF cluster your job gets run on. Make sure that as part of your <code>sbatch</code> script you remove the files in <code>/tmp</code> at the end of the script. (Why? In general <code>/tmp</code> is cleaned out when a machine is rebooted, but this might take a while to happen and many of you will be copying files to the same hard drive so otherwise <code>/tmp</code> could run out of space.)</p></li>
+</ol></li>
+<li><p>Consider the Wikipedia traffic data for October 15-November 15, 2008 (already available in <code>/var/local/s243/wikistats/dated_2017_sub</code> on all of the SCF cluster nodes in the low or high partitions). As in Question 1, explore the variation over time in the number of visits to Barack Obama-related Wikipedia sites, based on searching for “Barack_Obama” on English language Wikipedia pages. You should use Dask with distributed data structures to do the reading and filtering, as seen in Unit 5. Then group by day-hour (it’s fine to do the grouping/counting in Python in a way that doesn’t use Dask data structures). You can do this either in an interactive session using <code>srun</code> or a batch job using <code>sbatch</code>. And if you use <code>srun</code>, you can run Python itself either interactively or as a background job. Time how long it takes to do the Dask part of the computations to get a sense for how much time is involved working with this much data. Once you have done the filtering and gotten the counts for each day-hour, you can simply use standard Python or R code on your laptop to do some plotting to show how the traffic varied over the days of the full month-long time period and particularly over the hours of November 3-5, 2008 (election day was November 4 and Obama’s victory was declared at 11 pm Eastern time on November 4).</p>
+<p>Notes:</p>
+<ul>
+<li>There are various ways to do this using Dask bags or Dask data frames, but I think the easiest in terms of using code that you’ve seen in Unit 5 is to read the data in and do the filtering using a Dask bag and then convert the Dask bag to a Dask dataframe to do the grouping and summarization. Alternatively you should be able to use <code>foldby()</code> from <code>dask.bag</code>, but figuring out what arguments to pass to <code>foldby()</code> is a bit involved.</li>
+<li>Make sure to test your code on a portion of the data before doing computation on the full dataset. Reading and filtering the whole dataset will take something like 30 minutes with 16 cores. You MUST test first on a small number of files before trying to run the code on the full 40 GB (zipped) of data. (You could do this testing on your laptop, on an SCF login node, or via a Slurm srun/sbatch job.) For testing, the files are also available in <code>/scratch/users/paciorek/wikistats/dated_2017_sub</code>.</li>
+<li>When doing the full computation via your Slurm job submission:
+<ul>
+<li>Don’t copy the data (unlike in Question 1) to avoid overloading our disks with each student having their own copy. Just use the data from <code>/var/local/s243/wikistats/dated_2017_sub</code>.</li>
+<li>Please do not use more than 16 cores in your Slurm job submissions so that cores are available for your classmates. If your job is stuck in the queue you may want to run it with 8 rather than 16 cores.</li>
+<li>As discussed in Section, when you use <code>sbatch</code> to submit a job to the SCF cluster or <code>srun</code> to run interactively, you should be using the <code>--ntasks-per-node</code> flag (<code>--cpus-per-task</code> is fine too) to specify the number of cores that your computation will use. In your Python code, you can then either hard-code that same number of cores as the number of workers or (better) you can use the <code>SLURM_NTASKS</code> shell environment variable to tell Dask how many workers to start (or <code>SLURM_CPUS_PER_TASK</code> if using <code>--cpus-per-task</code>).</li>
+</ul></li>
+</ul></li>
 </ol>
 
 
