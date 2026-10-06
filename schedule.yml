@@ -142,7 +142,7 @@
         - type: "Problem_Set"
           id: "4"
           name: "Problem Set 4"
-          href: ""
+          href: "ps/ps4.html"
         - type: "Lab"
           id: "7"
           name: "TBD"
@@ -152,11 +152,11 @@
           href: "syllabus.html#problem-set-quizzes"
 - week: 8
   days:
-    - date: "Mon Oct 19 - Wed Oct 21 (10 am)"
+    - date: "Mon Oct 19 (only)"
       items:
         - type: "Quiz"
           id: "4alt"
-          name: "PS 4 Quiz Makeup/Retake"
+          name: "PS 4 Quiz Makeup (no retake option)"
           href: ""
 
 

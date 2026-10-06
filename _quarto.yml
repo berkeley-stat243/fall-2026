@@ -69,6 +69,8 @@ website:
             text: "Problem Set 2"
           - href: ps/ps3.qmd
             text: "Problem Set 3"
+          - href: ps/ps4.qmd
+            text: "Problem Set 4"
       - section: "How tos"
         contents:
           - howtos/accessPython.md
