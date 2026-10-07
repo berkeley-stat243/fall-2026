@@ -136,7 +136,7 @@
         - type: "Quiz"
           id: "3alt"
           name: "PS 3 Quiz Makeup/Retake"
-          href: ""
+          href: "https://calendar.app.google/eH8S1RTr23WLPqfF9"
     - date: "Fri Oct 16"
       items:
         - type: "Problem_Set"
@@ -157,7 +157,7 @@
         - type: "Quiz"
           id: "4alt"
           name: "PS 4 Quiz Makeup (no retake option)"
-          href: ""
+          href: "https://calendar.app.google/dA5cAM7WLTYAkNb99"
 
 
 
