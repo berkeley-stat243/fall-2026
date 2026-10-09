@@ -47,25 +47,6 @@ References (see [syllabus](../syllabus.html) for links):
 -   Murrell, Introduction to Data Technologies.
 -   SCF tutorial: [Working with large datasets in SQL, R, and Python](https://computing.stat.berkeley.edu/tutorial-databases/)
 
-(Optional) Videos:
-
-There are four videos from 2020 in the bCourses Media Gallery that you
-can use for reference if you want to:
-
-1.  Text files and ASCII
-2.  Encodings and UTF-8
-3.  HTML
-4.  XML and JSON
-
-Note that the videos were prepared for a version of the course that used
-R, so there are some differences from the content in the current version of
-the unit that reflect translating between R and Python. I'm not sure how
-helpful they'll be, but they are available.
-
-:::{.callout-note title="Quarto configuration details for this document"}
-This document  uses the `knitr` engine and the Quarto configuration `ipynb-shell-interactivity: all`, so that output from all Python code in a chunk will print in the rendered document and the output will be interspersed with the code in the chunk rather than printed all at the end of the code chunk.
-:::
-
 This unit focuses on interacting with information on the web, including using APIs in various ways. We'll focus
 on doing these manipulations in Python, but the concepts and tools involved
 are common to other languages, so familarity with these in Python should
@@ -75,8 +56,7 @@ allow you to pick up other tools easily.
 # 1. Working with information on the web
 
 In this section, we'll see some ways to programmatically interact
-with information on the web, focusing on downloading information, but also showing how we can upload as well. As part of this we'll see some details about file formats commonly used in this
-context.
+with information on the web, focusing on downloading information, but also showing how we can upload as well. As part of this we'll see some details about file formats commonly used in this context.
 
 The main theme of this section is using tools to make it easy to interact with the web
 and with information in formats such as HTML, XML, JSON, and YAML.
@@ -147,7 +127,7 @@ for information you want using `find_all`.
 As another example, it's often useful to be able to extract the hyperlinks in an HTML document. 
 
 ```{python, htmlLinks}
-URL = "http://www1.ncdc.noaa.gov/pub/data/ghcn/daily/by_year"
+URL = "https://www.ncei.noaa.gov/pub/data/ghcn/daily/by_year"
 response = requests.get(URL)
 soup = bs(response.content, 'html.parser')
 
@@ -189,16 +169,16 @@ components (i.e., the HTML elements), and navigate through the tree
 structure of the HTML.
 
 We can use [CSS selectors](https://www.w3schools.com/cssref/css_selectors.asp)
- with the `select` method for more powerful extraction capabilities. Going back to the climate data, let's extract all the `th` elements nested within `tr` elements:
+ with the `select` method for more powerful extraction capabilities. Going back to the climate data, let's extract all the `a` elements nested within `tr` elements:
 
 ```{python, css}
-soup.select("tr th")
+soup.select("tr a")
 ```
 
-Or we could extract  the `a` elements whose parents are `th` elements:
+Or we could extract  the `a` elements whose parents are `td` elements (in this case producing the same result):
 
 ```{python, css2}
-soup.select("th > a")
+soup.select("td > a")
 ```
 
 Next let's use the *XPath* language to specify
@@ -401,7 +381,7 @@ print(config)
 len(config['jobs']['deploy-book']['steps'])
 ```
 
-Note that (unfortunately) `on` is treated as a boolean, as [discussed in this GitHub issue](https://github.com/yaml/pyyaml/issues/376) for the PyYAML package.
+The second key (see `config.keys()`) should be `on`, but (unfortunately) `on` is treated as a boolean, as [discussed in this GitHub issue](https://github.com/yaml/pyyaml/issues/376) for the PyYAML package. 
 
 ## Web APIs and webscraping
 
@@ -523,7 +503,95 @@ I created your `github.berkeley.edu` accounts from Python by interacting
 with the [GitHub API](https://docs.github.com/en/rest/reference/repos)
 using `requests`.
 
-### HTTP requests by deconstructing an (undocumented) API
+### More details on HTTP requests
+
+A more sophisticated way to do the download is to pass the request in a structured way with named input parameters. This request is easier to construct programmatically than the string processing shown above. 
+
+```{python, http-get2}
+#| eval: true
+baseURL = "https://api.worldbank.org/V2/country"
+
+group = 'MIC'
+format = 'json'
+args = {'incomeLevel': group, 'format': format, 'per_page': 1000}
+
+response = requests.get(baseURL, params = args)
+
+data = json.loads(response.content)
+   
+data[1][5]
+```
+
+In some cases we may need to send a lot of information as part of the
+URL in a GET request. If it gets to be too long (e.g,, more than 2048
+characters) many web servers will reject the request. Instead we may
+need to use an HTTP POST request.
+
+POST requests are also often used for
+submitting web forms. Here's an example POST request in which we will create a GitHub issue
+in an automated fashion.
+
+```{python, http-post}
+#| eval: false
+import requests
+
+with open(".github-access-token.txt", "r") as file:
+  ghtoken = file.read().strip()
+
+# Repository details
+owner = "paciorek"
+repo = "test"
+url = f"https://api.github.com/repos/{owner}/{repo}/issues"
+
+# Information about the issue in dict/json format.
+issue = {
+    "title": "This is an example issue",
+    "body": "This is the body of the issue created via API.",
+}
+
+# Set up authentication and headers
+headers = {
+    "Authorization": f"token {ghtoken}",
+    "Accept": "application/vnd.github+json"
+}
+
+response = requests.post(url, json=issue, headers=headers)
+
+if response.status_code == 201:
+    print(f"Successfully created Issue! {response.json()['html_url']}")
+else:
+    print("Could not create Issue")
+    print(response.status_code, response.text)
+```
+
+Note that for security, I created a [GitHub fine-grained personal access token](https://github.com/settings/personal-access-tokens) that is limited in *scope* to
+only be able to handle issues in my test repository. And I've put the token into a file that is not committed to the GitHub repository containing these materials. (When doing this sort of thing with GitHub Actions, one would generally [store the token as a "secret" in the repository](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets.)
+
+
+I could also have done this from the command line with `curl`, along the following lines:
+
+```{bash}
+#| eval: false
+curl -L \
+  -X POST \
+  -H "Accept: application/vnd.github+json" \
+  -H "Authorization: Bearer ${GH_PERSONAL_ACCESS_TOKEN}" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  -H "User-Agent: My-Issue-Creator" \
+  https://api.github.com/repos/paciorek/test/issues \
+  -d '{"title":"New issue from API","body":"This issue was created using the GitHub API.","labels":["bug"]}'
+```
+
+where `${GH_PERSONAL_ACCESS_TOKEN}` is an environment variable containing the token.
+
+
+`requests` can handle other kinds of HTTP requests such as PUT
+and DELETE. Finally, some websites use cookies to keep track of users,
+and you may need to download a cookie in the first interaction with the
+HTTP server and then send that cookie with later interactions. More
+details are available in the Nolan and Temple Lang book.
+
+### (OPTIONAL) HTTP requests by deconstructing an (undocumented) API
 
 In some cases an API may not be documented or we might be lazy and not
 use the documentation. Instead we might deconstruct the queries a
@@ -638,96 +706,6 @@ automated requests to a site, including if you are not actually crawling
 a site but just want to automate a small number of queries.
 - API documentation often includes information about any limits on the rate of requests that can be made.
 
-### More details on HTTP requests
-
-A more sophisticated way to do the download is to pass the request in a structured way with named input parameters. This request is easier to construct programmatically. 
-
-```{python, http-get2}
-#| eval: false
-data = {"DataFilter": f"itemCode:{itemCode};year:{yrs}",
-       "DataMartID": "FAO", 
-       "Format": "csv", 
-       "c": "2,3,4,5,6,7",
-       "s": "countryName:asc,elementCode:asc,year:desc"
-       }    
-
-response = requests.get(baseURL, params = data)
-
-with io.BytesIO(response.content) as stream:  
-    with zipfile.ZipFile(stream, 'r') as archive:
-        with archive.open(archive.filelist[0].filename, 'r') as file:  
-            dat = pd.read_csv(file)
-               
-```
-
-In some cases we may need to send a lot of information as part of the
-URL in a GET request. If it gets to be too long (e.g,, more than 2048
-characters) many web servers will reject the request. Instead we may
-need to use an HTTP POST request.
-
-POST requests are also often used for
-submitting web forms. Here's an example POST request in which we will create a GitHub issue
-in an automated fashion.
-
-```{python, http-post}
-#| eval: false
-import requests
-
-with open(".github-access-token.txt", "r") as file:
-  ghtoken = file.read().strip()
-
-# Repository details
-owner = "paciorek"
-repo = "test"
-url = f"https://api.github.com/repos/{owner}/{repo}/issues"
-
-# Information about the issue in dict/json format.
-issue = {
-    "title": "This is an example issue",
-    "body": "This is the body of the issue created via API.",
-}
-
-# Set up authentication and headers
-headers = {
-    "Authorization": f"token {ghtoken}",
-    "Accept": "application/vnd.github+json"
-}
-
-response = requests.post(url, json=issue, headers=headers)
-
-if response.status_code == 201:
-    print(f"Successfully created Issue! {response.json()['html_url']}")
-else:
-    print("Could not create Issue")
-    print(response.status_code, response.text)
-```
-
-Note that for security, I created a [GitHub fine-grained personal access token](https://github.com/settings/personal-access-tokens) that is limited in *scope* to
-only be able to handle issues in my test repository. And I've put the token into a file that is not committed to the GitHub repository containing these materials. (When doing this sort of thing with GitHub Actions, one would generally [store the token as a "secret" in the repository](https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets.)
-
-
-I could also have done this from the command line with `curl`, along the following lines:
-
-```{bash}
-#| eval: false
-curl -L \
-  -X POST \
-  -H "Accept: application/vnd.github+json" \
-  -H "Authorization: Bearer ${GH_PERSONAL_ACCESS_TOKEN}" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  -H "User-Agent: My-Issue-Creator" \
-  https://api.github.com/repos/paciorek/test/issues \
-  -d '{"title":"New issue from API","body":"This issue was created using the GitHub API.","labels":["bug"]}'
-```
-
-where `${GH_PERSONAL_ACCESS_TOKEN}` is an environment variable containing the token.
-
-
-`requests` can handle other kinds of HTTP requests such as PUT
-and DELETE. Finally, some websites use cookies to keep track of users,
-and you may need to download a cookie in the first interaction with the
-HTTP server and then send that cookie with later interactions. More
-details are available in the Nolan and Temple Lang book.
 
 ### Packaged access to an API
 
@@ -770,7 +748,7 @@ g.close()
 
 
 
-### Accessing dynamic pages
+### (BACKGROUND) Accessing dynamic pages
 
 Many websites dynamically change in reaction to the user behavior. In
 these cases you need a tool that can mimic the behavior of a human
