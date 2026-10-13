@@ -1,7 +1,7 @@
 ---
 title: "Data technologies and formats"
 author: "Chris Paciorek"
-date: "2025-08-26"
+date: "2026-10-13"
 format:
   pdf:
     documentclass: article
@@ -301,35 +301,31 @@ pairs), often with a hierarchical structure. Here's a brief example:
 
 ```
     {
-      "firstName": "John",
-      "lastName": "Smith",
-      "isAlive": true,
-      "age": 25,
-      "address": {
-        "streetAddress": "21 2nd Street",
-        "city": "New York",
-        "state": "NY",
-        "postalCode": "10021-3100"
-      },
-      "phoneNumbers": [
+      "catalog": [
         {
-          "type": "home",
-          "number": "212 555-1234"
+          "id": 101,
+          "author": "Gambardella, Matthew",
+          "title": "XML Developer's Guide",
+          "genre": "Computer",
+          "price": 44.95,
+          "publish_date": "2000-10-01",
+          "description": "An in-depth look at creating applications with XML"
         },
         {
-          "type": "office",
-          "number": "646 555-4567"
-        }
-      ],
-      "children": [],
-      "spouse": null
+          "id": 102,
+          "author": "Ralls, Kim",
+          "title": "Midnight Rain",
+          "genre": "Fantasy",
+          "price: 5.95,
+          "publish_date": "2000-12-16",
+          "description": null
+        }              
+      ]
     }
 ```
 
-A set of key-value pairs is a named array and is placed inside braces
-(squiggly brackets). Note the nestedness of arrays within arrays (e.g.,
-address within the overarching person array and the use of square
-brackets for unnamed arrays (i.e., vectors of information), as well as
+Note the similarities and differences from XML. Note the use of square
+brackets for arrays (i.e., vectors of information), as well as
 the use of different types: character strings, numbers, null, and (not
 shown) boolean/logical values. JSON and XML can be used in similar ways,
 but JSON is less *verbose* than XML.
@@ -590,6 +586,53 @@ and DELETE. Finally, some websites use cookies to keep track of users,
 and you may need to download a cookie in the first interaction with the
 HTTP server and then send that cookie with later interactions. More
 details are available in the Nolan and Temple Lang book.
+
+### API access to LLMs
+
+You can also access LLMs via API calls. In fact when coding agents such as Claude and GitHub Copilot operate, they are making iterative API calls to LLMs being provided as services.
+
+If you need to make individual LLM queries as part of a workflow, you can do that via API calls. In many cases this would be done by calling an LLM running as a service, though it's also possible to query LLMs that you run yourself on machines you have access to (so-called self-hosted LLMs, such as through the Ollama platform).
+
+Let's see an example of accessing open source LLMs provided by the [National Research Platform](https://nrp.ai).
+
+We can see the models available like this (or by looking at the NRP documentation):
+
+```{bash}
+curl -s https://ellm.nrp-nautilus.io/v1/models
+```
+
+If we have an API key (available for free from the NRP if you are part of an NRP project (called a namespace)), you can query the LLM by making an API call, e.g., from the shell using `curl` or from Python.
+
+```{python}
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ["NRP_API_KEY"],
+    base_url="https://ellm.nrp-nautilus.io/v1",  # An OpenAI-compatible API endpiont.
+)
+
+SYSTEM_PROMPT = """You are a support-ticket triage tool.
+Given a ticket, respond with ONLY a JSON object with these keys:
+  "category": one of "billing", "bug", "feature_request", "account", "other"
+  "urgency": integer 1 (low) to 5 (critical)
+  "summary": one sentence, max 20 words
+No markdown, no commentary, just the JSON."""
+
+response = client.chat.completions.create(
+    model="deepseek-v4-flash",
+    messages=[
+        {"role": "system", "content": SYSTEM_PROMPT},
+        {"role": "user", "content": "I was charged twice for my March subscription. Please refund one."}
+    ],
+    max_tokens=200,
+)
+
+print(response.choices[0].message.content)
+```
+
+Note that the request sent to the API is a structured list of messages. The LLM might use the system prompt
+differently than the user query.
 
 ### (OPTIONAL) HTTP requests by deconstructing an (undocumented) API
 
