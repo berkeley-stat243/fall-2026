@@ -937,7 +937,7 @@ window.Quarto = {
 </section>
 <section id="api-access-to-llms" class="level3">
 <h3 class="anchored" data-anchor-id="api-access-to-llms">API access to LLMs</h3>
-<p>You can also access LLMs via API calls. In fact when coding agents such as Claude and GitHub Copilot operate, they are making iterative API calls to LLMs being provided as services.</p>
+<p>You can also access LLMs via API calls. In fact when coding agents such as Claude and GitHub Copilot operate, they are making iterative API calls to LLMs that are running as web services.</p>
 <p>If you need to make individual LLM queries as part of a workflow, you can do that via API calls. In many cases this would be done by calling an LLM running as a service, though it’s also possible to query LLMs that you run yourself on machines you have access to (so-called self-hosted LLMs, such as through the Ollama platform).</p>
 <p>Let’s see an example of accessing open source LLMs provided by the <a href="https://nrp.ai">National Research Platform</a>.</p>
 <p>We can see the models available like this (or by looking at the NRP documentation):</p>
@@ -1109,7 +1109,7 @@ window.Quarto = {
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>subprocess.run([<span class="st">"ls"</span>, <span class="st">"-l"</span>, <span class="st">"tmp.txt"</span>], capture_output<span class="op">=</span><span class="va">True</span>).stdout</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>b'-rw-r--r-- 1 paciorek scfstaff 4 Oct 14 07:36 tmp.txt\n'</code></pre>
+<pre><code>b'-rw-r--r-- 1 paciorek scfstaff 4 Oct 14 07:52 tmp.txt\n'</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> textfile:</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>     line <span class="op">=</span> textfile.readlines()</span>
@@ -1168,7 +1168,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Here n-tilde and division symbol take up two bytes</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> tmp2.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>-rw-r--r-- 1 paciorek scfstaff 10 Oct 14 07:36 tmp2.txt</code></pre>
+<pre><code>-rw-r--r-- 1 paciorek scfstaff 10 Oct 14 07:52 tmp2.txt</code></pre>
 </div>
 </div>
 <div class="cell">
