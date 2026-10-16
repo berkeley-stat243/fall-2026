@@ -199,9 +199,8 @@ links[0:9]
 
 ## XML, JSON, and YAML
 
-XML, JSON, and YAML are three common file formats for storing data.
-All of them allow for key-value pairs and arrays/lists of unnamed elements and for hierarchical structure.
-
+XML, JSON, and YAML are three common file formats for storing data, particularly when interacting with the web.
+All of them allow for key-value pairs and hierarchical structure, and (except for XML) arrays/lists of unnamed elements.
 To read them into Python (or other languages), we want to use a package
 that understands the file format and can read the data into appropriate
 Python data structures. Usually one ends up with a set of nested (because of the hierarchical structure) lists and dictionaries.
@@ -589,7 +588,7 @@ details are available in the Nolan and Temple Lang book.
 
 ### API access to LLMs
 
-You can also access LLMs via API calls. In fact when coding agents such as Claude and GitHub Copilot operate, they are making iterative API calls to LLMs being provided as services.
+You can also access LLMs via API calls. In fact when coding agents such as Claude and GitHub Copilot operate, they are making iterative API calls to LLMs that are running as web services.
 
 If you need to make individual LLM queries as part of a workflow, you can do that via API calls. In many cases this would be done by calling an LLM running as a service, though it's also possible to query LLMs that you run yourself on machines you have access to (so-called self-hosted LLMs, such as through the Ollama platform).
 
@@ -616,6 +615,7 @@ SYSTEM_PROMPT = """You are a support-ticket triage tool.
 Given a ticket, respond with ONLY a JSON object with these keys:
   "category": one of "billing", "bug", "feature_request", "account", "other"
   "urgency": integer 1 (low) to 5 (critical)
+  "certainty": integer 1 (not at all sure) to 5 (very sure) of how certain you are of the category and urgency classifications
   "summary": one sentence, max 20 words
 No markdown, no commentary, just the JSON."""
 

@@ -1,7 +1,7 @@
 ---
 title: "Numbers on a computer"
 author: "Chris Paciorek"
-date: "2025-08-12"
+date: "2026-10-15"
 format:
   pdf:
     documentclass: article
@@ -62,12 +62,14 @@ Everything in computer memory or on disk is stored in terms of bits. A
 *bit* is essentially a switch than can be either on or off. Thus
 everything is encoded as numbers in base 2, i.e., 0s and 1s. 8 bits make
 up a *byte*. As discussed in Unit 2, for information stored as plain text (ASCII), each byte is
-used to encode a single character (as previously discussed, actually only 7 of the 8 bits are
+used to encode a single character (and as discussed in Unit 7, actually only 7 of the 8 bits are
 actually used, hence there are $2^{7}=128$ ASCII characters). One way to
-represent a byte is to write it in hexadecimal, rather than as 8 0/1
+represent a byte is to write it in hexadecimal, rather than as eight 0/1
 bits. Since there are $2^{8}=256$ possible values in a byte, we can
-represent it more compactly as 2 base-16 numbers, such as "3e" or "a0"
-or "ba". A file format is nothing more than a way of interpreting the
+represent it more compactly as two base-16 numbers ($16^{2}=256$), such as "3e" or "a0"
+or "ba".
+
+A file format is nothing more than a way of interpreting the
 bytes in a file.
 
 
@@ -90,6 +92,7 @@ def dg(x, form = '.20f'):
     print(format(x, form))
 ```
 
+We'll start by seeing the representation of some characters in terms of bits.
 Note that 'b' is encoded as one
 more than 'a', and similarly for '0', '1', and '2'.
 We could check these against, say, the Wikipedia
@@ -157,19 +160,19 @@ a = np.int64(34233332342343)
 a * a
 
 a=np.int64(10000000000)
-a *a
+a * a
 
 a = 34233332342343
 a * a
 ```
 
 That said, if we use Python's `int` rather than numpy's integers,
-we don't get overflow. But we do use more than 8 bytes that would be used
+we don't get overflow, as seen in the code below. But we do use more than 8 bytes that would be used
 by numpy. And if we use Python `int` or lists of such values, we're not
-set up for efficient array-based computation.
+set up for efficient array-based computation (as we know from Unit 4).
 
 ```{python, overflow2}
-a = 34233332342343
+a = 34233332342343  # Python (not numpy) int.
 a * a
 sys.getsizeof(a)
 sys.getsizeof(a*a)
@@ -230,6 +233,12 @@ bytes, with each byte having 8 bits.
 
 
 # 2. Floating point basics
+
+## Some motivation: Deep learning, LLMs and floating point representations
+
+The use of GPUs for deep learning and the development of massive LLMs has highlighted the importance of the tradeoffs involved in how we represent real-valued numbers on a computer. In many applications, one doesn't need the high precision (and large range) provided by a 64-bit representation (double precision).
+
+GPU calculations are often done using a 32-bit representation (single precision) to reduce memory use and computation time (since moving and computing on numbers with fewer bits is generally faster). Traditionally GPUs have been designed around the use of single precision. But there has been increasing use of lower precision representations and mixed precision. One area in which this comes up with LLMs is model quantization.
 
 ## Representing real numbers
 
@@ -370,10 +379,13 @@ base-2 arithmetic is faster than base-10 arithmetic. The leading 1
 normalizes the number; i.e., ensures there is a unique representation
 for a given computer number. This avoids representing any number in
 multiple ways, e.g., either
-$1=1.0\times2^{0}=0.1\times2^{1}=0.01\times2^{2}$. For a double, we have
+$1=1.0\times2^{0}=0.1\times2^{1}=0.01\times2^{2}$. Note that that leading 1
+is the *hidden bit* and doesn't need to be
+stored because it is always present.
+
+For a double, we have
 8 bytes=64 bits. Consider our representation as ($S,d,e$) where $S$ is
-the sign. The leading 1 is the *hidden bit* and doesn't need to be
-stored because it is always present. In general $e$ is
+the sign. We have one bit for the sign. Then, $e$ is
 represented using 11 bits ($2^{11}=2048$), and the subtraction takes the
 place of having a sign bit for the exponent. (Note that in our
 discussion we'll just think of $e$ in terms of its base 10
@@ -429,7 +441,7 @@ $2^{e_{\min}}$ where $e_{\max}$ and $e_{\min}$ are the smallest and
 largest possible values of the exponent. Let's consider the exponent and
 what we can infer about the range of possible numbers. With 11 bits for
 $e$, we can represent $2^{11}=2048$ different exponent values, $e \in \{0,1,2,\ldots,2047\}$.
-So the largest number we could represent should have magnitude $2^{1024}$. What
+So the largest number we could represent should have magnitude $2^{2047-1023}=2^{1024}$. What
 is this in base 10?
 
 
@@ -558,7 +570,7 @@ dg(12345678123456780000.0 - 12345678123456770000.0)
 
 The spacing of possible computer numbers that have a magnitude of about
 1 leads us to another definition of *machine epsilon* (an alternative,
-but essentially equivalent definition to that given [previously](#machine-epsilon). 
+but essentially equivalent definition to that given [previously](#machine-epsilon)). 
 Machine epsilon tells us also about the relative spacing of
 numbers.
 
@@ -616,9 +628,8 @@ bits(2**54+4)
 ```
 
 The absolute spacing is $x\epsilon$, so we have spacings of
-$2^{52}\times2^{-52}=1$, $2^{53}\times2^{-52}=2$,
-$2^{54}\times2^{-52}=4$ for numbers of magnitude $2^{52}$, $2^{53}$, and
-$2^{54}$, respectively.
+$2^{52}\times2^{-52}=1$ for numbers of magnitude $2^{52}$, $2^{53}\times2^{-52}=2$ for numbers of magnitude $2^{53}$, and 
+$2^{54}\times2^{-52}=4$ for numbers of magnitude $2^{54}$.
 
 With a bit more work (e.g., using Mathematica), one can demonstrate that
 doubles in Python in general are represented as the nearest number that can
@@ -642,6 +653,8 @@ bits(0.12345678123456782)
 bits(0.12345678123456783)
 bits(0.12345678123456784)
 ```
+
+
 
 ## Working with higher precision numbers
 
