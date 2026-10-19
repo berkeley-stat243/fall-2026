@@ -150,7 +150,7 @@
           id: "4"
           name: "PS 4 Quiz"
           href: "syllabus.html#problem-set-quizzes"
-- week: 8
+- week: 9
   days:
     - date: "Mon Oct 19 (only)"
       items:
@@ -158,6 +158,25 @@
           id: "4alt"
           name: "PS 4 Quiz Makeup (no retake option)"
           href: "https://calendar.app.google/dA5cAM7WLTYAkNb99"
+- week: 10
+  days:
+    - date: "Fri Oct 30"
+      items:
+        - type: "Problem_Set"
+          id: "5"
+          name: "Problem Set 5"
+          href: "ps/ps5.html"
+        - type: "Quiz"
+          id: "5"
+          name: "PS 5 Quiz Makeup"
+          href: "syllabus.html#problem-set-quizzes"
+- week: 11
+  days:
+    - date: "Mon Nov 2 - Wed Nov 4 (10 am)"
+      items:
+        - type: "Quiz"
+          id: "5alt"
+          name: "PS 5 Quiz Makeup/Retake"
 
 
 

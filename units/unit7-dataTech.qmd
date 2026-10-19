@@ -892,7 +892,7 @@ cat tmp2.txt
 
 UTF-8 is cleverly designed in terms of the bit-wise representation of
 characters such that ASCII characters still take up one byte, and most
-other characters take two bytes, but some take four bytes. In fact it is
+other characters take two (European/Middle Eastern languages) or three (Asian languages) bytes, but some take four bytes. In fact it is
 even more clever than that - the representation is such that the bits of
 a one-byte character never appear within the representation of a two-
 or three- or four-byte character (and similarly for two-byte characters
