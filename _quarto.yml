@@ -71,7 +71,9 @@ website:
             text: "Problem Set 3"
           - href: ps/ps4.qmd
             text: "Problem Set 4"
-      - section: "How tos"
+           - href: ps/ps5.qmd
+            text: "Problem Set 5"
+     - section: "How tos"
         contents:
           - howtos/accessPython.md
           - howtos/accessUnixCommandLine.md
