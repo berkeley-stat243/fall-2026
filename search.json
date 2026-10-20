@@ -2093,69 +2093,196 @@
     ]
   },
   {
-    "objectID": "labs/lab1-submission.html",
-    "href": "labs/lab1-submission.html",
-    "title": "Lab 1: Submitting problem set solutions",
+    "objectID": "labs/lab2-testing.html",
+    "href": "labs/lab2-testing.html",
+    "title": "Lab 2: Exceptions and Testing",
     "section": "",
-    "text": "By now you should already have access to the following 5 basic tools:\n\nUnix shell\nGit\nQuarto\nPython\nA text editor of your choice\n\nToday we will use all these tools together to submit a solution for Problem Set 0 (not a real problem set) to make sure you know how to submit solutions to upcoming (real) problem sets.\nHere is a selection of some basic reference tutorials and documentation for unix, bash and unix commands, git & GitHub, quarto, python and VS Code\nSome books to learn more about Unix.",
+    "text": "Today we will spend some time getting familiar with some of the programming tools that can help make your code more robust and resilient to errors and boundary conditions - tools like unit tests and exceptions (and next week we will spend some time on debugging misbehaving code).\nTesting is what you do when you finish implementing a piece of code and want to try it out to see if it works. Running your code manually and seeing if it works is a workable strategy for simple one-time scripts that do simple tasks, but there are situations (like writing a function that others will repeatedly use, or like running the same piece of code on hundreds of files or URLs) where it is prudent to test your code ahead of its actual use or deployment. In today’s lab, we are going to use pytest to test for correct behavior and verify that exceptions are raised in the right situations.",
     "crumbs": [
       "Labs",
-      "Lab 1 (Quarto/Git/Submission)"
+      "Lab 2 (Exceptions/Testing)"
     ]
   },
   {
-    "objectID": "labs/lab1-submission.html#submitting-problem-set-solutions-sep-4",
-    "href": "labs/lab1-submission.html#submitting-problem-set-solutions-sep-4",
-    "title": "Lab 1: Submitting problem set solutions",
-    "section": "",
-    "text": "By now you should already have access to the following 5 basic tools:\n\nUnix shell\nGit\nQuarto\nPython\nA text editor of your choice\n\nToday we will use all these tools together to submit a solution for Problem Set 0 (not a real problem set) to make sure you know how to submit solutions to upcoming (real) problem sets.\nHere is a selection of some basic reference tutorials and documentation for unix, bash and unix commands, git & GitHub, quarto, python and VS Code\nSome books to learn more about Unix.",
+    "objectID": "labs/lab2-testing.html#lab-exercise",
+    "href": "labs/lab2-testing.html#lab-exercise",
+    "title": "Lab 2: Exceptions and Testing",
+    "section": "Lab Exercise",
+    "text": "Lab Exercise\n1- Write a function in Python that finds a number in a string using regular expressions. The number can be positive or negative, integer-valued, or real, and numbers less than one can also be of the form 0.96 or .96. It can be assumed that no numbers appear in scientific notation. Refer to String processing and regular expressions in Python for a quick overview of Python’s re package. You may use AI to generate the regex, but be sure you understand the output.\n2- Write an interface for that function (a function name and arguments), but do not implement the function yet (you can have it return an None, or an empty string for now). We will do this in a good old fashioned .py file (not a notebook or a quarto file).\n3- Build a test suite using the pytest package to test that your function works as intended. Add at least 8 test cases with justification for each. Try to cover the main use cases, and as many potential corner cases or boundary conditions as possible.\n4- Now run the test suite. It should fail for all your tests (unless one of them was passing an empty string).\n5- Implement the function. You can do this at one go, or case by case. As you implement a case, you can rerun the test suite and see some of the tests relevant to that cases stopping to fail. When all the tests pass, you are done. This is called test-driven development.\n6- If some cases are still failing, that’s alright, for the purposes of this lab we don’t need to ensure all edge cases are dealt with.\n7- Make sure you raise an exception to trap invalid input types.\n8- Add a test to check that an exception is properly raised when the function is given invalid input types.",
     "crumbs": [
       "Labs",
-      "Lab 1 (Quarto/Git/Submission)"
+      "Lab 2 (Exceptions/Testing)"
     ]
   },
   {
-    "objectID": "labs/lab1-submission.html#quick-intro-to-git-and-github",
-    "href": "labs/lab1-submission.html#quick-intro-to-git-and-github",
-    "title": "Lab 1: Submitting problem set solutions",
-    "section": "Quick Intro to git and GitHub",
-    "text": "Quick Intro to git and GitHub\n\nCreating a new repository\nMaking changes\n\n\nEditing and saving files\nStaging changes\nCommitting changes locally\nPushing changes to remote repository\n\n\nUndoing changes:\n\n\nLocal changes\nLocal staged changes\nLocal commited changes\nPushed changes\n\n\nMerging divergent versions\nWorking with branches\nGUI options (sourcetree)\nGetting help\n\nDiscussion: - Why is git so damn complicated? - What do you need to remember when working with collaborators on the same repository?",
-    "crumbs": [
-      "Labs",
-      "Lab 1 (Quarto/Git/Submission)"
-    ]
-  },
-  {
-    "objectID": "labs/lab1-submission.html#lab-submission",
-    "href": "labs/lab1-submission.html#lab-submission",
-    "title": "Lab 1: Submitting problem set solutions",
-    "section": "Lab Submission",
-    "text": "Lab Submission\nRefer to this guide and please ask questions if something is not clear.",
-    "crumbs": [
-      "Labs",
-      "Lab 1 (Quarto/Git/Submission)"
-    ]
-  },
-  {
-    "objectID": "labs/lab1-submission.html#hands-on-lab-instructions---steps",
-    "href": "labs/lab1-submission.html#hands-on-lab-instructions---steps",
-    "title": "Lab 1: Submitting problem set solutions",
-    "section": "Hands-on Lab Instructions - Steps",
-    "text": "Hands-on Lab Instructions - Steps\n\nClone your github repository to your development environment\nCreate a subdirectory in your github repository with the name ps0\nIn that subdirectory, create a quarto document (ps0.qmd) that has some simple code that creates a simple plot (you can follow this example/tutorial here)\nUse the quarto command line to render it into a pdf document (quarto render FILE –to pdf)\nCommit the changes to your repository (git add FILES; git commit -m MESSAGE; git push)\nAdd another section to your quarto document (use your imagination), then preview and commit the changes\nUse the quarto command line to render the updated document into a pdf document\nAdd the pdf document to the repository as well\nMake sure that you can log into Pensive and upload a pdf document\n[optional] Undo your last set of changes and regenerate the pdf file\n\nIf we finish early, we will also take today’s lab as an opportunity to get familiar with the basic use of all the 5 basic tools listed above.\nFor git and quarto, very basic knowledge should be sufficient for now, but for unix commands and python, the more you learn the more effective you will be at solving the problem sets (and at any computational task you take on after that). You will need to learn more advanced use of git and github towards the end of the semester when you start working with other team members on the same project.\n\nChunk options\nLike RMarkdown, quarto allows for several execution options to be set per document and per chunk. Spend some time getting familiar with the various options, and keep this link handy when you are working on the first few problem sets.\nDepending on what’s required in the problem sets, you may need to set eval to false (just print out code) or error to true (print errors and don’t halt rendering of the document). Some of the other options may be useful for controlling how the code gets printed.\n\n\nTroubleshooting\n\nQuarto succeeds in rendering html but fails at rendering pdf\nInstall tinytex via quarto install tinytex\n\n\nProblems running and rendering bash commands in quarto\nIf you are using the knitr engine, you should be able to tag your code chunks in quarto with {bash} and use verbatim bash commands. If you are using the Jupyter engine, the {python} tag should be used instead and every line containing a bash command should be prefixed with an exclamation mark (!).\n\n\nQuarto rendering (or python execution) works from the terminal but not from the IDE\nYou can go to the settings in your IDE and point it to the specific python installation that you find when you execute which python in the terminal.\n\n\nQuarto rendering (or python execution) works from the IDE but not from the terminal\nYou can fix the quarto configuration by setting the environment variable QUARTO_PYTHON to the correct python path or by running quarto check. Restarting the IDE may also help if you had just installed something in the other environment.\n\n\nQuarto rendering fails to find a python package\nIt’s a good idea to test that you can import packages such as numpy when a document is rendered. If that fails, either you haven’t installed the package in python or quarto is using a different python installation than the one in which you installed the package. See the items above.\n\n\nPushing to git fails with message “Make sure you configure your ‘user.email’ and ‘user.name’ in git”\nFollow the suggested course of action in the error message to configure your email and name, then push again.",
-    "crumbs": [
-      "Labs",
-      "Lab 1 (Quarto/Git/Submission)"
-    ]
-  },
-  {
-    "objectID": "labs/lab1-submission.html#acknowledgements",
-    "href": "labs/lab1-submission.html#acknowledgements",
-    "title": "Lab 1: Submitting problem set solutions",
+    "objectID": "labs/lab2-testing.html#acknowledgements",
+    "href": "labs/lab2-testing.html#acknowledgements",
+    "title": "Lab 2: Exceptions and Testing",
     "section": "Acknowledgements",
     "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
     "crumbs": [
       "Labs",
-      "Lab 1 (Quarto/Git/Submission)"
+      "Lab 2 (Exceptions/Testing)"
+    ]
+  },
+  {
+    "objectID": "labs/lab0-setup.html",
+    "href": "labs/lab0-setup.html",
+    "title": "Lab 0: Setup",
+    "section": "",
+    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
+    "href": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
+    "title": "Lab 0: Setup",
+    "section": "",
+    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "labs/lab0-setup.html#acknowledgements",
+    "href": "labs/lab0-setup.html#acknowledgements",
+    "title": "Lab 0: Setup",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
+    "crumbs": [
+      "Labs",
+      "Lab 0 (Optional setup)"
+    ]
+  },
+  {
+    "objectID": "labs/lab5-scfparallel.html",
+    "href": "labs/lab5-scfparallel.html",
+    "title": "Lab 5: SCF and Parallel Computing",
+    "section": "",
+    "text": "For the first part of this lab, we will split into groups and discuss our experiences with AI tools. Each group will have a few minutes to discuss the following questions:\n\nWhat AI tool(s) have you used before this class? (e.g., ChatGPT, GitHub Copilot, DALL-E, etc.)\nWhat AI tool(s) did you use for PS2 Problem 3?\nHow was your experience using an AI agent on PS2 Problem 3?\n\n\nDid you find the AI outputs useful and clear and/or overwhelming and overcomplicated?\nWere you able to iteriate with the agent or did it just do the whole problem for you? What follow-up requests, if any, did you make after the agent’s initial response? For example, did you ask it to make the code clearer, try a different approach, fix errors, explain parts of the code, or add functionality? How did it respond?\nDid you understand what the AI agent did? Could you explain your code to someone else? Do you think it is important that we understand what our codes are doing or do you think we can abstract away coding entirely?\n\n\nIs there anything you wish you knew before you starting? How would you change your approach using AI tools moving forward?",
+    "crumbs": [
+      "Labs",
+      "Lab 5 (Linux Cluster/Slurm)"
+    ]
+  },
+  {
+    "objectID": "labs/lab5-scfparallel.html#logging-in",
+    "href": "labs/lab5-scfparallel.html#logging-in",
+    "title": "Lab 5: SCF and Parallel Computing",
+    "section": "Logging in",
+    "text": "Logging in\nThe SCF has a number of login nodes which you can access via ssh.\n\n\n\n\n\n\nNote\n\n\n\nFor info on using ssh (including on Windows), see here.\n\n\nFor example, I’ll use ssh to connect to the gandalf node:\njames@pop-os:~$ ssh &lt;scf-username&gt;@gandalf.berkeley.edu\nThe authenticity of host 'gandalf.berkeley.edu (128.32.135.47)' can't be established.\nED25519 key fingerprint is SHA256:io5uUQGbCZie78mF+UUZ5guDK29JXQGQ6LVB129UoUo.\nThis key is not known by any other names\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nWarning: Permanently added 'gandalf.berkeley.edu' (ED25519) to the list of known hosts.\nNotice that upon first connecting to a server you haven’t visited there is a warning that the “authenticity of the host … can’t be established”. So long as you have typed in the hostname correctly (gandalf.berkeley.edu, in this case), and trust the host (we trust the SCF!) then you can type yes to add the host to your known hosts file (found on your local machine at ~/.ssh/known_hosts).\nYou’ll then be asked to enter your password for the SCF cluster. For privacy, you won’t see anything happen in your terminal when you type it in, so type carefully (you can use Backspace if you make a mistake) and press Enter when you’re done. If you were successful, you should see a welcome message and your shell prompt, like:\n&lt;scf-username&gt;@gandalf:~$\nTo get your bearings, you can type pwd to see where your home directory is located on the SCF cluster filesystem:\n&lt;scf-username&gt;@gandalf:~$ pwd\n/accounts/grad/&lt;scf-username&gt;\nYour home directory is likely also in the /accounts/grad/ directory, as mine is.\n\nOther login nodes\n\n\n\n\n\n\nImportant\n\n\n\nDon’t run computationally intensive tasks on the login nodes!\nThey are shared by all the SCF users, and should only be used for non-intensive interactive work such as job submission and monitoring, basic compilation, managing your disk space, and transferring data to/from the server.\n\n\nIf for some reason gandalf is not working for you, the SCF has a number of nodes which can be accessed from your local machine with commands of the form ssh &lt;scf-username&gt;@&lt;hostname&gt;.berkeley.edu. Currently, these are:\n\naragorn\narwen\ndorothy\ngandalf\ngollum\nhermione\nquidditch\nradagast\nshelob\n\nNote that all those machines are stand-alone login nodes. After logging in and launching a job, the job will be run on a cluster node. Usually, users cannot ssh into cluster nodes and the process of launching a job is via slurm from one of the login machines. However, if one has a job running on a cluster node, that specific node becomes accessible via ssh. This can be helpful with troubleshooting.",
+    "crumbs": [
+      "Labs",
+      "Lab 5 (Linux Cluster/Slurm)"
+    ]
+  },
+  {
+    "objectID": "labs/lab5-scfparallel.html#disk-space",
+    "href": "labs/lab5-scfparallel.html#disk-space",
+    "title": "Lab 5: SCF and Parallel Computing",
+    "section": "Disk space",
+    "text": "Disk space\nYour home directory has a limited amount of disk space; you can check how much you have used and available using the quota command, which will show your home directory usage and quota on the line for the accounts filesystem.\n&lt;scf-username&gt;@gandalf:~$ quota\nFILESYSTEM  USE         QUOTA       %\n  accounts  5.29 G      20 G        26.5\nThe accounts filesystem is accessible from all the nodes on the SCF cluster. This means that regardless of which login or compute node you use, you will have access to the files in your home directory. Moreover, your home directory is backed up regularly, so you are protected from accidental data loss.\nIf you’re running out of space, you should try to selectively delete large files that you no longer need. See here for some tips on finding large files. If all else fails, you can request additional space or request access to the /scratch filesystem. The latter is a good place for large datasets, but note that /scratch is not backed up, unlike your home directory. See the previous link for more info. Note though that disk space should not be a concern for Stat 243, but being aware of /scratch can be relevant for Stat graduate students (MA and PhD) working on projects in the future.\nFor temporary files (e.g., intermediate results of a computation that you don’t need to store for later), every machine has a /tmp filesystem. However, /tmp is always linked to the specific machine you are on, meaning that if you put something in /tmp on gandalf and then later go to aragorn, you won’t find your files in the /tmp directory there. If you go back to gandalf, you will likely find them again, but /tmp is automatically wiped when a machine reboots, so only use it for files you don’t care about preserving!",
+    "crumbs": [
+      "Labs",
+      "Lab 5 (Linux Cluster/Slurm)"
+    ]
+  },
+  {
+    "objectID": "labs/lab5-scfparallel.html#data-transfer-scp-sftp",
+    "href": "labs/lab5-scfparallel.html#data-transfer-scp-sftp",
+    "title": "Lab 5: SCF and Parallel Computing",
+    "section": "Data transfer: SCP / SFTP",
+    "text": "Data transfer: SCP / SFTP\nWe can use the scp and sftp protocols to transfer files to and from any login node on the SCF cluster. scp is a shell program that should be available by default on macOS and Linux, while on Windows you can use WinSCP. WinSCP can also do sftp transfers, or you can use FileZilla on any platform for sftp. Both WinSCP and FileZilla have a GUI that allows you to drag and drop files between your local machine and a remote host.\nThe syntax for scp is scp &lt;from-place&gt; &lt;to-place&gt;, and you’ll typically use scp on your local machine. For example, we’ll show how to transfer the file data.csv (you can find it here) :\n\nTo SCF while on your local machine\n# transfer to my home directory without renaming the file \nscp data.csv &lt;scf-username&gt;@gandalf.berkeley.edu:~/\n\n# transfer to the data/ subdirectory and rename the file\nscp data.csv &lt;scf-username&gt;@gandalf.berkeley.edu:~/data/new_name.csv\n\n# transfer to the gandalf-specific /tmp/ directory\nscp data.csv &lt;scf-username&gt;@gandalf.berkeley.edu:/tmp/\n\n\nFrom SCF while on your local machine\n# now &lt;from-place&gt; is a path in my home directory on the SCF \nscp &lt;scf-username&gt;@gandalf.berkeley.edu:~/data/new_name.csv ~/Desktop/data_scf.csv\nFor more information, see here. In particular, if you have a very large dataset to transfer, Globus is a better option than either scp or sftp.",
+    "crumbs": [
+      "Labs",
+      "Lab 5 (Linux Cluster/Slurm)"
+    ]
+  },
+  {
+    "objectID": "labs/lab5-scfparallel.html#acknowledgements",
+    "href": "labs/lab5-scfparallel.html#acknowledgements",
+    "title": "Lab 5: SCF and Parallel Computing",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\nThis lab was developed by Andrew Vaughn and James Duncan for R, adapted to python by Ahmed Eldeeb and slightly adjusted for the Fall 2026 semester.",
+    "crumbs": [
+      "Labs",
+      "Lab 5 (Linux Cluster/Slurm)"
+    ]
+  },
+  {
+    "objectID": "rubric.html",
+    "href": "rubric.html",
+    "title": "",
+    "section": "",
+    "text": "This document provides guidance for submitting high-quality problem set (and project) solutions. This guidance is based on general good practices for scientific communication, reproducible research, and software development."
+  },
+  {
+    "objectID": "rubric.html#general-presentation",
+    "href": "rubric.html#general-presentation",
+    "title": "",
+    "section": "General presentation",
+    "text": "General presentation\n\nSimply presenting code or derivations is not sufficient.\nBriefly describe the overall goal or strategy before providing code/derivations.\nAs needed describe what the pieces of your code/derivation are doing to make it easier for a reader to follow the steps.\nKeep your output focused on illustrating what you did, without distracting from the flow of your solution by showing voluminous output. The output should illustrate and demonstrate, not overwhelm or obscure. If you need to show longer output, you can add it at the end as supplemental material.\nOutput should be produced by your code (i.e., from the code chunks running when the document is rendered), not by copying and pasting results into the document."
+  },
+  {
+    "objectID": "rubric.html#coding-practice",
+    "href": "rubric.html#coding-practice",
+    "title": "",
+    "section": "Coding practice",
+    "text": "Coding practice\n\nMinimize (or eliminate) use of global variables.\nBreak down work into core tasks and develop small, modular, self-contained functions (or class methods) to carry out those tasks.\nDon’t repeat code. As needed refactor code to create new functions (or class methods).\nFunctions and classes should be “weakly coupled”, interacting via their interfaces and not by having to know the internals of how they work.\nUse data structures appropriate for the computations that need to be done.\nDon’t hard code ‘magic’ numbers. Assign such numbers to variables with clear names, e.g., speed_of_light = 3e8.\nProvide reasonable default arguments to functions (or class methods) when possible.\nProvide tests (including unit tests) when requested (this is good general practice but we won’t require it in all cases).\nAvoid overly complicated syntax – try to use the clearest syntax you can to solve the problem.\nIn terms of speed, don’t worry about it too much so long as the code finishes real-world tasks in a reasonable amount of time. When optimizing, focus on the parts of the code that are the bottlenecks.\nUse functions already available in the language rather than recreating yourself."
+  },
+  {
+    "objectID": "rubric.html#code-style",
+    "href": "rubric.html#code-style",
+    "title": "",
+    "section": "Code style",
+    "text": "Code style\n\nFollow a consistent style. While you don’t have to follow Python’s PEP8 style guide exactly, please look at it and follow it generally.\nUse informative variable and function names and have a consistent naming style.\nUse whitespace (spaces, newlines) and parentheses to make the structure of the code easy to understand and the individual syntax pieces clear.\nUse consistent indentation to make the structure of the code easy to understand.\nProvide comments that give the goal of a given piece of code and why it does things, but don’t use comments to restate what the code does when it should be obvious from reading the code.\n\nProvide summaries for blocks of code.\nFor particularly complicated syntax, say what a given piece of code does."
+  },
+  {
+    "objectID": "labs/lab4-reproducibility.html",
+    "href": "labs/lab4-reproducibility.html",
+    "title": "Lab 4: Reproducibility",
+    "section": "",
+    "text": "Today’s lab is about reproducibility, an important skill to professionals in industry and academia alike. Intimately related to communication and documentation, the main goal of reproducibility is to ensure others (and your future self) are able to reach the same results you did by following a sequence of steps. Our focus in the context of this course will be to attempt to reproduce the results from a recently published papr, pondering along the way whether we would have done anything different and assessing our overall experience. The paper in question is Comparative Advantage of Humans versus AI in the Long Tail (2024) by Agarwal, Huang, Moehring, Rajpurkar, Salz and Yu.",
+    "crumbs": [
+      "Labs",
+      "Lab 4 (Reproducibility)"
+    ]
+  },
+  {
+    "objectID": "labs/lab4-reproducibility.html#reproducibility",
+    "href": "labs/lab4-reproducibility.html#reproducibility",
+    "title": "Lab 4: Reproducibility",
+    "section": "",
+    "text": "Today’s lab is about reproducibility, an important skill to professionals in industry and academia alike. Intimately related to communication and documentation, the main goal of reproducibility is to ensure others (and your future self) are able to reach the same results you did by following a sequence of steps. Our focus in the context of this course will be to attempt to reproduce the results from a recently published papr, pondering along the way whether we would have done anything different and assessing our overall experience. The paper in question is Comparative Advantage of Humans versus AI in the Long Tail (2024) by Agarwal, Huang, Moehring, Rajpurkar, Salz and Yu.",
+    "crumbs": [
+      "Labs",
+      "Lab 4 (Reproducibility)"
+    ]
+  },
+  {
+    "objectID": "labs/lab4-reproducibility.html#setup",
+    "href": "labs/lab4-reproducibility.html#setup",
+    "title": "Lab 4: Reproducibility",
+    "section": "Setup",
+    "text": "Setup\n\nFind a link to “Replication Package” on the paper’s page and click on “Download this project”. Authentication is required; we recommend to “access through your institution” and fall back to the other options in case this fails. By the end of this step, you should have a file named 202185-V1.zip on your machine. If that also does not work, you may try wget www.stat.berkeley.edu/~paciorek/transfer/202185-V1.zip.\nUnzip 202185-V1.zip and enter Rad_AI_Longtail/. (if you are unzipping from the mirror instead, after running wget, create a directory Rad_AI_Longtail/ and unzip the file inside it.)\nInvestigate which files are likely to contain reproducibility instructions and give it a quick read.\nWe now need to use the specific python version mentioned by the authors (3.11) to install the packages necessary to reproduce the results, which should be straightforward given the requirements.txt. But there are several caveats here. Try installing those packages and document your experience. Creating a conda environment using the provided requirements.txt file may be a reasonable attempt: conda create --name lab4 python=3.11 --file requirements.txt. If it fails on your system, try to identify why.\nAs an alternative, you may try the following command to generate an adjusted requirements file that you can then use to install relevant packages:\n\nfind . -type f -exec grep \"import \" {} \\; |\n    sed 's/\"//g; s/,//g; s/\\\\n//g; s/^ *//; s/ *$//' |\n    cut -d ' ' -f 2 |\n    cut -d '.' -f 1 |\n    sort |\n    uniq |\n    grep -F -f - requirements.txt |\n    grep -v '^#' |\n    cut -d '=' -f 1,2 |\n    sed 's/=/==/g' |\n    grep -v '_' |\n    grep -v '\\-base' \\\n    &gt; requirements_adjusted.txt\n\nRunning the command above incrementally might be useful to better understand what each step does if it is not immediately clear. Installing the packages should then be less prone to error by using this requirements_adjusted.txt file. You will also need nbformat==5.9.2 and jinja2==3.1.2 to be installed. Think in particular about the following modification sed 's/=/==/g' and what are the implications.",
+    "crumbs": [
+      "Labs",
+      "Lab 4 (Reproducibility)"
+    ]
+  },
+  {
+    "objectID": "labs/lab4-reproducibility.html#replicating-the-results-in-the-paper",
+    "href": "labs/lab4-reproducibility.html#replicating-the-results-in-the-paper",
+    "title": "Lab 4: Reproducibility",
+    "section": "Replicating the results in the paper",
+    "text": "Replicating the results in the paper\nThe goal is now to try to replicate the paper, pondering about important questions along the way. Format your reasoning to the points below in a pdf file and submit it to Pensive by the end of the lab.\n\nWith a proper environment set up, proceed to identify what is the minimal set of input files that is needed to run all the scripts. Are all input files used? Are there any files provided that you wouldn’t expect to be input?\nStart following the instructions to replicate the results. Try to locate the “radiology experiment data” mentioned nd report back. If you are unable to find it, you may download it via wget https://www.stat.berkeley.edu/~paciorek/transfer/data_public.txt instead. Discuss the implications.\nCheck the file permissions of the shell script via ls -l make.sh. You may change the permissions via chmod if desired. Discuss.\nExplore the make.sh script and discuss how it helps or hinders reproducibility. In addition, pay attention to how failures are handled via bash in the script and discuss what you think the motivation was.\nNote that make.sh invokes both python and ipython. Double check both executables are on the correct version. If you do not have ipython installed, you may do so via conda install ipython or pip install ipython depending on what kind of virtual environment you set up.\nIn what follows, we are going to run scripts that output text to the terminal. Document along do way your opinion about the text that is purposefully printed (informative or uninformative; excessive or lacking; etc.) and about any other text printed to screen (are there warnings, for example?).\nRun the make.sh script up to the “main calculations” part. That step takes hours because the number of “bootstrap replicates” is large. Identify how that parameter is set and decrease it. Discuss your experience in making this change and whether you would have programmed this differently.\nEven though we adjusted the “bootstrap replicates” parameter to reduce the time the script takes, we are going to skip this step and conveniently download the files that would be generated by the script with “bootstrap replicates” set to 51. Run wget www.stat.berkeley.edu/~paciorek/transfer/data-analysis-bootstrap.zip and wget www.stat.berkeley.edu/~paciorek/transfer/data-analysis.zip to do so. Proceed to unzip the files and ensure the files are in the correct directories.\nRun the last two scripts in make.sh to generate the plots. Do they look similar to the ones in the paper? If not, what could explain the difference?\nNote the contact information given in the instructions file. Are the two options feasible ways to reach the authors?",
+    "crumbs": [
+      "Labs",
+      "Lab 4 (Reproducibility)"
     ]
   },
   {
@@ -2225,196 +2352,102 @@
     ]
   },
   {
-    "objectID": "labs/lab4-reproducibility.html",
-    "href": "labs/lab4-reproducibility.html",
-    "title": "Lab 4: Reproducibility",
+    "objectID": "labs/lab1-submission.html",
+    "href": "labs/lab1-submission.html",
+    "title": "Lab 1: Submitting problem set solutions",
     "section": "",
-    "text": "Today’s lab is about reproducibility, an important skill to professionals in industry and academia alike. Intimately related to communication and documentation, the main goal of reproducibility is to ensure others (and your future self) are able to reach the same results you did by following a sequence of steps. Our focus in the context of this course will be to attempt to reproduce the results from a recently published papr, pondering along the way whether we would have done anything different and assessing our overall experience. The paper in question is Comparative Advantage of Humans versus AI in the Long Tail (2024) by Agarwal, Huang, Moehring, Rajpurkar, Salz and Yu.",
+    "text": "By now you should already have access to the following 5 basic tools:\n\nUnix shell\nGit\nQuarto\nPython\nA text editor of your choice\n\nToday we will use all these tools together to submit a solution for Problem Set 0 (not a real problem set) to make sure you know how to submit solutions to upcoming (real) problem sets.\nHere is a selection of some basic reference tutorials and documentation for unix, bash and unix commands, git & GitHub, quarto, python and VS Code\nSome books to learn more about Unix.",
     "crumbs": [
       "Labs",
-      "Lab 4 (Reproducibility)"
+      "Lab 1 (Quarto/Git/Submission)"
     ]
   },
   {
-    "objectID": "labs/lab4-reproducibility.html#reproducibility",
-    "href": "labs/lab4-reproducibility.html#reproducibility",
-    "title": "Lab 4: Reproducibility",
+    "objectID": "labs/lab1-submission.html#submitting-problem-set-solutions-sep-4",
+    "href": "labs/lab1-submission.html#submitting-problem-set-solutions-sep-4",
+    "title": "Lab 1: Submitting problem set solutions",
     "section": "",
-    "text": "Today’s lab is about reproducibility, an important skill to professionals in industry and academia alike. Intimately related to communication and documentation, the main goal of reproducibility is to ensure others (and your future self) are able to reach the same results you did by following a sequence of steps. Our focus in the context of this course will be to attempt to reproduce the results from a recently published papr, pondering along the way whether we would have done anything different and assessing our overall experience. The paper in question is Comparative Advantage of Humans versus AI in the Long Tail (2024) by Agarwal, Huang, Moehring, Rajpurkar, Salz and Yu.",
+    "text": "By now you should already have access to the following 5 basic tools:\n\nUnix shell\nGit\nQuarto\nPython\nA text editor of your choice\n\nToday we will use all these tools together to submit a solution for Problem Set 0 (not a real problem set) to make sure you know how to submit solutions to upcoming (real) problem sets.\nHere is a selection of some basic reference tutorials and documentation for unix, bash and unix commands, git & GitHub, quarto, python and VS Code\nSome books to learn more about Unix.",
     "crumbs": [
       "Labs",
-      "Lab 4 (Reproducibility)"
+      "Lab 1 (Quarto/Git/Submission)"
     ]
   },
   {
-    "objectID": "labs/lab4-reproducibility.html#setup",
-    "href": "labs/lab4-reproducibility.html#setup",
-    "title": "Lab 4: Reproducibility",
-    "section": "Setup",
-    "text": "Setup\n\nFind a link to “Replication Package” on the paper’s page and click on “Download this project”. Authentication is required; we recommend to “access through your institution” and fall back to the other options in case this fails. By the end of this step, you should have a file named 202185-V1.zip on your machine. If that also does not work, you may try wget www.stat.berkeley.edu/~paciorek/transfer/202185-V1.zip.\nUnzip 202185-V1.zip and enter Rad_AI_Longtail/. (if you are unzipping from the mirror instead, after running wget, create a directory Rad_AI_Longtail/ and unzip the file inside it.)\nInvestigate which files are likely to contain reproducibility instructions and give it a quick read.\nWe now need to use the specific python version mentioned by the authors (3.11) to install the packages necessary to reproduce the results, which should be straightforward given the requirements.txt. But there are several caveats here. Try installing those packages and document your experience. Creating a conda environment using the provided requirements.txt file may be a reasonable attempt: conda create --name lab4 python=3.11 --file requirements.txt. If it fails on your system, try to identify why.\nAs an alternative, you may try the following command to generate an adjusted requirements file that you can then use to install relevant packages:\n\nfind . -type f -exec grep \"import \" {} \\; |\n    sed 's/\"//g; s/,//g; s/\\\\n//g; s/^ *//; s/ *$//' |\n    cut -d ' ' -f 2 |\n    cut -d '.' -f 1 |\n    sort |\n    uniq |\n    grep -F -f - requirements.txt |\n    grep -v '^#' |\n    cut -d '=' -f 1,2 |\n    sed 's/=/==/g' |\n    grep -v '_' |\n    grep -v '\\-base' \\\n    &gt; requirements_adjusted.txt\n\nRunning the command above incrementally might be useful to better understand what each step does if it is not immediately clear. Installing the packages should then be less prone to error by using this requirements_adjusted.txt file. You will also need nbformat==5.9.2 and jinja2==3.1.2 to be installed. Think in particular about the following modification sed 's/=/==/g' and what are the implications.",
+    "objectID": "labs/lab1-submission.html#quick-intro-to-git-and-github",
+    "href": "labs/lab1-submission.html#quick-intro-to-git-and-github",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "Quick Intro to git and GitHub",
+    "text": "Quick Intro to git and GitHub\n\nCreating a new repository\nMaking changes\n\n\nEditing and saving files\nStaging changes\nCommitting changes locally\nPushing changes to remote repository\n\n\nUndoing changes:\n\n\nLocal changes\nLocal staged changes\nLocal commited changes\nPushed changes\n\n\nMerging divergent versions\nWorking with branches\nGUI options (sourcetree)\nGetting help\n\nDiscussion: - Why is git so damn complicated? - What do you need to remember when working with collaborators on the same repository?",
     "crumbs": [
       "Labs",
-      "Lab 4 (Reproducibility)"
+      "Lab 1 (Quarto/Git/Submission)"
     ]
   },
   {
-    "objectID": "labs/lab4-reproducibility.html#replicating-the-results-in-the-paper",
-    "href": "labs/lab4-reproducibility.html#replicating-the-results-in-the-paper",
-    "title": "Lab 4: Reproducibility",
-    "section": "Replicating the results in the paper",
-    "text": "Replicating the results in the paper\nThe goal is now to try to replicate the paper, pondering about important questions along the way. Format your reasoning to the points below in a pdf file and submit it to Pensive by the end of the lab.\n\nWith a proper environment set up, proceed to identify what is the minimal set of input files that is needed to run all the scripts. Are all input files used? Are there any files provided that you wouldn’t expect to be input?\nStart following the instructions to replicate the results. Try to locate the “radiology experiment data” mentioned nd report back. If you are unable to find it, you may download it via wget https://www.stat.berkeley.edu/~paciorek/transfer/data_public.txt instead. Discuss the implications.\nCheck the file permissions of the shell script via ls -l make.sh. You may change the permissions via chmod if desired. Discuss.\nExplore the make.sh script and discuss how it helps or hinders reproducibility. In addition, pay attention to how failures are handled via bash in the script and discuss what you think the motivation was.\nNote that make.sh invokes both python and ipython. Double check both executables are on the correct version. If you do not have ipython installed, you may do so via conda install ipython or pip install ipython depending on what kind of virtual environment you set up.\nIn what follows, we are going to run scripts that output text to the terminal. Document along do way your opinion about the text that is purposefully printed (informative or uninformative; excessive or lacking; etc.) and about any other text printed to screen (are there warnings, for example?).\nRun the make.sh script up to the “main calculations” part. That step takes hours because the number of “bootstrap replicates” is large. Identify how that parameter is set and decrease it. Discuss your experience in making this change and whether you would have programmed this differently.\nEven though we adjusted the “bootstrap replicates” parameter to reduce the time the script takes, we are going to skip this step and conveniently download the files that would be generated by the script with “bootstrap replicates” set to 51. Run wget www.stat.berkeley.edu/~paciorek/transfer/data-analysis-bootstrap.zip and wget www.stat.berkeley.edu/~paciorek/transfer/data-analysis.zip to do so. Proceed to unzip the files and ensure the files are in the correct directories.\nRun the last two scripts in make.sh to generate the plots. Do they look similar to the ones in the paper? If not, what could explain the difference?\nNote the contact information given in the instructions file. Are the two options feasible ways to reach the authors?",
+    "objectID": "labs/lab1-submission.html#lab-submission",
+    "href": "labs/lab1-submission.html#lab-submission",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "Lab Submission",
+    "text": "Lab Submission\nRefer to this guide and please ask questions if something is not clear.",
     "crumbs": [
       "Labs",
-      "Lab 4 (Reproducibility)"
+      "Lab 1 (Quarto/Git/Submission)"
     ]
   },
   {
-    "objectID": "rubric.html",
-    "href": "rubric.html",
-    "title": "",
-    "section": "",
-    "text": "This document provides guidance for submitting high-quality problem set (and project) solutions. This guidance is based on general good practices for scientific communication, reproducible research, and software development."
-  },
-  {
-    "objectID": "rubric.html#general-presentation",
-    "href": "rubric.html#general-presentation",
-    "title": "",
-    "section": "General presentation",
-    "text": "General presentation\n\nSimply presenting code or derivations is not sufficient.\nBriefly describe the overall goal or strategy before providing code/derivations.\nAs needed describe what the pieces of your code/derivation are doing to make it easier for a reader to follow the steps.\nKeep your output focused on illustrating what you did, without distracting from the flow of your solution by showing voluminous output. The output should illustrate and demonstrate, not overwhelm or obscure. If you need to show longer output, you can add it at the end as supplemental material.\nOutput should be produced by your code (i.e., from the code chunks running when the document is rendered), not by copying and pasting results into the document."
-  },
-  {
-    "objectID": "rubric.html#coding-practice",
-    "href": "rubric.html#coding-practice",
-    "title": "",
-    "section": "Coding practice",
-    "text": "Coding practice\n\nMinimize (or eliminate) use of global variables.\nBreak down work into core tasks and develop small, modular, self-contained functions (or class methods) to carry out those tasks.\nDon’t repeat code. As needed refactor code to create new functions (or class methods).\nFunctions and classes should be “weakly coupled”, interacting via their interfaces and not by having to know the internals of how they work.\nUse data structures appropriate for the computations that need to be done.\nDon’t hard code ‘magic’ numbers. Assign such numbers to variables with clear names, e.g., speed_of_light = 3e8.\nProvide reasonable default arguments to functions (or class methods) when possible.\nProvide tests (including unit tests) when requested (this is good general practice but we won’t require it in all cases).\nAvoid overly complicated syntax – try to use the clearest syntax you can to solve the problem.\nIn terms of speed, don’t worry about it too much so long as the code finishes real-world tasks in a reasonable amount of time. When optimizing, focus on the parts of the code that are the bottlenecks.\nUse functions already available in the language rather than recreating yourself."
-  },
-  {
-    "objectID": "rubric.html#code-style",
-    "href": "rubric.html#code-style",
-    "title": "",
-    "section": "Code style",
-    "text": "Code style\n\nFollow a consistent style. While you don’t have to follow Python’s PEP8 style guide exactly, please look at it and follow it generally.\nUse informative variable and function names and have a consistent naming style.\nUse whitespace (spaces, newlines) and parentheses to make the structure of the code easy to understand and the individual syntax pieces clear.\nUse consistent indentation to make the structure of the code easy to understand.\nProvide comments that give the goal of a given piece of code and why it does things, but don’t use comments to restate what the code does when it should be obvious from reading the code.\n\nProvide summaries for blocks of code.\nFor particularly complicated syntax, say what a given piece of code does."
-  },
-  {
-    "objectID": "labs/lab5-scfparallel.html",
-    "href": "labs/lab5-scfparallel.html",
-    "title": "Lab 5: SCF and Parallel Computing",
-    "section": "",
-    "text": "For the first part of this lab, we will split into groups and discuss our experiences with AI tools. Each group will have a few minutes to discuss the following questions:\n\nWhat AI tool(s) have you used before this class? (e.g., ChatGPT, GitHub Copilot, DALL-E, etc.)\nWhat AI tool(s) did you use for PS2 Problem 3?\nHow was your experience using an AI agent on PS2 Problem 3?\n\n\nDid you find the AI outputs useful and clear and/or overwhelming and overcomplicated?\nWere you able to iteriate with the agent or did it just do the whole problem for you? What follow-up requests, if any, did you make after the agent’s initial response? For example, did you ask it to make the code clearer, try a different approach, fix errors, explain parts of the code, or add functionality? How did it respond?\nDid you understand what the AI agent did? Could you explain your code to someone else? Do you think it is important that we understand what our codes are doing or do you think we can abstract away coding entirely?\n\n\nIs there anything you wish you knew before you starting? How would you change your approach using AI tools moving forward?",
+    "objectID": "labs/lab1-submission.html#hands-on-lab-instructions---steps",
+    "href": "labs/lab1-submission.html#hands-on-lab-instructions---steps",
+    "title": "Lab 1: Submitting problem set solutions",
+    "section": "Hands-on Lab Instructions - Steps",
+    "text": "Hands-on Lab Instructions - Steps\n\nClone your github repository to your development environment\nCreate a subdirectory in your github repository with the name ps0\nIn that subdirectory, create a quarto document (ps0.qmd) that has some simple code that creates a simple plot (you can follow this example/tutorial here)\nUse the quarto command line to render it into a pdf document (quarto render FILE –to pdf)\nCommit the changes to your repository (git add FILES; git commit -m MESSAGE; git push)\nAdd another section to your quarto document (use your imagination), then preview and commit the changes\nUse the quarto command line to render the updated document into a pdf document\nAdd the pdf document to the repository as well\nMake sure that you can log into Pensive and upload a pdf document\n[optional] Undo your last set of changes and regenerate the pdf file\n\nIf we finish early, we will also take today’s lab as an opportunity to get familiar with the basic use of all the 5 basic tools listed above.\nFor git and quarto, very basic knowledge should be sufficient for now, but for unix commands and python, the more you learn the more effective you will be at solving the problem sets (and at any computational task you take on after that). You will need to learn more advanced use of git and github towards the end of the semester when you start working with other team members on the same project.\n\nChunk options\nLike RMarkdown, quarto allows for several execution options to be set per document and per chunk. Spend some time getting familiar with the various options, and keep this link handy when you are working on the first few problem sets.\nDepending on what’s required in the problem sets, you may need to set eval to false (just print out code) or error to true (print errors and don’t halt rendering of the document). Some of the other options may be useful for controlling how the code gets printed.\n\n\nTroubleshooting\n\nQuarto succeeds in rendering html but fails at rendering pdf\nInstall tinytex via quarto install tinytex\n\n\nProblems running and rendering bash commands in quarto\nIf you are using the knitr engine, you should be able to tag your code chunks in quarto with {bash} and use verbatim bash commands. If you are using the Jupyter engine, the {python} tag should be used instead and every line containing a bash command should be prefixed with an exclamation mark (!).\n\n\nQuarto rendering (or python execution) works from the terminal but not from the IDE\nYou can go to the settings in your IDE and point it to the specific python installation that you find when you execute which python in the terminal.\n\n\nQuarto rendering (or python execution) works from the IDE but not from the terminal\nYou can fix the quarto configuration by setting the environment variable QUARTO_PYTHON to the correct python path or by running quarto check. Restarting the IDE may also help if you had just installed something in the other environment.\n\n\nQuarto rendering fails to find a python package\nIt’s a good idea to test that you can import packages such as numpy when a document is rendered. If that fails, either you haven’t installed the package in python or quarto is using a different python installation than the one in which you installed the package. See the items above.\n\n\nPushing to git fails with message “Make sure you configure your ‘user.email’ and ‘user.name’ in git”\nFollow the suggested course of action in the error message to configure your email and name, then push again.",
     "crumbs": [
       "Labs",
-      "Lab 5 (Linux Cluster/Slurm)"
+      "Lab 1 (Quarto/Git/Submission)"
     ]
   },
   {
-    "objectID": "labs/lab5-scfparallel.html#logging-in",
-    "href": "labs/lab5-scfparallel.html#logging-in",
-    "title": "Lab 5: SCF and Parallel Computing",
-    "section": "Logging in",
-    "text": "Logging in\nThe SCF has a number of login nodes which you can access via ssh.\n\n\n\n\n\n\nNote\n\n\n\nFor info on using ssh (including on Windows), see here.\n\n\nFor example, I’ll use ssh to connect to the gandalf node:\njames@pop-os:~$ ssh &lt;scf-username&gt;@gandalf.berkeley.edu\nThe authenticity of host 'gandalf.berkeley.edu (128.32.135.47)' can't be established.\nED25519 key fingerprint is SHA256:io5uUQGbCZie78mF+UUZ5guDK29JXQGQ6LVB129UoUo.\nThis key is not known by any other names\nAre you sure you want to continue connecting (yes/no/[fingerprint])? yes\nWarning: Permanently added 'gandalf.berkeley.edu' (ED25519) to the list of known hosts.\nNotice that upon first connecting to a server you haven’t visited there is a warning that the “authenticity of the host … can’t be established”. So long as you have typed in the hostname correctly (gandalf.berkeley.edu, in this case), and trust the host (we trust the SCF!) then you can type yes to add the host to your known hosts file (found on your local machine at ~/.ssh/known_hosts).\nYou’ll then be asked to enter your password for the SCF cluster. For privacy, you won’t see anything happen in your terminal when you type it in, so type carefully (you can use Backspace if you make a mistake) and press Enter when you’re done. If you were successful, you should see a welcome message and your shell prompt, like:\n&lt;scf-username&gt;@gandalf:~$\nTo get your bearings, you can type pwd to see where your home directory is located on the SCF cluster filesystem:\n&lt;scf-username&gt;@gandalf:~$ pwd\n/accounts/grad/&lt;scf-username&gt;\nYour home directory is likely also in the /accounts/grad/ directory, as mine is.\n\nOther login nodes\n\n\n\n\n\n\nImportant\n\n\n\nDon’t run computationally intensive tasks on the login nodes!\nThey are shared by all the SCF users, and should only be used for non-intensive interactive work such as job submission and monitoring, basic compilation, managing your disk space, and transferring data to/from the server.\n\n\nIf for some reason gandalf is not working for you, the SCF has a number of nodes which can be accessed from your local machine with commands of the form ssh &lt;scf-username&gt;@&lt;hostname&gt;.berkeley.edu. Currently, these are:\n\naragorn\narwen\ndorothy\ngandalf\ngollum\nhermione\nquidditch\nradagast\nshelob\n\nNote that all those machines are stand-alone login nodes. After logging in and launching a job, the job will be run on a cluster node. Usually, users cannot ssh into cluster nodes and the process of launching a job is via slurm from one of the login machines. However, if one has a job running on a cluster node, that specific node becomes accessible via ssh. This can be helpful with troubleshooting.",
-    "crumbs": [
-      "Labs",
-      "Lab 5 (Linux Cluster/Slurm)"
-    ]
-  },
-  {
-    "objectID": "labs/lab5-scfparallel.html#disk-space",
-    "href": "labs/lab5-scfparallel.html#disk-space",
-    "title": "Lab 5: SCF and Parallel Computing",
-    "section": "Disk space",
-    "text": "Disk space\nYour home directory has a limited amount of disk space; you can check how much you have used and available using the quota command, which will show your home directory usage and quota on the line for the accounts filesystem.\n&lt;scf-username&gt;@gandalf:~$ quota\nFILESYSTEM  USE         QUOTA       %\n  accounts  5.29 G      20 G        26.5\nThe accounts filesystem is accessible from all the nodes on the SCF cluster. This means that regardless of which login or compute node you use, you will have access to the files in your home directory. Moreover, your home directory is backed up regularly, so you are protected from accidental data loss.\nIf you’re running out of space, you should try to selectively delete large files that you no longer need. See here for some tips on finding large files. If all else fails, you can request additional space or request access to the /scratch filesystem. The latter is a good place for large datasets, but note that /scratch is not backed up, unlike your home directory. See the previous link for more info. Note though that disk space should not be a concern for Stat 243, but being aware of /scratch can be relevant for Stat graduate students (MA and PhD) working on projects in the future.\nFor temporary files (e.g., intermediate results of a computation that you don’t need to store for later), every machine has a /tmp filesystem. However, /tmp is always linked to the specific machine you are on, meaning that if you put something in /tmp on gandalf and then later go to aragorn, you won’t find your files in the /tmp directory there. If you go back to gandalf, you will likely find them again, but /tmp is automatically wiped when a machine reboots, so only use it for files you don’t care about preserving!",
-    "crumbs": [
-      "Labs",
-      "Lab 5 (Linux Cluster/Slurm)"
-    ]
-  },
-  {
-    "objectID": "labs/lab5-scfparallel.html#data-transfer-scp-sftp",
-    "href": "labs/lab5-scfparallel.html#data-transfer-scp-sftp",
-    "title": "Lab 5: SCF and Parallel Computing",
-    "section": "Data transfer: SCP / SFTP",
-    "text": "Data transfer: SCP / SFTP\nWe can use the scp and sftp protocols to transfer files to and from any login node on the SCF cluster. scp is a shell program that should be available by default on macOS and Linux, while on Windows you can use WinSCP. WinSCP can also do sftp transfers, or you can use FileZilla on any platform for sftp. Both WinSCP and FileZilla have a GUI that allows you to drag and drop files between your local machine and a remote host.\nThe syntax for scp is scp &lt;from-place&gt; &lt;to-place&gt;, and you’ll typically use scp on your local machine. For example, we’ll show how to transfer the file data.csv (you can find it here) :\n\nTo SCF while on your local machine\n# transfer to my home directory without renaming the file \nscp data.csv &lt;scf-username&gt;@gandalf.berkeley.edu:~/\n\n# transfer to the data/ subdirectory and rename the file\nscp data.csv &lt;scf-username&gt;@gandalf.berkeley.edu:~/data/new_name.csv\n\n# transfer to the gandalf-specific /tmp/ directory\nscp data.csv &lt;scf-username&gt;@gandalf.berkeley.edu:/tmp/\n\n\nFrom SCF while on your local machine\n# now &lt;from-place&gt; is a path in my home directory on the SCF \nscp &lt;scf-username&gt;@gandalf.berkeley.edu:~/data/new_name.csv ~/Desktop/data_scf.csv\nFor more information, see here. In particular, if you have a very large dataset to transfer, Globus is a better option than either scp or sftp.",
-    "crumbs": [
-      "Labs",
-      "Lab 5 (Linux Cluster/Slurm)"
-    ]
-  },
-  {
-    "objectID": "labs/lab5-scfparallel.html#acknowledgements",
-    "href": "labs/lab5-scfparallel.html#acknowledgements",
-    "title": "Lab 5: SCF and Parallel Computing",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis lab was developed by Andrew Vaughn and James Duncan for R, adapted to python by Ahmed Eldeeb and slightly adjusted for the Fall 2026 semester.",
-    "crumbs": [
-      "Labs",
-      "Lab 5 (Linux Cluster/Slurm)"
-    ]
-  },
-  {
-    "objectID": "labs/lab0-setup.html",
-    "href": "labs/lab0-setup.html",
-    "title": "Lab 0: Setup",
-    "section": "",
-    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
-    "crumbs": [
-      "Labs",
-      "Lab 0 (Optional setup)"
-    ]
-  },
-  {
-    "objectID": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
-    "href": "labs/lab0-setup.html#setting-up-your-environment-aug-28",
-    "title": "Lab 0: Setup",
-    "section": "",
-    "text": "You will need to set up (or make sure you have access to) the following:\n\nUnix shell;\nGit;\nQuarto;\nPython;\nA text editor or IDE of your choice.\n\nAfter making sure you have access to all these 5 tools, it may be a good idea to go through the tutorial on unix and (possibly) unix commands. You can do this on your own or in the Lab section on Friday, Aug 29.\nAttending Lab 0 is optional. If you successfully set up your environment to have all the listed tools, you don’t need to attend. You are welcome to attend to ask for help with the setup or to help your classmates with setting up their environments.\nYou are also welcome to come and ask for help on using any of these 5 tools/systems (especially shell and unix commands this week), but priority will be given to environment setup questions.\nReach out to us on Ed with any unresolved problems or if you discover something that needs to be changed with our howtos and instructions.",
-    "crumbs": [
-      "Labs",
-      "Lab 0 (Optional setup)"
-    ]
-  },
-  {
-    "objectID": "labs/lab0-setup.html#acknowledgements",
-    "href": "labs/lab0-setup.html#acknowledgements",
-    "title": "Lab 0: Setup",
+    "objectID": "labs/lab1-submission.html#acknowledgements",
+    "href": "labs/lab1-submission.html#acknowledgements",
+    "title": "Lab 1: Submitting problem set solutions",
     "section": "Acknowledgements",
     "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
     "crumbs": [
       "Labs",
-      "Lab 0 (Optional setup)"
+      "Lab 1 (Quarto/Git/Submission)"
     ]
   },
   {
-    "objectID": "labs/lab2-testing.html",
-    "href": "labs/lab2-testing.html",
-    "title": "Lab 2: Exceptions and Testing",
+    "objectID": "ps/ps5.html",
+    "href": "ps/ps5.html",
+    "title": "Problem Set 5",
     "section": "",
-    "text": "Today we will spend some time getting familiar with some of the programming tools that can help make your code more robust and resilient to errors and boundary conditions - tools like unit tests and exceptions (and next week we will spend some time on debugging misbehaving code).\nTesting is what you do when you finish implementing a piece of code and want to try it out to see if it works. Running your code manually and seeing if it works is a workable strategy for simple one-time scripts that do simple tasks, but there are situations (like writing a function that others will repeatedly use, or like running the same piece of code on hundreds of files or URLs) where it is prudent to test your code ahead of its actual use or deployment. In today’s lab, we are going to use pytest to test for correct behavior and verify that exceptions are raised in the right situations.",
+    "text": "This covers material in Unit 8.\nIt’s due at 10 am (Pacific) on Friday Oct. 30, both submitted as a PDF to Pensive as well as committed to your GitHub repository.\nAs usual, your electronic solution should be in the form of an Quarto file named ps5.qmd, with Python code chunks. If you want to initially work in a Jupyter notebook, that is fine, but you’ll need to run quarto convert file.ipynb to generate a qmd file before rendering to PDF and submitting.",
     "crumbs": [
-      "Labs",
-      "Lab 2 (Exceptions/Testing)"
+      "Problem Sets",
+      "Problem Set 5"
     ]
   },
   {
-    "objectID": "labs/lab2-testing.html#lab-exercise",
-    "href": "labs/lab2-testing.html#lab-exercise",
-    "title": "Lab 2: Exceptions and Testing",
-    "section": "Lab Exercise",
-    "text": "Lab Exercise\n1- Write a function in Python that finds a number in a string using regular expressions. The number can be positive or negative, integer-valued, or real, and numbers less than one can also be of the form 0.96 or .96. It can be assumed that no numbers appear in scientific notation. Refer to String processing and regular expressions in Python for a quick overview of Python’s re package. You may use AI to generate the regex, but be sure you understand the output.\n2- Write an interface for that function (a function name and arguments), but do not implement the function yet (you can have it return an None, or an empty string for now). We will do this in a good old fashioned .py file (not a notebook or a quarto file).\n3- Build a test suite using the pytest package to test that your function works as intended. Add at least 8 test cases with justification for each. Try to cover the main use cases, and as many potential corner cases or boundary conditions as possible.\n4- Now run the test suite. It should fail for all your tests (unless one of them was passing an empty string).\n5- Implement the function. You can do this at one go, or case by case. As you implement a case, you can rerun the test suite and see some of the tests relevant to that cases stopping to fail. When all the tests pass, you are done. This is called test-driven development.\n6- If some cases are still failing, that’s alright, for the purposes of this lab we don’t need to ensure all edge cases are dealt with.\n7- Make sure you raise an exception to trap invalid input types.\n8- Add a test to check that an exception is properly raised when the function is given invalid input types.",
+    "objectID": "ps/ps5.html#comments",
+    "href": "ps/ps5.html#comments",
+    "title": "Problem Set 5",
+    "section": "",
+    "text": "This covers material in Unit 8.\nIt’s due at 10 am (Pacific) on Friday Oct. 30, both submitted as a PDF to Pensive as well as committed to your GitHub repository.\nAs usual, your electronic solution should be in the form of an Quarto file named ps5.qmd, with Python code chunks. If you want to initially work in a Jupyter notebook, that is fine, but you’ll need to run quarto convert file.ipynb to generate a qmd file before rendering to PDF and submitting.",
     "crumbs": [
-      "Labs",
-      "Lab 2 (Exceptions/Testing)"
+      "Problem Sets",
+      "Problem Set 5"
     ]
   },
   {
-    "objectID": "labs/lab2-testing.html#acknowledgements",
-    "href": "labs/lab2-testing.html#acknowledgements",
-    "title": "Lab 2: Exceptions and Testing",
-    "section": "Acknowledgements",
-    "text": "Acknowledgements\nThis lab was originally authored by Ahmed Eldeeb and adapted for the Fall 2026 semester.",
+    "objectID": "ps/ps5.html#problems",
+    "href": "ps/ps5.html#problems",
+    "title": "Problem Set 5",
+    "section": "Problems",
+    "text": "Problems\n\nComputation on a GPU often uses single precision (32 bits) floating point numbers or even half-precision (16 bits) (as part of “mixed” precision calculation), using the same form as the 64-bit representation we’ve been discussing, but with fewer bits. Answer the following questions for the half-precision case.\n\nWith half precision, discuss how one might allocate your “budget” of 16 bits in terms of precision and magnitude of numbers. There is no right answer; just discuss the tradeoff and decide on an allocation that seems reasonable to you.\nUsing that specific allocation, what is the largest number (approximately) that can be represented (i.e., when overflow would occur). You should report that number in both base 2 and base 10.\nUsing that specific allocation, what is the (exact) gap between numbers that can be represented in this representation, in base 2.\nBased on your answer to (c), what is the approximate number of digits of precision in base 10?\nNow look at numpy.float16 and figure out what allocation it uses compared to what you came up with. You should do this by looking at np.finfo(np.float16) and inferring the allocation, not by asking AI or Google. Please don’t do this until you’ve worked out parts (a)-(d). You won’t learn as much if you don’t work through it yourself first. Finish by showing some carefully chosen examples of numpy.float16 numbers that demonstrate the range and precision are as indicated by what you see with np.finfo(np.float16).\n\nConsider the following estimates of the variance of a set of numbers. The results depend on whether the magnitude of the numbers is large or small. You can assume that for a vector \\(w\\), \\(\\mbox{var}(w)\\) is calculated as \\(\\sum_{i=1}^{n}(w_{i}-\\bar{w})^{2}/(n-1)\\).\n\nimport numpy as np\nrng = np.random.default_rng(seed = 1)\ndef dg(x, form = '.20f'):\n  print(format(x, form))\n\nz = rng.normal(size = 100)\nx = z + 1e12 \n## Calculate the empirical variances\ndg(np.var(z)) \ndg(np.var(x)) \n\n0.72514887009499828796\n0.72514631554484365594\n\n\nExplain why these two estimates agree to only a small number of decimal places and which of the two is the more accurate answer, when mathematically the variance of z and the variance of x are exactly the same (since x is just the addition of a constant to z). How many digits of accuracy do you expect in the less accurate of the two?\nConsider the following, in which we run into problems when trying to calculate on a computer. Suppose I want to calculate a predictive density for new data (e.g., in a model comparison in a Bayesian context): \\[ f(y^{*}|y,x)  =  \\int f(y^{*}|y,x,\\theta)\\pi(\\theta|y,x)d\\theta = E_{\\theta|y,x}f(y^{*}|y,x,\\theta). \\] Here \\(\\pi(\\theta | y, x)\\) is the posterior distribution (the distribution of the parameter, \\(\\theta\\), given the data, \\(y\\), and predictors, \\(x\\)). All of \\(\\theta\\), \\(y\\), and \\(x\\) will generally be vectors.\nIf we have a set of samples for \\(\\theta\\) from the posterior distribution, \\(\\theta_j \\sim \\pi(\\theta|y,x)\\), \\(j=1,\\ldots,m\\), we can estimate that quantity for a vector of conditionally IID observations using a Monte Carlo estimate of the expectation: \\[ f(y^{*}|y,x) \\approx \\frac{1}{m}\\sum_{j=1}^{m}\\prod_{i=1}^{n}f(y_i^{*}|y,x,\\theta_{j}). \\]\n\nExplain why I should calculate the product in the equation above on the log scale. What is likely to happen if I just try to calculate it directly?\nHere’s a re-expression, using the log scale for the inner quantity, \\[ \\frac{1}{m}\\sum_{j=1}^{m}\\exp\\sum_{i=1}^{n}\\log f(y_{i}^{*}|y,x,\\theta_{j}), \\] which can be re-expressed as \\[ \\frac{1}{m}\\sum_{j=1}^{m}\\exp (v_j) \\] where \\[v_j = \\sum_{i=1}^{n} \\log f(y_i^{*}|y,x,\\theta_j).\\] Thus we have \\[\\log f(y^{*}|y,x) \\approx \\log \\left(\\frac{1}{m}\\sum_{j=1}^{m} \\exp(v_j)\\right).\\] What is likely to happen when I try to exponentiate \\(v_j\\)? Figure out how you could calculate this log predictive density without running into that problem.",
     "crumbs": [
-      "Labs",
-      "Lab 2 (Exceptions/Testing)"
+      "Problem Sets",
+      "Problem Set 5"
     ]
   },
   {
