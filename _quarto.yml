@@ -73,7 +73,7 @@ website:
             text: "Problem Set 4"
           - href: ps/ps5.qmd
             text: "Problem Set 5"
-     - section: "How tos"
+      - section: "How tos"
         contents:
           - howtos/accessPython.md
           - howtos/accessUnixCommandLine.md
