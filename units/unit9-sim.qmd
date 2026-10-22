@@ -1,7 +1,7 @@
 ---
 title: "Simulation"
 author: "Chris Paciorek"
-date: "2025-08-13"
+date: "2026-10-22"
 format:
   pdf:
     documentclass: article
@@ -229,7 +229,7 @@ $\widehat{\mbox{Var}}(\hat{\phi})$ does not hold because the samples are
 not IID, but the estimator $\hat{\phi}$ is still a valid, unbiased
 estimator of $\phi$.
 
-## Variance reduction (optional)
+## (OPTIONAL) Variance reduction
 
 There are some tools for variance reduction in MC settings. One is
 importance sampling (see Section 3). Others are the use of control
@@ -265,7 +265,7 @@ $V(X)=E(V(X|Y))+V(E(X|Y))\Rightarrow V(E(X|Y))<V(X)$.
 
 # 2. Design of simulation studies
 
-Consider the paper that is part of PS5. We can think about
+Consider the paper that is part of Lab 6. We can think about
 designing a simulation study in that context.
 
 First, what are the key issues that need to be assessed to evaluate
@@ -379,7 +379,7 @@ plt.show()
 
 
 
-## Experimental Design (optional)
+## (OPTIONAL) Experimental design 
 
 A typical context is that one wants to know the effect of multiple input
 variables on some outcome. Often, scientists, and even statisticians
@@ -430,7 +430,7 @@ Luke Miratrix (a UCB Stats PhD alum) has prepared a nice tutorial on
 carrying out a simulation study, including helpful R code. So if the
 discussion here is not concrete enough or you want to see how to
 effectively implement such a study, see
-*simulation_tutorial_miratrix.pdf* and the similarly named R code file.
+[simulation_tutorial_miratrix.pdf](simulation_tutorial_miratrix.pdf) and the [accompanying R code file](simulation_tutorial_miratrix.R).
 
 ## Computational efficiency
 
@@ -648,7 +648,7 @@ In the PCG approach, the state is usually a 64 or 128 bit integer. Instead of us
 
 O'Neal then goes further; instead of simply discarding bits, she proposes to either shift bits by a random amount or rotate bits by a random amount, where the random amount is determined by a small number of the initial bits. This improves the statistical performance of the generator. The choice of how to do this gives the various members of the PCG family of generators. The details are fairly complicated (the PCG paper is 50-odd pages) and not important for our purposes here.
 
-### Mersenne Twister
+### (OPTIONAL) Mersenne Twister
 
 A commonly used generator (including in both R and Python) is the Mersenne Twister.
 It's the default in R and the old default in numpy (see next section for what I mean by "old default").
@@ -801,7 +801,7 @@ saved_state['state']['inc']     # increment ('c')
 
 Question: how many bits does `saved_state['state']['state']` correspond to?
 
-### Using the Mersenne Twister (optional)
+### (OPTIONAL) Using the Mersenne Twister 
 
 If we simply start using numpy or scipy to generate random numbers without
 choosing the generator using ,
@@ -865,10 +865,7 @@ various methods. Many are built on the relationships between different
 distributions - e.g., a beta random variable (RV) can be generated from
 two gamma RVs.
 
-## Multivariate distributions
-
-The `mvtnorm` package supplies code for working with the density and CDF
-of multivariate normal and t distributions.
+## Multivariate normal
 
 To generate a multivariate normal, in Unit 10, we'll see the standard
 method based on the Cholesky decomposition:
@@ -943,7 +940,7 @@ version of the normal, you can use an translated exponential with lower
 end point equal to the truncation point as the majorizing density
 [(Robert 1995; Statistics and Computing)](https://link.springer.com/article/10.1007/BF00143942). For truncation less than zero, just make the values negative.
 
-## Adaptive rejection sampling (optional)
+## (OPTIONAL) Adaptive rejection sampling
 
 The difficulty of RS is finding a good enveloping function. Adaptive
 rejection sampling refines the envelope as the draws occur, in the case
@@ -991,10 +988,10 @@ corrects for the oversampling.
 
 What if we actually want a sample from $f$ as opposed to estimating the
 expected value above? We can draw $y$ from the unweighted sample,
-$\{y_{i}\}$, with weights $\{w_{i}\}$. This is called sampling
-importance resampling (SIR).
+$\{y_{i}\}$, with weights $\{w_{i}\}$. This is called *sampling
+importance resampling* (SIR).
 
-## Ratio of uniforms (optional)
+## (OPTIONAL) Ratio of uniforms
 
 If $U$ and $V$ are uniform in $C=\{(u,v):\,0\leq u\leq\sqrt{f(v/u)}$
 then $X=V/U$ has density proportion to $f$. The basic algorithm is to
