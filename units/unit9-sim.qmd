@@ -430,7 +430,7 @@ Luke Miratrix (a UCB Stats PhD alum) has prepared a nice tutorial on
 carrying out a simulation study, including helpful R code. So if the
 discussion here is not concrete enough or you want to see how to
 effectively implement such a study, see
-[simulation_tutorial_miratrix.pdf](simulation_tutorial_miratrix.pdf) and the [accompanying R code file](simulation_tutorial_miratrix.R).
+[simulation_tutorial_miratrix.pdf](simulation_tutorial_miratrix.pdf) and the [accompanying R code file](_simulation_tutorial_miratrix.R).
 
 ## Computational efficiency
 

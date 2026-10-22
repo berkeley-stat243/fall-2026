@@ -822,7 +822,7 @@ when in the following two situations.
     Ideally, we would have accuracy to 36 places (16 digits + the 20
     zeroes), but we've lost 8 digits to catastrophic cancellation.
 
-    It's best to do any subtraction on numbers that are not too large.
+    It's best to do any arithmetic on numbers that are not too large.
     For example, if we compute the sum of squares in a naive way, we can
     lose all of the information in the calculation because the
     information is in digits that are not computed or stored accurately:
@@ -840,6 +840,9 @@ when in the following two situations.
     ## Adding/subtracting a constant shouldn't change the result:
     x = x + 1e8
     np.sum(x**2)-n*np.mean(x)**2  ## YIKES!
+    dg(np.sum(x**2))     ## This should be 30000000000000002.
+    dg(n*np.mean(x)**2)
+
     np.sum((x - np.mean(x))**2)
     ```
 
