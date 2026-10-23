@@ -786,7 +786,7 @@ when in the following two situations.
     ```{python}
     #| tidy: false
     # catastrophic cancellation w/ large numbers
-    dg(123456781234.56 - 123456781234.00)
+    dg(123456781234.56 - 123456781234.36)
     ```
 
     The absolute error in the original numbers here is of the order
@@ -822,6 +822,11 @@ when in the following two situations.
     Ideally, we would have accuracy to 36 places (16 digits + the 20
     zeroes), but we've lost 8 digits to catastrophic cancellation.
 
+    In general, you can
+    sometimes rearrange your calculation to avoid catastrophic
+    cancellation. Another example involves the quadratic formula for
+    finding a root (p. 101 of Gentle).
+
     It's best to do any arithmetic on numbers that are not too large.
     For example, if we compute the sum of squares in a naive way, we can
     lose all of the information in the calculation because the
@@ -841,17 +846,14 @@ when in the following two situations.
     x = x + 1e8
     np.sum(x**2)-n*np.mean(x)**2  ## YIKES!
     dg(np.sum(x**2))     ## This should be 30000000000000002.
-    dg(n*np.mean(x)**2)
+    dg(n*np.mean(x)**2)  ## This is (and should be) 30000000000000000.
 
     np.sum((x - np.mean(x))**2)
     ```
 
     A good principle to take away is to subtract off a number similar in
     magnitude to the values (in this case $\bar{x}$ is obviously ideal)
-    and adjust your calculation accordingly. In general, you can
-    sometimes rearrange your calculation to avoid catastrophic
-    cancellation. Another example involves the quadratic formula for
-    finding a root (p. 101 of Gentle).
+    and adjust your calculation accordingly.
 
 2.  Adding or subtracting numbers that are very different in magnitude.
     The precision will be that of the large magnitude number, since we
