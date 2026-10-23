@@ -1285,9 +1285,9 @@ np.float64(inf)</code></pre>
 <li><p>Subtracting large numbers that are nearly equal (or adding negative and positive numbers of the same magnitude). You won’t have the precision in the answer that you would like. How many decimal places of accuracy do we have here?</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb242"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb242-1"><a href="#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="co"># catastrophic cancellation w/ large numbers</span></span>
-<span id="cb242-2"><a href="#cb242-2" aria-hidden="true" tabindex="-1"></a>dg(<span class="fl">123456781234.56</span> <span class="op">-</span> <span class="fl">123456781234.00</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb242-2"><a href="#cb242-2" aria-hidden="true" tabindex="-1"></a>dg(<span class="fl">123456781234.56</span> <span class="op">-</span> <span class="fl">123456781234.36</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.55999755859375000000</code></pre>
+<pre><code>0.19999694824218750000</code></pre>
 </div>
 </div>
 <p>The absolute error in the original numbers here is of the order <span class="math inline">\(\epsilon x=2.2\times10^{-16}\cdot1\times10^{11}\approx1\times10^{-5}=.00001\)</span>. While we might think that the result is close to the value 1 and should have error of about machine epsilon, the relevant absolute error is in the original numbers, so we actually only have about five significant digits in our result because we cancel out the other digits.</p>
@@ -1307,6 +1307,7 @@ Here’s catastrophic cancellation with small numbers. The right answer here is 
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb246"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb246-1"><a href="#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="co">## [1] "0.00000000000000000000123399999315140"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>But the result is accurate only to 8 places + 20 = 28 decimal places, as expected from a machine precision-based calculation, since the “1” is in the 13th position, after 12 zeroes (12+16=28). Ideally, we would have accuracy to 36 places (16 digits + the 20 zeroes), but we’ve lost 8 digits to catastrophic cancellation.</p>
+<p>In general, you can sometimes rearrange your calculation to avoid catastrophic cancellation. Another example involves the quadratic formula for finding a root (p.&nbsp;101 of Gentle).</p>
 <p>It’s best to do any arithmetic on numbers that are not too large. For example, if we compute the sum of squares in a naive way, we can lose all of the information in the calculation because the information is in digits that are not computed or stored accurately: <span class="math display">\[s^{2}=\sum x_{i}^{2}-n\bar{x}^{2}\]</span></p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb247"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb247-1"><a href="#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co">## No problem here:</span></span>
@@ -1330,7 +1331,7 @@ Here’s catastrophic cancellation with small numbers. The right answer here is 
 <div class="cell-output cell-output-stdout">
 <pre><code>30000000000000000.00000000000000000000</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb255"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb255-1"><a href="#cb255-1" aria-hidden="true" tabindex="-1"></a>dg(n<span class="op">*</span>np.mean(x)<span class="op">**</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb255"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb255-1"><a href="#cb255-1" aria-hidden="true" tabindex="-1"></a>dg(n<span class="op">*</span>np.mean(x)<span class="op">**</span><span class="dv">2</span>)  <span class="co">## This is (and should be) 30000000000000000.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>30000000000000000.00000000000000000000</code></pre>
 </div>
@@ -1339,7 +1340,7 @@ Here’s catastrophic cancellation with small numbers. The right answer here is 
 <pre><code>np.float64(2.0)</code></pre>
 </div>
 </div>
-<p>A good principle to take away is to subtract off a number similar in magnitude to the values (in this case <span class="math inline">\(\bar{x}\)</span> is obviously ideal) and adjust your calculation accordingly. In general, you can sometimes rearrange your calculation to avoid catastrophic cancellation. Another example involves the quadratic formula for finding a root (p.&nbsp;101 of Gentle).</p></li>
+<p>A good principle to take away is to subtract off a number similar in magnitude to the values (in this case <span class="math inline">\(\bar{x}\)</span> is obviously ideal) and adjust your calculation accordingly.</p></li>
 <li><p>Adding or subtracting numbers that are very different in magnitude. The precision will be that of the large magnitude number, since we can only represent that number to a certain absolute accuracy, which is much less than the absolute accuracy of the smaller number:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb259"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb259-1"><a href="#cb259-1" aria-hidden="true" tabindex="-1"></a>dg(<span class="fl">123456781234.2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
