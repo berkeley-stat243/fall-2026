@@ -7,11 +7,17 @@
 - button: Tutorials
   link: https://computing.stat.berkeley.edu/tutorials
   color: blue
-- button: Lecture recordings
+- button: Lecture recordings (243A)
   link: https://bcourses.berkeley.edu/courses/1558189/external_tools/90481
   color: green
-- button: bCourses 
+- button: Lecture recordings (243B)
+  link: https://bcourses.berkeley.edu/courses/1558190/external_tools/90481
+  color: green
+- button: bCourses (243A) 
   link: https://bcourses.berkeley.edu/courses/1558189
+  color: crimson
+- button: bCourses (243B) 
+  link: https://bcourses.berkeley.edu/courses/1558190
   color: crimson
 - button: PollEV
   link: https://pollev.com/chrispaciorek428
