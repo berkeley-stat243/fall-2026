@@ -168,7 +168,7 @@
           href: "ps/ps5.html"
         - type: "Quiz"
           id: "5"
-          name: "PS 5 Quiz Makeup"
+          name: "PS 5 Quiz"
           href: "syllabus.html#problem-set-quizzes"
 - week: 11
   days:
@@ -177,6 +177,17 @@
         - type: "Quiz"
           id: "5alt"
           name: "PS 5 Quiz Makeup/Retake"
+          href: "https://calendar.app.google/VBFc4Z6NjGmmpXjU9"
+    - date: "Fri Nov 6"
+      items:
+        - type: "Problem_Set"
+          id: "6"
+          name: "Problem Set 6"
+          href: "ps/ps6.html"
+        - type: "Quiz"
+          id: "6"
+          name: "PS 6 Quiz"
+          href: "syllabus.html#problem-set-quizzes"
 
 
 
