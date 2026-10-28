@@ -16,55 +16,74 @@ format:
 execute:
   freeze: auto
 ---
+
 # Overview
+
 Our lab today focuses on section **3. Simulation studies** of the paper by
 [Li and Lin (2025)](https://projecteuclid.org/journals/annals-of-applied-statistics/volume-19/issue-3/Integrative-ecological-regression-analysis-of-US-county-and-state-level/10.1214/25-AOAS2055.full),
 which you have read in advance.
+
 Specifically, we'll discuss the goals of the simulation study, the choices the
 authors made in designing their data generating mechanisms, how those choices
 may affect the results of the study, and interpretation of those results as
 presented in Tables 2 and 3.
+
 # Schedule
+
 1. First, to get us all refreshed on the context, I'll give a **brief overview**
    of their method.
+
 2. Please form groups of 2-3 students. **Open a shared Google Doc**, giving
    access to everyone in your group.
+
 3. List what were the main goals of the simulation study performed by the
    authors and what metrics they considered in assessing their method.
+
    - How do Emp SE and Est SE in Tables 2 and 3 differ? How large a discrepancy
      would concern you, and what additional information would you need to
      judge it? Would the average estimated SE reveal how much the estimated
      SEs vary across datasets?
+
    - How many simulation replications were used? If true coverage were 95%,
      how much Monte Carlo variability would you expect in the reported
      coverage? Use this to assess a reported value. Do the authors quantify
      this simulation uncertainty?
+
 4. Discuss how the authors generate their **simulated datasets**, as described
    in Section 3.1 of the paper. In your Google Doc, have one group member write
    down **pseudo-code** to generate a single dataset. Identify what is
    generated once and what is regenerated in each replication, and state any
    details you need to infer.
+
    - Which quantities are independent, and conditional on what? How does your
      simulation preserve dependence among individual outcomes and between
      county totals and state demographic counts?
+
    - The simulations use independent normal county random effects. If you
      instead wanted correlated county effects with a specified positive-definite
      covariance matrix, how would you generate them efficiently using the
      Cholesky decomposition described in [Unit 9](/units/unit9-sim.html)?
+
 5. Next, **discuss the specific choices** the authors made in designing their
    simulated datasets. As you discuss, **write down those choices** in your
    Google Doc.
+
 6. As a group, pick the **two most important choices** and justify why you
    picked them in the Google Doc.
+
 7. With those choices in mind, brainstorm and write how you might simulate the
    data differently. Describe a data generating process that would challenge
    an assumption or approximation of the fitted model, and predict how it
    might affect coverage or standard error estimates.
+
 8. Finally, have one group member export the Google Doc to PDF and submit it
    **as a group** for the "Lab 6" assignment on **Pensive**. Only one
    submission is needed per group.
+
 9. Time allowing, after your group submits its assignment to Pensive, find
    another group that has also completed its submission and discuss your
    answers.
+
 ## Acknowledgements
+
 This lab was originally developed by Andrew Vaughn and James Duncan.
