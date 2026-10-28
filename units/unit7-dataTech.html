@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -333,6 +333,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../labs/lab5-scfparallel.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lab 5 (Linux Cluster/Slurm)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../labs/lab8-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 8 (Simulation Studies)</span></a>
   </div>
 </li>
       </ul>
@@ -951,7 +957,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-s</span> https://ellm.nrp-nautilus.io/v1/models</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>curl: /system/linux/miniforge-3.13/lib/libcurl.so.4: no version information available (required by curl)
-{"data":[{"id":"gpt-oss","created":1756179150,"object":"model","owned_by":"SDSC"},{"id":"gemma","created":1756179150,"object":"model","owned_by":"SDSC"},{"id":"gemma-vl","created":1756179150,"object":"model","owned_by":"SDSC"},{"id":"kimi","created":1756179150,"object":"model","owned_by":"NRP"},{"id":"minimax-m2","created":1756179150,"object":"model","owned_by":"NRP"},{"id":"deepseek-v4-flash","created":1785599757,"object":"model","owned_by":"NRP"},{"id":"gemma-small","created":1785651530,"object":"model","owned_by":"NRP"},{"id":"gemma4-small","created":1785651530,"object":"model","owned_by":"NRP"},{"id":"gemma4-12b","created":1785651530,"object":"model","owned_by":"NRP"},{"id":"glm-5","created":1763296461,"object":"model","owned_by":"NRP"},{"id":"qwen3","created":1760022469,"object":"model","owned_by":"NRP"},{"id":"qwen3-vl","created":1760022469,"object":"model","owned_by":"NRP"},{"id":"qwen3-embedding","created":1760022469,"object":"model","owned_by":"NRP"},{"id":"qwen3-small","created":1760022469,"object":"model","owned_by":"NRP"},{"id":"gemma-small-e4b","created":1780801105,"object":"model","owned_by":"MassedCompute-mfsada"}],"object":"list"}</code></pre>
+{"data":[{"id":"qwen3","created":1760022469,"object":"model","owned_by":"NRP"},{"id":"qwen3-vl","created":1760022469,"object":"model","owned_by":"NRP"},{"id":"qwen3-embedding","created":1760022469,"object":"model","owned_by":"NRP"},{"id":"qwen3-small","created":1760022469,"object":"model","owned_by":"NRP"},{"id":"service","created":1792921162,"object":"model","owned_by":"NRP"},{"id":"gemma-small-e4b","created":1780801105,"object":"model","owned_by":"MassedCompute-mfsada"},{"id":"gpt-oss","created":1756179150,"object":"model","owned_by":"SDSC"},{"id":"gemma","created":1756179150,"object":"model","owned_by":"SDSC"},{"id":"gemma-vl","created":1756179150,"object":"model","owned_by":"SDSC"},{"id":"kimi","created":1756179150,"object":"model","owned_by":"NRP"},{"id":"minimax","created":1756179150,"object":"model","owned_by":"NRP"},{"id":"minimax-m2","created":1756179150,"object":"model","owned_by":"NRP"},{"id":"deepseek-v4-flash","created":1785599757,"object":"model","owned_by":"NRP"},{"id":"gemma-small","created":1785651530,"object":"model","owned_by":"NRP"},{"id":"gemma4-small","created":1785651530,"object":"model","owned_by":"NRP"},{"id":"gemma4-12b","created":1785651530,"object":"model","owned_by":"NRP"},{"id":"glm-5","created":1763296461,"object":"model","owned_by":"NRP"}],"object":"list"}</code></pre>
 </div>
 </div>
 <p>If we have an API key (available for free from the NRP if you are part of an NRP project (called a namespace)), you can query the LLM by making an API call, e.g., from the shell using <code>curl</code> or from Python.</p>
@@ -982,10 +988,8 @@ window.Quarto = {
 <span id="cb54-24"><a href="#cb54-24" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb54-25"><a href="#cb54-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-26"><a href="#cb54-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>].message.content)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>{"category":"billing","urgency":4,"certainty":5,"summary":"Duplicate charge for March subscription; refund requested."}</code></pre>
 </div>
-</div>
+<pre><code>{"category":"billing","urgency":3,"certainty":5,"summary":"Customer was charged twice for March subscription and requests a refund of one charge."}</code></pre>
 <p>Note that the request sent to the API is a structured list of messages. The LLM might use the system prompt differently than the user query.</p>
 </section>
 <section id="optional-http-requests-by-deconstructing-an-undocumented-api" class="level3">
@@ -1115,7 +1119,7 @@ window.Quarto = {
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>subprocess.run([<span class="st">"ls"</span>, <span class="st">"-l"</span>, <span class="st">"tmp.txt"</span>], capture_output<span class="op">=</span><span class="va">True</span>).stdout</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>b'-rw-r--r-- 1 paciorek scfstaff 4 Oct 19 08:07 tmp.txt\n'</code></pre>
+<pre><code>b'-rw-r--r-- 1 rdhuff s243 4 Oct 28 09:48 tmp.txt\n'</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'tmp.txt'</span>, <span class="st">'r'</span>) <span class="im">as</span> textfile:</span>
 <span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>     line <span class="op">=</span> textfile.readlines()</span>
@@ -1174,7 +1178,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Here n-tilde and division symbol take up two bytes</span></span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> tmp2.txt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>-rw-r--r-- 1 paciorek scfstaff 10 Oct 19 08:07 tmp2.txt</code></pre>
+<pre><code>-rw-r--r-- 1 rdhuff s243 10 Oct 28 09:48 tmp2.txt</code></pre>
 </div>
 </div>
 <div class="cell">
