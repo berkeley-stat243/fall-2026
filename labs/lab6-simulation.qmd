@@ -1,5 +1,5 @@
 ---
-title: "Lab 8: Simulation Studies"
+title: "Lab 6: Simulation Studies"
 date: "2026-10-30"
 format:
   pdf:
@@ -61,7 +61,7 @@ presented in Tables 2 and 3.
    an assumption or approximation of the fitted model, and predict how it
    might affect coverage or standard error estimates.
 8. Finally, have one group member export the Google Doc to PDF and submit it
-   **as a group** for the "Lab 8" assignment on **Pensive**. Only one
+   **as a group** for the "Lab 6" assignment on **Pensive**. Only one
    submission is needed per group.
 9. Time allowing, after your group submits its assignment to Pensive, find
    another group that has also completed its submission and discuss your

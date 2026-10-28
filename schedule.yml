@@ -118,7 +118,6 @@
     - date: "Fri Oct 9"
       items:
         - type: "Lab"
-          id: "6"
           name: "Exam Review"
         - type: "Quiz"
           id: "3"
@@ -143,9 +142,6 @@
           id: "4"
           name: "Problem Set 4"
           href: "ps/ps4.html"
-        - type: "Lab"
-          id: "7"
-          name: "PS 4 Quiz"
         - type: "Quiz"
           id: "4"
           name: "PS 4 Quiz"
@@ -167,9 +163,9 @@
           name: "Problem Set 5"
           href: "ps/ps5.html"
         - type: "Lab"
-          id: "8"
+          id: "6"
           name: "Simulation Studies"
-          href: labs/lab8-simulation.qmd
+          href: labs/lab6-simulation.qmd
         - type: "Quiz"
           id: "5"
           name: "PS 5 Quiz"
