@@ -61,6 +61,8 @@ website:
             text: "Lab 4 (Reproducibility)"
           - href: labs/lab5-scfparallel.qmd
             text: "Lab 5 (Linux Cluster/Slurm)"
+          - href: labs/lab8-simulation.qmd
+            text: "Lab 8 (Simulation Studies)"
       - section: "Problem Sets"
         contents:
           - href: ps/ps1.qmd
