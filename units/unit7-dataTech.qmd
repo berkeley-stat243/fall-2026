@@ -603,6 +603,7 @@ curl -s https://ellm.nrp-nautilus.io/v1/models
 If we have an API key (available for free from the NRP if you are part of an NRP project (called a namespace)), you can query the LLM by making an API call, e.g., from the shell using `curl` or from Python.
 
 ```{python}
+#| eval: false
 import os
 from openai import OpenAI
 
@@ -629,6 +630,9 @@ response = client.chat.completions.create(
 )
 
 print(response.choices[0].message.content)
+```
+```
+{"category":"billing","urgency":3,"certainty":5,"summary":"Customer was charged twice for March subscription and requests a refund of one charge."}
 ```
 
 Note that the request sent to the API is a structured list of messages. The LLM might use the system prompt
