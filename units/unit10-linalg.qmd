@@ -1,7 +1,7 @@
 ---
 title: "Numerical linear algebra"
 author: "Chris Paciorek"
-date: "2025-11-12"
+date: "2026-10-29"
 format:
   pdf:
     documentclass: article
@@ -39,23 +39,6 @@ References:
 -   Lange: Numerical Analysis for Statisticians
 -   Monahan: Numerical Methods of Statistics
 
-Videos (optional): 
-
-There are various videos from 2020 in the bCourses Media Gallery that you
-can use for reference if you want to. 
-
-  - Video 1. Ill-conditioned problems, part 1
-  - Video 2. Ill-conditioned problems, part 2
-  - Video 3. Triangular systems of equations
-  - Video 4. Solving systems of equations via LU, part 1
-  - Video 5. Solving systems of equations via LU, part 2
-  - Video 6. Solving systems of equations via LU, part 3
-  - Video 7. Cholesky decomposition
-
-
-In working through how to compute something or understanding an
-algorithm, it can be very helpful to depict the matrices and vectors
-graphically. We'll see this on the board in class.
 
 # 1. Preliminaries
 
@@ -87,7 +70,7 @@ on a computer may be very different.** Better computational approaches
 can increase speed and improve the numerical properties of the
 calculation.
 
-- Example 1 (already seen in Unit 5): If $X$ and $Y$ are matrices and $z$
+- Example 1 (already seen in Unit 4): If $X$ and $Y$ are matrices and $z$
 is a vector, we should compute $X(Yz)$ rather than $(XY)z$; the former
 is much more computationally efficient. 
 - Example 2: We do not compute $(X^{\top}X)^{-1}X^{\top}Y$ by computing
@@ -300,7 +283,7 @@ $B^{-1}A^{-1} AB = I$.
 The Hadamard or direct product is simply multiplication of the
 correspoding elements of two matrices by each other. In R this is
 simply` A * B`.\
-**Challenge**: How can I find $\mbox{tr}(AB)$ without using `A %*% B` ?
+**Challenge**: How can I find $\mbox{tr}(AB)$ without matrix multiplying the two matrices, e.g., using `A @ B` in Python?
 
 The Kronecker product is the product of each element of one matrix with
 the entire other matrix"
@@ -412,7 +395,7 @@ $A^{-1}=\Gamma\Lambda^{-1}\Gamma^{\top}$.
 Let's focus on symmetric matrices. The symmetric matrices that tend to
 arise in statistics are either positive definite (p.d.) or non-negative
 definite (n.n.d.). If a matrix is positive definite, then by definition
-$x^{\top}Ax>0$ for any $x$. Note that if $\mbox{Cov}(y)=A$ then
+$x^{\top}Ax>0$ for any (non-zero) $x$. Note that if $\mbox{Cov}(y)=A$ then
 $x^{\top}Ax=x^{\top}\mbox{Cov}(y)x=\mbox{Cov}(x^{\top}y)=\mbox{Var}(x^{\top}y)$
 if so positive definiteness amounts to having linear combinations of
 random variables (with the elements of $x$ here being the weights)
@@ -483,7 +466,7 @@ of squares matrix, such as $X^{\top}X$ is positive definite
 (non-negative definite if $p>n$). This makes sense as it's just a
 scaling of an empirical covariance matrix.
 
-## Generalized inverses (optional)
+## (OPTIONAL) Generalized inverses
 
 Suppose I want to find $x$ such that $Ax=b$. Mathematically the answer
 (provided $A$ is invertible, i.e. of full rank) is $x=A^{-1}b$.
@@ -1362,7 +1345,7 @@ approach.) Of course in the case of $p<n$, we definitely need $Q_{p}$ so
 that the last $n-p$ rows of $R$ are zero and we can then discard them
 when just using the skinny QR.
 
-#### QR Method 2: Rotations
+#### (OPTIONAL) QR Method 2: Rotations
 
 A *Givens* rotation matrix rotates a vector in a two-dimensional
 subspace to be axis oriented with respect to one of the two dimensions
@@ -1861,7 +1844,7 @@ re-ordering that retains as much sparsity in $U$ as possible. Then
 multiple Cholesky decompositions can be done more quickly as the entries
 change.
 
-### Banded matrices
+### (OPTIONAL) Banded matrices
 
 Suppose we have a banded matrix $A$ where the lower bandwidth is $p$,
 namely $A_{ij}=0$ for $i>j+p$ and the upper bandwidth is $q$ ($A_{ij}=0$
@@ -1875,7 +1858,7 @@ Banded matrices come up in time series analysis. E.g., moving average (MA) model
 banded covariance structures because the covariance is zero after a
 certain number of lags.
 
-## Low rank updates (optional)
+## (OPTIONAL) Low rank updates 
 
 A transformation of the form $A-uv^{\top}$ is a rank-one update because
 $uv^{\top}$ is of rank one.
@@ -1902,7 +1885,7 @@ Basically Sherman-Morrison-Woodbury gives us matrix identities that we
 can use in combination with our knowledge of smart ways of solving
 systems of equations.
 
-# 7. Iterative solutions of linear systems (optional)
+# 7. (OPTIONAL) Iterative solutions of linear systems
 
 #### Gauss-Seidel
 
