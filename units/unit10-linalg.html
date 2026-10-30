@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chris Paciorek">
-<meta name="dcterms.date" content="2025-11-12">
+<meta name="dcterms.date" content="2026-10-29">
 
 <title>Numerical linear algebra</title>
 <style>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -382,6 +382,12 @@ window.Quarto = {
  <span class="menu-text">Problem Set 5</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ps/ps6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 6</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -473,7 +479,7 @@ window.Quarto = {
   <li><a href="#linear-independence-rank-and-basis-vectors" id="toc-linear-independence-rank-and-basis-vectors" class="nav-link" data-scroll-target="#linear-independence-rank-and-basis-vectors">Linear independence, rank, and basis vectors</a></li>
   <li><a href="#invertibility-singularity-rank-and-positive-definiteness" id="toc-invertibility-singularity-rank-and-positive-definiteness" class="nav-link" data-scroll-target="#invertibility-singularity-rank-and-positive-definiteness">Invertibility, singularity, rank, and positive definiteness</a></li>
   <li><a href="#interpreting-an-eigendecomposition" id="toc-interpreting-an-eigendecomposition" class="nav-link" data-scroll-target="#interpreting-an-eigendecomposition">Interpreting an eigendecomposition</a></li>
-  <li><a href="#generalized-inverses-optional" id="toc-generalized-inverses-optional" class="nav-link" data-scroll-target="#generalized-inverses-optional">Generalized inverses (optional)</a></li>
+  <li><a href="#optional-generalized-inverses" id="toc-optional-generalized-inverses" class="nav-link" data-scroll-target="#optional-generalized-inverses">(OPTIONAL) Generalized inverses</a></li>
   <li><a href="#matrices-arising-in-regression" id="toc-matrices-arising-in-regression" class="nav-link" data-scroll-target="#matrices-arising-in-regression">Matrices arising in regression</a></li>
   </ul></li>
   <li><a href="#computational-issues" id="toc-computational-issues" class="nav-link" data-scroll-target="#computational-issues">3. Computational issues</a>
@@ -513,11 +519,11 @@ window.Quarto = {
   <li><a href="#exploiting-known-structure-in-matrices" id="toc-exploiting-known-structure-in-matrices" class="nav-link" data-scroll-target="#exploiting-known-structure-in-matrices">Exploiting known structure in matrices</a>
   <ul class="collapse">
   <li><a href="#sparse-matrix-formats" id="toc-sparse-matrix-formats" class="nav-link" data-scroll-target="#sparse-matrix-formats">Sparse matrix formats</a></li>
-  <li><a href="#banded-matrices" id="toc-banded-matrices" class="nav-link" data-scroll-target="#banded-matrices">Banded matrices</a></li>
+  <li><a href="#optional-banded-matrices" id="toc-optional-banded-matrices" class="nav-link" data-scroll-target="#optional-banded-matrices">(OPTIONAL) Banded matrices</a></li>
   </ul></li>
-  <li><a href="#low-rank-updates-optional" id="toc-low-rank-updates-optional" class="nav-link" data-scroll-target="#low-rank-updates-optional">Low rank updates (optional)</a></li>
+  <li><a href="#optional-low-rank-updates" id="toc-optional-low-rank-updates" class="nav-link" data-scroll-target="#optional-low-rank-updates">(OPTIONAL) Low rank updates</a></li>
   </ul></li>
-  <li><a href="#iterative-solutions-of-linear-systems-optional" id="toc-iterative-solutions-of-linear-systems-optional" class="nav-link" data-scroll-target="#iterative-solutions-of-linear-systems-optional">7. Iterative solutions of linear systems (optional)</a></li>
+  <li><a href="#optional-iterative-solutions-of-linear-systems" id="toc-optional-iterative-solutions-of-linear-systems" class="nav-link" data-scroll-target="#optional-iterative-solutions-of-linear-systems">7. (OPTIONAL) Iterative solutions of linear systems</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="unit10-linalg.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
@@ -543,7 +549,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 12, 2025</p>
+      <p class="date">October 29, 2026</p>
     </div>
   </div>
   
@@ -567,18 +573,6 @@ window.Quarto = {
 <li>Lange: Numerical Analysis for Statisticians</li>
 <li>Monahan: Numerical Methods of Statistics</li>
 </ul>
-<p>Videos (optional):</p>
-<p>There are various videos from 2020 in the bCourses Media Gallery that you can use for reference if you want to.</p>
-<ul>
-<li>Video 1. Ill-conditioned problems, part 1</li>
-<li>Video 2. Ill-conditioned problems, part 2</li>
-<li>Video 3. Triangular systems of equations</li>
-<li>Video 4. Solving systems of equations via LU, part 1</li>
-<li>Video 5. Solving systems of equations via LU, part 2</li>
-<li>Video 6. Solving systems of equations via LU, part 3</li>
-<li>Video 7. Cholesky decomposition</li>
-</ul>
-<p>In working through how to compute something or understanding an algorithm, it can be very helpful to depict the matrices and vectors graphically. We’ll see this on the board in class.</p>
 </section>
 <section id="preliminaries" class="level1">
 <h1>1. Preliminaries</h1>
@@ -600,7 +594,7 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="key-principle">Key principle</h2>
 <p><strong>The form of a mathematical expression and how it should be evaluated on a computer may be very different.</strong> Better computational approaches can increase speed and improve the numerical properties of the calculation.</p>
 <ul>
-<li>Example 1 (already seen in Unit 5): If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are matrices and <span class="math inline">\(z\)</span> is a vector, we should compute <span class="math inline">\(X(Yz)\)</span> rather than <span class="math inline">\((XY)z\)</span>; the former is much more computationally efficient.</li>
+<li>Example 1 (already seen in Unit 4): If <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> are matrices and <span class="math inline">\(z\)</span> is a vector, we should compute <span class="math inline">\(X(Yz)\)</span> rather than <span class="math inline">\((XY)z\)</span>; the former is much more computationally efficient.</li>
 <li>Example 2: We do not compute <span class="math inline">\((X^{\top}X)^{-1}X^{\top}Y\)</span> by computing <span class="math inline">\(X^{\top}X\)</span> and finding its inverse. In fact, perhaps more surprisingly, we may never actually form <span class="math inline">\(X^{\top}X\)</span> in some implementations.</li>
 <li>Example 3: Suppose I have a matrix <span class="math inline">\(A\)</span>, and I want to permute (switch) two rows. I can do this with a permutation matrix, <span class="math inline">\(P\)</span>, which is mostly zeroes. On a computer, in general I wouldn’t need to even change the values of <span class="math inline">\(A\)</span> in memory in some cases (e.g., if I were to calculate <span class="math inline">\(PAB\)</span>). Why not?</li>
 </ul>
@@ -673,7 +667,7 @@ window.Quarto = {
 <section id="other-matrix-multiplications" class="level4">
 <h4 class="anchored" data-anchor-id="other-matrix-multiplications">Other matrix multiplications</h4>
 <p>The Hadamard or direct product is simply multiplication of the correspoding elements of two matrices by each other. In R this is simply<code>A * B</code>.<br>
-<strong>Challenge</strong>: How can I find <span class="math inline">\(\mbox{tr}(AB)\)</span> without using <code>A %*% B</code> ?</p>
+<strong>Challenge</strong>: How can I find <span class="math inline">\(\mbox{tr}(AB)\)</span> without matrix multiplying the two matrices, e.g., using <code>A @ B</code> in Python?</p>
 <p>The Kronecker product is the product of each element of one matrix with the entire other matrix”</p>
 <p><span class="math display">\[A\otimes B=\left(\begin{array}{ccc}
 A_{11}B &amp; \cdots &amp; A_{1m}B\\
@@ -710,7 +704,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <h2 class="anchored" data-anchor-id="invertibility-singularity-rank-and-positive-definiteness">Invertibility, singularity, rank, and positive definiteness</h2>
 <p>For square matrices, let’s consider how invertibility, singularity, rank and positive (or non-negative) definiteness relate.</p>
 <p>Square matrices that are “regular” have an eigendecomposition, <span class="math inline">\(A=\Gamma\Lambda\Gamma^{-1}\)</span> where <span class="math inline">\(\Gamma\)</span> is a matrix with the eigenvectors as the columns and <span class="math inline">\(\Lambda\)</span> is a diagonal matrix of eigenvalues, <span class="math inline">\(\Lambda_{ii}=\lambda_{i}\)</span>. Symmetric matrices and matrices with unique eigenvalues are regular, as are some other matrices. The number of non-zero eigenvalues is the same as the rank of the matrix. Square matrices that have an inverse are also called nonsingular, and this is equivalent to having full rank. If the matrix is symmetric, the eigenvectors and eigenvalues are real and <span class="math inline">\(\Gamma\)</span> is orthogonal, so we have <span class="math inline">\(A=\Gamma\Lambda\Gamma^{\top}\)</span>. The determinant of the matrix is the product of the eigenvalues (why?), which is zero if it is less than full rank. Note that if none of the eigenvalues are zero then <span class="math inline">\(A^{-1}=\Gamma\Lambda^{-1}\Gamma^{\top}\)</span>.</p>
-<p>Let’s focus on symmetric matrices. The symmetric matrices that tend to arise in statistics are either positive definite (p.d.) or non-negative definite (n.n.d.). If a matrix is positive definite, then by definition <span class="math inline">\(x^{\top}Ax&gt;0\)</span> for any <span class="math inline">\(x\)</span>. Note that if <span class="math inline">\(\mbox{Cov}(y)=A\)</span> then <span class="math inline">\(x^{\top}Ax=x^{\top}\mbox{Cov}(y)x=\mbox{Cov}(x^{\top}y)=\mbox{Var}(x^{\top}y)\)</span> if so positive definiteness amounts to having linear combinations of random variables (with the elements of <span class="math inline">\(x\)</span> here being the weights) having positive variance. So we must have that positive definite matrices are equivalent to variance-covariance matrices (I’ll just refer to this as a variance matrix or as a covariance matrix). If <span class="math inline">\(A\)</span> is p.d. then it has all positive eigenvalues and it must have an inverse, though as we’ll see, from a numerical perspective, we may not be able to compute it if some of the eigenvalues are very close to zero. In Python, <code>numpy.linalg.eig(A)[1]</code> is <span class="math inline">\(\Gamma\)</span>, with each column a vector, and <code>numpy.linalg.eig(A)[0]</code> contains the (unordered) eigenvalues.</p>
+<p>Let’s focus on symmetric matrices. The symmetric matrices that tend to arise in statistics are either positive definite (p.d.) or non-negative definite (n.n.d.). If a matrix is positive definite, then by definition <span class="math inline">\(x^{\top}Ax&gt;0\)</span> for any (non-zero) <span class="math inline">\(x\)</span>. Note that if <span class="math inline">\(\mbox{Cov}(y)=A\)</span> then <span class="math inline">\(x^{\top}Ax=x^{\top}\mbox{Cov}(y)x=\mbox{Cov}(x^{\top}y)=\mbox{Var}(x^{\top}y)\)</span> if so positive definiteness amounts to having linear combinations of random variables (with the elements of <span class="math inline">\(x\)</span> here being the weights) having positive variance. So we must have that positive definite matrices are equivalent to variance-covariance matrices (I’ll just refer to this as a variance matrix or as a covariance matrix). If <span class="math inline">\(A\)</span> is p.d. then it has all positive eigenvalues and it must have an inverse, though as we’ll see, from a numerical perspective, we may not be able to compute it if some of the eigenvalues are very close to zero. In Python, <code>numpy.linalg.eig(A)[1]</code> is <span class="math inline">\(\Gamma\)</span>, with each column a vector, and <code>numpy.linalg.eig(A)[0]</code> contains the (unordered) eigenvalues.</p>
 <p>To summarize, here are some of the various connections between mathematical and statistical properties of <strong>positive definite</strong> matrices:</p>
 <p><span class="math inline">\(A\)</span> positive definite <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(A\)</span> is a covariance matrix <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(x^{\top}Ax&gt;0\)</span> <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(\lambda_{i}&gt;0\)</span> (positive eigenvalues) <span class="math inline">\(\Rightarrow\)</span><span class="math inline">\(|A|&gt;0\)</span> <span class="math inline">\(\Rightarrow\)</span><span class="math inline">\(A\)</span> is invertible <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(A\)</span> is non singular <span class="math inline">\(\Leftrightarrow\)</span> <span class="math inline">\(A\)</span> is full rank.</p>
 <p>And here are connections for positive semi-definite matrices:</p>
@@ -728,8 +722,8 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 </ol>
 <p>Consider an arbitrary <span class="math inline">\(n\times p\)</span> matrix, <span class="math inline">\(X\)</span>. Any crossproduct or sum of squares matrix, such as <span class="math inline">\(X^{\top}X\)</span> is positive definite (non-negative definite if <span class="math inline">\(p&gt;n\)</span>). This makes sense as it’s just a scaling of an empirical covariance matrix.</p>
 </section>
-<section id="generalized-inverses-optional" class="level2">
-<h2 class="anchored" data-anchor-id="generalized-inverses-optional">Generalized inverses (optional)</h2>
+<section id="optional-generalized-inverses" class="level2">
+<h2 class="anchored" data-anchor-id="optional-generalized-inverses">(OPTIONAL) Generalized inverses</h2>
 <p>Suppose I want to find <span class="math inline">\(x\)</span> such that <span class="math inline">\(Ax=b\)</span>. Mathematically the answer (provided <span class="math inline">\(A\)</span> is invertible, i.e.&nbsp;of full rank) is <span class="math inline">\(x=A^{-1}b\)</span>.</p>
 <p>Generalized inverses arise in solving equations when <span class="math inline">\(A\)</span> is not full rank. A generalized inverse is a matrix, <span class="math inline">\(A^{-}\)</span> s.t. <span class="math inline">\(AA^{-}A=A\)</span>. The Moore-Penrose inverse (the pseudo-inverse), <span class="math inline">\(A^{+}\)</span>, is a (unique) generalized inverse that also satisfies some additional properties. <span class="math inline">\(x=A^{+}b\)</span> is the solution to the linear system, <span class="math inline">\(Ax=b\)</span>, that has the shortest length for <span class="math inline">\(x\)</span>.</p>
 <p>We can find the pseudo-inverse based on an eigendecomposition (or an SVD) as <span class="math inline">\(\Gamma\Lambda^{+}\Gamma^{\top}\)</span>. We obtain <span class="math inline">\(\Lambda^{+}\)</span> from <span class="math inline">\(\Lambda\)</span> as follows. For values <span class="math inline">\(\lambda_{i}&gt;0\)</span>, compute <span class="math inline">\(1/\lambda_{i}\)</span>. All other values are set to 0. Let’s interpret this statistically. Suppose we have a precision matrix with one or more zero eigenvalues and we want to find the covariance matrix. A zero eigenvalue means we have no precision, or infinite variance, for some linear combination (i.e., for some basis vector). We take the pseudo-inverse and assign that linear combination zero variance.</p>
@@ -866,7 +860,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## relative perturbation in x much bigger than in b</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>norm2(delta_x) <span class="op">/</span> norm2(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(8.198475468036893)</code></pre>
+<pre><code>np.float64(8.19847546803699)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>norm2(delta_b) <span class="op">/</span> norm2(b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -875,7 +869,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ratio of relative perturbations</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(norm2(delta_x) <span class="op">/</span> norm2(x)) <span class="op">/</span> (norm2(delta_b) <span class="op">/</span> norm2(b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(2460.567236431485)</code></pre>
+<pre><code>np.float64(2460.567236431514)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ratio of largest and smallest magnitude eigenvalues</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">## confusingly evals[2] is the smallest, not evals[3]</span></span>
@@ -1070,13 +1064,13 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> sp.linalg.solve_triangular(L, b, lower<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.05618596076965332</code></pre>
+<pre><code>0.0815885066986084</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.time()</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> np.linalg.inv(L) <span class="op">@</span> b</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>time.time() <span class="op">-</span> t0</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>3.875544786453247</code></pre>
+<pre><code>5.6819775104522705</code></pre>
 </div>
 </div>
 <p>That assumes you have <span class="math inline">\(L\)</span>, but we’ll see in a bit that even when one accounts for the creation of <span class="math inline">\(L\)</span>, you don’t want to invert matrices in order to solve systems of equations.</p>
@@ -1172,8 +1166,8 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> np.linalg.eig(C)</span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>np.sort(e[<span class="dv">0</span>])[::<span class="op">-</span><span class="dv">1</span>][<span class="dv">96</span>:<span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([-4.62480729e-16-7.93853813e-17j, -6.31400382e-16+1.61177775e-16j,
-       -6.31400382e-16-1.61177775e-16j, -1.34873832e-15+0.00000000e+00j])</code></pre>
+<pre><code>array([-3.58440747e-16+7.57451730e-17j, -3.58440747e-16-7.57451730e-17j,
+       -4.98458053e-16+1.77854836e-16j, -4.98458053e-16-1.77854836e-16j])</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> np.linalg.cholesky(C)</span>
@@ -1186,7 +1180,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> np.<span class="bu">abs</span>(e[<span class="dv">0</span>])</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">max</span>(vals)<span class="op">/</span>np.<span class="bu">min</span>(vals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(3.0466359359854406e+17)</code></pre>
+<pre><code>np.float64(5.597477620755469e+17)</code></pre>
 </div>
 </div>
 <p>I don’t see a way to use pivoting with the Cholesky in Python, but in R, one can do <code>chol(C, pivot = TRUE)</code>.</p>
@@ -1256,8 +1250,8 @@ Q &amp; = &amp; (Q_{p}\cdots Q_{1})^{\top}
 <p>In the regression context, as we work through the individual transformations, <span class="math inline">\(Q_{j}=I-2u_{j}u_{j}^{\top}\)</span>, we apply them to <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> to create <span class="math inline">\(R\)</span> (note this would not involve doing the full matrix multiplication - think about what calculations are actually needed) and <span class="math inline">\(QY=Q^{\top}Y\)</span>, and then solve <span class="math inline">\(R\beta=Q^{\top}Y\)</span>. To find <span class="math inline">\(\mbox{Cov}(\hat{\beta})\propto(X^{\top}X)^{-1}=(R^{\top}R)^{-1}=R^{-1}R^{-\top}\)</span> we do need to invert <span class="math inline">\(R\)</span>, but it’s upper-triangular and of dimension <span class="math inline">\(p\times p\)</span>. It turns out that <span class="math inline">\(Q^{\top}Y\)</span> can be partitioned into the first <span class="math inline">\(p\)</span> and the last <span class="math inline">\(n-p\)</span> elements, <span class="math inline">\(z^{(1)}\)</span> and <span class="math inline">\(z^{(2)}\)</span>. The SSR is <span class="math inline">\(\|z^{(1)}\|^{2}\)</span> and SSE is <span class="math inline">\(\|z^{(2)}\|^{2}\)</span>.</p>
 <p>Final side note: if <span class="math inline">\(X\)</span> is square (so <span class="math inline">\(n=p)\)</span> you might wonder why we need <span class="math inline">\(Q_{p}\)</span> since after <span class="math inline">\(p-1\)</span> reflections, we don’t need to zero anything else out (since the last column of <span class="math inline">\(R\)</span> has <span class="math inline">\(n\)</span> non-zero elements). It turns out that if we go back to thinking about a Householder reflection in general, there is a lack of uniqueness in choosing <span class="math inline">\(\tilde{x}\)</span>. It could either be <span class="math inline">\((||x||,0,\ldots,0)\)</span> or <span class="math inline">\((-||x||,0,\ldots,0)\)</span>. For better numerical stability, one chooses from the two of those such that <span class="math inline">\(x_{1}\)</span> is of the opposite sign to <span class="math inline">\(\tilde{x}_{1}\)</span>, so that one avoids cancellation of numbers that may be of the same magnitude when doing <span class="math inline">\(x-\tilde{x}\)</span>. The transformation <span class="math inline">\(Q_{p}\)</span> is the last step of taking that approach of choosing the sign at each step. <span class="math inline">\(Q_{p}\)</span> doesn’t zero anything out; it just basically just involves potentially setting <span class="math inline">\(R_{pp}\)</span> to be <span class="math inline">\(-R_{pp}\)</span>. (To be honest, I’m not clear on why one would bother to do that last step, but that seems to be how it is presented in discussions of the Householder approach.) Of course in the case of <span class="math inline">\(p&lt;n\)</span>, we definitely need <span class="math inline">\(Q_{p}\)</span> so that the last <span class="math inline">\(n-p\)</span> rows of <span class="math inline">\(R\)</span> are zero and we can then discard them when just using the skinny QR.</p>
 </section>
-<section id="qr-method-2-rotations" class="level4">
-<h4 class="anchored" data-anchor-id="qr-method-2-rotations">QR Method 2: Rotations</h4>
+<section id="optional-qr-method-2-rotations" class="level4">
+<h4 class="anchored" data-anchor-id="optional-qr-method-2-rotations">(OPTIONAL) QR Method 2: Rotations</h4>
 <p>A <em>Givens</em> rotation matrix rotates a vector in a two-dimensional subspace to be axis oriented with respect to one of the two dimensions by changing the value of the other dimension. E.g. we can create <span class="math inline">\(\tilde{x}=(x_{1},\ldots,\tilde{x}_{p},\ldots,0,\ldots x_{n})\)</span> from <span class="math inline">\(x=(x_{1,}\ldots,x_{p},\ldots,x_{q},\ldots,x_{n})\)</span> using a matrix multiplication: <span class="math inline">\(\tilde{x}=Qx\)</span>. <span class="math inline">\(Q\)</span> is orthogonal but not symmetric.</p>
 <p>We can use a series of Givens rotations to do the QR but unless it is done carefully, more computations are needed than with Householder reflections. The basic story is that we apply a series of Givens rotations to <span class="math inline">\(X\)</span> such that we zero out the lower triangular elements.</p>
 <p><span class="math display">\[
@@ -1467,22 +1461,22 @@ A^{(j+1)} &amp; = &amp; R_{m-2}^{\top} R_{m-3}^{\top} \cdots R_{0}^{\top} A^{(j)
 <p>How many computations have we done? Only <span class="math inline">\(k\)</span> multiplies and <span class="math inline">\(O(k)\)</span> additions where <span class="math inline">\(k\)</span> is the number of non-zero elements of <span class="math inline">\(A\)</span>. Compare this to the usual <span class="math inline">\(O(n^{2})\)</span> for dense multiplication.</p>
 <p>Note that for the Cholesky of a sparse matrix, if the sparsity pattern is fixed, but the entries change, one can precompute an optimal re-ordering that retains as much sparsity in <span class="math inline">\(U\)</span> as possible. Then multiple Cholesky decompositions can be done more quickly as the entries change.</p>
 </section>
-<section id="banded-matrices" class="level3">
-<h3 class="anchored" data-anchor-id="banded-matrices">Banded matrices</h3>
+<section id="optional-banded-matrices" class="level3">
+<h3 class="anchored" data-anchor-id="optional-banded-matrices">(OPTIONAL) Banded matrices</h3>
 <p>Suppose we have a banded matrix <span class="math inline">\(A\)</span> where the lower bandwidth is <span class="math inline">\(p\)</span>, namely <span class="math inline">\(A_{ij}=0\)</span> for <span class="math inline">\(i&gt;j+p\)</span> and the upper bandwidth is <span class="math inline">\(q\)</span> (<span class="math inline">\(A_{ij}=0\)</span> for <span class="math inline">\(j&gt;i+q\)</span>). An alternative to reducing to <span class="math inline">\(Ux=b^{*}\)</span> is to compute <span class="math inline">\(A=LU\)</span> and then do two solutions, <span class="math inline">\(U^{-1}(L^{-1}b)\)</span>. One can show that the computational complexity of the LU factorization is <span class="math inline">\(O(npq)\)</span> for banded matrices, while solving the two triangular systems is <span class="math inline">\(O(np+nq)\)</span>, so for small <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>, the speedup can be dramatic.</p>
 <p>Banded matrices come up in time series analysis. E.g., moving average (MA) models produce banded covariance structures because the covariance is zero after a certain number of lags.</p>
 </section>
 </section>
-<section id="low-rank-updates-optional" class="level2">
-<h2 class="anchored" data-anchor-id="low-rank-updates-optional">Low rank updates (optional)</h2>
+<section id="optional-low-rank-updates" class="level2">
+<h2 class="anchored" data-anchor-id="optional-low-rank-updates">(OPTIONAL) Low rank updates</h2>
 <p>A transformation of the form <span class="math inline">\(A-uv^{\top}\)</span> is a rank-one update because <span class="math inline">\(uv^{\top}\)</span> is of rank one.</p>
 <p>More generally a low rank update of <span class="math inline">\(A\)</span> is <span class="math inline">\(\tilde{A}=A-UV^{\top}\)</span> where <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are <span class="math inline">\(n\times m\)</span> with <span class="math inline">\(n\geq m\)</span>. The Sherman-Morrison-Woodbury formula tells us that <span class="math display">\[\tilde{A}^{-1}=A^{-1}+A^{-1}U(I_{m}-V^{\top}A^{-1}U)^{-1}V^{\top}A^{-1}\]</span> so if we know <span class="math inline">\(x_{0}=A^{-1}b\)</span>, then the solution to <span class="math inline">\(\tilde{A}x=b\)</span> is <span class="math inline">\(x+A^{-1}U(I_{m}-V^{\top}A^{-1}U)^{-1}V^{\top}x\)</span>. Provided <span class="math inline">\(m\)</span> is not too large, and particularly if we already have a factorization of <span class="math inline">\(A\)</span>, then <span class="math inline">\(A^{-1}U\)</span> is not too bad computationally, and <span class="math inline">\(I_{m}-V^{\top}A^{-1}U\)</span> is <span class="math inline">\(m\times m\)</span>. As a result <span class="math inline">\(A^{-1}(U(\cdots)^{-1}V^{\top}x)\)</span> isn’t too bad.</p>
 <p>This also comes up in working with precision matrices in Bayesian problems where we may have <span class="math inline">\(A^{-1}\)</span> but not <span class="math inline">\(A\)</span> (we often add precision matrices to find conditional normal distributions). An alternative expression for the formula is <span class="math inline">\(\tilde{A}=A+UCV^{\top}\)</span>, and the identity tells us <span class="math display">\[\tilde{A}^{-1}=A^{-1}-A^{-1}U(C^{-1}+V^{\top}A^{-1}U)^{-1}V^{\top}A^{-1}\]</span></p>
 <p>Basically Sherman-Morrison-Woodbury gives us matrix identities that we can use in combination with our knowledge of smart ways of solving systems of equations.</p>
 </section>
 </section>
-<section id="iterative-solutions-of-linear-systems-optional" class="level1">
-<h1>7. Iterative solutions of linear systems (optional)</h1>
+<section id="optional-iterative-solutions-of-linear-systems" class="level1">
+<h1>7. (OPTIONAL) Iterative solutions of linear systems</h1>
 <section id="gauss-seidel" class="level4">
 <h4 class="anchored" data-anchor-id="gauss-seidel">Gauss-Seidel</h4>
 <p>Suppose we want to iteratively solve <span class="math inline">\(Ax=b\)</span>. Here’s the algorithm, which sequentially updates each element of <span class="math inline">\(x\)</span> in turn.</p>
