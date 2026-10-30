@@ -54,8 +54,6 @@ presented in Tables 2 and 3.
    generated once and what is regenerated in each replication, and state any
    details you need to infer.
 
-   - Which quantities are independent, and which are conditionally independent? How does your simulation preserve dependence among individual outcomes and between county totals and state demographic counts?
-
 5. Next, **discuss the specific choices** the authors made in designing their
    simulated datasets. As you discuss, **write down those choices** in your
    Google Doc.
