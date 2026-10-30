@@ -41,8 +41,7 @@ presented in Tables 2 and 3.
 
    - How do Emp SE and Est SE in Tables 2 and 3 differ? How large a discrepancy
      would concern you, and what additional information would you need to
-     judge it? Would the average estimated SE reveal how much the estimated
-     SEs vary across datasets?
+     judge it? The average estimated SE is useful, but how is it limited in terms of assessing the procedure for estimating the population standard error? What could be a problem even if the average estimed SE were very close to the empirical standard error?
 
    - How many simulation replications were used? If true coverage were 95%,
      how much Monte Carlo variability would you expect in the reported
@@ -55,14 +54,7 @@ presented in Tables 2 and 3.
    generated once and what is regenerated in each replication, and state any
    details you need to infer.
 
-   - Which quantities are independent, and conditional on what? How does your
-     simulation preserve dependence among individual outcomes and between
-     county totals and state demographic counts?
-
-   - The simulations use independent normal county random effects. If you
-     instead wanted correlated county effects with a specified positive-definite
-     covariance matrix, how would you generate them efficiently using the
-     Cholesky decomposition described in [Unit 9](/units/unit9-sim.html)?
+   - Which quantities are independent, and which are conditionally independent? How does your simulation preserve dependence among individual outcomes and between county totals and state demographic counts?
 
 5. Next, **discuss the specific choices** the authors made in designing their
    simulated datasets. As you discuss, **write down those choices** in your
@@ -82,7 +74,7 @@ presented in Tables 2 and 3.
 
 9. Time allowing, after your group submits its assignment to Pensive, find
    another group that has also completed its submission and discuss your
-   answers.
+   answer to question 7. 
 
 ## Acknowledgements
 
