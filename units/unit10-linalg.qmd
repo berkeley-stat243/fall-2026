@@ -629,8 +629,8 @@ probably depend on how big the matrices are.
 
 The same caveats we discussed in terms of computer arithmetic hold
 naturally for linear algebra, since this involves arithmetic with many
-elements. Good implementations of algorithms are aware of the danger of
-catastrophic cancellation and of the possibility of dividing by zero or
+elements. Good implementations of algorithms are aware of the dangers of
+catastrophic cancellation and of adding/subtracting numbers very different in magnitude and of the possibility of dividing by zero or
 by values that are near zero.
 
 ## Ill-conditioned problems
@@ -645,7 +645,9 @@ operations there are different condition numbers.
 Ill-conditionedness arises most often in terms of matrix inversion, so
 the standard condition number is the "condition number with respect to
 inversion", which when using the $L_{2}$ norm is the ratio of the
-absolute values of the largest to smallest eigenvalue. Here's an
+absolute values of the largest to smallest eigenvalue.
+
+Here's an
 example: $$A=\left(\begin{array}{cccc}
 10 & 7 & 8 & 7\\
 7 & 5 & 6 & 5\\
