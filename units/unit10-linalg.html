@@ -1019,7 +1019,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <li>Repeat for all rows.</li>
 </ol>
 <p>How many multiplies and adds are done? Solving lower triangular systems is very similar and involves the same number of calculations.</p>
-<p>In Scipy, we can use <code>linalg.solve_triangular</code> to solve triangular systems. The <code>trans</code> argument indicates whether to solve <span class="math inline">\(Ax=b\)</span> or <span class="math inline">\(A^{\top}x=b\)</span> (so one wouldn’t need to transpose before solving).</p>
+<p>In Scipy, we can use <code>linalg.solve_triangular</code> to solve triangular systems. The <code>lower</code> argument tells Scipy whether to use the lower or upper triangle (i.e., forwardsolve or backsolve). The <code>trans</code> argument indicates whether to solve <span class="math inline">\(Ax=b\)</span> or <span class="math inline">\(A^{\top}x=b\)</span> (so one wouldn’t need to transpose before solving).</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy <span class="im">as</span> sp</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1033,13 +1033,13 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> np.linalg.cholesky(A) <span class="co"># L is lower-triangular</span></span>
 <span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> L.T</span>
 <span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> sp.linalg.solve_triangular(L, b, lower<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>out1 <span class="op">=</span> sp.linalg.solve_triangular(L, b, lower<span class="op">=</span><span class="va">True</span>)   <span class="co"># Forwardsolve</span></span>
 <span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>out2 <span class="op">=</span> np.linalg.inv(L) <span class="op">@</span> b</span>
 <span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>np.allclose(out1, out2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>True</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>out3 <span class="op">=</span>  sp.linalg.solve_triangular(U, b, lower<span class="op">=</span><span class="va">False</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>out3 <span class="op">=</span>  sp.linalg.solve_triangular(U, b, lower<span class="op">=</span><span class="va">False</span>) <span class="co"># Backsolve</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>out4 <span class="op">=</span> np.linalg.inv(U) <span class="op">@</span> b</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>np.allclose(out1, out2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
