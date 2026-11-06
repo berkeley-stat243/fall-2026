@@ -388,6 +388,12 @@ window.Quarto = {
  <span class="menu-text">Problem Set 6</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ps/ps7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Problem Set 7</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -1194,7 +1200,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <h2 class="anchored" data-anchor-id="qr-decomposition">QR decomposition</h2>
 <section id="introduction" class="level3">
 <h3 class="anchored" data-anchor-id="introduction">Introduction</h3>
-<p>The QR decomposition is available for any matrix, <span class="math inline">\(X=QR\)</span>, with <span class="math inline">\(Q\)</span> orthogonal and <span class="math inline">\(R\)</span> upper triangular. If <span class="math inline">\(X\)</span> is non-square, <span class="math inline">\(n\times p\)</span> with <span class="math inline">\(n&gt;p\)</span> then the leading <span class="math inline">\(p\)</span> rows of <span class="math inline">\(R\)</span> provide an upper triangular matrix (<span class="math inline">\(R_{1}\)</span>) and the remaining rows are 0. (I’m using <span class="math inline">\(p\)</span> because the QR is generally applied to design matrices in regression). In this case we really only need the first <span class="math inline">\(p\)</span> columns of <span class="math inline">\(Q\)</span>, and we have <span class="math inline">\(X=Q_{1}R_{1}\)</span>, the ‘skinny’ QR (this is what R’s QR provides). For uniqueness, we can require the diagonals of <span class="math inline">\(R\)</span> to be nonnegative, and then <span class="math inline">\(R\)</span> will be the same as the upper-triangular Cholesky factor of <span class="math inline">\(X^{\top}X\)</span>:</p>
+<p>The QR decomposition is available for any matrix, <span class="math inline">\(X=QR\)</span>, with <span class="math inline">\(Q\)</span> orthogonal and <span class="math inline">\(R\)</span> upper triangular. If <span class="math inline">\(X\)</span> is non-square, <span class="math inline">\(n\times p\)</span> with <span class="math inline">\(n&gt;p\)</span> then the leading <span class="math inline">\(p\)</span> rows of <span class="math inline">\(R\)</span> provide an upper triangular matrix (<span class="math inline">\(R_{1}\)</span>) and the remaining rows are 0. (I’m using <span class="math inline">\(p\)</span> because the QR is generally applied to design matrices in regression). In this case we really only need the first <span class="math inline">\(p\)</span> columns of <span class="math inline">\(Q\)</span>, and we have <span class="math inline">\(X=Q_{1}R_{1}\)</span>, the ‘skinny’ QR (this is what <code>np.linalg.qr</code> provides by default as the ‘reduced’ “mode”). For uniqueness, we can require the diagonals of <span class="math inline">\(R\)</span> to be nonnegative, and then <span class="math inline">\(R\)</span> will be the same as the upper-triangular Cholesky factor of <span class="math inline">\(X^{\top}X\)</span>:</p>
 <p><span class="math display">\[\begin{aligned} X^{\top}X &amp; = &amp; R^{\top}Q^{\top}QR \\ &amp; = &amp; R^{\top}R\end{aligned}.\]</span></p>
 <p>There are three standard approaches for computing the QR, using (1) reflections (Householder transformations), (2) rotations (Givens transformations), or (3) Gram-Schmidt orthogonalization (see below for details).</p>
 <p>For <span class="math inline">\(n\times n\)</span> <span class="math inline">\(X\)</span>, the QR (for the Householder approach) requires <span class="math inline">\(2n^{3}/3\)</span> flops, so QR is less efficient than LU or Cholesky.</p>
