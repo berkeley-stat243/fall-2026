@@ -77,6 +77,8 @@ website:
             text: "Problem Set 5"
           - href: ps/ps6.qmd
             text: "Problem Set 6"
+          - href: ps/ps7.qmd
+            text: "Problem Set 7"
       - section: "How tos"
         contents:
           - howtos/accessPython.md

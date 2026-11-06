@@ -864,8 +864,7 @@ How many multiplies and adds are done? Solving lower triangular systems
 is very similar and involves the same number of calculations.
 
 In Scipy, we can use `linalg.solve_triangular` to solve triangular systems.
-The `trans` argument indicates whether to solve $Ax=b$ or $A^{\top}x=b$
-(so one wouldn't need to transpose before solving).
+The `lower` argument tells Scipy whether to use the lower or upper triangle (i.e., forwardsolve or backsolve).  The `trans` argument indicates whether to solve $Ax=b$ or $A^{\top}x=b$ (so one wouldn't need to transpose before solving).
 
 ```{python}
 import scipy as sp
@@ -880,11 +879,11 @@ b = rng.normal(size = n)
 L = np.linalg.cholesky(A) # L is lower-triangular
 U = L.T
 
-out1 = sp.linalg.solve_triangular(L, b, lower=True)
+out1 = sp.linalg.solve_triangular(L, b, lower=True)   # Forwardsolve
 out2 = np.linalg.inv(L) @ b
 np.allclose(out1, out2)
 
-out3 =  sp.linalg.solve_triangular(U, b, lower=False)
+out3 =  sp.linalg.solve_triangular(U, b, lower=False) # Backsolve
 out4 = np.linalg.inv(U) @ b
 np.allclose(out1, out2)
 ```
@@ -1160,7 +1159,7 @@ with $n>p$ then the leading $p$ rows of $R$ provide an upper triangular
 matrix ($R_{1}$) and the remaining rows are 0. (I'm using $p$ because
 the QR is generally applied to design matrices in regression). In this
 case we really only need the first $p$ columns of $Q$, and we have
-$X=Q_{1}R_{1}$, the 'skinny' QR (this is what R's QR provides). For
+$X=Q_{1}R_{1}$, the 'skinny' QR (this is what `np.linalg.qr` provides by default as the 'reduced' "mode"). For
 uniqueness, we can require the diagonals of $R$ to be nonnegative, and
 then $R$ will be the same as the upper-triangular Cholesky factor of
 $X^{\top}X$: 

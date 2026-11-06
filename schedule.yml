@@ -188,6 +188,24 @@
           id: "6"
           name: "PS 6 Quiz"
           href: "syllabus.html#problem-set-quizzes"
+- week: 12
+  days:
+    - date: "Mon Nov 9 - Wed Nov 11 (10 am)"
+      items:
+        - type: "Quiz"
+          id: "6alt"
+          name: "PS 6 Quiz Makeup/Retake"
+          href: "https://calendar.app.google/j4AV6CvfrZbuAKL78"
+    - date: "Fri Nov 13"
+      items:
+        - type: "Problem_Set"
+          id: "7"
+          name: "Problem Set 7"
+          href: "ps/ps7.html"
+        - type: "Quiz"
+          id: "7"
+          name: "PS 7 Quiz"
+          href: "syllabus.html#problem-set-quizzes"
 
 
 
