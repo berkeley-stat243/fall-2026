@@ -42,23 +42,6 @@ References:
     book Convex
     Optimization](https://web.stanford.edu/~boyd/cvxbook/).
 
-Videos (optional): 
-
-There are various videos from 2020 in the bCourses Media Gallery that you
-can use for reference if you want to. 
-
-  - Video 1. Convergence in optimization
-  - Video 2. Profiling
-  - Video 3. Multivariate Newton-Raphson
-  - Video 4. Descent methods and Newton-like methods
-  - Video 5. Stochastic gradient descent
-  - Video 6. Coordinate descent
-  - Video 7. Nelder-Mead
-  - Video 8. Optimization in practice
-  - Video 9. Introduction to optimization under constraints
-  - Video 10. Optimization under equality constraints
-  - Video 11. Barrier method for constrained optimization
-
 # 1. Notation
 
 We'll make use of the first derivative (the gradient) and second
@@ -102,6 +85,8 @@ find the maximum (or minimum) analytically. Some examples:
 3.  Maximizing a likelihood under constraints
 
 4.  Fitting a machine learning prediction method
+
+5.  Fitting a deep neural network (we'll focus on methods related to this mostly in Unit 12)
 
 Maximum likelihood estimation and variants thereof is a standard
 situation in which optimization comes up.
@@ -414,32 +399,36 @@ In the last case the divergence quickly leads to numerical overflow and then NaN
 
 #### Multiple optima: converging to the wrong optimum
 
-In the first row of the next figure, let's see an example of climbing
-uphill and finding a local maximum rather than minimum. The other rows
-show convergence. In all cases the minimum is at $x^{*}\approx3.14$
+Now let's consider a multi-modal objective function. 
+
+In the first row of the next figure, if we start near the global minimum (x^{*}\approx -4.89),
+we see that we find it. 
+
+
 
 ```{python}
 #| fig-height: 7
 
 # Define the original function
 def f(x):
-    return np.cos(x)
+    return -8*x - 3*x**2 + (4/3)*x**3 + x**4/4
 
 # Define the gradient
 def f_deriv1(x):
-    return -np.sin(x)
+    return -8 - 6*x + 4*x**2 + x**3
 
 # Define the second derivative
 def f_deriv2(x):
-    return -np.cos(x)# original fxn
+    return -6 + 8*x + 3*x**2
 
 def make_plot2(xs, xvals, f, f_deriv1, num, title):
     # gradient subplot
     plt.subplot(3, 2, num)
     plt.plot(xs, f_deriv1(xs), '-', label="f'(x)")
-    plt.scatter(np.pi, f_deriv1(np.pi))
+    plt.scatter(-4.89, f_deriv1(-4.89))
     for i in range(len(xvals)):
         plt.text(xvals[i], 0, i, fontsize=12, color = 'red')
+    plt.axhline(y=0, linewidth=0.5)
     plt.xlabel('x')
     plt.ylabel("f'(x)")
     plt.title(title[0])
@@ -448,24 +437,23 @@ def make_plot2(xs, xvals, f, f_deriv1, num, title):
     # function subplot
     plt.subplot(3, 2, num+1)
     plt.plot(xs, f(xs), '-', label="f(x)")
-    plt.scatter(np.pi, f(np.pi))
+    plt.scatter(-4.89, f(-4.89))
     for i in range(len(xvals)):
         plt.text(xvals[i], 0, i, fontsize=12, color = 'red')
     plt.xlabel('x')
     plt.ylabel("f(x)")
     plt.title(title[1])
-    plt.legend(loc='lower right')
+    plt.legend(loc='upper right')
     plt.tight_layout()
  
 
-xs = np.linspace(0, 2 * np.pi, num=300)
+xs = np.linspace(-7, 4, num=300)
 
-x0 = 5.5 # starting point
+x0 = -4 # good starting point
 
 ## f_deriv1(x0) # positive
-## f_deriv2(x0) # negative
-## x1 = x0 - f_deriv1(x0)/f_deriv2(x0) # whoops, we've gone uphill 
-## because of the negative second derivative
+## f_deriv2(x0) # positive
+## x1 = x0 - f_deriv1(x0)/f_deriv2(x0) # We move downhill (to the left) 
 xvals = np.zeros(n)
 
 xvals[0] = x0
@@ -476,15 +464,15 @@ for t in range(1,10):
 plt.figure(figsize=(10, 7))
 
 make_plot2(xs, xvals, f, f_deriv1, 1, title =
-    ['uphill to local maximum, gradient view', 'uphill to local maximum, function view'])
+    ['downhill to global minimum, gradient view', 
+     'downhill to global minimum, function view'])
 
-## In contrast, with better starting points we can find the minimum
-## (but this nearly diverges).
+## In contrast, with a slightly different starting point we can find the global maximum.
 
-x0 = 4.3 # ok starting point
+x0 = -2 # bad starting point
 ## f_deriv1(x0) 
 ## f_deriv2(x0) 
-## x1 = x0 - f_deriv1(x0)/f_deriv2(x0)  # going downhill
+## x1 = x0 - f_deriv1(x0)/f_deriv2(x0)  # going uphill
 
 xvals[0] = x0
 for t in range(1,10):
@@ -492,14 +480,15 @@ for t in range(1,10):
 ## print(xvals)
 
 make_plot2(xs, xvals, f, f_deriv1, 3, title =
-    ['nearly diverges, gradient view', 'nearly diverges, function view'])
+    ['uphill to the maximum, gradient view', 
+     'uphill to the maximum, function view'])
 
-## With a better starting point, we converge quickly.
+## With a different starting point, we jump the maximum and converge to a local minimum.
 
-x0 = 3.8 # good starting point
+x0 = -3 
 f_deriv1(x0) 
 f_deriv2(x0) 
-x1 = x0 - f_deriv1(x0)/f_deriv2(x0)   # going downhill
+x1 = x0 - f_deriv1(x0)/f_deriv2(x0)   # going uphill
 
 xvals[0] = x0
 for t in range(1,10):
@@ -507,7 +496,8 @@ for t in range(1,10):
 ## print(xvals)
 
 make_plot2(xs, xvals, f, f_deriv1, 5, title =
-    ['better starting point, gradient view', 'better starting point, function view'])
+    ['jump to a local minimum, gradient view', 
+     'jump to a local minimum, function view'])
 
 plt.show(block=False)
 ```
