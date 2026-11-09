@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chris Paciorek">
-<meta name="dcterms.date" content="2025-11-21">
+<meta name="dcterms.date" content="2026-11-08">
 
 <title>Optimization</title>
 <style>
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-ee3107ad7620883f66d1528a5164b9f7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -554,7 +554,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">November 21, 2025</p>
+      <p class="date">November 8, 2026</p>
     </div>
   </div>
   
@@ -576,21 +576,6 @@ window.Quarto = {
 <li>Givens and Hoeting: <em>Computational Statistics</em></li>
 <li>Materials online from Stanford’s <a href="http://www.stanford.edu/class/ee364a/lectures.html">EE364a course</a> on convex optimization, including <a href="https://web.stanford.edu/~boyd/cvxbook/">Boyd and Vandenberghe’s (online) book Convex Optimization</a>.</li>
 </ul>
-<p>Videos (optional):</p>
-<p>There are various videos from 2020 in the bCourses Media Gallery that you can use for reference if you want to.</p>
-<ul>
-<li>Video 1. Convergence in optimization</li>
-<li>Video 2. Profiling</li>
-<li>Video 3. Multivariate Newton-Raphson</li>
-<li>Video 4. Descent methods and Newton-like methods</li>
-<li>Video 5. Stochastic gradient descent</li>
-<li>Video 6. Coordinate descent</li>
-<li>Video 7. Nelder-Mead</li>
-<li>Video 8. Optimization in practice</li>
-<li>Video 9. Introduction to optimization under constraints</li>
-<li>Video 10. Optimization under equality constraints</li>
-<li>Video 11. Barrier method for constrained optimization</li>
-</ul>
 </section>
 <section id="notation" class="level1">
 <h1>1. Notation</h1>
@@ -610,6 +595,7 @@ window.Quarto = {
 <li><p>Finding least squares estimates for a nonlinear regression model, <span class="math display">\[Y_{i}\sim\mathcal{N}(g(z_{i};\beta),\sigma^{2})\]</span> where <span class="math inline">\(g(\cdot)\)</span> is nonlinear and we seek to find the value of <span class="math inline">\(\theta=(\beta,\sigma^{2})\)</span> that best fits the data.</p></li>
 <li><p>Maximizing a likelihood under constraints</p></li>
 <li><p>Fitting a machine learning prediction method</p></li>
+<li><p>Fitting a deep neural network (we’ll focus on methods related to this mostly in Unit 12)</p></li>
 </ol>
 <p>Maximum likelihood estimation and variants thereof is a standard situation in which optimization comes up.</p>
 <p>We’ll focus on <strong>minimization</strong>, since any maximization of <span class="math inline">\(f\)</span> can be treated as minimization of <span class="math inline">\(-f\)</span>. The basic setup is to find the <em>argument</em>, <span class="math inline">\(x\)</span>, that minimizes <span class="math inline">\(f(x)\)</span>: <span class="math display">\[x^{*}=\arg\min_{x\in D}f(x)\]</span> where <span class="math inline">\(D\)</span> is the domain. Sometimes <span class="math inline">\(D=\Re^{p}\)</span> but other times it imposes constraints on <span class="math inline">\(x\)</span>. When there are no constraints, this is unconstrained optimization, where any <span class="math inline">\(x\)</span> for which <span class="math inline">\(f(x)\)</span> is defined is a possible solution. We’ll assume that <span class="math inline">\(f\)</span> is continuous as there’s little that can be done systematically if we’re dealing with a discontinuous function.</p>
@@ -794,53 +780,54 @@ window.Quarto = {
 </section>
 <section id="multiple-optima-converging-to-the-wrong-optimum" class="level4">
 <h4 class="anchored" data-anchor-id="multiple-optima-converging-to-the-wrong-optimum">Multiple optima: converging to the wrong optimum</h4>
-<p>In the first row of the next figure, let’s see an example of climbing uphill and finding a local maximum rather than minimum. The other rows show convergence. In all cases the minimum is at <span class="math inline">\(x^{*}\approx3.14\)</span></p>
+<p>Now let’s consider a multi-modal objective function.</p>
+<p>In the first row of the next figure, if we start near the global minimum (x^{*}), we see that we find it.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the original function</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.cos(x)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">8</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (<span class="dv">4</span><span class="op">/</span><span class="dv">3</span>)<span class="op">*</span>x<span class="op">**</span><span class="dv">3</span> <span class="op">+</span> x<span class="op">**</span><span class="dv">4</span><span class="op">/</span><span class="dv">4</span></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the gradient</span></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_deriv1(x):</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.sin(x)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">8</span> <span class="op">-</span> <span class="dv">6</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x<span class="op">**</span><span class="dv">3</span></span>
 <span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the second derivative</span></span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_deriv2(x):</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.cos(x)<span class="co"># original fxn</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">6</span> <span class="op">+</span> <span class="dv">8</span><span class="op">*</span>x <span class="op">+</span> <span class="dv">3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> make_plot2(xs, xvals, f, f_deriv1, num, title):</span>
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># gradient subplot</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, num)</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    plt.plot(xs, f_deriv1(xs), <span class="st">'-'</span>, label<span class="op">=</span><span class="st">"f'(x)"</span>)</span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    plt.scatter(np.pi, f_deriv1(np.pi))</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    plt.scatter(<span class="op">-</span><span class="fl">4.89</span>, f_deriv1(<span class="op">-</span><span class="fl">4.89</span>))</span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(xvals)):</span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        plt.text(xvals[i], <span class="dv">0</span>, i, fontsize<span class="op">=</span><span class="dv">12</span>, color <span class="op">=</span> <span class="st">'red'</span>)</span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"f'(x)"</span>)</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    plt.title(title[<span class="dv">0</span>])</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    <span class="co"># function subplot</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, num<span class="op">+</span><span class="dv">1</span>)</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    plt.plot(xs, f(xs), <span class="st">'-'</span>, label<span class="op">=</span><span class="st">"f(x)"</span>)</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    plt.scatter(np.pi, f(np.pi))</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(xvals)):</span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>        plt.text(xvals[i], <span class="dv">0</span>, i, fontsize<span class="op">=</span><span class="dv">12</span>, color <span class="op">=</span> <span class="st">'red'</span>)</span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"f(x)"</span>)</span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    plt.title(title[<span class="dv">1</span>])</span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">2</span> <span class="op">*</span> np.pi, num<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fl">5.5</span> <span class="co"># starting point</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co">## f_deriv1(x0) # positive</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co">## f_deriv2(x0) # negative</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co">## x1 = x0 - f_deriv1(x0)/f_deriv2(x0) # whoops, we've gone uphill </span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co">## because of the negative second derivative</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>    plt.axhline(y<span class="op">=</span><span class="dv">0</span>, linewidth<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"f'(x)"</span>)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    plt.title(title[<span class="dv">0</span>])</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>    plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># function subplot</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">3</span>, <span class="dv">2</span>, num<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    plt.plot(xs, f(xs), <span class="st">'-'</span>, label<span class="op">=</span><span class="st">"f(x)"</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    plt.scatter(<span class="op">-</span><span class="fl">4.89</span>, f(<span class="op">-</span><span class="fl">4.89</span>))</span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(xvals)):</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>        plt.text(xvals[i], <span class="dv">0</span>, i, fontsize<span class="op">=</span><span class="dv">12</span>, color <span class="op">=</span> <span class="st">'red'</span>)</span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">"f(x)"</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    plt.title(title[<span class="dv">1</span>])</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>    plt.legend(loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">7</span>, <span class="dv">4</span>, num<span class="op">=</span><span class="dv">300</span>)</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="op">-</span><span class="dv">4</span> <span class="co"># good starting point</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co">## f_deriv1(x0) # positive</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co">## f_deriv2(x0) # positive</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co">## x1 = x0 - f_deriv1(x0)/f_deriv2(x0) # We move downhill (to the left) </span></span>
 <span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>xvals <span class="op">=</span> np.zeros(n)</span>
 <span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>xvals[<span class="dv">0</span>] <span class="op">=</span> x0</span>
@@ -851,15 +838,15 @@ window.Quarto = {
 <span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">7</span>))</span>
 <span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>make_plot2(xs, xvals, f, f_deriv1, <span class="dv">1</span>, title <span class="op">=</span></span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'uphill to local maximum, gradient view'</span>, <span class="st">'uphill to local maximum, function view'</span>])</span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a><span class="co">## In contrast, with better starting points we can find the minimum</span></span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="co">## (but this nearly diverges).</span></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'downhill to global minimum, gradient view'</span>, </span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>     <span class="st">'downhill to global minimum, function view'</span>])</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a><span class="co">## In contrast, with a slightly different starting point we can find the global maximum.</span></span>
 <span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fl">4.3</span> <span class="co"># ok starting point</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="op">-</span><span class="dv">2</span> <span class="co"># bad starting point</span></span>
 <span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="co">## f_deriv1(x0) </span></span>
 <span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a><span class="co">## f_deriv2(x0) </span></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="co">## x1 = x0 - f_deriv1(x0)/f_deriv2(x0)  # going downhill</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a><span class="co">## x1 = x0 - f_deriv1(x0)/f_deriv2(x0)  # going uphill</span></span>
 <span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>xvals[<span class="dv">0</span>] <span class="op">=</span> x0</span>
 <span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>):</span>
@@ -867,20 +854,21 @@ window.Quarto = {
 <span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a><span class="co">## print(xvals)</span></span>
 <span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>make_plot2(xs, xvals, f, f_deriv1, <span class="dv">3</span>, title <span class="op">=</span></span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'nearly diverges, gradient view'</span>, <span class="st">'nearly diverges, function view'</span>])</span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a><span class="co">## With a better starting point, we converge quickly.</span></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="fl">3.8</span> <span class="co"># good starting point</span></span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>f_deriv1(x0) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'uphill to the maximum, gradient view'</span>, </span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>     <span class="st">'uphill to the maximum, function view'</span>])</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a><span class="co">## With a different starting point, we jump the maximum and converge to a local minimum.</span></span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>x0 <span class="op">=</span> <span class="op">-</span><span class="dv">3</span> </span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>f_deriv1(x0) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(0.6118578909427189)</code></pre>
+<pre><code>19</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f_deriv2(x0) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(0.7909677119144168)</code></pre>
+<pre><code>-3</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> x0 <span class="op">-</span> f_deriv1(x0)<span class="op">/</span>f_deriv2(x0)   <span class="co"># going downhill</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> x0 <span class="op">-</span> f_deriv1(x0)<span class="op">/</span>f_deriv2(x0)   <span class="co"># going uphill</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>xvals[<span class="dv">0</span>] <span class="op">=</span> x0</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>):</span>
@@ -888,9 +876,10 @@ window.Quarto = {
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">## print(xvals)</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>make_plot2(xs, xvals, f, f_deriv1, <span class="dv">5</span>, title <span class="op">=</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'better starting point, gradient view'</span>, <span class="st">'better starting point, function view'</span>])</span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>plt.show(block<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    [<span class="st">'jump to a local minimum, gradient view'</span>, </span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>     <span class="st">'jump to a local minimum, function view'</span>])</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>plt.show(block<span class="op">=</span><span class="va">False</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -943,7 +932,7 @@ window.Quarto = {
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.imshow(y.reshape((nGrid, nGrid)), extent<span class="op">=</span>[<span class="op">-</span>const, const, <span class="op">-</span>const, const], origin<span class="op">=</span><span class="st">'lower'</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;matplotlib.colorbar.Colorbar object at 0x7d63564f7cb0&gt;</code></pre>
+<pre><code>&lt;matplotlib.colorbar.Colorbar object at 0x7666827a3cb0&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Rastrigin Function'</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
