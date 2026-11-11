@@ -1248,10 +1248,10 @@ specifically designed to output quantities useful in fitting linear
 models. 
 
 In R, `qr()` returns the result as a list meant for use by other tools. R
-stores the $R$ matrix in the upper triangle of `\$qr`, while the lower
-triangle of *\$qr* and *\$aux* store the information for constructing
+stores the $R$ matrix in the upper triangle of `$qr`, while the lower
+triangle of `$qr` and `$aux` store the information for constructing
 $Q$ (this relates to the Householder-related vectors $u$ below). One can
-multiply by $Q$ using *qr.qy()* and by $Q^{\top}$ using *qr.qty()*. If
+multiply by $Q$ using `qr.qy()` and by $Q^{\top}$ using `qr.qty()`. If
 you want to extract $R$ and $Q$, the following will work:
 
 ```{r}
@@ -1262,11 +1262,14 @@ R = qr.R(X.qr)
 ```
 
 As a side note, there are QR-based functions that provide
-regression-related quantities, such as *qr.resid()*, *qr.fitted()* and
-*qr.coef()*. These functions (and their Fortran counterparts) exist
+regression-related quantities, such as `qr.resid()`, `qr.fitted()` and
+`qr.coef()`. These functions (and their Fortran counterparts) exist
 because one can work through the various regression quantities of
 interest and find their expressions in terms of $Q$ and $R$, with nice
 properties resulting from $Q$ being orthogonal and $R$ triangular.
+
+That was all described in the context of R, but things should be similar
+in Python packages implementing regression, though I haven't taken the time to look.
 
 ### Computing the QR decomposition
 
