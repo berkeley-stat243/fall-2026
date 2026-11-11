@@ -32,7 +32,7 @@ execute:
     know how inefficient it is to explicitly invert the matrix $A$ and
     then multiply, thereby finding $x=A^{-1}b$ via matrix-vector
     multiplication. If we look into the C++ code of the `numpy.linalg.inv` function, we see it
-    solves the system $AZ=I$ to find $Z=A^{-1}$, using a Lapack routine [DGESV](http://www.netlib.org/lapack/explore-html/d7/d3b/group__double_g_esolve_ga5ee879032a8365897c3ba91e3dc8d512.html), which uses the LU decomposition.
+    solves the system $AZ=I$ to find $Z=A^{-1}$, using a Lapack routine [DGESV](https://netlib.org/lapack/explore-html/d8/da6/group__gesv_ga831ce6a40e7fd16295752d18aed2d541.html), which uses the LU decomposition.
     Count the number of computations for
 
     a.  transforming $AZ=I$ to $UZ=I^{*}$ (where $I^{*}$ is no longer a
@@ -63,9 +63,9 @@ execute:
 
    b. Are the results for the solution `x` the same numerically for methods (ii) and (iii) (up to double precision)? Comment on how many digits in the elements of `x` agree, and relate this to the condition number of the calculation. You can do this for a value of $n$ rather smaller than 5000 to reduce the time to estimate the condition number. 
 
-   c. How does the timing scale with the number of cores (i.e., threads, using a parallelized BLAS) for each of the three approaches? You may need to use the SCF for this to ensure you are using a parallel BLAS. 
+   c. How does the timing scale with the number of cores (i.e., threads, using a parallelized BLAS) for each of the three approaches? You may need to use the SCF for this to ensure you are using a parallel BLAS. The `threadpoolctl` package may be helpful.
 
-   d. Now switch from numpy/scipy to JAX. Compare timing to (a) and (c), including using multiple cores with JAX.
+   d. Now switch from numpy/scipy to JAX. Compare timing to (c), using multiple cores with JAX.
 
    e. Now run the JAX-based code on a GPU and compare timing.  In doing your comparison, also compare using single vs. double precision for the JAX arrays. You can use the old GPU in the `gpu` partition on the SCF or you can use one of the other partitions that have GPUs; it doesn't matter what GPU you use -- just make sure to note which GPU type you used in your solution. These other partitions have GPUs purchased for use by faculty research groups and are available on a preemptible basis - if your job is running and a job from a group member needs the GPU your job is using, your job may be cancelled and you may need to resubmit it. When running your job (either by `srun` or `sbatch`), please set a time limit of 10 minutes or less on your job to make sure that stale/unused jobs don't prevent your classmates from accessing the GPU.
 
