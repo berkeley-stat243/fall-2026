@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-ee3107ad7620883f66d1528a5164b9f7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -867,7 +867,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">## relative perturbation in x much bigger than in b</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>norm2(delta_x) <span class="op">/</span> norm2(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(8.19847546803699)</code></pre>
+<pre><code>np.float64(8.198475468036893)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>norm2(delta_b) <span class="op">/</span> norm2(b)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -876,7 +876,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ratio of relative perturbations</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>(norm2(delta_x) <span class="op">/</span> norm2(x)) <span class="op">/</span> (norm2(delta_b) <span class="op">/</span> norm2(b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(2460.567236431514)</code></pre>
+<pre><code>np.float64(2460.567236431485)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## ratio of largest and smallest magnitude eigenvalues</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">## confusingly evals[2] is the smallest, not evals[3]</span></span>
@@ -1173,8 +1173,8 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> np.linalg.eig(C)</span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>np.sort(e[<span class="dv">0</span>])[::<span class="op">-</span><span class="dv">1</span>][<span class="dv">96</span>:<span class="dv">100</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([-3.58440747e-16+7.57451730e-17j, -3.58440747e-16-7.57451730e-17j,
-       -4.98458053e-16+1.77854836e-16j, -4.98458053e-16-1.77854836e-16j])</code></pre>
+<pre><code>array([-4.62480729e-16-7.93853813e-17j, -6.31400382e-16+1.61177775e-16j,
+       -6.31400382e-16-1.61177775e-16j, -1.34873832e-15+0.00000000e+00j])</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>    L <span class="op">=</span> np.linalg.cholesky(C)</span>
@@ -1187,7 +1187,7 @@ A_{n1}B &amp; \cdots &amp; A_{nm}B
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>vals <span class="op">=</span> np.<span class="bu">abs</span>(e[<span class="dv">0</span>])</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>np.<span class="bu">max</span>(vals)<span class="op">/</span>np.<span class="bu">min</span>(vals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>np.float64(5.597477620755469e+17)</code></pre>
+<pre><code>np.float64(3.0466359359854406e+17)</code></pre>
 </div>
 </div>
 <p>I don’t see a way to use pivoting with the Cholesky in Python, but in R, one can do <code>chol(C, pivot = TRUE)</code>.</p>
@@ -1229,13 +1229,14 @@ R \beta &amp; = &amp; Q^{\top} Y
 <p>One of the methods used by the <a href="https://www.statsmodels.org/stable/generated/statsmodels.regression.linear_model.OLS.fit.html"><code>statsmodel</code> package in Python uses the QR to fit a regression</a>.</p>
 <p>Note that by default in Python (and in R), you get the skinny QR, namely only the first <span class="math inline">\(p\)</span> rows of <span class="math inline">\(R\)</span> and the first <span class="math inline">\(p\)</span> columns of <span class="math inline">\(Q\)</span>, where the latter form an orthonormal basis for the column space of <span class="math inline">\(X\)</span>. The remaining columns form an orthonormal basis for the null space of <span class="math inline">\(X\)</span> (the space orthogonal to the column space of <span class="math inline">\(X\)</span>). The analogy in regression is that we get the basis vectors for the regression, while adding the remaining columns gives us the full <span class="math inline">\(n\)</span>-dimensional space of the observations.</p>
 <p>Regression in R uses the QR decomposition via <code>qr()</code>, which calls a Fortran function. <code>qr()</code> (and the Fortran functions that are called) is specifically designed to output quantities useful in fitting linear models.</p>
-<p>In R, <code>qr()</code> returns the result as a list meant for use by other tools. R stores the <span class="math inline">\(R\)</span> matrix in the upper triangle of <code>\$qr</code>, while the lower triangle of <em>$qr</em> and <em>$aux</em> store the information for constructing <span class="math inline">\(Q\)</span> (this relates to the Householder-related vectors <span class="math inline">\(u\)</span> below). One can multiply by <span class="math inline">\(Q\)</span> using <em>qr.qy()</em> and by <span class="math inline">\(Q^{\top}\)</span> using <em>qr.qty()</em>. If you want to extract <span class="math inline">\(R\)</span> and <span class="math inline">\(Q\)</span>, the following will work:</p>
+<p>In R, <code>qr()</code> returns the result as a list meant for use by other tools. R stores the <span class="math inline">\(R\)</span> matrix in the upper triangle of <code>$qr</code>, while the lower triangle of <code>$qr</code> and <code>$aux</code> store the information for constructing <span class="math inline">\(Q\)</span> (this relates to the Householder-related vectors <span class="math inline">\(u\)</span> below). One can multiply by <span class="math inline">\(Q\)</span> using <code>qr.qy()</code> and by <span class="math inline">\(Q^{\top}\)</span> using <code>qr.qty()</code>. If you want to extract <span class="math inline">\(R\)</span> and <span class="math inline">\(Q\)</span>, the following will work:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>X.qr <span class="ot">=</span> <span class="fu">qr</span>(X)</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>Q <span class="ot">=</span> <span class="fu">qr.Q</span>(X.qr)</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>R <span class="ot">=</span> <span class="fu">qr.R</span>(X.qr) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>As a side note, there are QR-based functions that provide regression-related quantities, such as <em>qr.resid()</em>, <em>qr.fitted()</em> and <em>qr.coef()</em>. These functions (and their Fortran counterparts) exist because one can work through the various regression quantities of interest and find their expressions in terms of <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span>, with nice properties resulting from <span class="math inline">\(Q\)</span> being orthogonal and <span class="math inline">\(R\)</span> triangular.</p>
+<p>As a side note, there are QR-based functions that provide regression-related quantities, such as <code>qr.resid()</code>, <code>qr.fitted()</code> and <code>qr.coef()</code>. These functions (and their Fortran counterparts) exist because one can work through the various regression quantities of interest and find their expressions in terms of <span class="math inline">\(Q\)</span> and <span class="math inline">\(R\)</span>, with nice properties resulting from <span class="math inline">\(Q\)</span> being orthogonal and <span class="math inline">\(R\)</span> triangular.</p>
+<p>That was all described in the context of R, but things should be similar in Python packages implementing regression, though I haven’t taken the time to look.</p>
 </section>
 <section id="computing-the-qr-decomposition" class="level3">
 <h3 class="anchored" data-anchor-id="computing-the-qr-decomposition">Computing the QR decomposition</h3>
