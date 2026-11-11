@@ -42,7 +42,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-b23880df62f304f8688066d9fba6e665.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-7baa8c2dcf50bf9d6aa514b6d32d6f04.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -460,7 +460,7 @@ window.Quarto = {
 <section id="problems" class="level2">
 <h2 class="anchored" data-anchor-id="problems">Problems</h2>
 <ol type="1">
-<li><p>We’ve seen how to use Gaussian elimination (i.e., the LU decomposition) to solve <span class="math inline">\(Ax=b\)</span> and that we can do the solution in <span class="math inline">\(n^{3}/3\)</span> operations (plus lower-order terms). Suppose I want to know how inefficient it is to explicitly invert the matrix <span class="math inline">\(A\)</span> and then multiply, thereby finding <span class="math inline">\(x=A^{-1}b\)</span> via matrix-vector multiplication. If we look into the C++ code of the <code>numpy.linalg.inv</code> function, we see it solves the system <span class="math inline">\(AZ=I\)</span> to find <span class="math inline">\(Z=A^{-1}\)</span>, using a Lapack routine <a href="http://www.netlib.org/lapack/explore-html/d7/d3b/group__double_g_esolve_ga5ee879032a8365897c3ba91e3dc8d512.html">DGESV</a>, which uses the LU decomposition. Count the number of computations for</p>
+<li><p>We’ve seen how to use Gaussian elimination (i.e., the LU decomposition) to solve <span class="math inline">\(Ax=b\)</span> and that we can do the solution in <span class="math inline">\(n^{3}/3\)</span> operations (plus lower-order terms). Suppose I want to know how inefficient it is to explicitly invert the matrix <span class="math inline">\(A\)</span> and then multiply, thereby finding <span class="math inline">\(x=A^{-1}b\)</span> via matrix-vector multiplication. If we look into the C++ code of the <code>numpy.linalg.inv</code> function, we see it solves the system <span class="math inline">\(AZ=I\)</span> to find <span class="math inline">\(Z=A^{-1}\)</span>, using a Lapack routine <a href="https://netlib.org/lapack/explore-html/d8/da6/group__gesv_ga831ce6a40e7fd16295752d18aed2d541.html">DGESV</a>, which uses the LU decomposition. Count the number of computations for</p>
 <ol type="a">
 <li>transforming <span class="math inline">\(AZ=I\)</span> to <span class="math inline">\(UZ=I^{*}\)</span> (where <span class="math inline">\(I^{*}\)</span> is no longer a diagonal matrix),</li>
 <li>for solving for <span class="math inline">\(A^{-1}=Z\)</span> given <span class="math inline">\(UZ=I^{*}\)</span>, and</li>
@@ -476,8 +476,8 @@ window.Quarto = {
 <ol type="a">
 <li><p>Using a single thread and <span class="math inline">\(n=5000\)</span>, how do the timing and relative ordering amongst methods compare to computational cost from problem 1?</p></li>
 <li><p>Are the results for the solution <code>x</code> the same numerically for methods (ii) and (iii) (up to double precision)? Comment on how many digits in the elements of <code>x</code> agree, and relate this to the condition number of the calculation. You can do this for a value of <span class="math inline">\(n\)</span> rather smaller than 5000 to reduce the time to estimate the condition number.</p></li>
-<li><p>How does the timing scale with the number of cores (i.e., threads, using a parallelized BLAS) for each of the three approaches? You may need to use the SCF for this to ensure you are using a parallel BLAS.</p></li>
-<li><p>Now switch from numpy/scipy to JAX. Compare timing to (a) and (c), including using multiple cores with JAX.</p></li>
+<li><p>How does the timing scale with the number of cores (i.e., threads, using a parallelized BLAS) for each of the three approaches? You may need to use the SCF for this to ensure you are using a parallel BLAS. The <code>threadpoolctl</code> package may be helpful.</p></li>
+<li><p>Now switch from numpy/scipy to JAX. Compare timing to (c), using multiple cores with JAX.</p></li>
 <li><p>Now run the JAX-based code on a GPU and compare timing. In doing your comparison, also compare using single vs.&nbsp;double precision for the JAX arrays. You can use the old GPU in the <code>gpu</code> partition on the SCF or you can use one of the other partitions that have GPUs; it doesn’t matter what GPU you use – just make sure to note which GPU type you used in your solution. These other partitions have GPUs purchased for use by faculty research groups and are available on a preemptible basis - if your job is running and a job from a group member needs the GPU your job is using, your job may be cancelled and you may need to resubmit it. When running your job (either by <code>srun</code> or <code>sbatch</code>), please set a time limit of 10 minutes or less on your job to make sure that stale/unused jobs don’t prevent your classmates from accessing the GPU.</p></li>
 </ol>
 <p>Note: <a href="https://stat243.berkeley.edu/fall-2026/units/unit10-linalg.html#linear-algebra-in-python">Section 6.1 of Unit 10</a> has some information on BLAS and on using JAX, including links to <a href="https://computing.stat.berkeley.edu/tutorial-parallelization/parallel-python#using-jax-for-cpu-and-gpu">sections of the SCF Parallelization Tutorial</a>.</p></li>
