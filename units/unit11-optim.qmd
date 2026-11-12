@@ -278,7 +278,7 @@ problems.
 
 :::
 
-### Secant method variation on N-R
+### Secant method variation on Newton-Raphson
 
 Suppose we don't want to calculate the second derivative required in the
 divisor of N-R. We might replace the analytic derivative with a discrete
@@ -964,7 +964,7 @@ convergence problems and statistical uncertainty go hand in hand. One,
 but not the only, example of this occurs when we have nearly collinear
 regressors.
 
-## IRLS (IWLS) for Generalized Linear Models (GLMs)
+## (BACKGROUND) IRLS (IWLS) for Generalized Linear Models (GLMs)
 
 As many of you know, iterative reweighted least squares (also called
 iterative weighted least squares) is the standard method for estimation
@@ -1553,7 +1553,7 @@ This is the default in `optim()` in R. It is an option
 (by specifying `method='Nelder-mead'`) for `scipy.optimize.minimize`
 (BFGS or a variant is the default).
 
-## Simulated annealing (SA) (optional)
+## (OPTIONAL) Simulated annealing (SA) 
 
 Simulated annealing is a *stochastic* descent algorithm, unlike the
 deterministic algorithms we've already discussed. It has a couple
@@ -1937,7 +1937,7 @@ to variance components and other parameters that are non-negative, one
 approach to dealing with the constraints is to optimize with respect to
 the log of the parameter.
 
-# 7. Combinatorial optimization over discrete spaces 
+# 7. (OPTIONAL) Combinatorial optimization over discrete spaces 
 
 Many statistical optimization problems involve continuous domains, but
 sometimes there are problems in which the domain is discrete. Variable
@@ -2295,7 +2295,7 @@ inverses of matrices split into blocks, one gets that
 $x^{*}=-Q^{-1}m+Q^{-1}A^{\top}(AQ^{-1}A^{\top})^{-1}(AQ^{-1}m+b)$. This
 can be readily coded up using strategies from Unit 10.
 
-## The dual problem (optional)
+## (OPTIONAL) The dual problem
 
 Sometimes a reformulation of the problem eases the optimization. There
 are different kinds of dual problems, but we'll just deal with the
@@ -2362,7 +2362,7 @@ $\Re^{p}$ while doing so in the dual form gives an optimization in
 $\Re^{n}$. So one reason to use the dual form would be if you have
 $n\ll p$.
 
-## KKT conditions (optional)
+## (OPTIONAL) KKT conditions 
 
 Karush-Kuhn-Tucker (KKT) theory provides sufficient conditions under
 which a constrained optimization problem has a minimum, generalizing the
