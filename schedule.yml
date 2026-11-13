@@ -216,10 +216,6 @@
           href: "https://calendar.app.google/dZ8Wo6RjQbPmN5Qx5"
     - date: "Fri Nov 20"
       items:
-        - type: "Problem_Set"
-          id: "7"
-          name: "Problem Set 7"
-          href: "ps/ps7.html"
         - type: "Lab"
           name: "Exam Review"
 
