@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c76de970100924db865b47fb8ebce624.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-5ccff1c195be9b0cbed43f4482a7e16e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -476,7 +476,7 @@ window.Quarto = {
   <li><a href="#newton-raphson-newtons-method" id="toc-newton-raphson-newtons-method" class="nav-link" data-scroll-target="#newton-raphson-newtons-method">Newton-Raphson (Newton’s method)</a>
   <ul class="collapse">
   <li><a href="#overview-2" id="toc-overview-2" class="nav-link" data-scroll-target="#overview-2">Overview</a></li>
-  <li><a href="#secant-method-variation-on-newton-raphson" id="toc-secant-method-variation-on-newton-raphson" class="nav-link" data-scroll-target="#secant-method-variation-on-newton-raphson">Secant method variation on Newton-Raphson</a></li>
+  <li><a href="#secant-method-variation-on-n-r" id="toc-secant-method-variation-on-n-r" class="nav-link" data-scroll-target="#secant-method-variation-on-n-r">Secant method variation on N-R</a></li>
   <li><a href="#how-can-newtons-method-go-wrong" id="toc-how-can-newtons-method-go-wrong" class="nav-link" data-scroll-target="#how-can-newtons-method-go-wrong">How can Newton’s method go wrong?</a></li>
   </ul></li>
   </ul></li>
@@ -491,7 +491,7 @@ window.Quarto = {
   <li><a href="#profiling" id="toc-profiling" class="nav-link" data-scroll-target="#profiling">Profiling</a></li>
   <li><a href="#newton-raphson-newtons-method-1" id="toc-newton-raphson-newtons-method-1" class="nav-link" data-scroll-target="#newton-raphson-newtons-method-1">Newton-Raphson (Newton’s method)</a></li>
   <li><a href="#fisher-scoring-variant-on-n-r-optional" id="toc-fisher-scoring-variant-on-n-r-optional" class="nav-link" data-scroll-target="#fisher-scoring-variant-on-n-r-optional">Fisher scoring variant on N-R (optional)</a></li>
-  <li><a href="#background-irls-iwls-for-generalized-linear-models-glms" id="toc-background-irls-iwls-for-generalized-linear-models-glms" class="nav-link" data-scroll-target="#background-irls-iwls-for-generalized-linear-models-glms">(BACKGROUND) IRLS (IWLS) for Generalized Linear Models (GLMs)</a></li>
+  <li><a href="#irls-iwls-for-generalized-linear-models-glms" id="toc-irls-iwls-for-generalized-linear-models-glms" class="nav-link" data-scroll-target="#irls-iwls-for-generalized-linear-models-glms">IRLS (IWLS) for Generalized Linear Models (GLMs)</a></li>
   <li><a href="#descent-methods-and-newton-like-methods" id="toc-descent-methods-and-newton-like-methods" class="nav-link" data-scroll-target="#descent-methods-and-newton-like-methods">Descent methods and Newton-like methods</a>
   <ul class="collapse">
   <li><a href="#descent-methods" id="toc-descent-methods" class="nav-link" data-scroll-target="#descent-methods">Descent methods</a></li>
@@ -500,7 +500,7 @@ window.Quarto = {
   </ul></li>
   <li><a href="#coordinate-descent-gauss-seidel" id="toc-coordinate-descent-gauss-seidel" class="nav-link" data-scroll-target="#coordinate-descent-gauss-seidel">Coordinate descent (Gauss-Seidel)</a></li>
   <li><a href="#nelder-mead" id="toc-nelder-mead" class="nav-link" data-scroll-target="#nelder-mead">Nelder-Mead</a></li>
-  <li><a href="#optional-simulated-annealing-sa" id="toc-optional-simulated-annealing-sa" class="nav-link" data-scroll-target="#optional-simulated-annealing-sa">(OPTIONAL) Simulated annealing (SA)</a></li>
+  <li><a href="#simulated-annealing-sa-optional" id="toc-simulated-annealing-sa-optional" class="nav-link" data-scroll-target="#simulated-annealing-sa-optional">Simulated annealing (SA) (optional)</a></li>
   </ul></li>
   <li><a href="#basic-optimization-in-python" id="toc-basic-optimization-in-python" class="nav-link" data-scroll-target="#basic-optimization-in-python">6. Basic optimization in Python</a>
   <ul class="collapse">
@@ -508,7 +508,7 @@ window.Quarto = {
   <li><a href="#automatic-differentiation-ad" id="toc-automatic-differentiation-ad" class="nav-link" data-scroll-target="#automatic-differentiation-ad">Automatic differentiation (AD)</a></li>
   <li><a href="#various-considerations-in-using-the-python-functions" id="toc-various-considerations-in-using-the-python-functions" class="nav-link" data-scroll-target="#various-considerations-in-using-the-python-functions">Various considerations in using the Python functions</a></li>
   </ul></li>
-  <li><a href="#optional-combinatorial-optimization-over-discrete-spaces" id="toc-optional-combinatorial-optimization-over-discrete-spaces" class="nav-link" data-scroll-target="#optional-combinatorial-optimization-over-discrete-spaces">7. (OPTIONAL) Combinatorial optimization over discrete spaces</a></li>
+  <li><a href="#combinatorial-optimization-over-discrete-spaces" id="toc-combinatorial-optimization-over-discrete-spaces" class="nav-link" data-scroll-target="#combinatorial-optimization-over-discrete-spaces">7. Combinatorial optimization over discrete spaces</a></li>
   <li><a href="#convexity" id="toc-convexity" class="nav-link" data-scroll-target="#convexity">8. Convexity</a>
   <ul class="collapse">
   <li><a href="#mm-algorithm" id="toc-mm-algorithm" class="nav-link" data-scroll-target="#mm-algorithm">MM algorithm</a></li>
@@ -523,8 +523,8 @@ window.Quarto = {
   <li><a href="#linear-equality-constraints" id="toc-linear-equality-constraints" class="nav-link" data-scroll-target="#linear-equality-constraints">Linear equality constraints</a></li>
   <li><a href="#nonlinear-equality-constraints" id="toc-nonlinear-equality-constraints" class="nav-link" data-scroll-target="#nonlinear-equality-constraints">Nonlinear equality constraints</a></li>
   </ul></li>
-  <li><a href="#optional-the-dual-problem" id="toc-optional-the-dual-problem" class="nav-link" data-scroll-target="#optional-the-dual-problem">(OPTIONAL) The dual problem</a></li>
-  <li><a href="#optional-kkt-conditions" id="toc-optional-kkt-conditions" class="nav-link" data-scroll-target="#optional-kkt-conditions">(OPTIONAL) KKT conditions</a></li>
+  <li><a href="#the-dual-problem-optional" id="toc-the-dual-problem-optional" class="nav-link" data-scroll-target="#the-dual-problem-optional">The dual problem (optional)</a></li>
+  <li><a href="#kkt-conditions-optional" id="toc-kkt-conditions-optional" class="nav-link" data-scroll-target="#kkt-conditions-optional">KKT conditions (optional)</a></li>
   <li><a href="#interior-point-methods" id="toc-interior-point-methods" class="nav-link" data-scroll-target="#interior-point-methods">Interior-point methods</a></li>
   <li><a href="#software-for-constrained-and-convex-optimization" id="toc-software-for-constrained-and-convex-optimization" class="nav-link" data-scroll-target="#software-for-constrained-and-convex-optimization">Software for constrained and convex optimization</a></li>
   </ul></li>
@@ -662,8 +662,8 @@ window.Quarto = {
 </div>
 </div>
 </section>
-<section id="secant-method-variation-on-newton-raphson" class="level3">
-<h3 class="anchored" data-anchor-id="secant-method-variation-on-newton-raphson">Secant method variation on Newton-Raphson</h3>
+<section id="secant-method-variation-on-n-r" class="level3">
+<h3 class="anchored" data-anchor-id="secant-method-variation-on-n-r">Secant method variation on N-R</h3>
 <p>Suppose we don’t want to calculate the second derivative required in the divisor of N-R. We might replace the analytic derivative with a discrete difference approximation based on the secant line joining <span class="math inline">\((x_{t},f^{\prime}(x_{t}))\)</span> and <span class="math inline">\((x_{t-1},f^{\prime}(x_{t-1}))\)</span>, giving an approximate second derivative: <span class="math display">\[f^{\prime\prime}(x_{t})\approx\frac{f^{\prime}(x_{t})-f^{\prime}(x_{t-1})}{x_{t}-x_{t-1}}.\]</span> For this variant on N-R, we need two starting points, <span class="math inline">\(x_{0}\)</span> and <span class="math inline">\(x_{1}\)</span>.</p>
 <p>An alternative to the secant-based approximation is to use a standard discrete approximation of the derivative such as <span class="math display">\[f^{\prime\prime}(x_{t})\approx\frac{f^{\prime}(x_{t}+h)-f^{\prime}(x_{t}-h)}{2h}.\]</span></p>
 </section>
@@ -932,7 +932,7 @@ window.Quarto = {
 <span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>plt.imshow(y.reshape((nGrid, nGrid)), extent<span class="op">=</span>[<span class="op">-</span>const, const, <span class="op">-</span>const, const], origin<span class="op">=</span><span class="st">'lower'</span>, cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>plt.colorbar()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;matplotlib.colorbar.Colorbar object at 0x7883f7f4fcb0&gt;</code></pre>
+<pre><code>&lt;matplotlib.colorbar.Colorbar object at 0x7901ebd93cb0&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Rastrigin Function'</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x1'</span>)</span>
@@ -1137,18 +1137,18 @@ window.Quarto = {
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>deriv1(jnp.array([beta0_init, beta1_init, beta2_init]))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Array([-9.1552734e-04, -8.9168549e-04,  4.7961845e+00], dtype=float32)</code></pre>
+<pre><code>Array([-9.7656250e-04, -9.6797943e-04,  4.7962093e+00], dtype=float32)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>hess <span class="op">=</span> deriv2(jnp.array([beta0_init, beta1_init, beta2_init]))</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>hess</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Array([[128.      , 130.1952  ,  -7.139159],
-       [130.1952  , 136.91656 , -14.690589],
-       [ -7.139159, -14.69059 ,  12.677566]], dtype=float32)</code></pre>
+       [130.1952  , 136.91656 , -14.690591],
+       [ -7.139159, -14.69059 ,  12.677565]], dtype=float32)</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>np.linalg.eig(hess)[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>array([ 2.6369040e+02, -2.5785028e-03,  1.3906311e+01], dtype=float32)</code></pre>
+<pre><code>array([ 2.6369040e+02, -2.5791468e-03,  1.3906310e+01], dtype=float32)</code></pre>
 </div>
 </div>
 <p>The Hessian is not positive definite. We could try tricks such as adding to the diagonal of the Hessian or using the pseudo-inverse (i.e., setting all negative eigenvalues in the inverse to zero).</p>
@@ -1186,12 +1186,12 @@ window.Quarto = {
 <pre><code>38.304234
 30.817396
 30.443848
-30.442596
-30.442549
-30.442583
-30.442507
-30.44248
-30.442472</code></pre>
+30.442484
+30.442472
+30.442457
+30.442398
+30.442455
+30.44248</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>beta_hat <span class="op">=</span> xvals[t,:]</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -1224,8 +1224,8 @@ window.Quarto = {
 <p>When either the observed or expected FI matrix is nearly singular this means we have a small eigenvalue in the inverse covariance (the precision), which means a large eigenvalue in the covariance matrix. This indicates some linear combination of the parameters has low precision (high variance), and that in that direction the likelihood is nearly flat. As we’ve seen with N-R, convergence slows with shallow gradients, and we may have numerical problems in determining good optimization steps when the likelihood is sufficiently flat. So convergence problems and statistical uncertainty go hand in hand. One, but not the only, example of this occurs when we have nearly collinear regressors.</p>
 </section>
 </section>
-<section id="background-irls-iwls-for-generalized-linear-models-glms" class="level2">
-<h2 class="anchored" data-anchor-id="background-irls-iwls-for-generalized-linear-models-glms">(BACKGROUND) IRLS (IWLS) for Generalized Linear Models (GLMs)</h2>
+<section id="irls-iwls-for-generalized-linear-models-glms" class="level2">
+<h2 class="anchored" data-anchor-id="irls-iwls-for-generalized-linear-models-glms">IRLS (IWLS) for Generalized Linear Models (GLMs)</h2>
 <p>As many of you know, iterative reweighted least squares (also called iterative weighted least squares) is the standard method for estimation with GLMs. It involves linearizing the model and using working weights and working variances and solving a weighted least squares (WLS) problem (recalling that the generic WLS solution is <span class="math inline">\(\hat{\beta}=(X^{\top}WX)^{-1}X^{\top}WY\)</span>).</p>
 <p>Exponential families can be expressed as <span class="math display">\[f(y;\theta,\phi)=\exp((y\theta-b(\theta))/a(\phi)+c(y,\phi)),\]</span> with <span class="math inline">\(E(Y)=b^{\prime}(\theta)\)</span> and <span class="math inline">\(\mbox{Var}(Y)=b^{\prime\prime}(\theta)\)</span>. If we have a GLM in the canonical parameterization (log link for Poisson data, logit for binomial), we have the natural parameter <span class="math inline">\(\theta\)</span> equal to the linear predictor, <span class="math inline">\(\theta=\eta\)</span>. A standard linear predictor would simply be <span class="math inline">\(\eta=X\beta\)</span>.</p>
 <p>Considering N-R for a GLM in the canonical parameterization (and ignoring <span class="math inline">\(a(\phi)\)</span>, which is one for logistic and Poisson regression), one can show that the gradient of the GLM log-likelihood is the inner product of the covariates and a residual vector, <span class="math inline">\(\nabla l(\beta)=(Y-E(Y))^{\top}X\)</span>, and the Hessian is <span class="math inline">\(H_{l}(\beta)=-X^{\top}WX\)</span> where <span class="math inline">\(W\)</span> is a diagonal matrix with <span class="math inline">\(\{\mbox{Var}(Y_{i})\}\)</span> on the diagonal (the working weights). Note that both <span class="math inline">\(E(Y)\)</span> and the variances in <span class="math inline">\(W\)</span> depend on <span class="math inline">\(\beta\)</span>, so these will change as we iteratively update <span class="math inline">\(\beta\)</span>. Therefore, the N-R update is <span class="math display">\[\beta_{t+1}=\beta_{t}+(X^{\top}W_{_{t}}X)^{-1}X^{\top}(Y-E(Y)_{t})\]</span> where <span class="math inline">\(E(Y)_{t}\)</span> and <span class="math inline">\(W_{t}\)</span> are the values at the current parameter estimate, <span class="math inline">\(\beta_{t}\)</span> . For example, for logistic regression (here with <span class="math inline">\(n_{i}=1\)</span>), <span class="math inline">\(W_{t,ii}=p_{ti}(1-p_{ti})\)</span> and <span class="math inline">\(E(Y)_{ti}=p_{ti}\)</span> where <span class="math inline">\(p_{ti}=\frac{\exp(X_{i}^{\top}\beta_{t})}{1+\exp(X_{i}^{\top}\beta_{t})}\)</span>. In the canonical parameterization of a GLM, the Hessian does not depend on the data, so the observed and expected FI are the same, and therefore N-R and FS are the same.</p>
@@ -1506,8 +1506,8 @@ optim(init, f, method = "Nelder-Mead", verbose = FALSE)</code></pre>
 <p>Here’s an <a href="http://www.benfrederickson.com/numerical-optimization/">online graphical illustration</a> of Nelder-Mead.</p>
 <p>This is the default in <code>optim()</code> in R. It is an option (by specifying <code>method='Nelder-mead'</code>) for <code>scipy.optimize.minimize</code> (BFGS or a variant is the default).</p>
 </section>
-<section id="optional-simulated-annealing-sa" class="level2">
-<h2 class="anchored" data-anchor-id="optional-simulated-annealing-sa">(OPTIONAL) Simulated annealing (SA)</h2>
+<section id="simulated-annealing-sa-optional" class="level2">
+<h2 class="anchored" data-anchor-id="simulated-annealing-sa-optional">Simulated annealing (SA) (optional)</h2>
 <p>Simulated annealing is a <em>stochastic</em> descent algorithm, unlike the deterministic algorithms we’ve already discussed. It has a couple critical features that set it aside from other approaches. First, uphill moves are allowed; second, whether a move is accepted is stochastic, and finally, as the iterations proceed the algorithm becomes less likely to accept uphill moves.</p>
 <p>Assume we are minimizing a negative log likelihood as a function of <span class="math inline">\(\theta\)</span>, <span class="math inline">\(f(\theta)\)</span>.</p>
 <p>The basic idea of simulated annealing is that one modifies the objective function, <span class="math inline">\(f\)</span> in this case, to make it less peaked at the beginning, using a “temperature” variable that changes over time. This helps to allow moves away from local minima, when combined with the ability to move uphill. The name comes from an analogy to heating up a solid to its melting temperature and cooling it slowly - as it cools the atoms go through rearrangements and slowly freeze into the crystal configuration that is at the lowest energy level.</p>
@@ -1650,8 +1650,8 @@ optim(init, f, method = "Nelder-Mead", verbose = FALSE)</code></pre>
 <p>The nice thing about likelihood optimization is that the asymptotic theory tells us that with large samples, the likelihood is approximately quadratic (i.e., the asymptotic normality of MLEs), which makes for a nice surface over which to do optimization. When optimizing with respect to variance components and other parameters that are non-negative, one approach to dealing with the constraints is to optimize with respect to the log of the parameter.</p>
 </section>
 </section>
-<section id="optional-combinatorial-optimization-over-discrete-spaces" class="level1">
-<h1>7. (OPTIONAL) Combinatorial optimization over discrete spaces</h1>
+<section id="combinatorial-optimization-over-discrete-spaces" class="level1">
+<h1>7. Combinatorial optimization over discrete spaces</h1>
 <p>Many statistical optimization problems involve continuous domains, but sometimes there are problems in which the domain is discrete. Variable selection is an example of this.</p>
 <p><em>Simulated annealing</em> can be used for optimizing in a discrete space. Another approach uses <em>genetic algorithms</em>, in which one sets up the dimensions as loci grouped on a chromosome and has mutation and crossover steps in which two potential solutions reproduce. An example would be in high-dimensional variable selection.</p>
 <p><em>Stochastic search variable selection</em> is a popular Bayesian technique for variable selection that involves MCMC.</p>
@@ -1741,8 +1741,8 @@ g_{t}(\theta) &amp; = \sum_{i=1}^{n}\sqrt{r_{i}(\theta_{t})^{2}}+\frac{1}{2}\sum
 <p>Using known results for inverses of matrices split into blocks, one gets that <span class="math inline">\(x^{*}=-Q^{-1}m+Q^{-1}A^{\top}(AQ^{-1}A^{\top})^{-1}(AQ^{-1}m+b)\)</span>. This can be readily coded up using strategies from Unit 10.</p>
 </section>
 </section>
-<section id="optional-the-dual-problem" class="level2">
-<h2 class="anchored" data-anchor-id="optional-the-dual-problem">(OPTIONAL) The dual problem</h2>
+<section id="the-dual-problem-optional" class="level2">
+<h2 class="anchored" data-anchor-id="the-dual-problem-optional">The dual problem (optional)</h2>
 <p>Sometimes a reformulation of the problem eases the optimization. There are different kinds of dual problems, but we’ll just deal with the Lagrangian dual. Let <span class="math inline">\(f(x)\)</span> be the function we want to minimize, under constraints <span class="math inline">\(g_{i}(x)=0;\,i=1,\ldots,q\)</span> and <span class="math inline">\(h_{j}(x)\leq0;\,j=1,\ldots,m\)</span>. Here I’ve explicitly written out the equality constraints to follow the notation in Lange. Consider the Langrangian, <span class="math display">\[L(x,\lambda,\mu)=f(x)+\sum_{i}\lambda_{i}g_{i}(x)+\sum_{j}\mu_{j}h_{j}(x).\]</span></p>
 <p>Solving that can be shown to be equivalent to this optimization: <span class="math display">\[\inf_{x}\sup_{\lambda,\mu:\mu_{j}\geq0}L(x,\lambda,\mu)\]</span> where the supremum ensures that the constraints are satisfied because the Lagrangian is infinity if the constraints are not satisfied.</p>
 <p>Let’s consider interchanging the minimization and maximization. For <span class="math inline">\(\mu\succeq0\)</span>, one can show that <span class="math display">\[\sup_{\lambda,\mu:\mu_{j}\geq0}\inf_{x}L(x,\lambda,\mu)\leq\inf_{x}\sup_{\lambda,\mu:\mu_{j}\geq0}L(x,\lambda,\mu),\]</span> because <span class="math inline">\(\inf_{x}L(x,\lambda,\mu)\leq f(x^{*})\)</span> for the minimizing value <span class="math inline">\(x^{*}\)</span> (p.&nbsp;216 of the Boyd book). This gives us the Lagrange dual function: <span class="math display">\[d(\lambda,\mu)=\inf_{x}L(x,\lambda,\mu),\]</span> and the Lagrange dual problem is to find the best lower bound: <span class="math display">\[\sup_{\lambda,\mu:\mu_{j}\geq0}d(\lambda,\mu).\]</span></p>
@@ -1751,8 +1751,8 @@ g_{t}(\theta) &amp; = \sum_{i=1}^{n}\sqrt{r_{i}(\theta_{t})^{2}}+\frac{1}{2}\sum
 <p>Here’s a simple example: suppose we want to minimize <span class="math inline">\(x^{\top}x\)</span> s.t. <span class="math inline">\(Ax=b\)</span>. The Lagrangian is <span class="math inline">\(L(x,\lambda)=x^{\top}x+\lambda^{\top}(Ax-b)\)</span>. Since <span class="math inline">\(L(x,\lambda)\)</span> is quadratic in <span class="math inline">\(x\)</span>, the infimum is found by setting <span class="math inline">\(\nabla_{x}L(x,\lambda)=2x+A^{\top}\lambda=0\)</span>, yielding <span class="math inline">\(x=-\frac{1}{2}A^{\top}\lambda\)</span>. So the dual function is obtained by plugging this value of <span class="math inline">\(x\)</span> into <span class="math inline">\(L(x,\lambda)\)</span>, which gives <span class="math display">\[d(\lambda)=-\frac{1}{4}\lambda^{\top}AA^{\top}\lambda-b^{\top}\lambda,\]</span> which is concave quadratic. In this case we can solve the original constrained problem in terms of this unconstrained dual problem.</p>
 <p>Another example is the primal and dual forms for finding the SVM classifier (see <a href="https://en.wikipedia.org/wiki/Support_vector_machine#Primal_form">the Wikipedia article</a>). In this algorithm, we want to develop a classifier using <span class="math inline">\(n\)</span> pairs of <span class="math inline">\(y\in\Re^{1}\)</span> and <span class="math inline">\(x\in\Re^{p}\)</span>. The dual form is easily derived because the minimization over <span class="math inline">\(x\)</span> occurs in a function that is quadratic in <span class="math inline">\(x\)</span>. Expressing the problem in the primal form gives an optimization in <span class="math inline">\(\Re^{p}\)</span> while doing so in the dual form gives an optimization in <span class="math inline">\(\Re^{n}\)</span>. So one reason to use the dual form would be if you have <span class="math inline">\(n\ll p\)</span>.</p>
 </section>
-<section id="optional-kkt-conditions" class="level2">
-<h2 class="anchored" data-anchor-id="optional-kkt-conditions">(OPTIONAL) KKT conditions</h2>
+<section id="kkt-conditions-optional" class="level2">
+<h2 class="anchored" data-anchor-id="kkt-conditions-optional">KKT conditions (optional)</h2>
 <p>Karush-Kuhn-Tucker (KKT) theory provides sufficient conditions under which a constrained optimization problem has a minimum, generalizing the Lagrange multiplier approach. The Lange and Boyd books have whole sections on this topic.</p>
 <p>Suppose that the function and the constraint functions are continuously differentiable near <span class="math inline">\(x^{*}\)</span> and that we have the Lagrangian as before: <span class="math display">\[L(x,\lambda,\mu)=f(x)+\sum_{i}\lambda_{i}g_{i}(x)+\sum_{j}\mu_{j}h_{j}(x).\]</span></p>
 <p>For nonconvex problems, if <span class="math inline">\(x^{*}\)</span> and <span class="math inline">\((\lambda^{*},\mu^{*})\)</span> are the primal and dual optimal points and there is no duality gap, then the KKT conditions hold: <span class="math display">\[\begin{aligned}
