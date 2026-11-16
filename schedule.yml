@@ -206,7 +206,7 @@
           id: "7"
           name: "PS 7 Quiz"
           href: "syllabus.html#problem-set-quizzes"
-- week: 12
+- week: 13
   days:
     - date: "Mon Nov 16 - Wed Nov 18 (10 am)"
       items:
@@ -218,6 +218,33 @@
       items:
         - type: "Lab"
           name: "Exam Review"
+- week: 15
+  days:
+    - date: "Fri Dec 4"
+      items:
+        - type: "Problem_Set"
+          id: "8"
+          name: "Problem Set 8"
+          href: "ps/ps8.html"
+        - type: "Quiz"
+          id: "8"
+          name: "PS 8 Quiz"
+          href: "syllabus.html#problem-set-quizzes"
+- week: 16
+  days:
+    - date: "Mon Dec 7 - Wed Dec 9"
+      items:
+        - type: "Quiz"
+          id: "8alt"
+          name: "PS 8 Quiz Makeup/Retake"
+- week: 17
+  days:
+    - date: "Wed Dec 16"
+      items:
+        - type: "Problem_Set"
+          id: "8"
+          name: "Mini-Project"
+          href: "ps/ps8.html"
 
 
 

@@ -1,0 +1,113 @@
+---
+title: "Problem Set 8"
+subtitle: "Due Fri. December 4, 10 am and Wed. December 16"
+format:
+  pdf:
+    documentclass: article
+    margin-left: 30mm
+    margin-right: 30mm
+    toc: false
+  html:
+    theme: cosmo
+    css: ../styles.css
+    toc: false
+    code-copy: true
+    code-block-background: true
+execute:
+  freeze: auto
+---
+
+
+## Comments
+
+- This covers material in Units 11 and 12.
+- Problems 1-2 are due at 10 am (Pacific) on Friday Dec. 4, both submitted as a PDF to Pensive as well as committed to your GitHub repository.
+  - I'm planning to cover EM in class on Friday Nov. 20, so you may want to wait to start problem 1 until then. Problem 2 can be done without knowing about EM.
+- Problem 3 (mini-project) is due at the end of the day Wednesday Dec. 16, submitted as a video presentation plus committed to a GitHub repository that is shared with Chris and Reece. Details on submission will be shared on Ed.
+- Note that is is fine to hand-write solutions to the the non-coding parts of Problem 1, but make sure your writing is neat and insert any hand-written parts **in order** into your final submission. 
+
+## Problems
+
+1. Consider a censored regression problem. We assume a simple linear regression model, $Y_{i}\sim\mathcal{N}(\beta_{0}+\beta_{1}b_{i},\sigma^{2})$. Suppose we have an IID sample, but that for any observation such that $Y_i>\tau$, all we are told is that $Y_i$ exceeded the threshold and not its actual value. In a given sample, $n_{c}$ of the $n$ observations will (in a stochastic fashion) be censored, depending on how many exceed the fixed $\tau$. A real world example (but with censoring in the left tail) is in measuring pollutants, for which values below a threshold are reported as below the limit of detection. Another real world example is US tax revenue (IRS) data that are released to certain researchers, where the incomes of wealthy taxpayers may be reported as simply exceeding, say, 1 million dollars.
+
+   a. Design an EM algorithm to estimate the three parameters, $\theta=(\beta_{0},\beta_{1},\sigma^{2})$, taking the complete data to be the available fully-reported data plus the actual (but unobserved) values of the censored observations. You'll need to make use of $E(W|W>\tau)$ and $\mbox{Var}(W|W>\tau)$ where $W$ is normally distributed. Be careful that you carefully distinguish $\theta$ from the current value at iteration $t$, $\theta^t$, in writing out the expected log-likelihood and computing the expectation and that your maximization be with respect to $\theta$.
+
+      A few hints:
+
+      i. Considering the notation we used in class when discussing EM, it's natural to think of $Z$ as the (unobserved) values of the censored observations. You can think of $Z_{i}>\tau$ for the censored observations as being part of $X$ (using $X$ in the way that is is used in the class notes on EM), along with the uncensored observations.
+
+      ii. When you write out the complete data log-likelihood, it's helpful to set it up so there is a term involving the observed values and a term involving the censored values. When you condition on the latter term, you'll be conditioning on the censored values being bigger than threshold.
+
+      iii. The mean and variance of the truncated normal distribution, $f(W)\propto\mathcal{N}(\mu,\sigma^{2})I(W>\tau)$, are:
+      $$\begin{aligned}
+      E(W|W>\tau) &	=	& \mu+\sigma\rho(\tau^{*}) \\
+V(W|W>\tau) &	=	& \sigma^{2}\left(1+\tau^{*}\rho(\tau^{*})-\rho(\tau^{*})^{2}\right) \\
+\rho(\tau^{*}) &	=	& \frac{\phi(\tau^{*})}{1-\Phi(\tau^{*})} \\
+\tau^{*} &	=	& (\tau-\mu)/\sigma,
+       \end{aligned}$$
+      where $\phi(\cdot)$ is the standard normal density and $\Phi(\cdot)$ is the standard normal CDF.
+
+      iv. You should recognize that your expected log-likelihood can be expressed as a regression of $\{Y_{obs},m^{t}\}$ on $\{b\}$ where $Y_{obs}$ are the non-censored data and $\{m_i^t\},\,i=1,\ldots,n_{c}$ are used in place of the censored observations. Note that $\{m_i^t\}$ will be functions of $\theta^t$ and thus constant in terms of the maximization step. Your estimator for $\sigma^{2}$ should involve a ratio where the numerator involves the usual sum of squares for the non-censored data plus an additional term that you should interpret statistically. 
+
+      v. You should be able to analytically maximize the expected log likelihood. 
+
+   b. Propose reasonable starting values for the three parameters as functions of the observations.
+
+   c. Write an Python function, with auxiliary functions as needed, to estimate the parameters. Make use of the initialization from part (b). You may use `statsmodels` for computing $\beta^{t+1}$. You'll need to include criteria for deciding when to stop the optimization. Test your function using data simulated based on the code in [ps8.py](./ps8.py) with (a) a modest proportion of exceedances expected, say 20\%, and (b) a high proportion, say 80\%. 
+
+2. A different approach to this problem just directly maximizes the log-likelihood of the observed data, which for the censored observations just involves the likelihood terms, $P(Y_{i}>\tau;b_{i},\beta_{0},\beta_{1},\sigma^{2})$.
+
+   a. Write an objective function that calculates the negative log-likelihood of the observed data using JAX or PyTorch syntax (for use in part (d)).
+
+   b. Estimate the parameters for your test cases using `scipy.optimize.minimize()` with the BFGS option. You will want to consider reparameterization. Compare how many iterations EM and BFGS take. Note that this provide a nice test of your EM derivation and code, since you should get the same results from the two optimization approaches. 
+
+   c. As part of this, try a variety of starting values and see if you can find ones that cause the optimization **not** to converge using BFGS. Does Nelder-Mead converge with those starting values?
+
+   d. Now use JAX or PyTorch automatic differentiation (AD) functionality to create a gradient function. Set up your objective and gradient functions to use just-in-time compilation (you can use `jit()` or `@jit` for JAX and `torch.compile` or `@torch.compile` for PyTorch). Use these functions to find the parameters using BFGS.  Check that you get the same results as in (b) and compare the number of iterations and timing to using BFGS without providing the gradient function (and thereby relying on scipy using numerical differentiation).
+
+   e. Finally, use JAX or PyTorch functionality to create a Hessian function and use it to calculate the Hessian at the optimum. Use the inverse of the Hessian to get the estimated standard errors. Compare the results to those using the "Hessian" returned by `minimize`, noting that the `hess_inv` returned by `minimize` is probably NOT a good estimate of the Hessian as it seems to just be the approximation built up during the course of the BFGS iterations and not a good numerical derivative estimate at the optimum. 
+
+
+3. **Mini-project** The goal of the mini-project is to give you practice with optimization in the context of the kinds of models currently in wide use in machine learning/data science/AI.
+
+   **Groups**: You can do the mini-project (henceforth referred to as simply 'project') on your own or in groups of 2-3. Of course if you do it in a group, we'll expect more from the project.
+
+   **Deliverable**: The primary deliverable of the project is a short video in which you present your work. In addition, you should have your code be in a GitHub repository - a private repository within the Berkeley GitHub account or github.com account of one of the project members. **Make sure to share the repository with me (user 'paciorek') and Reece (user 'rdhuff' on github.berkeley.edu and user 'reecehuff' on github.com).** If you are working on your own, you can just put your materials into the ps8 directory of your regular class repository.
+
+   For single person projects, the video can be up to 10 minutes long. For 2-person groups, up to 15 and for 3-person groups up to 20. You do not need to fill the full time. A clear presentation that is shorter is better than a presentation in which it is obvious you are simply trying to fill the time. If in groups, each person should speak for substantial proportion of the time, as part of the grade assigned will be based on the individual's presentation. The presentation should describe your work, focusing on what questions you investigated and what you learned. If there are aspects of the results that surprised you or are hard to understand, that is ok, provided you clearly describe what the results were and why they were surprising (i.e., in the context of class material or conventional wisdom). Your video might involve a live demo (e.g., presenting from a Jupyter notebook or an interactive app you [or you plus AI] created) or slides. If it sounds like you are reading from an AI-generated script, it will very likely be obvious to us when we grade, and you will receive a low grade. Reece and I will be viewing the videos - make them as if you are presenting directly to a live person. Some options for recording include a screencast or within a Zoom meeting. 
+
+   **Grading**: this is structured as part of PS8, but it will graded separately and count for a bit more than a regular problem set. We will essentially be grading as "low pass", "pass", or "high pass". A "high pass" is for a project that clearly did some deep or creative exploration and went beyond expectations. A "high pass" may allow you to get an A in the class even if you didn't perform at an A level on the exam or quizzes. A "pass" represents solid work that followed the requirements of the project. This will not hurt your overall grade, and if you were doing well on the quizzes and exam, you can get an A in the class with a "pass". A "low pass" would be a case where it is clear you did this quickly and did not engage seriously, including if your work and presentation appears to be primarily AI-generated.
+
+   Doing a creative, careful and thorough job will of course likely help with your grade, though ultimately the effect of a "high pass" vs. "pass" on your grade may be limited. You may be more motivated by the fact that it will give you something to talk about during your job search and an opportunity to do some self-guided exploration that may be useful in your career.
+
+   **Use of AI**: You're welcome to use AI to set up the code and to help set up and run the experiments in which you explore optimization. You should not use AI in interpreting, explaining, and presenting your results. It's likely to be pretty obvious to us if your video presentation is in your own words and you've done your own thinking or not.
+
+   **Project content**: Please choose a dataset and explore aspects of optimizing a deep learning model on that dataset. I suggest using a deep neural net for a prediction problem, but you can consider other kinds of models/problems. Many of you will probably use PyTorch, but other packages could also work well.
+
+   Whatever you choose should involve using optimization methods discussed in Unit 12 and exploring the effects of some of the following issues:
+
+     - choice of optimization method
+     - tuning parameters, such as the learning rate
+     - model depth and width
+     - degree of overfitting and double descent phenomenon
+     - CPU- vs. GPU-based computation
+     - floating point type (single vs. double precision, perhaps even lower precision)
+     - feature scaling or feature representation and outcome transformation
+
+   You do not have to explore the effects of all of them; rather you should thoroughly explore some subset of them.
+
+   Note that the focus should not be on comparing lots of different models or model structures, but rather on the optimization.
+
+   You don't have to use one of the following datasets, but we believe they are a good default choice if you don't want to find your own:
+
+     - [Predicting bikeshare demand in the Capital bikeshare program](https://archive.ics.uci.edu/dataset/275/bike+sharing+dataset)
+     - [Predicting bikeshare demand in London](https://www.kaggle.com/datasets/hmavrodiev/london-bike-sharing-dataset)
+
+   Other possibilities include predicting image categories from images (e.g., CIFAR-10 or ImageNet) or predicting health outcomes from medical imaging (e.g., [MedMNIST](https://medmnist.com)). You might also look at Kaggle competitions or the UCI ML archive, but don't choose a small (tens to hundreds of observations) dataset (but see the proposal process below).
+
+   If you are interested in something different from a prediction problem, you could also pursue a project in reinforcement learning, which we will cover briefly at the end of the semester. The two things to consider here are the algorithm (e.g., DQN, SAC, PPO, DRPO) and the enviroment (e.g., CartPole, Pendulum, Cheetah). The agent collects its training data by taking actions in the environment and recording the resulting observations and rewards. We recommend that you start with something simple (e.g., a small model with a basic algorithm applied to CartPole) and then ramp up complexity (and training time). 
+
+
+   **Project alternatives**: If you have an idea for a project that departs from the description above, we're very happy to consider that. In that case, please write up a short (one paragraph) proposal for your project and submit it to Pensive by December 1 (or earlier, in which case we'll give you feedback earlier and you can get started on the project earlier).
+
+
