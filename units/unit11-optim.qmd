@@ -1163,7 +1163,7 @@ A standard approach to updating $M_{t}$ is a commonly-used rank two
 update that generally results in $M_{t+1}$ being positive definite is
 $$M_{t+1}=M_{t}-\frac{M_{t}s_{t}(M_{t}s_{t})^{\top}}{s_{t}^{\top}M_{t}s_{t}}+\frac{y_{t}y_{t}^{\top}}{s_{t}^{\top}y_{t}},$$
 which is known as the Broyden-Fletcher-Goldfarb-Shanno (BFGS) update.
-This is one of the methods used in R in *optim()*.
+This is one of the methods used in scipy in `optimize.minimize` and in  R in `optim()`.
 
 Question: how can we update $M_{t}^{-1}$ to $M_{t+1}^{-1}$ efficiently?
 It turns out there is a way to update the Cholesky of $M_{t}$
