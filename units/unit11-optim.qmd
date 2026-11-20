@@ -1988,7 +1988,7 @@ we have $f^{\prime\prime}(x)\leq0\,\,\forall x$ (a concave, or convex
 down function) we can always consider $-f(x)$, which is convex.
 Convexity in multiple dimensions means that the gradient is
 nondecreasing in all dimensions. If $f$ is twice differentiable, then if
-the Hessian is positive semi-definite, $f$ is convex.
+the Hessian is positive semi-definite for all $x$, $f$ is convex.
 
 There are a variety of results that allow us to recognize and construct
 convex functions based on knowing what operations create and preserve
