@@ -52,7 +52,7 @@ $$x_{t+1}=x_{t}-\alpha_{t}f^{\prime}(x_{t})$$
 
 The basic idea of stochastic gradient descent is to replace the gradient
 with a function whose expected value is the gradient,
-$E(g(x_{t}))=f^{\prime}(x_{t})$: $$x_{t+1}=x_{t}-\alpha_{t}g(x_{t})$$
+$\mathbb{E}(g(x_{t}))=f^{\prime}(x_{t})$: $$x_{t+1}=x_{t}-\alpha_{t}g(x_{t})$$
 Thus on average we should go in a good (downhill) direction. Given that
 we know that strictly following the gradient can lead to slow
 convergence, it makes some intuitive sense that we could still do ok
@@ -222,7 +222,7 @@ with the update
 $$x_{t+1}=x_{t} - v_{t+1}$$
 
 Let's try it out on our running example. We see that it suffers from oscillations
-with $\alpha=200$ but with $\alpha=100$ it seems to converge more quickly than gradient
+with $\alpha=150$ but with $\alpha=100$ it seems to converge more quickly than gradient
 descent or gradient descent with simple momentum.
 
 
@@ -245,17 +245,17 @@ grad_descent_with_nag <- function(init, deriv_fun, alpha, nIt, beta = 0.9) {
 
 par(mfrow = c(1,3), mai=c(.4,.4,.3,.2))
 
-alpha <- 150
+alpha <- 50
 xvals <- grad_descent_with_nag(start, f_deriv1, alpha = alpha, nIt = 200)  
-plot_path(x1s, x2s, f, xvals, main = expression(alpha == 150))
+plot_path(x1s, x2s, f, xvals, main = expression(alpha == 50))
 
 alpha <- 100
 xvals <- grad_descent_with_nag(start, f_deriv1, alpha = alpha, nIt = 200)  
 plot_path(x1s, x2s, f, xvals, main = expression(alpha == 100))
 
-alpha <- 50
+alpha <- 150
 xvals <- grad_descent_with_nag(start, f_deriv1, alpha = alpha, nIt = 200)  
-plot_path(x1s, x2s, f, xvals, main = expression(alpha == 50))
+plot_path(x1s, x2s, f, xvals, main = expression(alpha == 150))
 
 
 
@@ -279,7 +279,9 @@ $$
 
 $\epsilon$ plays the usual role of dealing with denominators near zero and is often set to $10^{-8}$. Note the presence of another tuning parameter, $\beta_2 \approx 0.999$.
 
-One also often sees that one "bias corrects" $v_{t+1}$ and $S_{t+1}$. Since they are initialized at zero, they are biased towards zero early in the iterations, which can be improved by using $v_{t+1} / (1-\beta_1^{t+1})$ and $S_{t+1} / (1-\beta_2^{t+1})$
+One also often sees that one "bias corrects" $v_{t+1}$ and $S_{t+1}$. Since they are initialized at zero, they are biased towards zero early in the iterations, which can be improved by using $v_{t+1} / (1-\beta_1^{t+1})$ and $S_{t+1} / (1-\beta_2^{t+1})$.
+
+Here's Adam, with bias correction.
 
 ```{r}
 #| fig-width: 10
@@ -308,17 +310,17 @@ grad_descent_with_adam <- function(init, deriv_fun, alpha, nIt, beta1 = 0.9, bet
 par(mfrow = c(1,3), mai=c(.4,.4,.3,.2))
 
 bias_correct = TRUE
-alpha <- 1
+alpha <- 0.1
 xvals <- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = bias_correct)  
-plot_path(x1s, x2s, f, xvals, main = expression(alpha == 1))
+plot_path(x1s, x2s, f, xvals, main = expression(alpha == 0.1))
 
-alpha <- .3
+alpha <- 0.3
 xvals <- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = bias_correct)  
 plot_path(x1s, x2s, f, xvals, main = expression(alpha == 0.3))
 
-alpha <- .1
+alpha <- 1
 xvals <- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = bias_correct)
-plot_path(x1s, x2s, f, xvals, main = expression(alpha == 0.1))
+plot_path(x1s, x2s, f, xvals, main = expression(alpha == 1))
 ```
 
 Finally, we'll see that bias correction was quite helpful. Without it we oscillate/overshoot a lot more.
@@ -332,17 +334,17 @@ par(mfrow = c(1,3), mai=c(.4,.4,.3,.2))
 
 bias_correct = FALSE
 
-alpha <- 1
+alpha <- 0.1
 xvals <- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = bias_correct)  
-plot_path(x1s, x2s, f, xvals, main = expression(alpha == 1))
+plot_path(x1s, x2s, f, xvals, main = expression(alpha == 0.1))
 
-alpha <- .3
+alpha <- 0.3
 xvals <- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = bias_correct)  
 plot_path(x1s, x2s, f, xvals, main = expression(alpha == 0.3))
 
-alpha <- .1
+alpha <- 1
 xvals <- grad_descent_with_adam(start, f_deriv1, alpha = alpha, nIt = 200, bias_correct = bias_correct)
-plot_path(x1s, x2s, f, xvals, main = expression(alpha == 0.1))
+plot_path(x1s, x2s, f, xvals, main = expression(alpha == 1))
 ```
 
 
@@ -405,14 +407,9 @@ legend('topleft', legend = c('truth', 'unpenalized (df=150)', 'unpenalized (df=4
                   col = c('black','red','blue','green'), lwd = c(1,1,3,3))
 ```
 
-And note that in the classical setting, we can't do much useful with regression splines in the overparameterized regime.
+Finally note that in the classical setting, we can't even fit  a regression spline in the overparameterized regime because $X^{\top} X$ is singular and can't be inverted.
 
-```{r}
-Xmat300 <- bs(x, df = 300)
-mod300 <- lm(y ~ Xmat300)
-pred300 <- predict(mod300)
-range(pred300)
-```
+
 
 ## Overfitting in deep learning
 
@@ -665,35 +662,53 @@ Recall from the main optimization unit that each step only moves us somewhat in 
 Apparently the term 'batch' refers to the entire dataset, hence 'mini-batch' is a small subset of the dataset. That terminology might be confusing (since I might think of a batch as being the same as a chunk or shard or subset), but it seems to be standard.
 
 
-One advantage of minibatches is purely computational efficiency. We can choose a reasonable direction to go and make progress in that direction without having to compute the gradient for all of the observations. This was the first motivation. The connection with low generalization error and implicit regularization was realized later. In [this ArXiv paper](https://arxiv.org/abs/1609.04836) the authors argue that use of small batches results in finding optima in flat parts of the space that give smoother solutions that generalize better. However, [this ArXiv paper](https://arxiv.org/abs/1703.04933) provides evidence against the idea that finding solutions in flat areas is what explains the good generalization performance).
+One advantage of minibatches is purely computational efficiency. We can choose a reasonable direction to go and make progress in that direction without having to compute the gradient for all of the observations. This was the first motivation. The second motivation, which was realized later, is that it seems to also reduce generalization error, providing some sort of implicit regularization in many situations. In [this ArXiv paper](https://arxiv.org/abs/1609.04836) the authors argue that use of small batches results in finding optima in flat parts of the space that give smoother solutions that generalize better. However, [this ArXiv paper](https://arxiv.org/abs/1703.04933) provides evidence against the idea that finding solutions in flat areas is what explains the good generalization performance).
 
 What happens if we use minibatching in the regression example?
 
+Here we see good performance when stopping after 1000 epochs.
+![](nn_regr_batch_n256_64_1000_32_lr0.001_seed1.png){fig-alt="Results from fitting a neural network regression, mini-batches"}
+
+Here we start to see overfitting when going up to 10000 epochs.
+
+![](nn_regr_batch_n256_64_10000_32_lr0.001_seed1.png){fig-alt="Results from fitting a neural network regression, mini-batches"}
+
+And finally we see substantial overfitting with a larger model with many epochs.
+
+
+![](nn_regr_batch_n256_512_10000_32_lr0.001_seed1.png){fig-alt="Results from fitting a neural network regression, mini-batches"}
+
 By comparing with the previous results, we can see a few things:
 
-- There's not a lot of evidence in this particular example that using minibatches results in a much lower generalization error or test error near the oracle error.
+- There's not a lot of evidence in this particular small example that using minibatches results in lower generalization error.
 - In general (particularly with larger models and many epochs), we do still see a generalization gap that grows with the number of epochs.
-- Early-ish stopping combined with minibatches often seems to work well.
+- Early-ish stopping combined with minibatches seems to work well.
 
 
-[](nn_regr_batch_n256_64_1000_32_lr0.001_seed1.png){fig-alt="Results from fitting a neural network regression, mini-batches"}
-[](nn_regr_batch_n256_64_10000_32_lr0.001_seed1.png){fig-alt="Results from fitting a neural network regression, mini-batches"}
-[](nn_regr_batch_n256_512_10000_32_lr0.001_seed1.png){fig-alt="Results from fitting a neural network regression, mini-batches"}
-
-For many years, the standard approach was to use multiple minibatches in an epoch and train for many epochs. More recently there has been some focus on using a very small number of epochs, particularly in settings with huge data sizes. [find Jingfeng citations]
+For many years, the standard approach was to use multiple minibatches in an epoch and train for many epochs. More recently there has been a shift in some domains to using a very small number of epochs, particularly in settings with huge data sizes. Note that with large datasets, even when using only a few epochs, one is still doing a large number of gradient steps.
 
 
 ## The learning rate and the process of updating weights
 
-The learning rate is also an important part of the puzzle. It affects computational efficiency (overly small values will take a long time to reach an 'optimum') but also the performance of the trained model and interplays with the batch size since the amount of information in any given step relates to the number of observations in the batch. This affects  how the optimization moves through the space and settles on a solution. In [this ArXiv paper](https://arxiv.org/pdf/2101.12176), the authors discuss first that with a very small learning rate, the optimization with minibatches follows the gradient flow to a local minimum but with larger learning rates the optimization path is what one would get if optimizing a regularized objective function.
+The learning rate is also an important part of the puzzle. It affects computational efficiency (overly small values will take a long time to reach an 'optimum') but also the performance of the trained model and interplays with the batch size since the amount of information available for any given step relates to the number of observations in the batch. This affects  how the optimization moves through the space and settles on a solution. In [this ArXiv paper](https://arxiv.org/pdf/2101.12176), the authors discuss first that with a very small learning rate, the optimization with minibatches follows the gradient flow to a local minimum, but with larger learning rates the optimization path is what one would get if optimizing a regularized objective function.
 
-Here are some results with smaller and larger learning rates for the regression example.
+Here are some results with smaller and larger learning rates for the regression example. With a large learning rate of 0.1, the results don't seem very stable (based on the noisy evolution of the loss (and large weight values for the two-layer model), but the fits actuallyseem over-smoothed. 
+
+![](nn_regr_batch_n256_512_10000_32_lr0.1_seed1.png){fig-alt="Results from fitting a neural network regression, mini-batches"}
+
+For the small learning rate of 0.00001, convergence takes a large number of iterations, but the fitting seems stable over a large number of iterations and the fit is good, with little generalization error.
+
+![](nn_regr_batch_n256_512_10000_32_lr1e-05_seed1.png){fig-alt="Results from fitting a neural network regression, mini-batches"}
 
 
-Suppose we are interested in whether we can improve the value of a specific weight in a neural network using sigmoid activation. Consider that at a given layer in the network,  $a^{(l)} = \sigma(\sum_k w^{(l)}_k a^{(l-1)} + b^{(l)})$.  With a bit of investigation of the backpropagation algorithm for calculating the gradient of the loss with respect to the weights (e.g., considering the simplified update for a neuron at layer $l$ as $a^{(l)} = \sigma(w^{(l)} a^{(l-1)} + b^{(l)})$, with gradient $\sigma^{'}(w^{(l)} a^{(l-1)} + b^{(l)}) a^{(l-1)}$), one can see that the update to a weight will be small if:
+
+Suppose we are interested in whether we can improve the value of a specific weight in a neural network using sigmoid activation. Consider that at a given layer in the network,  $a^{(l)} = \sigma(\sum_k w^{(l)}_k a^{(l-1)} + b^{(l)})$.
+With a bit of investigation of the backpropagation algorithm for calculating the gradient of the loss with respect to the weights, one can see that the update to a weight will be small if:
 
 - The input neuron, $a^{(l-1)}$ has a small value (low activation)
 - The output neuron has saturated (the value of $w^{(l)} a^{(l-1)} + b^{(l)}$ is very large or small, such that the derivative of the sigmoid function is near zero.
+
+One way to see this is to consider a simplified update that ignores the summation above, giving the value for a neuron at layer $l$ as $a^{(l)} = \sigma(w^{(l)} a^{(l-1)} + b^{(l)})$, with gradient $\sigma^{'}(w^{(l)} a^{(l-1)} + b^{(l)}) a^{(l-1)}$.
 
 This plays out differently when using ReLU activation functions since their derivative is zero for negative inputs and unbounded for positive. The unboundedness can result in less stability in the updates. And the zero derivative can mean that a neuron gets stuck in the "off" position if its inputs are always negative. In backpropagation, the weights/coefficients that feed into such a neuron don't get updated through that neuron (though they would through other "live" neurons).
 
@@ -737,7 +752,7 @@ An obvious strategy is to do a grid search over the hyperparameters. An alternat
 
 One might also try to zoom in on the best values by using a second round of optimization after determining roughly the right magnitude of values initially.
 
-What about the scale of values to consider? Often we want to range over multiple orders of magnitude, so we want to search on the log scale. For the parameter in an expontially-weighted average, you'd want to search over $1-\beta$ on the log scale.
+What about the scale of values to consider? Often we want to range over multiple orders of magnitude, so we want to search on the log scale. For the parameter in an exponentially-weighted average, you'd want to search over $1-\beta$ on the log scale.
 
 ### Batch normalization
 
