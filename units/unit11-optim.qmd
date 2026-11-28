@@ -2195,10 +2195,8 @@ of objective functions combined with different types of constraints.
 
 Convex programming minimizes $f(x)$ s.t. $h_{j}(x)\leq0,\,j=1,\ldots,m$
 and $a_{i}^{\top}x=b_{i},\,i=1,\ldots,q$, where both $f$ and the
-constraint functions are convex. Note that this includes more general
-equality constraints, as we can write $g(x)=b$ as two inequalities
-$g(x)\leq b$ and $g(x)\geq b$. It also includes $h_{j}(x)\geq b_{j}$ by
-taking $-h_{j}(x)$. Note that we can always have $h_{j}(x)\leq b_{j}$
+constraint functions are convex.
+Note that we can always have $h_{j}(x)\leq b_{j}$
 and convert to the above form by subtracting $b_{j}$ from each side
 (note that this preserves convexity). A vector $x$ is said to be
 feasible, or in the feasible set, if all the constraints are satisfied
