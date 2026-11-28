@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Chris Paciorek">
-<meta name="dcterms.date" content="2026-08-01">
+<meta name="dcterms.date" content="2026-11-25">
 
 <title>Optimization for Deep Learning</title>
 <style>
@@ -475,11 +475,17 @@ window.Quarto = {
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
   <li><a href="#sgd-and-variations-for-deep-learning" id="toc-sgd-and-variations-for-deep-learning" class="nav-link" data-scroll-target="#sgd-and-variations-for-deep-learning">1. SGD and variations for deep learning</a>
   <ul class="collapse">
-  <li><a href="#momentum" id="toc-momentum" class="nav-link" data-scroll-target="#momentum">Momentum</a></li>
+  <li><a href="#sgd-repeated-from-unit-11" id="toc-sgd-repeated-from-unit-11" class="nav-link" data-scroll-target="#sgd-repeated-from-unit-11">SGD (repeated from Unit 11)</a></li>
+  <li><a href="#momentum" id="toc-momentum" class="nav-link" data-scroll-target="#momentum">Momentum</a>
+  <ul class="collapse">
+  <li><a href="#nesterov-momentum" id="toc-nesterov-momentum" class="nav-link" data-scroll-target="#nesterov-momentum">Nesterov momentum</a></li>
+  </ul></li>
   <li><a href="#rmsprop-and-adam" id="toc-rmsprop-and-adam" class="nav-link" data-scroll-target="#rmsprop-and-adam">RMSprop and Adam</a></li>
   </ul></li>
   <li><a href="#the-bias-variance-tradeoff-overfitting-regularization-and-double-descent" id="toc-the-bias-variance-tradeoff-overfitting-regularization-and-double-descent" class="nav-link" data-scroll-target="#the-bias-variance-tradeoff-overfitting-regularization-and-double-descent">2. The Bias-Variance Tradeoff, Overfitting, Regularization, and Double Descent</a>
   <ul class="collapse">
+  <li><a href="#the-classical-statistical-perspective" id="toc-the-classical-statistical-perspective" class="nav-link" data-scroll-target="#the-classical-statistical-perspective">The classical (statistical) perspective</a></li>
+  <li><a href="#overfitting-in-deep-learning" id="toc-overfitting-in-deep-learning" class="nav-link" data-scroll-target="#overfitting-in-deep-learning">Overfitting in deep learning</a></li>
   <li><a href="#minibatches" id="toc-minibatches" class="nav-link" data-scroll-target="#minibatches">Minibatches</a></li>
   <li><a href="#the-learning-rate-and-the-process-of-updating-weights" id="toc-the-learning-rate-and-the-process-of-updating-weights" class="nav-link" data-scroll-target="#the-learning-rate-and-the-process-of-updating-weights">The learning rate and the process of updating weights</a></li>
   <li><a href="#other-aspects-of-optimizationtraining" id="toc-other-aspects-of-optimizationtraining" class="nav-link" data-scroll-target="#other-aspects-of-optimizationtraining">Other aspects of optimization/training</a>
@@ -516,7 +522,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">August 1, 2026</p>
+      <p class="date">November 25, 2026</p>
     </div>
   </div>
   
@@ -536,20 +542,38 @@ window.Quarto = {
 <section id="sgd-and-variations-for-deep-learning" class="level1">
 <h1>1. SGD and variations for deep learning</h1>
 <p>We’ve seen some of the issues arising from simple gradient descent. One way to think of those is that reliance on the single current value of the gradient introduces sensitivity to the exact value. Also if one is at a saddle point, the gradient is small, leading to small updates.</p>
+<section id="sgd-repeated-from-unit-11" class="level2">
+<h2 class="anchored" data-anchor-id="sgd-repeated-from-unit-11">SGD (repeated from Unit 11)</h2>
+<p>Stochastic gradient descent (SGD) is a well-known method in machine learning, commonly used for fitting deep neural networks. It allows you to optimize an objective function with respect to what is often a very large number of parameters even when the data size is huge.</p>
+<p>Gradient descent is a simplification of Newton’s method that does not rely on the second derivative, but rather chooses the direction using the gradient and then a step size, <span class="math inline">\(\alpha_{t}\)</span>: <span class="math display">\[x_{t+1}=x_{t}-\alpha_{t}f^{\prime}(x_{t})\]</span></p>
+<p>The basic idea of stochastic gradient descent is to replace the gradient with a function whose expected value is the gradient, <span class="math inline">\(E(g(x_{t}))=f^{\prime}(x_{t})\)</span>: <span class="math display">\[x_{t+1}=x_{t}-\alpha_{t}g(x_{t})\]</span> Thus on average we should go in a good (downhill) direction. Given that we know that strictly following the gradient can lead to slow convergence, it makes some intuitive sense that we could still do ok without using the exact gradient. One can show formally that SGD will converge for convex functions.</p>
+<p>SGD can be used in various contexts, but the common one we will focus on is when <span class="math display">\[\begin{aligned}
+f(x) &amp; = \sum_{i=1}^{n}f_{i}(x)\\
+f^{\prime}(x) &amp; = \sum_{i=1}^{n}f^{\prime}_{i}(x)\end{aligned}\]</span> for large <span class="math inline">\(n\)</span>. Thus calculation of the gradient is <span class="math inline">\(O(n)\)</span>, and we may not want to incur that computational cost. How could we implement SGD in such a case? At each iteration we could randomly choose an observation and compute the contribution to the gradient from that data point, or we could choose a random subset of the data (this is <em>mini-batch SGD</em>), or there are variations where we systematically cycle through the observations or cycle through subsets. However, in some situations, convergence is actually much faster when using randomness. And if the data are ordered in some meaningful way we definitely do not want to cycle through the observations in that order, as this can result in a biased estimate of the gradient and slow convergence. So one generally randomly shuffles the data before starting SGD. Note that using subsets rather than individual observations is likely to be more effective as it can allow us to use optimized matrix/vector computations.</p>
+<p>One thing to note is that often one would scale the objective function (and therefore the gradient) by dividing by the number of observations. This of course doesn’t change the optimum or the directions involved, but it does mean that the magnitude of the estimated gradient won’t change with the batch size. And it means that the expected gradient is equal to the true gradient, rather than a scaled version of the true gradient.</p>
+<p>How should one choose the step size, <span class="math inline">\(\alpha_{t}\)</span> (also called the learning rate)? One might think that as one gets close to the optimum, if one isn’t careful, one might simply bounce around near the optimum in a random way, without actually converging to the optimum. So intuition suggests that <span class="math inline">\(\alpha_{t}\)</span> should decrease with <span class="math inline">\(t\)</span>. Some choices of step size have included:</p>
+<ul>
+<li><span class="math inline">\(\alpha_{t}=1/t\)</span></li>
+<li>set a schedule, such that for <span class="math inline">\(T\)</span> iterations, <span class="math inline">\(\alpha_{t}=\alpha\)</span>, then for the next <span class="math inline">\(T\)</span>, <span class="math inline">\(\alpha_{t}=\alpha\gamma\)</span>, then for the next <span class="math inline">\(T\)</span>, <span class="math inline">\(\alpha_{t}=\alpha\gamma^{2}\)</span>. A heuristic is for <span class="math inline">\(\gamma\in(0.8,0.9)\)</span>.</li>
+<li>run with <span class="math inline">\(\alpha_{t}=\alpha\)</span> for <span class="math inline">\(T\)</span> iterations, then with <span class="math inline">\(\alpha_{t}=\alpha/2\)</span> for <span class="math inline">\(2T\)</span>, then with <span class="math inline">\(\alpha_{t}=\alpha/4\)</span> for <span class="math inline">\(4T\)</span> and so forth.</li>
+</ul>
+</section>
 <section id="momentum" class="level2">
 <h2 class="anchored" data-anchor-id="momentum">Momentum</h2>
 <p>An common enhancement when using gradient descent is to use “momentum”. The basic idea of momentum is to modify the current gradient using past values of the gradient, using a exponentially-weighted (decaying) average of past gradient values. It can help by pushing the optimization in a consistent direction and reducing oscillations. Here’s the smoothed gradient, often called the “velocity”.</p>
 <p><span class="math display">\[ v_{t+1} = \beta v_{t} + (1-\beta) f^{\prime}(x_{t}) \]</span></p>
 <p><span class="math inline">\(\beta\)</span> is a tuning parameter and the averaging is roughly similar to averaging over a window of <span class="math inline">\(1/(1-\beta)\)</span> gradient values.</p>
-<p>One can plug into gradient descent in place of the current gradient or use a variation that gives this update step, taking:</p>
+<p>One can plug <span class="math inline">\(v_{t+1}\)</span> into (stochastic) gradient descent in place of the current gradient or use a variation that gives this update step, taking:</p>
 <p><span class="math display">\[
 v_{t+1} = \beta v_{t} + f^{\prime}(x_{t})
 x_{t+1}=x_{t} - v_{t+1}
 \]</span></p>
 <p>A common value is <span class="math inline">\(\beta = 0.9\)</span>.</p>
 <p>What’s the intuition? Suppose the gradient values in a given direction have the same sign. Then the smoothed gradient in that direction will be large, so the algorithm will take large steps in that direction (including if one has just hit an area such as a saddle point where the surface is more flat), giving the algorithm inertia (momentum). Alternatively, suppose the gradient values in a given direction oscillate (change sign). Then the smoothed gradient will be small in magnitude and the algorithm will take smaller steps in that direction, damping oscillations.</p>
-<p>[revisit quad example with fixed alpha; also show zoom in for final iterations]</p>
+<p>First let’s see simple gradient descent on the quadratic function we used in Unit 11 to illustrate the behavior of some optimization approaches.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show plotting code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mai =</span> <span class="fu">c</span>(.<span class="dv">5</span>,.<span class="dv">4</span>,.<span class="dv">1</span>,.<span class="dv">4</span>))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">1000</span> <span class="sc">+</span> <span class="dv">4</span><span class="sc">*</span>x[<span class="dv">1</span>]<span class="sc">*</span>x[<span class="dv">2</span>]<span class="sc">/</span><span class="dv">1000</span> <span class="sc">+</span> <span class="dv">5</span><span class="sc">*</span>x[<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">1000</span></span>
@@ -568,34 +592,40 @@ x_{t+1}=x_{t} - v_{t+1}
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>(xvals)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plot_path <span class="ot">&lt;-</span> <span class="cf">function</span>(x1s, x2s, f, xvals) {</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plot_path <span class="ot">&lt;-</span> <span class="cf">function</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="cn">NULL</span>, <span class="at">type =</span> <span class="fu">c</span>(<span class="st">'points'</span>,<span class="st">'lines'</span>)) {</span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>   fx <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="fu">expand.grid</span>(x1s, x2s), <span class="dv">1</span>, f)</span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>   <span class="do">## plot f(x) surface on log scale</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>   fields<span class="sc">::</span><span class="fu">image.plot</span>(x1s, x2s, <span class="fu">matrix</span>(<span class="fu">log</span>(fx), <span class="dv">100</span>, <span class="dv">100</span>), </span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">range</span>(x1s), <span class="at">ylim =</span> <span class="fu">range</span>(x2s)) </span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>   <span class="fu">lines</span>(xvals) <span class="do">## overlay optimization path</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="sc">-</span><span class="dv">4</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">100</span>, <span class="at">nIt =</span> <span class="dv">200</span>)  <span class="do">## This works pretty well.</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>x1s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">8</span>, <span class="at">len =</span> <span class="dv">100</span>); x2s <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">2</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Zoom in near solution.</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>x1s_alt <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">len =</span> <span class="dv">100</span>); x2s_alt <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s_alt, x2s_alt, f, xvals)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">range</span>(x1s), <span class="at">ylim =</span> <span class="fu">range</span>(x2s), <span class="at">xaxt=</span><span class="st">'n'</span>, <span class="at">yaxt=</span><span class="st">'n'</span>, <span class="at">main =</span> main) </span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span>(<span class="st">'lines'</span> <span class="sc">%in%</span> type) <span class="fu">lines</span>(xvals) <span class="do">## overlay optimization path</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>   <span class="cf">if</span>(<span class="st">'points'</span> <span class="sc">%in%</span> type) <span class="fu">points</span>(xvals, <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span><span class="fl">0.7</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">mai=</span><span class="fu">c</span>(.<span class="dv">4</span>,.<span class="dv">4</span>,.<span class="dv">3</span>,.<span class="dv">2</span>))</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="sc">-</span><span class="dv">4</span>)</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">100</span>, <span class="at">nIt =</span> <span class="dv">150</span>)  <span class="do">## This works pretty well.</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>x1s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">8</span>, <span class="at">len =</span> <span class="dv">100</span>); x2s <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">2</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">100</span>))</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">150</span>, <span class="at">nIt =</span> <span class="dv">200</span>)  <span class="do">## This oscillates somewhat.</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">150</span>))</span>
 <span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">150</span>, <span class="at">nIt =</span> <span class="dv">200</span>)  <span class="do">## This oscillates somewhat.</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>x1s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">len =</span> <span class="dv">100</span>); x2s <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">200</span>, <span class="at">nIt =</span> <span class="dv">200</span>)  <span class="do">## This oscillates crazily.</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>x1s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">len =</span> <span class="dv">100</span>); x2s <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">200</span>, <span class="at">nIt =</span> <span class="dv">200</span>)  <span class="do">## This oscillates crazily.</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">200</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unit12-dl-optim_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
 </div>
 <p>Let’s see what happens with momentum. It’s much more robust to the step size!</p>
+<p>First we’ll see that it essentially fixes the issues when <span class="math inline">\(\alpha=200\)</span>.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show plotting code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>grad_descent_with_momentum <span class="ot">&lt;-</span> <span class="cf">function</span>(init, deriv_fun, alpha, nIt, <span class="at">beta =</span> <span class="fl">0.9</span>) {</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  xvals <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nr =</span> nIt, <span class="at">nc =</span> <span class="dv">2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  xvals[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> init</span>
@@ -607,27 +637,28 @@ x_{t+1}=x_{t} - v_{t+1}
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>(xvals)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_momentum</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">200</span>, <span class="at">nIt =</span> <span class="dv">200</span>)  </span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Zoom in near solution.</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s_alt, x2s_alt, f, xvals)</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Perhaps leave this out.</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="do">## The alternate formulation; we need to modify alpha to get better behavior.</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fl">0.9</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>nIt){</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">&lt;-</span> beta <span class="sc">*</span>v <span class="sc">-</span> alpha <span class="sc">*</span><span class="fu">f_deriv1</span>(xvals[t<span class="dv">-1</span>,])</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  xvals[t, ] <span class="ot">&lt;-</span> xvals[t<span class="dv">-1</span>, ] <span class="sc">+</span> v</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>x1s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">8</span>, <span class="at">len =</span> <span class="dv">100</span>); x2s <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">2</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>fx <span class="ot">&lt;-</span> <span class="fu">apply</span>(<span class="fu">expand.grid</span>(x1s, x2s), <span class="dv">1</span>, f)</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="do">## plot f(x) surface on log scale</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>fields<span class="sc">::</span><span class="fu">image.plot</span>(x1s, x2s, <span class="fu">matrix</span>(<span class="fu">log</span>(fx), <span class="dv">100</span>, <span class="dv">100</span>), </span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">xlim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">8</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">5</span>,<span class="dv">2</span>)) </span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(xvals) <span class="do">## overlay optimization path</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">mai=</span><span class="fu">c</span>(.<span class="dv">4</span>,.<span class="dv">4</span>,.<span class="dv">3</span>,.<span class="dv">2</span>))</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>start <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">7</span>, <span class="sc">-</span><span class="dv">4</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_momentum</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">100</span>, <span class="at">nIt =</span> <span class="dv">150</span>)  <span class="do">## This works pretty well.</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>x1s <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">8</span>, <span class="at">len =</span> <span class="dv">100</span>); x2s <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">2</span>, <span class="at">len =</span> <span class="dv">100</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">100</span>))</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_momentum</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">150</span>, <span class="at">nIt =</span> <span class="dv">200</span>)  <span class="do">## This oscillates somewhat.</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">150</span>))</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_momentum</span>(start, f_deriv1, <span class="at">alpha =</span> <span class="dv">200</span>, <span class="at">nIt =</span> <span class="dv">200</span>)  <span class="do">## This oscillates crazily.</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">200</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unit12-dl-optim_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
 </div>
+</div>
+</div>
+<section id="nesterov-momentum" class="level3">
+<h3 class="anchored" data-anchor-id="nesterov-momentum">Nesterov momentum</h3>
 <p>In the 1980s Nesterov came up with the idea of calculating the gradient at a position slightly ahead in the direction of the accumulated momentum, which is called Nesterov Accelerated Gradient (NAG). By looking ahead, one can reduce overshooting (in particular oscillations when one is near the optimum).</p>
 <p>We first determine the look-ahead value:</p>
 <p><span class="math display">\[ x_{\mbox{{\small look}}} = x_t - \beta v_t \]</span></p>
@@ -635,48 +666,51 @@ x_{t+1}=x_{t} - v_{t+1}
 <p><span class="math display">\[ v_{t+1} = \beta v_t + \alpha_t f^{\prime}(x_{\mbox{{\small look}}})\]</span></p>
 <p>with the update</p>
 <p><span class="math display">\[x_{t+1}=x_{t} - v_{t+1}\]</span></p>
-<p>[show this on example, and with zoom in]</p>
+<p>Let’s try it out on our running example. We see that it suffers from oscillations with <span class="math inline">\(\alpha=200\)</span> but with <span class="math inline">\(\alpha=100\)</span> it seems to converge more quickly than gradient descent or gradient descent with simple momentum.</p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show plotting code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>grad_descent_with_nag <span class="ot">&lt;-</span> <span class="cf">function</span>(init, deriv_fun, alpha, nIt, <span class="at">beta =</span> <span class="fl">0.9</span>) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  xvals <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nr =</span> nIt, <span class="at">nc =</span> <span class="dv">2</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  xvals[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> init</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="dv">0</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>nIt){</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    xlook <span class="ot">&lt;-</span> xvals[t<span class="dv">-1</span>,] <span class="sc">-</span>beta <span class="sc">*</span>v</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    v <span class="ot">&lt;-</span> beta <span class="sc">*</span>v <span class="sc">+</span> alpha <span class="sc">*</span> <span class="fu">deriv_fun</span>(xlook)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    xlook <span class="ot">&lt;-</span> xvals[t<span class="dv">-1</span>,] <span class="sc">-</span> beta <span class="sc">*</span> v</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    v <span class="ot">&lt;-</span> beta <span class="sc">*</span> v <span class="sc">+</span> alpha <span class="sc">*</span> <span class="fu">deriv_fun</span>(xlook)</span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    xvals[t, ] <span class="ot">&lt;-</span> xvals[t<span class="dv">-1</span>, ] <span class="sc">-</span> v</span>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>(xvals)</span>
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">50</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_nag</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>)  </span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_nag</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>)  </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="do">## per cmu</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>grad_descent_with_nag <span class="ot">&lt;-</span> <span class="cf">function</span>(init, deriv_fun, alpha, nIt, <span class="at">beta =</span> <span class="fl">0.9</span>) {</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>  xvals <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nr =</span> nIt, <span class="at">nc =</span> <span class="dv">2</span>)</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>  xvals[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> init</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>  v <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(t <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>nIt){</span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    xlook <span class="ot">&lt;-</span> xvals[t<span class="dv">-1</span>,] <span class="sc">-</span>alpha <span class="sc">*</span>v</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    v <span class="ot">&lt;-</span> beta <span class="sc">*</span>v <span class="sc">+</span> alpha <span class="sc">*</span> <span class="fu">deriv_fun</span>(xlook)</span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>    xvals[t, ] <span class="ot">&lt;-</span> xvals[t<span class="dv">-1</span>, ] <span class="sc">-</span> alpha<span class="sc">*</span>v</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>   <span class="fu">return</span>(xvals)</span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">mai=</span><span class="fu">c</span>(.<span class="dv">4</span>,.<span class="dv">4</span>,.<span class="dv">3</span>,.<span class="dv">2</span>))</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_nag</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>)  </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">150</span>))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_nag</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>)  </span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">100</span>))</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_nag</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>)  </span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unit12-dl-optim_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
 </div>
+</div>
+</div>
+</section>
 </section>
 <section id="rmsprop-and-adam" class="level2">
 <h2 class="anchored" data-anchor-id="rmsprop-and-adam">RMSprop and Adam</h2>
-<p>RMSprop tries to adapt the learning rate for different parameters at different rates, damping the gradient in directions with highly variable (potentially oscillating) gradient values. It maintains a weighted average of the (element-wise) squares of the past gradient values and scales the current gradient by the square root of that average. The result is to slow the learning in the directions with high variability.</p>
+<p>RMSprop tries to adapt the learning rate for different parameters at different rates, damping the gradient in directions with highly variable (potentially oscillating) gradient values. It maintains a weighted average of the (element-wise) <em>squares</em> of the past gradient values and scales the current gradient by the square root of that average. The result is to slow the learning in the directions with high variability.</p>
 <p>Adam (Adaptive Moment Estimation) combines momentum and RMSprop and is widely-used.</p>
-<p>It maintains a weighted average of the past gradient values and a weighted average of the squared gradients and, as with RMSprop, scales by the square root of the average of the squared gradients.</p>
+<p>It maintains a weighted average of the past gradient values (as with momentum) and (as with RMSprop) a weighted average of the squared gradients and scales by the square root of the average of the squared gradients.</p>
 <p><span class="math display">\[ v_{t+1} = \beta_1 v_t + (1-\beta_1) f^{\prime}(x_{t}) \]</span> <span class="math display">\[
 S_{t+1} = \beta_2 S_t + (1-\beta_2) f^{\prime}(x_{t})^2
 \]</span> <span class="math display">\[
@@ -685,6 +719,8 @@ x_{t+1}=x_{t} - \alpha_{t} \frac{v_{t+1}}{\sqrt{S_{t+1}}+\epsilon}
 <p><span class="math inline">\(\epsilon\)</span> plays the usual role of dealing with denominators near zero and is often set to <span class="math inline">\(10^{-8}\)</span>. Note the presence of another tuning parameter, <span class="math inline">\(\beta_2 \approx 0.999\)</span>.</p>
 <p>One also often sees that one “bias corrects” <span class="math inline">\(v_{t+1}\)</span> and <span class="math inline">\(S_{t+1}\)</span>. Since they are initialized at zero, they are biased towards zero early in the iterations, which can be improved by using <span class="math inline">\(v_{t+1} / (1-\beta_1^{t+1})\)</span> and <span class="math inline">\(S_{t+1} / (1-\beta_2^{t+1})\)</span></p>
 <div class="cell">
+<details class="code-fold">
+<summary>Show plotting code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>grad_descent_with_adam <span class="ot">&lt;-</span> <span class="cf">function</span>(init, deriv_fun, alpha, nIt, <span class="at">beta1 =</span> <span class="fl">0.9</span>, <span class="at">beta2 =</span> <span class="fl">0.999</span>, <span class="at">eps =</span> <span class="fl">1e-8</span>, <span class="at">bias_correct =</span> <span class="cn">FALSE</span>) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  xvals <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nr =</span> nIt, <span class="at">nc =</span> <span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  xvals[<span class="dv">1</span>, ] <span class="ot">&lt;-</span> init</span>
@@ -704,115 +740,382 @@ x_{t+1}=x_{t} - \alpha_{t} \frac{v_{t+1}}{\sqrt{S_{t+1}}+\epsilon}
 <span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(xvals)</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> <span class="cn">TRUE</span>)  </span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">1</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> <span class="cn">TRUE</span>)  </span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">01</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> <span class="cn">FALSE</span>) <span class="co"># Slower with bias correction  </span></span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">mai=</span><span class="fu">c</span>(.<span class="dv">4</span>,.<span class="dv">4</span>,.<span class="dv">3</span>,.<span class="dv">2</span>))</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>bias_correct <span class="ot">=</span> <span class="cn">TRUE</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> bias_correct)  </span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">3</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> bias_correct)  </span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="fl">0.3</span>))</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">1</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> bias_correct)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="fl">0.1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unit12-dl-optim_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Finally, we’ll see that bias correction was quite helpful. Without it we oscillate/overshoot a lot more.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show plotting code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>), <span class="at">mai=</span><span class="fu">c</span>(.<span class="dv">4</span>,.<span class="dv">4</span>,.<span class="dv">3</span>,.<span class="dv">2</span>))</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>bias_correct <span class="ot">=</span> <span class="cn">FALSE</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> bias_correct)  </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="dv">1</span>))</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">3</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> bias_correct)  </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="fl">0.3</span>))</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> .<span class="dv">1</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>xvals <span class="ot">&lt;-</span> <span class="fu">grad_descent_with_adam</span>(start, f_deriv1, <span class="at">alpha =</span> alpha, <span class="at">nIt =</span> <span class="dv">200</span>, <span class="at">bias_correct =</span> bias_correct)</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot_path</span>(x1s, x2s, f, xvals, <span class="at">main =</span> <span class="fu">expression</span>(alpha <span class="sc">==</span> <span class="fl">0.1</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="unit12-dl-optim_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="960"></p>
+</figure>
+</div>
+</div>
 </div>
 </section>
 </section>
 <section id="the-bias-variance-tradeoff-overfitting-regularization-and-double-descent" class="level1">
 <h1>2. The Bias-Variance Tradeoff, Overfitting, Regularization, and Double Descent</h1>
-<p>A core principle in statistics is the bias-variance tradeoff. Models with few parameters and/or limited flexibility/expressivity will be biased in fitting the data because they are not flexible enough to capture all the structure in the data but have low variance because there is a lot of data relative to the number of parameters. Models with many parameters will have little bias, but high variance, with the variance caused by the model fitting to noise in addition to structure/signal in the data. Remember that in a classical statistical context, signal is what occurs in all the different samples that one might observe, while noise differs from sample to sample. The result is a U-shaped curve for the test error, which decreases initially with more parameters (from lower bias) and then increases (from higher variance).</p>
-<p>Some strategies for addressing the bias-variance tradeoff to try to fit signal but not noise include model selection (of which variable selection is one form) based on optimizing a loss that tries to capture test (not train) error, penalization/regularization to avoid overly variable fitting, and early optimization stopping (which can be seen as a kind of implicit regularization), such as by monitoring hold-out error.</p>
+<section id="the-classical-statistical-perspective" class="level2">
+<h2 class="anchored" data-anchor-id="the-classical-statistical-perspective">The classical (statistical) perspective</h2>
+<p>A core principle in statistics is the bias-variance tradeoff.</p>
+<p>Models with few parameters and/or limited flexibility/expressivity will be biased in fitting the data because they are not flexible enough to capture all the structure in the data but have low variance because there is a lot of data relative to the number of parameters.</p>
+<p>Models with many parameters will have little bias, but high variance, with the variance caused by the model fitting to noise in addition to structure/signal in the data. Remember that in a classical statistical context, signal is what occurs in all the different samples that one might observe, while noise differs from sample to sample.</p>
+<p>The result is that the test error as a function of the model complexity will show a U-shaped curve for the test error, which decreases initially with more parameters (from lower bias) and then increases (from higher variance).</p>
+<p>Some strategies for addressing the bias-variance tradeoff to try to fit signal but not noise include</p>
+<ul>
+<li>model selection (of which variable selection is one form) based on optimizing a loss that tries to capture test (not train) error,</li>
+<li>penalization/regularization to avoid overly variable fitting, and</li>
+<li>early optimization stopping (which can be seen as a kind of implicit regularization), such as by monitoring hold-out error.</li>
+</ul>
 <p>Therefore, the classical statistical paradigm for fitting parametric models is that, holding the sample size fixed, as the number of parameters increases, the model will overfit. What does this mean?</p>
-<p>There will be enough parameters to start fitting to noise in the data as well as to real features in the data. One will see very good predictive performance on the training data, and with enough parameters (e.g., as many parameters as observations) one can exactly fit the training data, even though some portion of the variation in the training data is noise. Then when the fitted model is applied to test data, which has different values of the noise than the training data, predictive performance will be much lower. In other words the generalization error (difference between train and test error) is large.</p>
-<p>We can see this for a simple nonparametric regression setting in one dimension. Standard generalized additive model tools (mgcv::gam in R) fit a penalized spline with the amount of regularization determined based on trying to estimate test loss in some fashion (GCV, AIC, REML, etc.).</p>
+<p>As the number of parameters gets “large”, there will be enough parameters to start fitting to noise in the data as well as to real features in the data. One will see very good predictive performance on the training data, and with enough parameters (e.g., as many parameters as observations) one can exactly fit the training data, even though some portion of the variation in the training data is noise. Then when the fitted model is applied to test data, which has different values of the noise than the training data, predictive performance will be much lower. In other words the generalization error (difference between train and test error) is large.</p>
+<p>We can see this for a simple nonparametric regression setting in one dimension. Standard generalized additive model tools (most famously, <code>mgcv::gam</code> in R) fit a penalized spline with the amount of regularization determined based on trying to estimate test loss in some fashion (GCV, AIC, REML, etc.).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x <span class="sc">-</span><span class="dv">5</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">200</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">length =</span> n)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">fun</span>(x)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(n, f, <span class="dv">1</span>)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Unpenalized, ~150 knots</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(splines)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>Xmat150 <span class="ot">&lt;-</span> <span class="fu">bs</span>(x, <span class="at">df =</span> <span class="dv">150</span>)</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>mod150 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> Xmat150)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>pred150 <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod150)</span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Unpenalized, 1 knot</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>Xmat4 <span class="ot">&lt;-</span> <span class="fu">bs</span>(x, <span class="at">df =</span> <span class="dv">4</span>)</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> Xmat4)</span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>pred4 <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod4)</span>
-<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="co"># With automatic penalization</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mgcv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>fun <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span><span class="sc">*</span>x <span class="sc">-</span><span class="dv">5</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">=</span> <span class="dv">200</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="at">length =</span> n)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">fun</span>(x)</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fu">rnorm</span>(n, f, <span class="dv">1</span>)</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Unpenalized, ~150 knots</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(splines)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>Xmat150 <span class="ot">&lt;-</span> <span class="fu">bs</span>(x, <span class="at">df =</span> <span class="dv">150</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>mod150 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> Xmat150)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>pred150 <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod150)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Unpenalized, 1 knot</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>Xmat4 <span class="ot">&lt;-</span> <span class="fu">bs</span>(x, <span class="at">df =</span> <span class="dv">4</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>mod4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> Xmat4)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>pred4 <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod4)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># With automatic penalization</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mgcv)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: nlme</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>This is mgcv 1.9-4. For overview type '?mgcv'.</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gam_mod <span class="ot">&lt;-</span> <span class="fu">gam</span>(y <span class="sc">~</span> <span class="fu">s</span>(x))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>gam_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(gam_mod)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, f)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, pred150, <span class="at">col =</span> <span class="st">'red'</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, pred4, <span class="at">col =</span> <span class="st">'blue'</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, gam_pred, <span class="at">col =</span> <span class="st">'green'</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topleft'</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">'truth'</span>, <span class="st">'unpenalized (df=150)'</span>, <span class="st">'unpenalized (df=4)'</span>, <span class="st">'penalized'</span>),</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'black'</span>,<span class="st">'red'</span>,<span class="st">'blue'</span>,<span class="st">'green'</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>gam_mod <span class="ot">&lt;-</span> <span class="fu">gam</span>(y <span class="sc">~</span> <span class="fu">s</span>(x))</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gam_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(gam_mod)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, f)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, pred4, <span class="at">col =</span> <span class="st">'blue'</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, gam_pred, <span class="at">col =</span> <span class="st">'green'</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, pred150, <span class="at">col =</span> <span class="st">'red'</span>)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">'topleft'</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">'truth'</span>, <span class="st">'unpenalized (df=150)'</span>, <span class="st">'unpenalized (df=4)'</span>, <span class="st">'penalized'</span>),</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">col =</span> <span class="fu">c</span>(<span class="st">'black'</span>,<span class="st">'red'</span>,<span class="st">'blue'</span>,<span class="st">'green'</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="unit12-dl-optim_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="unit12-dl-optim_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We can't do much useful with reressino splines in the overparameterized regime.</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>Xmat300 <span class="ot">&lt;-</span> <span class="fu">bs</span>(x, <span class="at">df =</span> <span class="dv">300</span>)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>mod300 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> Xmat300)</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>pred300 <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod300)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(pred300)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And note that in the classical setting, we can’t do much useful with regression splines in the overparameterized regime.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>Xmat300 <span class="ot">&lt;-</span> <span class="fu">bs</span>(x, <span class="at">df =</span> <span class="dv">300</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>mod300 <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> Xmat300)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>pred300 <span class="ot">&lt;-</span> <span class="fu">predict</span>(mod300)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">range</span>(pred300)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] -7.024817e+89  7.638885e+89</code></pre>
 </div>
 </div>
-<p><a href="https://arxiv.org/pdf/1611.03530">This well-known ArXiv paper</a> shows that deep neural nets (in particular ConvNets for image processing) can perfectly fit noise in observations, resulting in zero train error and large test error. This indicates that nothing in the model architecture is providing regularization. And while one can introduce regularization explicitly (such as through weight decay and dropout), in many uses regularization is not used and the authors show the explicit regularization helps a bit but that unregularized solutions do nearly as well. So how can deep neural networks avoid overfitting? The authors say that it is SGD itself that results in a regularized solution that generalizes well, without requiring explicit regularization.</p>
-<p>Belkin et al.&nbsp;introduced the term “double descent” to describe how increasing model size past the interpolation point (n=p) improves test error (hence the second descent after the first descent as one initially adds parameters) (see Fig. 1). They discuss the idea that with more parameters (a larger model/function class) one can find a model that fits the training data perfectly while also being smooth (having small norm on the model parameters/coefficients) (and thereby generalizing well). They illustrate this by explicitly including the norm in their loss function. And as above, the reason that neural net performance is good (even without regularization) is that standard optimization procedures used for these problems tend to find small norm solutions.</p>
+</section>
+<section id="overfitting-in-deep-learning" class="level2">
+<h2 class="anchored" data-anchor-id="overfitting-in-deep-learning">Overfitting in deep learning</h2>
+<p><a href="https://arxiv.org/pdf/1611.03530">This well-known ArXiv paper</a> shows that deep neural nets (in particular ConvNets for image processing) can perfectly fit noise in observations, resulting in zero train error and large test error. This indicates that nothing in the model architecture is providing regularization. And while one can introduce regularization explicitly (such as through weight decay and dropout), in many uses of deep learning regularization is not used. The ArXiv paper authors show that explicit regularization helps a bit, but that unregularized solutions do nearly as well. So how can deep neural networks avoid overfitting? The authors say that it is SGD itself that results in a regularized solution that generalizes well, without requiring explicit regularization.</p>
+<p><a href="https://www.pnas.org/doi/pdf/10.1073/pnas.1903070116">This well-known PNAS paper</a> introduced the term “double descent” to describe how increasing model size past the interpolation point (n=p) improves test error (hence the second descent after the first descent as one initially adds parameters) (see their Fig. 1). They discuss the idea that with more parameters (a larger model/function class) one can find a model that fits the training data perfectly while also being smooth (having small norm on the model parameters/coefficients) (and thereby generalizing well). They illustrate this by explicitly including the norm in their loss function. And as above, the reason that neural net performance is good (even without regularization) is that standard optimization procedures used for these problems tend to find small norm solutions.</p>
 <p>In some cases, practitioners have also seen double descent occur in epoch-space - that as the test error decreases then increases as the number of epochs becomes larger and then decreases again, presumably as the optimization finds more smooth solutions (perhaps because it <a href="https://arxiv.org/abs/1609.04836">favors flatter areas of the parameter space</a>). Note that one can potentially achieve good performance based on early stopping by monitoring test error on a held-out set (or something similar), since the model weights/parameters generally start at small values and take some time to become larger, which is generally when the overfitting happens.</p>
-<p>PNAS paper: https://www.pnas.org/doi/pdf/10.1073/pnas.1903070116</p>
-<p>Let’s see what happens if we use neural networks to fit the nonparametric regression. With a small model (64 neurons), if one stops before a lot of iterations (epochs), there is not much overfitting. If one lets the optimization continue, training error decreases slowly and we see some additional overfitting. Using a larger model illustrates (larger layers or two levels) the overfitting quite noticeably unless one stops early, although there is clearly still some regularization happening (given we know that the model is large enough to exactly fit the data).</p>
+<p>Let’s see what happens if we use neural networks to fit the nonparametric regression.</p>
+<p>Here’s the Python script I set up to do the fitting and plotting for various configurations of the data size, model structure, and optimization tuning parameters.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Show fitting code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.optim <span class="im">as</span> optim</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.utils.data <span class="im">import</span> DataLoader, TensorDataset</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> argparse</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Command-line arguments ---</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>parser <span class="op">=</span> argparse.ArgumentParser(description<span class="op">=</span><span class="st">"Fit neural networks with minibatch SGD."</span>)</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--n"</span>, <span class="st">"-n"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">256</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"Training sample size"</span>)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--layer_size"</span>, <span class="st">"-l"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">64</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"Units per hidden layer"</span>)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--n_epochs"</span>, <span class="st">"-e"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">2000</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"Number of training epochs"</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--batch_size"</span>, <span class="st">"-b"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">32</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"Minibatch size (use n for full-batch)"</span>)</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--lr"</span>, <span class="st">"-r"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">float</span>, default<span class="op">=</span><span class="fl">1e-3</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"Adam learning rate"</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>parser.add_argument(<span class="st">"--seed"</span>, <span class="st">"-s"</span>, <span class="bu">type</span><span class="op">=</span><span class="bu">int</span>, default<span class="op">=</span><span class="dv">1</span>, <span class="bu">help</span><span class="op">=</span><span class="st">"Random seed/replicate"</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>args <span class="op">=</span> parser.parse_args()</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> args.n</span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>layer_size <span class="op">=</span> args.layer_size</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>n_epochs <span class="op">=</span> args.n_epochs</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>batch_size <span class="op">=</span> args.batch_size</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>lr <span class="op">=</span> args.lr</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> args.seed</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Data generation (mirrors R gam example) ---</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fun(x):</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">5</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Model definitions ---</span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> OneDenseLayer(nn.Module):</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, layer_size<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.net <span class="op">=</span> nn.Sequential(</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">1</span>, layer_size),</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a>            nn.Linear(layer_size, <span class="dv">1</span>),</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.net(x)</span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TwoDenseLayers(nn.Module):</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, layer_size<span class="op">=</span><span class="dv">256</span>):</span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>        <span class="bu">super</span>().<span class="fu">__init__</span>()</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.net <span class="op">=</span> nn.Sequential(</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>            nn.Linear(<span class="dv">1</span>, layer_size),</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>            nn.Linear(layer_size, layer_size),</span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>            nn.ReLU(),</span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>            nn.Linear(layer_size, <span class="dv">1</span>),</span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> forward(<span class="va">self</span>, x):</span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.net(x)</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Training helper (minibatch SGD) ---</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> train(model, X_train, y_train, X_test, y_test, n_epochs<span class="op">=</span><span class="dv">2000</span>, lr<span class="op">=</span><span class="fl">1e-3</span>, batch_size<span class="op">=</span><span class="dv">32</span>):</span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    optimizer <span class="op">=</span> optim.Adam(model.parameters(), lr<span class="op">=</span>lr)</span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    loss_fn <span class="op">=</span> nn.MSELoss()</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    dataset <span class="op">=</span> TensorDataset(X_train, y_train)</span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>    loader <span class="op">=</span> DataLoader(dataset, batch_size<span class="op">=</span>batch_size, shuffle<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>    train_losses, test_losses, weight_norms <span class="op">=</span> [], [], []</span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> epoch <span class="kw">in</span> <span class="bu">range</span>(n_epochs):</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>        model.train()</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> X_batch, y_batch <span class="kw">in</span> loader:</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>            optimizer.zero_grad()</span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>            loss <span class="op">=</span> loss_fn(model(X_batch), y_batch)</span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>            loss.backward()</span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>            optimizer.step()</span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (epoch <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">100</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>            <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>                model.<span class="bu">eval</span>()</span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>                train_loss <span class="op">=</span> loss_fn(model(X_train), y_train).item()</span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>                test_loss <span class="op">=</span> loss_fn(model(X_test), y_test).item()</span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>                norm <span class="op">=</span> <span class="bu">sum</span>(p.norm().item() <span class="op">**</span> <span class="dv">2</span> <span class="cf">for</span> p <span class="kw">in</span> model.parameters()) <span class="op">**</span> <span class="fl">0.5</span></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>            train_losses.append(train_loss)</span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>            test_losses.append(test_loss)</span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>            weight_norms.append(norm)</span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> (epoch <span class="op">+</span> <span class="dv">1</span>) <span class="op">%</span> <span class="dv">500</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>                <span class="bu">print</span>(<span class="ss">f"  epoch </span><span class="sc">{</span>epoch<span class="op">+</span><span class="dv">1</span><span class="sc">:5d}</span><span class="ss">  train=</span><span class="sc">{</span>train_loss<span class="sc">:.4f}</span><span class="ss">  test=</span><span class="sc">{</span>test_loss<span class="sc">:.4f}</span><span class="ss">  |w|=</span><span class="sc">{</span>norm<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> train_losses, test_losses, weight_norms</span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Minibatch size (try 8, 32, 64, 256 = full batch) ---</span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a><span class="co"># (set via --batch_size)</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>np.random.seed(seed)</span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, n)</span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> fun(x) <span class="op">+</span> np.random.randn(n)</span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>X_tensor <span class="op">=</span> torch.tensor(x, dtype<span class="op">=</span>torch.float32).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>y_tensor <span class="op">=</span> torch.tensor(y, dtype<span class="op">=</span>torch.float32).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Test data (independent draw, n_test = n // 2) ---</span></span>
+<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>n_test <span class="op">=</span> n <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>x_test <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, n_test)</span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>y_test <span class="op">=</span> fun(x_test) <span class="op">+</span> np.random.randn(n_test)</span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>X_test_tensor <span class="op">=</span> torch.tensor(x_test, dtype<span class="op">=</span>torch.float32).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>y_test_tensor <span class="op">=</span> torch.tensor(y_test, dtype<span class="op">=</span>torch.float32).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a><span class="co"># --- True loss: noise variance (sigma^2 = 1) ---</span></span>
+<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>true_loss <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Oracle loss: MSE of true function on training data ---</span></span>
+<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>_y_true_train <span class="op">=</span> torch.tensor(fun(x), dtype<span class="op">=</span>torch.float32).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>oracle_loss <span class="op">=</span> nn.MSELoss()(_y_true_train, y_tensor).item()</span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Oracle loss (fun(x) vs y): </span><span class="sc">{</span>oracle_loss<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Fit grid for smooth prediction curve ---</span></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>x_grid <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">500</span>)</span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>X_grid <span class="op">=</span> torch.tensor(x_grid, dtype<span class="op">=</span>torch.float32).unsqueeze(<span class="dv">1</span>)</span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>y_true_grid <span class="op">=</span> fun(x_grid)</span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> fit_and_plot(layer_size, n_epochs, batch_size, lr, seed):</span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">=== layer_size=</span><span class="sc">{</span>layer_size<span class="sc">}</span><span class="ss">, n_epochs=</span><span class="sc">{</span>n_epochs<span class="sc">}</span><span class="ss">, batch_size=</span><span class="sc">{</span>batch_size<span class="sc">}</span><span class="ss">, lr=</span><span class="sc">{</span>lr<span class="sc">}</span><span class="ss"> ==="</span>)</span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Training 1-layer network ..."</span>)</span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>    model1 <span class="op">=</span> OneDenseLayer(layer_size)</span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>    train_losses1, test_losses1, weight_norms1 <span class="op">=</span> train(</span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>        model1, X_tensor, y_tensor, X_test_tensor, y_test_tensor,</span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>        n_epochs<span class="op">=</span>n_epochs, batch_size<span class="op">=</span>batch_size, lr<span class="op">=</span>lr,</span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>    model1.<span class="bu">eval</span>()</span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>        y_pred1 <span class="op">=</span> model1(X_grid).squeeze().numpy()</span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Training 2-layer network ..."</span>)</span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>    model2 <span class="op">=</span> TwoDenseLayers(layer_size)</span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>    train_losses2, test_losses2, weight_norms2 <span class="op">=</span> train(</span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>        model2, X_tensor, y_tensor, X_test_tensor, y_test_tensor,</span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>        n_epochs<span class="op">=</span>n_epochs, batch_size<span class="op">=</span>batch_size, lr<span class="op">=</span>lr,</span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>    model2.<span class="bu">eval</span>()</span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> torch.no_grad():</span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>        y_pred2 <span class="op">=</span> model2(X_grid).squeeze().numpy()</span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>    record_every <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>    epochs <span class="op">=</span> np.arange(record_every, n_epochs <span class="op">+</span> <span class="dv">1</span>, record_every)</span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>    titles <span class="op">=</span> [<span class="ss">f"1 Layer"</span>, <span class="ss">f"2 Layers"</span>]</span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">15</span>))</span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    fig.suptitle(<span class="ss">f"layer_size=</span><span class="sc">{</span>layer_size<span class="sc">}</span><span class="ss">, n_epochs=</span><span class="sc">{</span>n_epochs<span class="sc">}</span><span class="ss">, batch_size=</span><span class="sc">{</span>batch_size<span class="sc">}</span><span class="ss">, lr=</span><span class="sc">{</span>lr<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>                 y <span class="op">=</span> <span class="fl">.99</span>)</span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Top row: scatter + fit</span></span>
+<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ax, y_pred, title <span class="kw">in</span> <span class="bu">zip</span>(axes[<span class="dv">0</span>], [y_pred1, y_pred2], titles):</span>
+<span id="cb12-153"><a href="#cb12-153" aria-hidden="true" tabindex="-1"></a>        ax.scatter(x, y, s<span class="op">=</span><span class="dv">15</span>, alpha<span class="op">=</span><span class="fl">0.5</span>, label<span class="op">=</span><span class="st">"Train data"</span>)</span>
+<span id="cb12-154"><a href="#cb12-154" aria-hidden="true" tabindex="-1"></a>        ax.plot(x_grid, y_true_grid, color<span class="op">=</span><span class="st">"gray"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"True function"</span>)</span>
+<span id="cb12-155"><a href="#cb12-155" aria-hidden="true" tabindex="-1"></a>        ax.plot(x_grid, y_pred, color<span class="op">=</span><span class="st">"red"</span>, linewidth<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"NN fit"</span>)</span>
+<span id="cb12-156"><a href="#cb12-156" aria-hidden="true" tabindex="-1"></a>        ax.set_title(title)</span>
+<span id="cb12-157"><a href="#cb12-157" aria-hidden="true" tabindex="-1"></a>        ax.set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb12-158"><a href="#cb12-158" aria-hidden="true" tabindex="-1"></a>        ax.set_ylabel(<span class="st">"y"</span>)</span>
+<span id="cb12-159"><a href="#cb12-159" aria-hidden="true" tabindex="-1"></a>        ax.legend()</span>
+<span id="cb12-160"><a href="#cb12-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-161"><a href="#cb12-161" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bottom row: train/test loss over epochs</span></span>
+<span id="cb12-162"><a href="#cb12-162" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ax, trl, tel, title <span class="kw">in</span> <span class="bu">zip</span>(</span>
+<span id="cb12-163"><a href="#cb12-163" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">1</span>],</span>
+<span id="cb12-164"><a href="#cb12-164" aria-hidden="true" tabindex="-1"></a>        [train_losses1, train_losses2],</span>
+<span id="cb12-165"><a href="#cb12-165" aria-hidden="true" tabindex="-1"></a>        [test_losses1, test_losses2],</span>
+<span id="cb12-166"><a href="#cb12-166" aria-hidden="true" tabindex="-1"></a>        titles,</span>
+<span id="cb12-167"><a href="#cb12-167" aria-hidden="true" tabindex="-1"></a>    ):</span>
+<span id="cb12-168"><a href="#cb12-168" aria-hidden="true" tabindex="-1"></a>        ax.plot(epochs, trl, label<span class="op">=</span><span class="st">"Train loss"</span>)</span>
+<span id="cb12-169"><a href="#cb12-169" aria-hidden="true" tabindex="-1"></a>        ax.plot(epochs, tel, label<span class="op">=</span><span class="ss">f"Test loss (n=</span><span class="sc">{</span>n_test<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb12-170"><a href="#cb12-170" aria-hidden="true" tabindex="-1"></a>        ax.axhline(true_loss, color<span class="op">=</span><span class="st">"black"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"True loss (1.0)"</span>)</span>
+<span id="cb12-171"><a href="#cb12-171" aria-hidden="true" tabindex="-1"></a>        ax.axhline(oracle_loss, color<span class="op">=</span><span class="st">"green"</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="ss">f"Oracle loss (</span><span class="sc">{</span>oracle_loss<span class="sc">:.2f}</span><span class="ss">)"</span>)</span>
+<span id="cb12-172"><a href="#cb12-172" aria-hidden="true" tabindex="-1"></a>        ax.set_title(<span class="ss">f"</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss"> — loss over epochs"</span>)</span>
+<span id="cb12-173"><a href="#cb12-173" aria-hidden="true" tabindex="-1"></a>        ax.set_xlabel(<span class="st">"Epoch"</span>)</span>
+<span id="cb12-174"><a href="#cb12-174" aria-hidden="true" tabindex="-1"></a>        ax.set_ylabel(<span class="st">"MSE loss"</span>)</span>
+<span id="cb12-175"><a href="#cb12-175" aria-hidden="true" tabindex="-1"></a>        ax.set_ylim(<span class="dv">0</span>, <span class="dv">3</span>)</span>
+<span id="cb12-176"><a href="#cb12-176" aria-hidden="true" tabindex="-1"></a>        ax.legend()</span>
+<span id="cb12-177"><a href="#cb12-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-178"><a href="#cb12-178" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Third row: weight norm over epochs</span></span>
+<span id="cb12-179"><a href="#cb12-179" aria-hidden="true" tabindex="-1"></a>    max_norm <span class="op">=</span> <span class="bu">max</span>(<span class="bu">max</span>(weight_norms1), <span class="bu">max</span>(weight_norms2))</span>
+<span id="cb12-180"><a href="#cb12-180" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> ax, wn, title <span class="kw">in</span> <span class="bu">zip</span>(</span>
+<span id="cb12-181"><a href="#cb12-181" aria-hidden="true" tabindex="-1"></a>        axes[<span class="dv">2</span>],</span>
+<span id="cb12-182"><a href="#cb12-182" aria-hidden="true" tabindex="-1"></a>        [weight_norms1, weight_norms2],</span>
+<span id="cb12-183"><a href="#cb12-183" aria-hidden="true" tabindex="-1"></a>        titles,</span>
+<span id="cb12-184"><a href="#cb12-184" aria-hidden="true" tabindex="-1"></a>    ):</span>
+<span id="cb12-185"><a href="#cb12-185" aria-hidden="true" tabindex="-1"></a>        ax.plot(epochs, wn)</span>
+<span id="cb12-186"><a href="#cb12-186" aria-hidden="true" tabindex="-1"></a>        ax.set_title(<span class="ss">f"</span><span class="sc">{</span>title<span class="sc">}</span><span class="ss"> — weight norm over epochs"</span>)</span>
+<span id="cb12-187"><a href="#cb12-187" aria-hidden="true" tabindex="-1"></a>        ax.set_xlabel(<span class="st">"Epoch"</span>)</span>
+<span id="cb12-188"><a href="#cb12-188" aria-hidden="true" tabindex="-1"></a>        ax.set_ylabel(<span class="st">"L2 weight norm"</span>)</span>
+<span id="cb12-189"><a href="#cb12-189" aria-hidden="true" tabindex="-1"></a>        ax.set_ylim(<span class="dv">0</span>, max_norm)</span>
+<span id="cb12-190"><a href="#cb12-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-191"><a href="#cb12-191" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb12-192"><a href="#cb12-192" aria-hidden="true" tabindex="-1"></a>    fname <span class="op">=</span> <span class="ss">f"nn_regr_batch_n</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>layer_size<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>n_epochs<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>batch_size<span class="sc">}</span><span class="ss">_lr</span><span class="sc">{</span>lr<span class="sc">}</span><span class="ss">_seed</span><span class="sc">{</span>seed<span class="sc">}</span><span class="ss">.png"</span></span>
+<span id="cb12-193"><a href="#cb12-193" aria-hidden="true" tabindex="-1"></a>    plt.savefig(fname, dpi<span class="op">=</span><span class="dv">150</span>)</span>
+<span id="cb12-194"><a href="#cb12-194" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Plot saved to </span><span class="sc">{</span>fname<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-195"><a href="#cb12-195" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> sys.flags.interactive:       <span class="co"># Plot if in an interactive session.</span></span>
+<span id="cb12-196"><a href="#cb12-196" aria-hidden="true" tabindex="-1"></a>        plt.show()</span>
+<span id="cb12-197"><a href="#cb12-197" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-198"><a href="#cb12-198" aria-hidden="true" tabindex="-1"></a>fit_and_plot(layer_size, n_epochs, batch_size, lr, seed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>With a small model (64 neurons), if one stops before a lot of iterations (epochs), there is not much overfitting.</p>
+<p><img src="nn_regr_batch_n256_64_1000_256_lr0.001_seed1.png" class="img-fluid" alt="Results from fitting a neural network regression"></p>
+<p>Note that it’s not clear we would call that “early stopping”, since 1000 epochs is actually quite large for such a small problem.</p>
+<p>If one lets the optimization continue (somewhat unrealistically), training error decreases slowly and we see some additional overfitting. Using a larger model (larger layers or two layers) illustrates the overfitting quite noticeably. Note that even with the overfitting, there is clearly still some regularization happening (given we know that the model is large enough to exactly fit the data).</p>
+<p>Here are the results for the 64-neuron case with 10000 epochs.</p>
+<p><img src="nn_regr_batch_n256_64_10000_256_lr0.001_seed1.png" class="img-fluid" alt="Results from fitting a neural network regression"></p>
+<p>And here for the 512 neuron case with 10000 epochs.</p>
+<p><img src="nn_regr_batch_n256_512_10000_256_lr0.001_seed1.png" class="img-fluid" alt="Results from fitting a neural network regression"></p>
+</section>
 <section id="minibatches" class="level2">
 <h2 class="anchored" data-anchor-id="minibatches">Minibatches</h2>
-<p>Stochastic gradient descent (and related methods described above) substitute a noisy (but unbiased) estimate of the gradient in place of the full gradient, as discussed earlier in the optimization unit. That noisy estimate is generally an estimate based on the gradient contributions from a (random) subset of the observations, using a small subset such as 32-512 data points. There are different ways to choose the minibatches – one potentially important choice is whether to cycle through all the observations in minibatches in an epoch or randomly create a minibatch. The latter would be true SGD and is easier to analyze mathematically because the minibatches are independent but in practice researchers have found good results if one randomly shuffles the observations at the start of each epoch (e.g., PyTorch’s DataLoader with <code>shuffle=True</code>) and within an epoch cycle through all the observations in minibatches.</p>
-<p>One thing to think about in choosing a minibatch size is that the minibatch datasize fits in CPU/GPU memory and/or in the CPU cache.</p>
+<p>Stochastic gradient descent (and related methods described above) substitute a noisy (but unbiased) estimate of the gradient in place of the full gradient, as already discussed. That noisy estimate is generally an estimate based on the gradient contributions from a (random) subset of the observations, using a small subset such as 32-512 data points.</p>
+<p>There are different ways to choose the minibatches – one potentially important choice is whether to cycle through all the observations in minibatches in an epoch or randomly create a minibatch. The latter would be true SGD and is easier to analyze mathematically because the minibatches are independent, but in practice researchers have found good results if one randomly shuffles the observations at the start of each epoch (e.g., PyTorch’s DataLoader with <code>shuffle=True</code>) and within an epoch cycle through all the observations in minibatches.</p>
+<p>One thing to think about in choosing a minibatch size is that the minibatch datasize fits in memory (CPU or GPU depending on which you are using) and/or in the CPU cache.</p>
 <p>Recall from the main optimization unit that each step only moves us somewhat in the right direction and we don’t want to spend a lot of time choosing the exact right amount to go in that single step. Similarly we don’t want to spend a lot of time choosing exactly the right direction. We are iteratively exploring a space and making many descent steps quickly is better than making one “best” step.</p>
-<p>Apparently the term ‘batch’ refers to the entire dataset, hence ‘mini-batch’ is a small subset of the dataset. That terminology might be confusing (since I might think of a batch as being the same as a chunk or shard or subset) but seems to be standard.</p>
-<p>One advantage of minibatches is purely computational efficiency. We can choose a reasonable direction to go and make progress in that direction without having to compute the gradient for all of the observations. This was the first motivation. The connection with low generalization error and implicit regularization was realized later. In <a href="https://arxiv.org/abs/1609.04836">this paper</a> the authors argue that use of small batches results in finding optima in flat parts of the space that give smoother solutions that generalize better. However, <a href="https://arxiv.org/abs/1703.04933">this paper</a> provides evidence against the idea that finding solutions in flat areas is what explains the good generalization performance).</p>
-<p>One would also want to consider the learning rate as that plays an important role both in computational efficiency and in how the optimization moves through the space and settles on a solution. In <a href="https://arxiv.org/pdf/2101.12176">this paper</a>, the authors discuss first that with a very small learning rate, the optimization with minibatches follows the gradient flow to a local minimum but with larger learning rates the optimization path is what one would get if optimizing a regularized objective function.</p>
-<p>For many years, the standard approach was to use multiple minibatches in an epoch and train for many epochs. More recently there has been some focus on using a very small number of epochs, particularly in settings with huge data sizes [find Jingfeng citations]</p>
-<p>What happens if we use minibatching in the regression example? By comparing with the previous results, we can see a few things:</p>
+<p>Apparently the term ‘batch’ refers to the entire dataset, hence ‘mini-batch’ is a small subset of the dataset. That terminology might be confusing (since I might think of a batch as being the same as a chunk or shard or subset), but it seems to be standard.</p>
+<p>One advantage of minibatches is purely computational efficiency. We can choose a reasonable direction to go and make progress in that direction without having to compute the gradient for all of the observations. This was the first motivation. The connection with low generalization error and implicit regularization was realized later. In <a href="https://arxiv.org/abs/1609.04836">this ArXiv paper</a> the authors argue that use of small batches results in finding optima in flat parts of the space that give smoother solutions that generalize better. However, <a href="https://arxiv.org/abs/1703.04933">this ArXiv paper</a> provides evidence against the idea that finding solutions in flat areas is what explains the good generalization performance).</p>
+<p>What happens if we use minibatching in the regression example?</p>
+<p>By comparing with the previous results, we can see a few things:</p>
 <ul>
 <li>There’s not a lot of evidence in this particular example that using minibatches results in a much lower generalization error or test error near the oracle error.</li>
-<li>In general (particularly larger models and many epochs), we do still see a generalization gap that grows with the number of epochs.</li>
+<li>In general (particularly with larger models and many epochs), we do still see a generalization gap that grows with the number of epochs.</li>
 <li>Early-ish stopping combined with minibatches often seems to work well.</li>
 </ul>
-<p>[at one point (n=200?) I was seeing minibatching help with generalization error; not sure why not anymore]</p>
-<p>I say “early-ish” because 2000 epochs is quite large for such a small problem, so investigating what happens with 25000 epochs is interesting conceptually but presumably not something one would do in practice.</p>
+<p><a href="nn_regr_batch_n256_64_1000_32_lr0.001_seed1.png" data-fig-alt="Results from fitting a neural network regression, mini-batches"></a> <a href="nn_regr_batch_n256_64_10000_32_lr0.001_seed1.png" data-fig-alt="Results from fitting a neural network regression, mini-batches"></a> <a href="nn_regr_batch_n256_512_10000_32_lr0.001_seed1.png" data-fig-alt="Results from fitting a neural network regression, mini-batches"></a></p>
+<p>For many years, the standard approach was to use multiple minibatches in an epoch and train for many epochs. More recently there has been some focus on using a very small number of epochs, particularly in settings with huge data sizes. [find Jingfeng citations]</p>
 </section>
 <section id="the-learning-rate-and-the-process-of-updating-weights" class="level2">
 <h2 class="anchored" data-anchor-id="the-learning-rate-and-the-process-of-updating-weights">The learning rate and the process of updating weights</h2>
-<p>The learning rate is also an important part of the puzzle. It affects computational efficiency (overly small values will take a long time to reach an ‘optimum’), but also the performance of the trained model and interplays with the batch size since the amount of information in any given step relates to the number of observations in the batch.</p>
-<p>Suppose we are interested in whether we can improve the value of a specific weight in a neural network using sigmoid activation. Consider that at a given layer in the network, <span class="math inline">\(a^(l) = \sigma(\sum_k w^{(l)}_k a^{(l-1)} + b^{(l)})\)</span>. With a bit of investigation of the backpropagation algorithm for calculating the gradient of the loss with respect to the weights (e.g., considering the simplified update for a neuron at layer <span class="math inline">\(l\)</span> as <span class="math inline">\(a^{(l)} = \sigma(w^{(l)} a^{(l-1)} + b^{(l)})\)</span>, with gradient <span class="math inline">\(\sigma^{'}(w^{(l)} a^{(l-1)} + b^{(l)}) a^{(l-1)}\)</span>), one can see that the update to a weight will be small if:</p>
+<p>The learning rate is also an important part of the puzzle. It affects computational efficiency (overly small values will take a long time to reach an ‘optimum’) but also the performance of the trained model and interplays with the batch size since the amount of information in any given step relates to the number of observations in the batch. This affects how the optimization moves through the space and settles on a solution. In <a href="https://arxiv.org/pdf/2101.12176">this ArXiv paper</a>, the authors discuss first that with a very small learning rate, the optimization with minibatches follows the gradient flow to a local minimum but with larger learning rates the optimization path is what one would get if optimizing a regularized objective function.</p>
+<p>Here are some results with smaller and larger learning rates for the regression example.</p>
+<p>Suppose we are interested in whether we can improve the value of a specific weight in a neural network using sigmoid activation. Consider that at a given layer in the network, <span class="math inline">\(a^{(l)} = \sigma(\sum_k w^{(l)}_k a^{(l-1)} + b^{(l)})\)</span>. With a bit of investigation of the backpropagation algorithm for calculating the gradient of the loss with respect to the weights (e.g., considering the simplified update for a neuron at layer <span class="math inline">\(l\)</span> as <span class="math inline">\(a^{(l)} = \sigma(w^{(l)} a^{(l-1)} + b^{(l)})\)</span>, with gradient <span class="math inline">\(\sigma^{'}(w^{(l)} a^{(l-1)} + b^{(l)}) a^{(l-1)}\)</span>), one can see that the update to a weight will be small if:</p>
 <ul>
 <li>The input neuron, <span class="math inline">\(a^{(l-1)}\)</span> has a small value (low activation)</li>
-<li>The output neuron has saturated (the value of <span class="math inline">\(w^{(l)} a^{(l-1)} + b^{(l)}\)</span> is very large of small, such that the derivative of the sigmoid function is near zero.</li>
+<li>The output neuron has saturated (the value of <span class="math inline">\(w^{(l)} a^{(l-1)} + b^{(l)}\)</span> is very large or small, such that the derivative of the sigmoid function is near zero.</li>
 </ul>
 <p>This plays out differently when using ReLU activation functions since their derivative is zero for negative inputs and unbounded for positive. The unboundedness can result in less stability in the updates. And the zero derivative can mean that a neuron gets stuck in the “off” position if its inputs are always negative. In backpropagation, the weights/coefficients that feed into such a neuron don’t get updated through that neuron (though they would through other “live” neurons).</p>
 <p>One can also see a slow learning rate if you have a deep network and small magnitude weights, in which case the gradient behaves like the product of the weights (modulated by the activation function) and can be quite small. This is known as the vanishing gradient problem; with the counterpart exploding gradient problem when the weights are large, which can result in instability in fitting since individual gradient descent steps can be very large.</p>
-<p>Careful initialization can help with vanishing/exploding gradients. In particular the magnitude (quantified by the variance) of the initial values in a layer should scale inversely with the number of weights in the layer, to give weights with values whose magnitude is around 1. For RELU, the standard is to scale as 2 divided by the number of weights.</p>
+<p>Careful initialization can help with vanishing/exploding gradients. In particular the magnitude (quantified by the variance) of the initial values in a layer should scale inversely with the number of weights in the layer, to give weights with values whose magnitude is around 1. For RELU, the standard is to scale things by using 2 divided by the number of weights.</p>
 </section>
 <section id="other-aspects-of-optimizationtraining" class="level2">
 <h2 class="anchored" data-anchor-id="other-aspects-of-optimizationtraining">Other aspects of optimization/training</h2>
@@ -828,7 +1131,7 @@ x_{t+1}=x_{t} - \alpha_{t} \frac{v_{t+1}}{\sqrt{S_{t+1}}+\epsilon}
 </section>
 <section id="input-normalization" class="level3">
 <h3 class="anchored" data-anchor-id="input-normalization">Input normalization</h3>
-<p>It’s generally a good idea to ‘normalize’ your inputs (i.e., shift and scale them to remove the mean and standardize the variance). This generally produces an objective function that is more spherical and less elliptical/elongated. We saw in the Optimization unit that part of the difficulty with pure gradient descent is that it doesn’t account for how the gradient changes as one moves through the space and that Newton’s method, by using the Hessian, accounts for this and helps avoid big oscillations. Of course in deep learning we can use 2nd derivative information for efficiency reasons, so transforming your inputs is quite useful. Another way to think about this is that if we have an elliptical surface, we would want the learning rate to vary by dimension, whereas with a spherical one, we can use a single learning rate, which of course is what one wants, to avoid a high-dimensional hyperparameter search space.</p>
+<p>It’s generally a good idea to ‘normalize’ your inputs (i.e., shift and scale them to remove the mean and standardize the variance). This generally produces an objective function that is more spherical and less elliptical/elongated. We saw in the Optimization unit that part of the difficulty with pure gradient descent is that it doesn’t account for how the gradient changes as one moves through the space and that Newton’s method, by using the Hessian, accounts for this and helps avoid big oscillations. Of course in deep learning we can’t use 2nd derivative information for efficiency reasons, so transforming your inputs is quite useful. Another way to think about this is that if we have an elliptical surface, we would want the learning rate to vary by dimension, whereas with a spherical one, we can use a single learning rate, which of course is what one wants, to avoid a high-dimensional hyperparameter search space.</p>
 </section>
 <section id="local-optima" class="level3">
 <h3 class="anchored" data-anchor-id="local-optima">Local optima</h3>
@@ -844,8 +1147,8 @@ x_{t+1}=x_{t} - \alpha_{t} \frac{v_{t+1}}{\sqrt{S_{t+1}}+\epsilon}
 </section>
 <section id="batch-normalization" class="level3">
 <h3 class="anchored" data-anchor-id="batch-normalization">Batch normalization</h3>
-<p>Another common strategy when fitting neural networks is to normalize the values of the hidden units (usually before passing through the activation function) to have a particular layer-specific mean and variance (that might be learned during training). The intuition is similar to that for normalizing the inputs, to have all the predictors on the same scale and hopefully have more spherical objective function contours.</p>
-<p>One way to think about the effect of batch normalization is that it keeps the magnitudes and spread of the hidden unit values stable over the iterations, reducing what one might think of as a sort of ‘covariate shift’ within the model (since the hidden unit values are constantly changing as the optimization updates the parameters (the weights)).</p>
+<p>Another common strategy when fitting neural networks is to normalize the values of the hidden units (usually before passing through the activation function) to have a particular layer-specific mean and variance (that might be learned during training). The intuition is similar to that for normalizing the inputs – to have all the predictors on the same scale and hopefully have more spherical objective function contours.</p>
+<p>One way to think about the effect of batch normalization is that it keeps the magnitudes and spread of the hidden unit values stable over the iterations, reducing what one might think of as a sort of ‘covariate shift’ within the model. This could happen because the hidden unit values are constantly changing as the optimization updates the parameters (the weights).</p>
 
 
 </section>
